@@ -12,7 +12,7 @@
     </module>
 
     <!-- Javadoc Comments -->
-    <!--<module name="JavadocPackage" />-->
+    <module name="JavadocPackage"/>
 
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile"/>
@@ -155,32 +155,35 @@
         <module name="UnusedImports"/>
 
         <!-- Javadoc Comments -->
-        <module name="AtclauseOrder"/>
-        <!--<module name="JavadocMethod">
-            <property name="scope" value="anoninner"/>
-        </module>-->
-        <!--<module name="JavadocParagraph"/>-->
-        <!--<module name="JavadocStyle">
+        <module name="AtclauseOrder">
+            <property name="tagOrder"
+                      value="@param, @return, @throws, @exception, @see, @since, @author, @version, @deprecated"/>
+        </module>
+        <module name="JavadocMethod">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocParagraph"/>
+        <module name="JavadocStyle">
             <property name="checkEmptyJavadoc" value="true"/>
-        </module>-->
+        </module>
         <module name="JavadocTagContinuationIndentation"/>
-        <!--<module name="JavadocType">
+        <module name="JavadocType">
             <property name="authorFormat" value="\S"/>
             <property name="allowUnknownTags" value="true"/>
             <property name="scope" value="anoninner"/>
-        </module>-->
+        </module>
         <!--<module name="JavadocVariable">
             <property name="scope" value="anoninner"/>
         </module>-->
         <module name="NonEmptyAtclauseDescription"/>
         <module name="SingleLineJavadoc"/>
         <module name="SummaryJavadocCheck"/>
-        <!--<module name="WriteTag">
+        <module name="WriteTag">
             <property name="tag" value="@incomplete"/>
             <property name="tagFormat" value="\S"/>
             <property name="severity" value="ignore"/>
             <property name="tagSeverity" value="warning"/>
-        </module>-->
+        </module>
 
         <!-- Metrics -->
         <module name="BooleanExpressionComplexity">
