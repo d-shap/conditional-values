@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Represents defined in runtime values;
+ * Represents defined in runtime values.
  *
  * @param <T> Value type.
  * @author Dmitry Shapovalov
