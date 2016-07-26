@@ -12,7 +12,7 @@
     </module>
 
     <!-- Javadoc Comments -->
-    <module name="JavadocPackage"/>
+    <!--<module name="JavadocPackage"/>-->
 
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile"/>
