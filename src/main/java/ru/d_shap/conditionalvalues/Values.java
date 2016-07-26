@@ -14,35 +14,28 @@ public final class Values<T> {
 
     private final List<ValueSet<T>> _valueSets;
 
+    private final Set<T> _allValues;
+
     Values(final List<ValueSet<T>> valueSets) {
         super();
         _valueSets = Collections.unmodifiableList(new ArrayList<ValueSet<T>>(valueSets));
+        Set<T> allValues = new LinkedHashSet<T>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            allValues.addAll(valueSet.getAllValues());
+        }
+        _allValues = Collections.unmodifiableSet(allValues);
     }
 
     public boolean isEmpty() {
-        for (ValueSet<T> valueSet : _valueSets) {
-            if (!valueSet.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
+        return _allValues.isEmpty();
     }
 
     public boolean contains(final T value) {
-        for (ValueSet<T> valueSet : _valueSets) {
-            if (valueSet.contains(value)) {
-                return true;
-            }
-        }
-        return false;
+        return _allValues.contains(value);
     }
 
     public Set<T> getAllValues() {
-        Set<T> result = new LinkedHashSet<T>();
-        for (ValueSet<T> valueSet : _valueSets) {
-            result.addAll(valueSet.getAllValues());
-        }
-        return result;
+        return _allValues;
     }
 
     @Override

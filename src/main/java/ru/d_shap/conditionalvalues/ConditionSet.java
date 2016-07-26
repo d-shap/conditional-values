@@ -23,7 +23,7 @@ public final class ConditionSet {
 
     ConditionSet(final Map<String, String> conditions) {
         super();
-        _conditions = new HashMap<String, String>(conditions);
+        _conditions = Collections.unmodifiableMap(new HashMap<String, String>(conditions));
         _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
     }
 

@@ -4,6 +4,7 @@
 // //////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -25,13 +26,14 @@ public final class ValueSet<T> {
 
     ValueSet(final Map<String, Set<String>> conditionMap, final Set<T> values) {
         super();
-        _conditions = new HashMap<String, Set<String>>();
+        Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
         for (Map.Entry<String, Set<String>> entry : conditionMap.entrySet()) {
             String key = entry.getKey();
             Set<String> value = entry.getValue();
-            _conditions.put(key, new HashSet<String>(value));
+            conditions.put(key, Collections.unmodifiableSet(new HashSet<String>(value)));
         }
-        _values = new LinkedHashSet<T>(values);
+        _conditions = Collections.unmodifiableMap(conditions);
+        _values = Collections.unmodifiableSet(new LinkedHashSet<T>(values));
     }
 
     /**
@@ -40,7 +42,7 @@ public final class ValueSet<T> {
      * @return Set with unique condition names.
      */
     public Set<String> getAllConditionNames() {
-        return new HashSet<String>(_conditions.keySet());
+        return _conditions.keySet();
     }
 
     /**
@@ -50,12 +52,12 @@ public final class ValueSet<T> {
      * @return Set with unique condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
-        Set<String> result = new HashSet<String>();
         Set<String> values = _conditions.get(conditionName);
-        if (values != null) {
-            result.addAll(values);
+        if (values == null) {
+            return new HashSet<String>();
+        } else {
+            return values;
         }
-        return result;
     }
 
     int matchCardinality(final ConditionSet conditionSet) {
@@ -81,16 +83,8 @@ public final class ValueSet<T> {
         }
     }
 
-    boolean isEmpty() {
-        return _values.isEmpty();
-    }
-
-    boolean contains(final T value) {
-        return _values.contains(value);
-    }
-
     Set<T> getAllValues() {
-        return new LinkedHashSet<T>(_values);
+        return _values;
     }
 
     @Override
