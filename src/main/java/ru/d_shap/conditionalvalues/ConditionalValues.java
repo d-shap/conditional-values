@@ -10,6 +10,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Conditional values.
+ *
+ * @param <T> Value type.
+ * @author Dmitry Shapovalov
+ */
 public final class ConditionalValues<T> {
 
     private final List<ValueSet<T>> _valueSets;
@@ -25,14 +31,32 @@ public final class ConditionalValues<T> {
         _valueSets = Collections.unmodifiableList(list);
     }
 
+    /**
+     * Creates ValueSetBuilder object.
+     *
+     * @param <T> value type.
+     * @return created object.
+     */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
         return new ValueSetBuilder<T>();
     }
 
+    /**
+     * Creates ConditionSetBuilder object.
+     *
+     * @return created object.
+     */
     public static ConditionSetBuilder createConditionSetBuilder() {
         return new ConditionSetBuilder();
     }
 
+    /**
+     * Create ConditionalValues object.
+     *
+     * @param valueSets value sets for object.
+     * @param <T>       value type.
+     * @return created object.
+     */
     public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
         if (valueSets == null) {
             List<ValueSet<T>> valueSetList = new ArrayList<ValueSet<T>>();
@@ -52,6 +76,11 @@ public final class ConditionalValues<T> {
         }
     }
 
+    /**
+     * Get all condition names.
+     *
+     * @return all condition names.
+     */
     public Set<String> getAllConditionNames() {
         Set<String> result = new HashSet<String>();
         for (ValueSet<T> valueSet : _valueSets) {
@@ -60,6 +89,12 @@ public final class ConditionalValues<T> {
         return result;
     }
 
+    /**
+     * Get all values for specified condition name.
+     *
+     * @param conditionName condition name.
+     * @return all values.
+     */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> result = new HashSet<String>();
         for (ValueSet<T> valueSet : _valueSets) {
@@ -68,6 +103,12 @@ public final class ConditionalValues<T> {
         return result;
     }
 
+    /**
+     * Create Values object for specified conditions.
+     *
+     * @param conditionSet runtime conditions.
+     * @return created Values object.
+     */
     public Values<T> getValues(final ConditionSet conditionSet) {
         int cardinality = getMaxCardinality(conditionSet);
         List<ValueSet<T>> values = filterValues(conditionSet, cardinality);
