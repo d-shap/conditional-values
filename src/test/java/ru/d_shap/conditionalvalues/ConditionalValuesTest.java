@@ -12,12 +12,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ConditionalValuesTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ConditionalValuesTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllConditionNamesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -40,6 +51,9 @@ public final class ConditionalValuesTest {
         Assert.assertTrue(allConditionNames.contains("cond4"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllConditionValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -78,6 +92,9 @@ public final class ConditionalValuesTest {
         Assert.assertEquals(0, allConditionValues5.size());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -109,6 +126,9 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(iterator.hasNext());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getEmptyValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -134,6 +154,9 @@ public final class ConditionalValuesTest {
         Assert.assertTrue(values.isEmpty());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAndValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -164,6 +187,9 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(values3.isEmpty());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getOrValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -191,6 +217,9 @@ public final class ConditionalValuesTest {
         Assert.assertTrue(values3.isEmpty());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getMaxCardinalityValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -231,6 +260,9 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(values.contains("val4"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getSameCardinalityValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();

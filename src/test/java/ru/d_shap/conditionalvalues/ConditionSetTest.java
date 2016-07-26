@@ -13,12 +13,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ConditionSetTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ConditionSetTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void nameIteratorTest() {
         Map<String, String> conditions = new HashMap<String, String>();
@@ -39,6 +50,9 @@ public final class ConditionSetTest {
         Assert.assertFalse(nameIterator.hasNext());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getConditionTest() {
         Map<String, String> conditions = new HashMap<String, String>();

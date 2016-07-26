@@ -12,12 +12,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ValuesTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ValuesTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void isEmptyTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -51,6 +62,9 @@ public final class ValuesTest {
         Assert.assertTrue(values3.isEmpty());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void containsTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -73,6 +87,9 @@ public final class ValuesTest {
         Assert.assertTrue(values.contains("val4"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();

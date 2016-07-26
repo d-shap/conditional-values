@@ -14,12 +14,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ValueSetTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ValueSetTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllConditionNamesTest() {
         Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
@@ -38,6 +49,9 @@ public final class ValueSetTest {
         Assert.assertTrue(allConditionNames.contains("cond2"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllConditionValuesTest() {
         Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
@@ -70,6 +84,9 @@ public final class ValueSetTest {
         Assert.assertEquals(0, allConditionValues3.size());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void matchCardinalityTest() {
         Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
@@ -127,6 +144,9 @@ public final class ValueSetTest {
         Assert.assertEquals(2, valueSet.matchCardinality(conditionSet7));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void getAllValuesTest() {
         Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
@@ -150,6 +170,9 @@ public final class ValueSetTest {
         Assert.assertFalse(iterator.hasNext());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void equalsTest() {
         Map<String, Set<String>> conditions1 = new HashMap<String, Set<String>>();
@@ -218,6 +241,9 @@ public final class ValueSetTest {
         Assert.assertEquals(valueSet4, valueSet5);
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void hashCodeTest() {
         Map<String, Set<String>> conditions1 = new HashMap<String, Set<String>>();

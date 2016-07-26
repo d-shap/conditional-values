@@ -10,12 +10,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ValueSetBuilderTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ValueSetBuilderTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void buildTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -50,6 +61,9 @@ public final class ValueSetBuilderTest {
         Assert.assertFalse(iterator.hasNext());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void addConditionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -83,6 +97,9 @@ public final class ValueSetBuilderTest {
         Assert.assertTrue(allConditionValues2.contains("val3"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void removeConditionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -120,6 +137,9 @@ public final class ValueSetBuilderTest {
         Assert.assertTrue(allConditionValues2.contains("val3"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void addValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
@@ -139,6 +159,9 @@ public final class ValueSetBuilderTest {
         Assert.assertFalse(iterator.hasNext());
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void removeValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();

@@ -11,12 +11,23 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Тесты.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class ConditionSetBuilderTest {
 
+    /**
+     * Конструктор для тестов.
+     */
     public ConditionSetBuilderTest() {
         super();
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void buildTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
@@ -43,6 +54,9 @@ public final class ConditionSetBuilderTest {
         Assert.assertEquals("val3", conditionSet3.getCondition("cond3"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void addConditionTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
@@ -91,6 +105,9 @@ public final class ConditionSetBuilderTest {
         Assert.assertEquals("val2", conditionSet.getCondition("cond9"));
     }
 
+    /**
+     * Тест.
+     */
     @Test
     public void removeConditionTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
