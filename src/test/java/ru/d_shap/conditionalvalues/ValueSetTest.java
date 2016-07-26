@@ -128,48 +128,6 @@ public final class ValueSetTest {
     }
 
     @Test
-    public void isEmptyTest() {
-        Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
-        Set<String> condition1 = new HashSet<String>();
-        condition1.add("val11");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<String>();
-        condition2.add("val21");
-        conditions.put("cond2", condition2);
-
-        Set<String> values1 = new HashSet<String>();
-        ValueSet<String> valueSet1 = new ValueSet<String>(conditions, values1);
-        Assert.assertTrue(valueSet1.isEmpty());
-
-        Set<String> values2 = new HashSet<String>();
-        values2.add("val1");
-        values2.add("val2");
-        values2.add("val3");
-        ValueSet<String> valueSet2 = new ValueSet<String>(conditions, values2);
-        Assert.assertFalse(valueSet2.isEmpty());
-    }
-
-    @Test
-    public void containsTest() {
-        Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
-        Set<String> condition1 = new HashSet<String>();
-        condition1.add("val11");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<String>();
-        condition2.add("val21");
-        conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<String>();
-        values.add("val1");
-        values.add("val2");
-        values.add("val3");
-        ValueSet<String> valueSet = new ValueSet<String>(conditions, values);
-        Assert.assertTrue(valueSet.contains("val1"));
-        Assert.assertTrue(valueSet.contains("val2"));
-        Assert.assertTrue(valueSet.contains("val3"));
-        Assert.assertFalse(valueSet.contains("val4"));
-    }
-
-    @Test
     public void getAllValuesTest() {
         Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
         Set<String> condition1 = new HashSet<String>();
