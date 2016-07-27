@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Conditional values.
+ * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best matching
+ * {@link ru.d_shap.conditionalvalues.ValueSet} objects based on specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
- * @param <T> Value type.
+ * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * @author Dmitry Shapovalov
  */
 public final class ConditionalValues<T> {
@@ -32,30 +33,30 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Creates ValueSetBuilder object.
+     * Create {@link ru.d_shap.conditionalvalues.ValueSetBuilder} object.
      *
-     * @param <T> value type.
-     * @return created object.
+     * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @return Created object.
      */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
         return new ValueSetBuilder<T>();
     }
 
     /**
-     * Creates ConditionSetBuilder object.
+     * Create {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} object.
      *
-     * @return created object.
+     * @return Created object.
      */
     public static ConditionSetBuilder createConditionSetBuilder() {
         return new ConditionSetBuilder();
     }
 
     /**
-     * Create ConditionalValues object.
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      *
-     * @param valueSets value sets for object.
-     * @param <T>       value type.
-     * @return created object.
+     * @param valueSets all value sets, used for lookup.
+     * @param <T>       value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @return Created object.
      */
     public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
         if (valueSets == null) {
@@ -77,9 +78,9 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Get all condition names.
+     * Get all condition names, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @return all condition names.
+     * @return All condition names.
      */
     public Set<String> getAllConditionNames() {
         Set<String> result = new HashSet<String>();
@@ -90,10 +91,10 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Get all values for specified condition name.
+     * Get all condition values for specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName condition name.
-     * @return all values.
+     * @return All condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> result = new HashSet<String>();
@@ -104,10 +105,10 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Create Values object for specified conditions.
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @param conditionSet runtime conditions.
-     * @return created Values object.
+     * @param conditionSet conditions, used to lookup.
+     * @return The best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> getValues(final ConditionSet conditionSet) {
         int cardinality = getMaxCardinality(conditionSet);

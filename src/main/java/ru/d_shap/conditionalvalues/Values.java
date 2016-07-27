@@ -11,9 +11,16 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Represents defined in runtime values.
+ * <p>
+ * The lookup result of the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+ * </p>
+ * <p>
+ * If {@link ru.d_shap.conditionalvalues.Values} object created for several matchig
+ * {@link ru.d_shap.conditionalvalues.ValueSet} objects, then values are obtained from every
+ * one {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * </p>
  *
- * @param <T> Value type.
+ * @param <T> value type.
  * @author Dmitry Shapovalov
  */
 public final class Values<T> {
@@ -33,19 +40,19 @@ public final class Values<T> {
     }
 
     /**
-     * Does this object contains any values.
+     * Tests if this object contains any value.
      *
-     * @return true if does not.
+     * @return True if this object does not contain any value.
      */
     public boolean isEmpty() {
         return _allValues.isEmpty();
     }
 
     /**
-     * Does this object contains specified value.
+     * Tests if this object contains specified value.
      *
-     * @param value test value.
-     * @return true if contains.
+     * @param value value to test.
+     * @return True if this object contains specified value.
      */
     public boolean contains(final T value) {
         return _allValues.contains(value);

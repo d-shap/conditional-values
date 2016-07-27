@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Object represents current conditions. Used to lookup {@link ru.d_shap.conditionalvalues.Values} in runtime.
+ * Object represents conditions, used to lookup the best mathcing {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  *
  * @author Dmitry Shapovalov
  */

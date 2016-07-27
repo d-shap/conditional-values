@@ -13,9 +13,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Class represents some values, wich are selected in runtime based on specified conditions.
+ * Class represents this distinct condition with corresponding values for this condition.
  *
- * @param <T> Value type.
+ * @param <T> value type.
  * @author Dmitry Shapovalov
  */
 public final class ValueSet<T> {
@@ -39,17 +39,17 @@ public final class ValueSet<T> {
     /**
      * Get all condition names, defined in this object.
      *
-     * @return Set with unique condition names.
+     * @return All condition names.
      */
     public Set<String> getAllConditionNames() {
         return _conditions.keySet();
     }
 
     /**
-     * Get all condition values, defined for specified condition names.
+     * Get all condition values for specified condition name, defined in this object.
      *
-     * @param conditionName Condition name.
-     * @return Set with unique condition values for specified condition name.
+     * @param conditionName condition name.
+     * @return All condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> values = _conditions.get(conditionName);

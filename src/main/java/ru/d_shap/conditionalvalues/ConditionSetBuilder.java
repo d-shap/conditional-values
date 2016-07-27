@@ -8,7 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Builder class used to constract {@link ru.d_shap.conditionalvalues.ConditionSet} objects. Object of this class is reusable. After calling {@link #build()} method this object can be used to create another  {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * <p>
+ * Builder class used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
+ * </p>
+ * <p>
+ * Object of this class is reusable. After calling the {@link #build()} method this object can be
+ * used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * </p>
+ * <p>
+ * The internal presentation of conditions is {@code Map<String, String>}.
+ * </p>
+ * <p>
+ * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)}, {@link #addCondition(String, long)},
+ * {@link #addCondition(String, float)}, {@link #addCondition(String, double)} and {@link #addObjectCondition(String, Object)}
+ * are convenient methods for {@link #addCondition(String, String)}.
+ * </p>
  *
  * @author Dmitry Shapovalov
  */
@@ -26,7 +40,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final String value) {
         doAddCondition(name, value);
@@ -38,7 +52,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final boolean value) {
         doAddCondition(name, String.valueOf(value));
@@ -50,7 +64,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
@@ -62,7 +76,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final long value) {
         doAddCondition(name, String.valueOf(value));
@@ -74,7 +88,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final float value) {
         doAddCondition(name, String.valueOf(value));
@@ -86,7 +100,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final double value) {
         doAddCondition(name, String.valueOf(value));
@@ -98,7 +112,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder addObjectCondition(final String name, final Object value) {
         if (value != null) {
@@ -121,7 +135,7 @@ public final class ConditionSetBuilder {
      * Remove contition from the set.
      *
      * @param name condition name.
-     * @return current object for chaining.
+     * @return Current object for chaining.
      */
     public ConditionSetBuilder removeCondition(final String name) {
         if (name != null) {
@@ -133,7 +147,7 @@ public final class ConditionSetBuilder {
     /**
      * Creates new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionSet}, populated with values, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with the values, added to this builder.
      */
     public ConditionSet build() {
         ConditionSet conditionSet = new ConditionSet(_conditions);
