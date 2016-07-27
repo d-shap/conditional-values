@@ -179,7 +179,12 @@
     </rule>
     <!-- comments.xml -->
     <!-- rule ref="rulesets/java/comments.xml/CommentRequired" / -->
-    <rule ref="rulesets/java/comments.xml/CommentSize"/>
+    <rule ref="rulesets/java/comments.xml/CommentSize">
+        <properties>
+            <property name="maxLineLength" value="200"/>
+            <property name="maxLines" value="200"/>
+        </properties>
+    </rule>
     <rule ref="rulesets/java/comments.xml/CommentContent"/>
     <!-- coupling.xml -->
     <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
