@@ -12,21 +12,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Тесты.
+ * Tests for {@link ru.d_shap.conditionalvalues.ConditionSetBuilder}.
  *
  * @author Dmitry Shapovalov
  */
 public final class ConditionSetBuilderTest {
 
     /**
-     * Конструктор для тестов.
+     * Test class constructor.
      */
     public ConditionSetBuilderTest() {
         super();
     }
 
     /**
-     * Тест.
+     * build method test.
      */
     @Test
     public void buildTest() {
@@ -55,7 +55,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * Тест.
+     * addCondition method test.
      */
     @Test
     public void addConditionTest() {
@@ -106,7 +106,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * Тест.
+     * removeCondition method test.
      */
     @Test
     public void removeConditionTest() {

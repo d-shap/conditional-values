@@ -13,21 +13,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Тесты.
+ * Tests for {@link ru.d_shap.conditionalvalues.Values}.
  *
  * @author Dmitry Shapovalov
  */
 public final class ValuesTest {
 
     /**
-     * Конструктор для тестов.
+     * Test class constructor.
      */
     public ValuesTest() {
         super();
     }
 
     /**
-     * Тест.
+     * isEmpty method test.
      */
     @Test
     public void isEmptyTest() {
@@ -63,7 +63,7 @@ public final class ValuesTest {
     }
 
     /**
-     * Тест.
+     * contains method test.
      */
     @Test
     public void containsTest() {
@@ -88,7 +88,7 @@ public final class ValuesTest {
     }
 
     /**
-     * Тест.
+     * getAllValues method test.
      */
     @Test
     public void getAllValuesTest() {

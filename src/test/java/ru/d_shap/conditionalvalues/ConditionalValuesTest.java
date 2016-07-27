@@ -13,21 +13,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Тесты.
+ * Tests for {@link ru.d_shap.conditionalvalues.ConditionalValues}.
  *
  * @author Dmitry Shapovalov
  */
 public final class ConditionalValuesTest {
 
     /**
-     * Конструктор для тестов.
+     * Test class constructor.
      */
     public ConditionalValuesTest() {
         super();
     }
 
     /**
-     * Тест.
+     * getAllConditionNames method test.
      */
     @Test
     public void getAllConditionNamesTest() {
@@ -52,7 +52,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getAllConditionValues method test.
      */
     @Test
     public void getAllConditionValuesTest() {
@@ -93,7 +93,25 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * Check for DuplicateValueSetException exception test.
+     */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addCondition("cond1", "val11", "val12");
+        valueSetBuilder.addCondition("cond2", "val21", "val22");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond1", "val11", "val12");
+        valueSetBuilder.addCondition("cond2", "val21", "val22");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        ConditionalValues.createConditionalValues(valueSets);
+    }
+
+    /**
+     * getValues method test.
      */
     @Test
     public void getValuesTest() {
@@ -127,7 +145,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getValues for non matching ValueSets test.
      */
     @Test
     public void getEmptyValuesTest() {
@@ -155,7 +173,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getValues for AND condition test.
      */
     @Test
     public void getAndValuesTest() {
@@ -188,7 +206,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getValues for OR condition test.
      */
     @Test
     public void getOrValuesTest() {
@@ -218,7 +236,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getValues for the best matched ValueSet test.
      */
     @Test
     public void getMaxCardinalityValuesTest() {
@@ -261,7 +279,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Тест.
+     * getValues for several matching ValueSets test.
      */
     @Test
     public void getSameCardinalityValuesTest() {

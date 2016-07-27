@@ -15,21 +15,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Тесты.
+ * Tests for {@link ru.d_shap.conditionalvalues.ValueSet}.
  *
  * @author Dmitry Shapovalov
  */
 public final class ValueSetTest {
 
     /**
-     * Конструктор для тестов.
+     * Test class constructor.
      */
     public ValueSetTest() {
         super();
     }
 
     /**
-     * Тест.
+     * getAllConditionNames method test.
      */
     @Test
     public void getAllConditionNamesTest() {
@@ -50,7 +50,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * Тест.
+     * getAllConditionValues method test.
      */
     @Test
     public void getAllConditionValuesTest() {
@@ -85,7 +85,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * Тест.
+     * matchCardinality method test.
      */
     @Test
     public void matchCardinalityTest() {
@@ -145,7 +145,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * Тест.
+     * getAllValues method test.
      */
     @Test
     public void getAllValuesTest() {
@@ -171,7 +171,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * Тест.
+     * equals method test.
      */
     @Test
     public void equalsTest() {
@@ -242,7 +242,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * Тест.
+     * hashCode method test.
      */
     @Test
     public void hashCodeTest() {
