@@ -144,7 +144,7 @@
     <rule ref="rulesets/java/controversial.xml/OneDeclarationPerLine" />
     <rule ref="rulesets/java/controversial.xml/AvoidPrefixingMethodParameters" />
     <!-- rule ref="rulesets/java/controversial.xml/AvoidLiteralsInIfCondition" / -->
-    <rule ref="rulesets/java/controversial.xml/UseObjectForClearerAPI" />
+    <!-- rule ref="rulesets/java/controversial.xml/UseObjectForClearerAPI" / -->
     <!-- rule ref="rulesets/java/controversial.xml/UseConcurrentHashMap" / -->
 
     <!-- clone.xml -->
