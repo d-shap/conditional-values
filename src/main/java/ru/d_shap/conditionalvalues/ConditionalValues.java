@@ -36,7 +36,7 @@ public final class ConditionalValues<T> {
      * Create {@link ru.d_shap.conditionalvalues.ValueSetBuilder} object.
      *
      * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     * @return Created object.
+     * @return created object.
      */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
         return new ValueSetBuilder<T>();
@@ -45,7 +45,7 @@ public final class ConditionalValues<T> {
     /**
      * Create {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} object.
      *
-     * @return Created object.
+     * @return created object.
      */
     public static ConditionSetBuilder createConditionSetBuilder() {
         return new ConditionSetBuilder();
@@ -56,7 +56,7 @@ public final class ConditionalValues<T> {
      *
      * @param valueSets all value sets, used for lookup.
      * @param <T>       value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     * @return Created object.
+     * @return created object.
      */
     public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
         if (valueSets == null) {
@@ -80,7 +80,7 @@ public final class ConditionalValues<T> {
     /**
      * Get all condition names, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @return All condition names.
+     * @return all condition names.
      */
     public Set<String> getAllConditionNames() {
         Set<String> result = new HashSet<String>();
@@ -94,7 +94,7 @@ public final class ConditionalValues<T> {
      * Get all condition values for specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName condition name.
-     * @return All condition values for specified condition name.
+     * @return all condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> result = new HashSet<String>();
@@ -108,7 +108,7 @@ public final class ConditionalValues<T> {
      * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionSet conditions, used to lookup.
-     * @return The best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> getValues(final ConditionSet conditionSet) {
         int cardinality = getMaxCardinality(conditionSet);

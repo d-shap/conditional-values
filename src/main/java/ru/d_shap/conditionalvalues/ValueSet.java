@@ -39,7 +39,7 @@ public final class ValueSet<T> {
     /**
      * Get all condition names, defined in this object.
      *
-     * @return All condition names.
+     * @return all condition names.
      */
     public Set<String> getAllConditionNames() {
         return _conditions.keySet();
@@ -49,7 +49,7 @@ public final class ValueSet<T> {
      * Get all condition values for specified condition name, defined in this object.
      *
      * @param conditionName condition name.
-     * @return All condition values for specified condition name.
+     * @return all condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> values = _conditions.get(conditionName);

@@ -40,7 +40,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final String value) {
         doAddCondition(name, value);
@@ -52,7 +52,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final boolean value) {
         doAddCondition(name, String.valueOf(value));
@@ -64,7 +64,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
@@ -76,7 +76,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final long value) {
         doAddCondition(name, String.valueOf(value));
@@ -88,7 +88,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final float value) {
         doAddCondition(name, String.valueOf(value));
@@ -100,7 +100,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final double value) {
         doAddCondition(name, String.valueOf(value));
@@ -112,7 +112,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder addObjectCondition(final String name, final Object value) {
         if (value != null) {
@@ -135,7 +135,7 @@ public final class ConditionSetBuilder {
      * Remove contition from the set.
      *
      * @param name condition name.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ConditionSetBuilder removeCondition(final String name) {
         if (name != null) {

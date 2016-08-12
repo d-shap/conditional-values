@@ -42,7 +42,7 @@ public final class Values<T> {
     /**
      * Tests if this object contains any value.
      *
-     * @return True if this object does not contain any value.
+     * @return true if this object does not contain any value.
      */
     public boolean isEmpty() {
         return _allValues.isEmpty();
@@ -52,7 +52,7 @@ public final class Values<T> {
      * Tests if this object contains specified value.
      *
      * @param value value to test.
-     * @return True if this object contains specified value.
+     * @return true if this object contains specified value.
      */
     public boolean contains(final T value) {
         return _allValues.contains(value);

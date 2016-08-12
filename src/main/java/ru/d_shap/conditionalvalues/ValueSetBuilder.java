@@ -71,7 +71,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final String... values) {
         if (values != null) {
@@ -87,7 +87,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final boolean... values) {
         if (values != null) {
@@ -103,7 +103,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final int... values) {
         if (values != null) {
@@ -119,7 +119,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final long... values) {
         if (values != null) {
@@ -135,7 +135,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final float... values) {
         if (values != null) {
@@ -151,7 +151,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final double... values) {
         if (values != null) {
@@ -167,7 +167,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addObjectCondition(final String name, final Object... values) {
         if (values != null) {
@@ -199,7 +199,7 @@ public final class ValueSetBuilder<T> {
      * Remove conditions from the set.
      *
      * @param name condition name.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name) {
         if (name != null) {
@@ -213,7 +213,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final String... values) {
         if (values != null) {
@@ -229,7 +229,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final boolean... values) {
         if (values != null) {
@@ -245,7 +245,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final int... values) {
         if (values != null) {
@@ -261,7 +261,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final long... values) {
         if (values != null) {
@@ -277,7 +277,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final float... values) {
         if (values != null) {
@@ -293,7 +293,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final double... values) {
         if (values != null) {
@@ -309,7 +309,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name   condition name.
      * @param values condition values.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeObjectCondition(final String name, final Object... values) {
         if (values != null) {
@@ -342,7 +342,7 @@ public final class ValueSetBuilder<T> {
      * Add values to the set.
      *
      * @param values values to add.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> addValue(final T... values) {
         if (values != null) {
@@ -359,7 +359,7 @@ public final class ValueSetBuilder<T> {
      * Remove values from the set.
      *
      * @param values values to remove.
-     * @return Current object for chaining.
+     * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeValue(final T... values) {
         if (values != null) {
