@@ -3,6 +3,6 @@
 // Dmitry Shapovalov
 // //////////////////////////////
 /**
- * Tests for conditional values classes.
+ * Tests for project classes.
  */
 package ru.d_shap.conditionalvalues;

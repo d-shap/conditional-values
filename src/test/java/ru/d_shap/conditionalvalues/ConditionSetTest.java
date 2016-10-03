@@ -28,7 +28,7 @@ public final class ConditionSetTest {
     }
 
     /**
-     * nameIterator method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} class test.
      */
     @Test
     public void nameIteratorTest() {
@@ -51,7 +51,7 @@ public final class ConditionSetTest {
     }
 
     /**
-     * getCondition method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} class test.
      */
     @Test
     public void getConditionTest() {

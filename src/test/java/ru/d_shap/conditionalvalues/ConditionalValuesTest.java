@@ -27,7 +27,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getAllConditionNames method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getAllConditionNamesTest() {
@@ -52,7 +52,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getAllConditionValues method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getAllConditionValuesTest() {
@@ -93,7 +93,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * Check for DuplicateValueSetException exception test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test(expected = DuplicateValueSetException.class)
     public void duplicateValueSetFailTest() {
@@ -111,7 +111,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getValuesTest() {
@@ -145,7 +145,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues for non matching ValueSets test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getEmptyValuesTest() {
@@ -173,7 +173,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues for AND condition test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getAndValuesTest() {
@@ -206,7 +206,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues for OR condition test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getOrValuesTest() {
@@ -236,7 +236,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues for the best matched ValueSet test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getMaxCardinalityValuesTest() {
@@ -279,7 +279,7 @@ public final class ConditionalValuesTest {
     }
 
     /**
-     * getValues for several matching ValueSets test.
+     * {@link ru.d_shap.conditionalvalues.ConditionalValues} class test.
      */
     @Test
     public void getSameCardinalityValuesTest() {

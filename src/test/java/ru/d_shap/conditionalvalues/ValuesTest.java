@@ -27,7 +27,7 @@ public final class ValuesTest {
     }
 
     /**
-     * isEmpty method test.
+     * {@link ru.d_shap.conditionalvalues.Values} class test.
      */
     @Test
     public void isEmptyTest() {
@@ -63,7 +63,7 @@ public final class ValuesTest {
     }
 
     /**
-     * contains method test.
+     * {@link ru.d_shap.conditionalvalues.Values} class test.
      */
     @Test
     public void containsTest() {
@@ -88,7 +88,7 @@ public final class ValuesTest {
     }
 
     /**
-     * getAllValues method test.
+     * {@link ru.d_shap.conditionalvalues.Values} class test.
      */
     @Test
     public void getAllValuesTest() {

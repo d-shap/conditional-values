@@ -26,7 +26,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * build method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
      */
     @Test
     public void buildTest() {
@@ -55,7 +55,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * addCondition method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
      */
     @Test
     public void addConditionTest() {
@@ -106,7 +106,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * removeCondition method test.
+     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
      */
     @Test
     public void removeConditionTest() {

@@ -29,7 +29,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * getAllConditionNames method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void getAllConditionNamesTest() {
@@ -50,7 +50,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * getAllConditionValues method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void getAllConditionValuesTest() {
@@ -85,7 +85,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * matchCardinality method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void matchCardinalityTest() {
@@ -145,7 +145,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * getAllValues method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void getAllValuesTest() {
@@ -171,7 +171,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * equals method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void equalsTest() {
@@ -242,7 +242,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * hashCode method test.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
      */
     @Test
     public void hashCodeTest() {
