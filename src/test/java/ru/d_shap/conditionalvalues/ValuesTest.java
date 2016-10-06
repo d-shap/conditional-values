@@ -13,7 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link ru.d_shap.conditionalvalues.Values}.
+ * Tests for {@link Values}.
  *
  * @author Dmitry Shapovalov
  */
@@ -27,7 +27,7 @@ public final class ValuesTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.Values} class test.
+     * {@link Values} class test.
      */
     @Test
     public void isEmptyTest() {
@@ -63,7 +63,7 @@ public final class ValuesTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.Values} class test.
+     * {@link Values} class test.
      */
     @Test
     public void containsTest() {
@@ -88,7 +88,7 @@ public final class ValuesTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.Values} class test.
+     * {@link Values} class test.
      */
     @Test
     public void getAllValuesTest() {

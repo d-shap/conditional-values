@@ -15,7 +15,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link ru.d_shap.conditionalvalues.ValueSet}.
+ * Tests for {@link ValueSet}.
  *
  * @author Dmitry Shapovalov
  */
@@ -29,7 +29,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void getAllConditionNamesTest() {
@@ -50,7 +50,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void getAllConditionValuesTest() {
@@ -85,7 +85,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void matchCardinalityTest() {
@@ -145,7 +145,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void getAllValuesTest() {
@@ -171,7 +171,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void equalsTest() {
@@ -242,7 +242,7 @@ public final class ValueSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSet} class test.
+     * {@link ValueSet} class test.
      */
     @Test
     public void hashCodeTest() {

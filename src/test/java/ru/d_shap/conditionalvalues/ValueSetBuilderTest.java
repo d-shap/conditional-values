@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link ru.d_shap.conditionalvalues.ValueSetBuilder}.
+ * Tests for {@link ValueSetBuilder}.
  *
  * @author Dmitry Shapovalov
  */
@@ -25,7 +25,7 @@ public final class ValueSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSetBuilder} class test.
+     * {@link ValueSetBuilder} class test.
      */
     @Test
     public void buildTest() {
@@ -62,7 +62,7 @@ public final class ValueSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSetBuilder} class test.
+     * {@link ValueSetBuilder} class test.
      */
     @Test
     public void addConditionTest() {
@@ -98,7 +98,7 @@ public final class ValueSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSetBuilder} class test.
+     * {@link ValueSetBuilder} class test.
      */
     @Test
     public void removeConditionTest() {
@@ -138,7 +138,7 @@ public final class ValueSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSetBuilder} class test.
+     * {@link ValueSetBuilder} class test.
      */
     @Test
     public void addValueTest() {
@@ -160,7 +160,7 @@ public final class ValueSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ValueSetBuilder} class test.
+     * {@link ValueSetBuilder} class test.
      */
     @Test
     public void removeValueTest() {

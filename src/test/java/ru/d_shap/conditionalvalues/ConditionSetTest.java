@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link ru.d_shap.conditionalvalues.ConditionSet}.
+ * Tests for {@link ConditionSet}.
  *
  * @author Dmitry Shapovalov
  */
@@ -28,7 +28,7 @@ public final class ConditionSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} class test.
+     * {@link ConditionSet} class test.
      */
     @Test
     public void nameIteratorTest() {
@@ -51,7 +51,7 @@ public final class ConditionSetTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} class test.
+     * {@link ConditionSet} class test.
      */
     @Test
     public void getConditionTest() {

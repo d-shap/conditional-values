@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for {@link ru.d_shap.conditionalvalues.ConditionSetBuilder}.
+ * Tests for {@link ConditionSetBuilder}.
  *
  * @author Dmitry Shapovalov
  */
@@ -26,7 +26,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
+     * {@link ConditionSetBuilder} class test.
      */
     @Test
     public void buildTest() {
@@ -55,7 +55,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
+     * {@link ConditionSetBuilder} class test.
      */
     @Test
     public void addConditionTest() {
@@ -106,7 +106,7 @@ public final class ConditionSetBuilderTest {
     }
 
     /**
-     * {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} class test.
+     * {@link ConditionSetBuilder} class test.
      */
     @Test
     public void removeConditionTest() {
