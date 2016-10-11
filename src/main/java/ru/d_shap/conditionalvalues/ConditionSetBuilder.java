@@ -19,9 +19,10 @@ import java.util.Map;
  * The internal presentation of conditions is {@code Map<String, String>}.
  * </p>
  * <p>
- * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)}, {@link #addCondition(String, long)},
- * {@link #addCondition(String, float)}, {@link #addCondition(String, double)} and {@link #addObjectCondition(String, Object)}
- * are convenient methods for {@link #addCondition(String, String)}.
+ * Methods {@link #addBooleanCondition(String, boolean)}, {@link #addIntegerCondition(String, int)},
+ * {@link #addLongCondition(String, long)}, {@link #addFloatCondition(String, float)},
+ * {@link #addDoubleCondition(String, double)} and {@link #addObjectCondition(String, Object)}
+ * are convenient methods for {@link #addStringCondition(String, String)}.
  * </p>
  *
  * @author Dmitry Shapovalov
@@ -42,7 +43,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final String value) {
+    public ConditionSetBuilder addStringCondition(final String name, final String value) {
         doAddCondition(name, value);
         return this;
     }
@@ -54,7 +55,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final boolean value) {
+    public ConditionSetBuilder addBooleanCondition(final String name, final boolean value) {
         doAddCondition(name, String.valueOf(value));
         return this;
     }
@@ -66,7 +67,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final int value) {
+    public ConditionSetBuilder addIntegerCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
         return this;
     }
@@ -78,7 +79,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final long value) {
+    public ConditionSetBuilder addLongCondition(final String name, final long value) {
         doAddCondition(name, String.valueOf(value));
         return this;
     }
@@ -90,7 +91,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final float value) {
+    public ConditionSetBuilder addFloatCondition(final String name, final float value) {
         doAddCondition(name, String.valueOf(value));
         return this;
     }
@@ -102,7 +103,7 @@ public final class ConditionSetBuilder {
      * @param value condition value.
      * @return current object for chaining.
      */
-    public ConditionSetBuilder addCondition(final String name, final double value) {
+    public ConditionSetBuilder addDoubleCondition(final String name, final double value) {
         doAddCondition(name, String.valueOf(value));
         return this;
     }
