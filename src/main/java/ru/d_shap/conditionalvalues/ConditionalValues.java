@@ -7,6 +7,7 @@ package ru.d_shap.conditionalvalues;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +20,8 @@ import java.util.Set;
  * Methods {@link #createStringConditionalValues(ValueSet...)}, {@link #createBooleanConditionalValues(ValueSet...)},
  * {@link #createIntegerConditionalValues(ValueSet...)}, {@link #createLongConditionalValues(ValueSet...)},
  * {@link #createFloatConditionalValues(ValueSet...)}, {@link #createDoubleConditionalValues(ValueSet...)} and
- * {@link #createObjectConditionalValues(ValueSet...)} are convenient methods to create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+ * {@link #createObjectConditionalValues(ValueSet...)} are convenient methods to create
+ * {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
  * But this methods are NOT type-safe!
  * </p>
  *
@@ -222,10 +224,15 @@ public final class ConditionalValues<T> {
     }
 
     private static <T> void validateValueSets(final List<ValueSet<T>> valueSets) {
-        Set<ValueSet<T>> set = new HashSet<ValueSet<T>>();
+        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<ValueSetUniqueCondition>();
         for (ValueSet<T> valueSet : valueSets) {
-            if (valueSet != null && !set.add(valueSet)) {
-                throw new DuplicateValueSetException(valueSet);
+            if (valueSet != null) {
+                List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
+                for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
+                    if (!allValueSetUniqueConditions.add(valueSetUniqueCondition)) {
+                        throw new DuplicateValueSetException(valueSet);
+                    }
+                }
             }
         }
     }
@@ -264,30 +271,32 @@ public final class ConditionalValues<T> {
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> getValues(final ConditionSet conditionSet) {
-        int cardinality = getMaxCardinality(conditionSet);
-        List<ValueSet<T>> values = filterValues(conditionSet, cardinality);
-        return new Values<T>(values);
+        List<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
+        removeLessSpecificValueSets(matchingValueSets);
+        return new Values<T>(matchingValueSets);
     }
 
-    private int getMaxCardinality(final ConditionSet conditionSet) {
-        int result = Integer.MIN_VALUE;
+    private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
+        List<ValueSet<T>> matchingValueSets = new ArrayList<ValueSet<T>>();
         for (ValueSet<T> valueSet : _valueSets) {
-            int cardinality = valueSet.matchCardinality(conditionSet);
-            result = Math.max(result, cardinality);
+            if (valueSet.isMatchConditions(conditionSet)) {
+                matchingValueSets.add(valueSet);
+            }
         }
-        return result;
+        return matchingValueSets;
     }
 
-    private List<ValueSet<T>> filterValues(final ConditionSet conditionSet, final int cardinality) {
-        List<ValueSet<T>> values = new ArrayList<ValueSet<T>>();
-        if (cardinality >= 0) {
-            for (ValueSet<T> valueSet : _valueSets) {
-                if (valueSet.matchCardinality(conditionSet) == cardinality) {
-                    values.add(valueSet);
+    private void removeLessSpecificValueSets(final List<ValueSet<T>> valueSets) {
+        Iterator<ValueSet<T>> valueSetIterator = valueSets.iterator();
+        while (valueSetIterator.hasNext()) {
+            ValueSet<T> valueSet = valueSetIterator.next();
+            for (ValueSet<T> checkValueSet : valueSets) {
+                if (checkValueSet.isMoreSpecificValueSet(valueSet)) {
+                    valueSetIterator.remove();
+                    break;
                 }
             }
         }
-        return values;
     }
 
     @Override
