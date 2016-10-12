@@ -4,16 +4,18 @@
 // //////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * Class represents this distinct condition with corresponding values for this condition.
+ * Class represents distinct condition with corresponding values for this condition.
  *
  * @param <T> value type.
  * @author Dmitry Shapovalov
@@ -24,15 +26,15 @@ public final class ValueSet<T> {
 
     private final Set<T> _values;
 
-    ValueSet(final Map<String, Set<String>> conditionMap, final Set<T> values) {
+    ValueSet(final Map<String, Set<String>> conditions, final Set<T> values) {
         super();
-        Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
-        for (Map.Entry<String, Set<String>> entry : conditionMap.entrySet()) {
+        Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+        for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
             String key = entry.getKey();
             Set<String> value = entry.getValue();
-            conditions.put(key, Collections.unmodifiableSet(new HashSet<String>(value)));
+            map.put(key, Collections.unmodifiableSet(new HashSet<String>(value)));
         }
-        _conditions = Collections.unmodifiableMap(conditions);
+        _conditions = Collections.unmodifiableMap(map);
         _values = Collections.unmodifiableSet(new LinkedHashSet<T>(values));
     }
 
@@ -60,71 +62,62 @@ public final class ValueSet<T> {
         }
     }
 
-    int matchCardinality(final ConditionSet conditionSet) {
+    boolean isMatchConditions(final ConditionSet conditionSet) {
         if (conditionSet == null) {
-            return -1;
+            return false;
         }
-        int cardinality = 0;
-        Iterator<String> iterator = conditionSet.nameIterator();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            if (_conditions.containsKey(key)) {
-                Set<String> currentValues = _conditions.get(key);
-                String otherValue = conditionSet.getCondition(key);
-                if (currentValues.contains(otherValue)) {
-                    cardinality++;
+        int matchCount = 0;
+        Iterator<String> conditionNameIterator = conditionSet.nameIterator();
+        while (conditionNameIterator.hasNext()) {
+            String conditionName = conditionNameIterator.next();
+            Set<String> conditionValues = _conditions.get(conditionName);
+            if (conditionValues != null) {
+                String conditionValue = conditionSet.getCondition(conditionName);
+                if (conditionValues.contains(conditionValue)) {
+                    matchCount++;
                 }
             }
         }
-        if (cardinality == _conditions.size()) {
-            return cardinality;
-        } else {
-            return -1;
+        return matchCount == _conditions.size();
+    }
+
+    boolean isMoreSpecificValueSet(final ValueSet<T> valueSet) {
+        if (valueSet == null) {
+            return false;
         }
+        int matchCount = 0;
+        Iterator<String> conditionNameIterator = _conditions.keySet().iterator();
+        while (conditionNameIterator.hasNext()) {
+            String conditionName = conditionNameIterator.next();
+            if (valueSet._conditions.containsKey(conditionName)) {
+                matchCount++;
+            }
+        }
+        return matchCount == valueSet._conditions.size() && matchCount < _conditions.size();
+    }
+
+    List<ValueSetUniqueCondition> getValueSetUniqueConditions() {
+        List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<ValueSetUniqueCondition>();
+        currentUniqueConditions.add(new ValueSetUniqueCondition());
+        for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
+            currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
+        }
+        return currentUniqueConditions;
+    }
+
+    private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
+        List<ValueSetUniqueCondition> result = new ArrayList<ValueSetUniqueCondition>();
+        for (ValueSetUniqueCondition valueSetUniqueCondition : currentUniqueConditions) {
+            for (String conditionValue : conditionValues) {
+                ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(valueSetUniqueCondition, conditionName, conditionValue);
+                result.add(newUniqueCondition);
+            }
+        }
+        return result;
     }
 
     Set<T> getAllValues() {
         return _values;
-    }
-
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (!(object instanceof ValueSet)) {
-            return false;
-        }
-        ValueSet<?> other = (ValueSet<?>) object;
-        Set<String> conditionKeys = _conditions.keySet();
-        Set<String> otherConditionKeys = other._conditions.keySet();
-        if (!conditionKeys.containsAll(otherConditionKeys) || !otherConditionKeys.containsAll(conditionKeys)) {
-            return false;
-        }
-        for (String key : conditionKeys) {
-            Set<String> conditionValues = _conditions.get(key);
-            Set<String> otherConditionValues = other._conditions.get(key);
-
-            if (!conditionValues.containsAll(otherConditionValues) || !otherConditionValues.containsAll(conditionValues)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 0;
-        for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
-            String conditionKey = entry.getKey();
-            result = result * 31 + conditionKey.hashCode();
-
-            Set<String> conditionValues = entry.getValue();
-            for (String conditionValue : conditionValues) {
-                result = result * 31 + conditionValue.hashCode();
-            }
-        }
-        return result;
     }
 
     @Override
