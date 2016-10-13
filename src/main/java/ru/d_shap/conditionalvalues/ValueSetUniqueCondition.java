@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * @author Dmitry Shapovalov
  */
-final class ValueSetUniqueCondition {
+public final class ValueSetUniqueCondition {
 
     private final Map<String, String> _conditions;
 
@@ -26,11 +26,13 @@ final class ValueSetUniqueCondition {
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
         Map<String, String> map = new HashMap<String, String>(valueSetUniqueCondition._conditions);
-        map.put(conditionName, conditionValue);
+        if (conditionName != null && conditionValue != null) {
+            map.put(conditionName, conditionValue);
+        }
         _conditions = Collections.unmodifiableMap(map);
     }
 
-    Map<String, String> getConditions() {
+    public Map<String, String> getConditions() {
         return _conditions;
     }
 
