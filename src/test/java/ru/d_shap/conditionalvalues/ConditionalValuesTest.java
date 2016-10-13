@@ -5,7 +5,6 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -252,13 +251,31 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test(expected = DuplicateValueSetException.class)
-    public void duplicateValueSetFailTest() {
+    public void duplicateFullValueSetFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addStringCondition("cond1", "val11", "val12");
         valueSetBuilder.addStringCondition("cond2", "val21", "val22");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         valueSetBuilder.addStringCondition("cond1", "val11", "val12");
         valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        ConditionalValues.createConditionalValues(valueSets);
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetUniqueConditionFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val12");
+        valueSetBuilder.addStringCondition("cond2", "val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
@@ -293,11 +310,10 @@ public final class ConditionalValuesTest {
         Values<String> values = conditionalValues.getValues(conditionSet);
         Assert.assertFalse(values.isEmpty());
         Set<String> allValues = values.getAllValues();
-        Iterator<String> iterator = allValues.iterator();
-        Assert.assertEquals("val1", iterator.next());
-        Assert.assertEquals("val5", iterator.next());
-        Assert.assertEquals("val3", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assert.assertEquals(3, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val3"));
+        Assert.assertTrue(allValues.contains("val5"));
     }
 
     /**
@@ -395,7 +411,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
-    public void getMaxCardinalityValuesTest() {
+    public void getSingleMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addStringCondition("cond1", "val11", "val12");
         valueSetBuilder.addStringCondition("cond2", "val21", "val22");
@@ -414,18 +430,14 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addStringCondition("cond4", "val41", "val42");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet4 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
-        valueSets.add(valueSet1);
-        valueSets.add(valueSet2);
-        valueSets.add(valueSet3);
-        valueSets.add(valueSet4);
-        ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
         conditionSetBuilder.addStringCondition("cond1", "val11");
         conditionSetBuilder.addStringCondition("cond2", "val21");
         conditionSetBuilder.addStringCondition("cond3", "val31");
         ConditionSet conditionSet = conditionSetBuilder.build();
+
         Values<String> values = conditionalValues.getValues(conditionSet);
         Assert.assertFalse(values.isEmpty());
         Assert.assertTrue(values.contains("val1"));
@@ -438,7 +450,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
-    public void getSameCardinalityValuesTest() {
+    public void getSeveralMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addStringCondition("cond1", "val11", "val12");
         valueSetBuilder.addStringCondition("cond2", "val21", "val22");
@@ -457,24 +469,90 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addStringCondition("cond4", "val41", "val42");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet4 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
-        valueSets.add(valueSet1);
-        valueSets.add(valueSet2);
-        valueSets.add(valueSet3);
-        valueSets.add(valueSet4);
-        ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
         conditionSetBuilder.addStringCondition("cond1", "val11");
         conditionSetBuilder.addStringCondition("cond2", "val21");
         conditionSetBuilder.addStringCondition("cond4", "val41");
         ConditionSet conditionSet = conditionSetBuilder.build();
+
         Values<String> values = conditionalValues.getValues(conditionSet);
         Assert.assertFalse(values.isEmpty());
         Assert.assertFalse(values.contains("val1"));
         Assert.assertTrue(values.contains("val2"));
         Assert.assertFalse(values.contains("val3"));
         Assert.assertTrue(values.contains("val4"));
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
+    public void getDifferentCardinalityMatchingValueSetTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);
+
+        ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
+
+        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addStringCondition("cond4", "val4");
+        ConditionSet conditionSet1 = conditionSetBuilder.build();
+        Values<String> values1 = conditionalValues.getValues(conditionSet1);
+        Assert.assertFalse(values1.isEmpty());
+        Assert.assertFalse(values1.contains("val1"));
+        Assert.assertFalse(values1.contains("val2"));
+        Assert.assertTrue(values1.contains("val3"));
+
+        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addStringCondition("cond3", "val3");
+        ConditionSet conditionSet2 = conditionSetBuilder.build();
+        Values<String> values2 = conditionalValues.getValues(conditionSet2);
+        Assert.assertFalse(values2.isEmpty());
+        Assert.assertTrue(values2.contains("val1"));
+        Assert.assertTrue(values2.contains("val2"));
+        Assert.assertFalse(values2.contains("val3"));
+
+        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addStringCondition("cond3", "val3");
+        conditionSetBuilder.addStringCondition("cond4", "val4");
+        ConditionSet conditionSet3 = conditionSetBuilder.build();
+        Values<String> values3 = conditionalValues.getValues(conditionSet3);
+        Assert.assertFalse(values3.isEmpty());
+        Assert.assertFalse(values3.contains("val1"));
+        Assert.assertTrue(values3.contains("val2"));
+        Assert.assertTrue(values3.contains("val3"));
+
+        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond2", "val2");
+        ConditionSet conditionSet4 = conditionSetBuilder.build();
+        Values<String> values4 = conditionalValues.getValues(conditionSet4);
+        Assert.assertFalse(values4.isEmpty());
+        Assert.assertTrue(values4.contains("val1"));
+        Assert.assertFalse(values4.contains("val2"));
+        Assert.assertFalse(values4.contains("val3"));
+
+        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond3", "val3");
+        ConditionSet conditionSet5 = conditionSetBuilder.build();
+        Values<String> values5 = conditionalValues.getValues(conditionSet5);
+        Assert.assertTrue(values5.isEmpty());
     }
 
 }
