@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,7 +34,7 @@ public final class ValueSet<T> {
             map.put(key, Collections.unmodifiableSet(new HashSet<String>(value)));
         }
         _conditions = Collections.unmodifiableMap(map);
-        _values = Collections.unmodifiableSet(new LinkedHashSet<T>(values));
+        _values = Collections.unmodifiableSet(new HashSet<T>(values));
     }
 
     /**
