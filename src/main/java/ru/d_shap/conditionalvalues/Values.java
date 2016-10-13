@@ -6,7 +6,7 @@ package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public final class Values<T> {
     Values(final List<ValueSet<T>> valueSets) {
         super();
         _valueSets = Collections.unmodifiableList(new ArrayList<ValueSet<T>>(valueSets));
-        Set<T> allValues = new LinkedHashSet<T>();
+        Set<T> allValues = new HashSet<T>();
         for (ValueSet<T> valueSet : _valueSets) {
             allValues.addAll(valueSet.getAllValues());
         }
