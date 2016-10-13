@@ -112,26 +112,26 @@
  * <li>isInitiator: <b>true</b></li>
  * </ul>
  * <p>
- * <b>Value Set 4</b>
- * </p>
- * <ul>
- * <li>type: <b>type1</b></li>
- * <li>state: <b>1</b></li>
- * <li>isInitiator: <b>true</b></li>
- * <li>isPerformer: <b>true</b></li>
- * </ul>
- * <p>
- * Then if we have runtime conditions type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>,
- * then the best matching value set is <b>Value Set 4</b> (the only one matching value set).
+ * Then if we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>),
+ * then the best matching value set is <b>Value Set 3</b> (the only one matching value set).
  * </p>
  * <p>
- * If we have runtime conditions type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>,
- * then the best matching value set is <b>Value Set 3</b> (<b>Value Set 1</b> also matches, but <b>Value Set 3</b> is better).
+ * If we have runtime conditions (type = <b>type1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>),
+ * then the best matching value sets are <b>Value Set 1</b> and <b>Value Set 2</b> ({@link ru.d_shap.conditionalvalues.Values} object
+ * contains values from both {@link ru.d_shap.conditionalvalues.ValueSet} objects).
  * </p>
  * <p>
- * If we have runtime conditions type = <b>type1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>,
- * then the best matching value set are <b>Value Set 1</b> and <b>Value Set 2</b> ({@link ru.d_shap.conditionalvalues.Values} object
- * would contain values from both {@link ru.d_shap.conditionalvalues.ValueSet} objects).
+ * If we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>),
+ * then the best matching value sets are <b>Value Set 2</b> and  <b>Value Set 3</b> (<b>Value Set 1</b> also matches,
+ * but <b>Value Set 3</b> is more specific then <b>Value Set 1</b>).
+ * </p>
+ * <p>
+ * If we have runtime conditions (type = <b>type1</b>, isInitiator = <b>true</b>),
+ * then the best matching value set is <b>Value Set 1</b> (the only one matching value set).
+ * </p>
+ * <p>
+ * If we have runtime conditions (isInitiator = <b>true</b>, isPerformer = <b>true</b>),
+ * then there are no matching value sets ({@link ru.d_shap.conditionalvalues.Values} object is empty).
  * </p>
  */
 package ru.d_shap.conditionalvalues;
