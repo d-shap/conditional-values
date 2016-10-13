@@ -4,7 +4,6 @@
 // //////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -54,11 +53,10 @@ public final class ValueSetBuilderTest {
         Assert.assertEquals(0, allConditionValues3.size());
 
         Set<String> allValues = valueSet.getAllValues();
-        Iterator<String> iterator = allValues.iterator();
-        Assert.assertEquals("val1", iterator.next());
-        Assert.assertEquals("val2", iterator.next());
-        Assert.assertEquals("val3", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assert.assertEquals(3, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val3"));
     }
 
     /**
@@ -150,13 +148,12 @@ public final class ValueSetBuilderTest {
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allValues = valueSet.getAllValues();
-        Iterator<String> iterator = allValues.iterator();
-        Assert.assertEquals("val1", iterator.next());
-        Assert.assertEquals("val2", iterator.next());
-        Assert.assertEquals("val3", iterator.next());
-        Assert.assertEquals("val5", iterator.next());
-        Assert.assertEquals("val4", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assert.assertEquals(5, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val3"));
+        Assert.assertTrue(allValues.contains("val4"));
+        Assert.assertTrue(allValues.contains("val5"));
     }
 
     /**
@@ -177,14 +174,13 @@ public final class ValueSetBuilderTest {
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allValues = valueSet.getAllValues();
-        Iterator<String> iterator = allValues.iterator();
-        Assert.assertEquals("val1", iterator.next());
-        Assert.assertEquals("val2", iterator.next());
-        Assert.assertEquals("val5", iterator.next());
-        Assert.assertEquals("val4", iterator.next());
-        Assert.assertEquals("val20", iterator.next());
-        Assert.assertEquals("val19", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assert.assertEquals(6, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val4"));
+        Assert.assertTrue(allValues.contains("val5"));
+        Assert.assertTrue(allValues.contains("val19"));
+        Assert.assertTrue(allValues.contains("val20"));
     }
 
 }

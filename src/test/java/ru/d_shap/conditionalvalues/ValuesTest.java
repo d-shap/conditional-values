@@ -5,7 +5,6 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -108,14 +107,13 @@ public final class ValuesTest {
         Values<String> values = new Values<String>(valueSets);
 
         Set<String> allValues = values.getAllValues();
-        Iterator<String> iterator = allValues.iterator();
-        Assert.assertEquals("val1", iterator.next());
-        Assert.assertEquals("val4", iterator.next());
-        Assert.assertEquals("val2", iterator.next());
-        Assert.assertEquals("val6", iterator.next());
-        Assert.assertEquals("val3", iterator.next());
-        Assert.assertEquals("val5", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assert.assertEquals(6, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val3"));
+        Assert.assertTrue(allValues.contains("val4"));
+        Assert.assertTrue(allValues.contains("val5"));
+        Assert.assertTrue(allValues.contains("val6"));
     }
 
 }
