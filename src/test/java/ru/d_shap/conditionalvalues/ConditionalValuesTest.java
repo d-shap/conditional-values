@@ -495,8 +495,8 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addStringCondition("cond2", "val2");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
         valueSetBuilder.addStringCondition("cond3", "val3");
-        valueSetBuilder.addStringCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         valueSetBuilder.addStringCondition("cond1", "val1");
@@ -548,7 +548,7 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(values4.contains("val2"));
         Assert.assertFalse(values4.contains("val3"));
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addStringCondition("cond2", "val2");
         conditionSetBuilder.addStringCondition("cond3", "val3");
         ConditionSet conditionSet5 = conditionSetBuilder.build();
         Values<String> values5 = conditionalValues.getValues(conditionSet5);
