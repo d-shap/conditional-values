@@ -6,7 +6,6 @@ package ru.d_shap.conditionalvalues;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -65,7 +64,7 @@ public final class ValueSetBuilder<T> {
     ValueSetBuilder() {
         super();
         _conditions = new HashMap<String, Set<String>>();
-        _values = new LinkedHashSet<T>();
+        _values = new HashSet<T>();
     }
 
     /**
