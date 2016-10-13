@@ -32,6 +32,11 @@ public final class ValueSetUniqueCondition {
         _conditions = Collections.unmodifiableMap(map);
     }
 
+    /**
+     * Get combination of conditions.
+     *
+     * @return Combination of conditions
+     */
     public Map<String, String> getConditions() {
         return _conditions;
     }
