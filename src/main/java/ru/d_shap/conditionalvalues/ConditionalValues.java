@@ -32,6 +32,8 @@ public final class ConditionalValues<T> {
 
     private final List<ValueSet<T>> _valueSets;
 
+    private final Set<ValueSetUniqueCondition> _allValueSetUniqueConditions;
+
     private ConditionalValues(final List<ValueSet<T>> valueSets) {
         super();
         List<ValueSet<T>> list = new ArrayList<ValueSet<T>>();
@@ -41,6 +43,20 @@ public final class ConditionalValues<T> {
             }
         }
         _valueSets = Collections.unmodifiableList(list);
+        _allValueSetUniqueConditions = Collections.unmodifiableSet(getValueSetUniqueConditions(_valueSets));
+    }
+
+    private Set<ValueSetUniqueCondition> getValueSetUniqueConditions(final List<ValueSet<T>> valueSets) {
+        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<ValueSetUniqueCondition>();
+        for (ValueSet<T> valueSet : valueSets) {
+            List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
+            for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
+                if (!allValueSetUniqueConditions.add(valueSetUniqueCondition)) {
+                    throw new DuplicateValueSetException(valueSet);
+                }
+            }
+        }
+        return allValueSetUniqueConditions;
     }
 
     /**
@@ -74,7 +90,6 @@ public final class ConditionalValues<T> {
             List<ValueSet<T>> valueSetList = new ArrayList<ValueSet<T>>();
             return new ConditionalValues<T>(valueSetList);
         } else {
-            validateValueSets(valueSets);
             return new ConditionalValues<T>(valueSets);
         }
     }
@@ -93,7 +108,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<String>(valueSetList);
         } else {
             List<ValueSet<String>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<String>(valueSetsList);
         }
     }
@@ -112,7 +126,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Boolean>(valueSetList);
         } else {
             List<ValueSet<Boolean>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Boolean>(valueSetsList);
         }
     }
@@ -131,7 +144,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Integer>(valueSetList);
         } else {
             List<ValueSet<Integer>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Integer>(valueSetsList);
         }
     }
@@ -150,7 +162,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Long>(valueSetList);
         } else {
             List<ValueSet<Long>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Long>(valueSetsList);
         }
     }
@@ -169,7 +180,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Float>(valueSetList);
         } else {
             List<ValueSet<Float>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Float>(valueSetsList);
         }
     }
@@ -188,7 +198,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Double>(valueSetList);
         } else {
             List<ValueSet<Double>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Double>(valueSetsList);
         }
     }
@@ -207,7 +216,6 @@ public final class ConditionalValues<T> {
             return new ConditionalValues<Object>(valueSetList);
         } else {
             List<ValueSet<Object>> valueSetsList = createValueSetsList(valueSets);
-            validateValueSets(valueSetsList);
             return new ConditionalValues<Object>(valueSetsList);
         }
     }
@@ -221,20 +229,6 @@ public final class ConditionalValues<T> {
             }
         }
         return valueSetsList;
-    }
-
-    private static <T> void validateValueSets(final List<ValueSet<T>> valueSets) {
-        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<ValueSetUniqueCondition>();
-        for (ValueSet<T> valueSet : valueSets) {
-            if (valueSet != null) {
-                List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
-                for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                    if (!allValueSetUniqueConditions.add(valueSetUniqueCondition)) {
-                        throw new DuplicateValueSetException(valueSet);
-                    }
-                }
-            }
-        }
     }
 
     /**
@@ -262,6 +256,15 @@ public final class ConditionalValues<T> {
             result.addAll(valueSet.getAllConditionValues(conditionName));
         }
         return result;
+    }
+
+    /**
+     * Get all single unique combinations of conditions, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     *
+     * @return all unique combinations of conditions.
+     */
+    public Set<ValueSetUniqueCondition> getAllValueSetUniqueConditions() {
+        return _allValueSetUniqueConditions;
     }
 
     /**
