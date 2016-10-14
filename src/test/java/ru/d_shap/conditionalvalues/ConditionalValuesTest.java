@@ -185,6 +185,52 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
+    public void createNullConditionalValuesTest() {
+        List<ValueSet<String>> valueSets1 = null;
+        ConditionalValues<String> conditionalValues1 = ConditionalValues.createConditionalValues(valueSets1);
+        Assert.assertNotNull(conditionalValues1);
+        Assert.assertTrue(conditionalValues1.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets2 = null;
+        ConditionalValues<String> conditionalValues2 = ConditionalValues.createStringConditionalValues(valueSets2);
+        Assert.assertNotNull(conditionalValues2);
+        Assert.assertTrue(conditionalValues2.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets3 = null;
+        ConditionalValues<Boolean> conditionalValues3 = ConditionalValues.createBooleanConditionalValues(valueSets3);
+        Assert.assertNotNull(conditionalValues3);
+        Assert.assertTrue(conditionalValues3.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets4 = null;
+        ConditionalValues<Integer> conditionalValues4 = ConditionalValues.createIntegerConditionalValues(valueSets4);
+        Assert.assertNotNull(conditionalValues4);
+        Assert.assertTrue(conditionalValues4.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets5 = null;
+        ConditionalValues<Long> conditionalValues5 = ConditionalValues.createLongConditionalValues(valueSets5);
+        Assert.assertNotNull(conditionalValues5);
+        Assert.assertTrue(conditionalValues5.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets6 = null;
+        ConditionalValues<Float> conditionalValues6 = ConditionalValues.createFloatConditionalValues(valueSets6);
+        Assert.assertNotNull(conditionalValues6);
+        Assert.assertTrue(conditionalValues6.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets7 = null;
+        ConditionalValues<Double> conditionalValues7 = ConditionalValues.createDoubleConditionalValues(valueSets7);
+        Assert.assertNotNull(conditionalValues7);
+        Assert.assertTrue(conditionalValues7.getAllConditionNames().isEmpty());
+
+        ValueSet<?>[] valueSets8 = null;
+        ConditionalValues<?> conditionalValues8 = ConditionalValues.createObjectConditionalValues(valueSets8);
+        Assert.assertNotNull(conditionalValues8);
+        Assert.assertTrue(conditionalValues8.getAllConditionNames().isEmpty());
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
     public void getAllConditionNamesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addStringCondition("cond1", "val11", "val12");
@@ -553,6 +599,32 @@ public final class ConditionalValuesTest {
         ConditionSet conditionSet5 = conditionSetBuilder.build();
         Values<String> values5 = conditionalValues.getValues(conditionSet5);
         Assert.assertTrue(values5.isEmpty());
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
+    public void getNullMatchingValueSetTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);
+
+        Values<String> values = conditionalValues.getValues(null);
+        Assert.assertNotNull(values);
+        Assert.assertTrue(values.isEmpty());
     }
 
 }
