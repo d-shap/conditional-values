@@ -67,4 +67,21 @@ public final class ConditionSetTest {
         Assert.assertNull(conditionSet.getCondition("cond4"));
     }
 
+    /**
+     * {@link ConditionSet} class test.
+     */
+    @Test
+    public void toStringTest() {
+        Map<String, String> conditions = new HashMap<String, String>();
+        conditions.put("cond1", "val1");
+        conditions.put("cond2", "val2");
+        conditions.put("cond3", "val3");
+
+        ConditionSet conditionSet = new ConditionSet(conditions);
+        String str = conditionSet.toString();
+        Assert.assertTrue(str.contains("cond1=val1"));
+        Assert.assertTrue(str.contains("cond2=val2"));
+        Assert.assertTrue(str.contains("cond3=val3"));
+    }
+
 }
