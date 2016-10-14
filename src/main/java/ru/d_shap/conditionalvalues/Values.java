@@ -32,11 +32,11 @@ public final class Values<T> {
     Values(final List<ValueSet<T>> valueSets) {
         super();
         _valueSets = Collections.unmodifiableList(new ArrayList<ValueSet<T>>(valueSets));
-        Set<T> allValues = new HashSet<T>();
+        Set<T> set = new HashSet<T>();
         for (ValueSet<T> valueSet : _valueSets) {
-            allValues.addAll(valueSet.getAllValues());
+            set.addAll(valueSet.getAllValues());
         }
-        _allValues = Collections.unmodifiableSet(allValues);
+        _allValues = Collections.unmodifiableSet(set);
     }
 
     /**
