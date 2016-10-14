@@ -69,6 +69,7 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addFloatCondition("cond7", 3.5f);
         conditionSetBuilder.addDoubleCondition("cond8", 4.9);
         conditionSetBuilder.addObjectCondition("cond9", new StringBuilder().append("val2"));
+        conditionSetBuilder.addObjectCondition("cond10", "val3");
 
         Set<String> allNames = new HashSet<String>();
         allNames.add("cond1");
@@ -80,9 +81,11 @@ public final class ConditionSetBuilderTest {
         allNames.add("cond7");
         allNames.add("cond8");
         allNames.add("cond9");
+        allNames.add("cond10");
 
         ConditionSet conditionSet = conditionSetBuilder.build();
         Iterator<String> nameIterator = conditionSet.nameIterator();
+        Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
@@ -103,6 +106,7 @@ public final class ConditionSetBuilderTest {
         Assert.assertEquals("3.5", conditionSet.getCondition("cond7"));
         Assert.assertEquals("4.9", conditionSet.getCondition("cond8"));
         Assert.assertEquals("val2", conditionSet.getCondition("cond9"));
+        Assert.assertEquals("val3", conditionSet.getCondition("cond10"));
     }
 
     /**
@@ -120,6 +124,7 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addFloatCondition("cond7", 3.5f);
         conditionSetBuilder.addDoubleCondition("cond8", 4.9);
         conditionSetBuilder.addObjectCondition("cond9", new StringBuilder().append("val2"));
+        conditionSetBuilder.addObjectCondition("cond10", "val3");
 
         conditionSetBuilder.removeCondition("cond3");
         conditionSetBuilder.removeCondition("cond5");
@@ -132,9 +137,11 @@ public final class ConditionSetBuilderTest {
         allNames.add("cond6");
         allNames.add("cond7");
         allNames.add("cond8");
+        allNames.add("cond10");
 
         ConditionSet conditionSet = conditionSetBuilder.build();
         Iterator<String> nameIterator = conditionSet.nameIterator();
+        Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
         Assert.assertTrue(allNames.contains(nameIterator.next()));
@@ -152,6 +159,7 @@ public final class ConditionSetBuilderTest {
         Assert.assertEquals("3.5", conditionSet.getCondition("cond7"));
         Assert.assertEquals("4.9", conditionSet.getCondition("cond8"));
         Assert.assertNull(conditionSet.getCondition("cond9"));
+        Assert.assertEquals("val3", conditionSet.getCondition("cond10"));
     }
 
 }
