@@ -296,6 +296,25 @@ public final class ConditionalValuesTest {
     /**
      * {@link ConditionalValues} class test.
      */
+    @Test
+    public void getAllValueSetUniqueConditionsTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
+        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2);
+
+        Set<ValueSetUniqueCondition> valueSetUniqueConditions = conditionalValues.getAllValueSetUniqueConditions();
+        Assert.assertNotNull(valueSetUniqueConditions);
+        Assert.assertEquals(6, valueSetUniqueConditions.size());
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
     @Test(expected = DuplicateValueSetException.class)
     public void duplicateFullValueSetFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
@@ -625,6 +644,33 @@ public final class ConditionalValuesTest {
         Values<String> values = conditionalValues.getValues(null);
         Assert.assertNotNull(values);
         Assert.assertTrue(values.isEmpty());
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
+    public void toStringTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond1", "val1");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);
+        String str = conditionalValues.toString();
+        Assert.assertTrue(str.contains("cond1=[val1]"));
+        Assert.assertTrue(str.contains("cond2=[val2]"));
+        Assert.assertTrue(str.contains("cond3=[val3]"));
+        Assert.assertTrue(str.contains("cond4=[val4]"));
     }
 
 }
