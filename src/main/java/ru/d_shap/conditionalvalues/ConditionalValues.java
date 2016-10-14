@@ -37,9 +37,11 @@ public final class ConditionalValues<T> {
     private ConditionalValues(final List<ValueSet<T>> valueSets) {
         super();
         List<ValueSet<T>> list = new ArrayList<ValueSet<T>>();
-        for (ValueSet<T> valueSet : valueSets) {
-            if (valueSet != null) {
-                list.add(valueSet);
+        if (valueSets != null) {
+            for (ValueSet<T> valueSet : valueSets) {
+                if (valueSet != null) {
+                    list.add(valueSet);
+                }
             }
         }
         _valueSets = Collections.unmodifiableList(list);
@@ -86,12 +88,7 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<T>> valueSetList = new ArrayList<ValueSet<T>>();
-            return new ConditionalValues<T>(valueSetList);
-        } else {
-            return new ConditionalValues<T>(valueSets);
-        }
+        return new ConditionalValues<T>(valueSets);
     }
 
     /**
@@ -103,13 +100,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<String> createStringConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<String>> valueSetList = new ArrayList<ValueSet<String>>();
-            return new ConditionalValues<String>(valueSetList);
-        } else {
-            List<ValueSet<String>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<String>(valueSetsList);
-        }
+        List<ValueSet<String>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<String>(valueSetsList);
     }
 
     /**
@@ -121,13 +113,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<Boolean> createBooleanConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Boolean>> valueSetList = new ArrayList<ValueSet<Boolean>>();
-            return new ConditionalValues<Boolean>(valueSetList);
-        } else {
-            List<ValueSet<Boolean>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Boolean>(valueSetsList);
-        }
+        List<ValueSet<Boolean>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Boolean>(valueSetsList);
     }
 
     /**
@@ -139,13 +126,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<Integer> createIntegerConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Integer>> valueSetList = new ArrayList<ValueSet<Integer>>();
-            return new ConditionalValues<Integer>(valueSetList);
-        } else {
-            List<ValueSet<Integer>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Integer>(valueSetsList);
-        }
+        List<ValueSet<Integer>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Integer>(valueSetsList);
     }
 
     /**
@@ -157,13 +139,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<Long> createLongConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Long>> valueSetList = new ArrayList<ValueSet<Long>>();
-            return new ConditionalValues<Long>(valueSetList);
-        } else {
-            List<ValueSet<Long>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Long>(valueSetsList);
-        }
+        List<ValueSet<Long>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Long>(valueSetsList);
     }
 
     /**
@@ -175,13 +152,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<Float> createFloatConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Float>> valueSetList = new ArrayList<ValueSet<Float>>();
-            return new ConditionalValues<Float>(valueSetList);
-        } else {
-            List<ValueSet<Float>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Float>(valueSetsList);
-        }
+        List<ValueSet<Float>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Float>(valueSetsList);
     }
 
     /**
@@ -193,13 +165,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<Double> createDoubleConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Double>> valueSetList = new ArrayList<ValueSet<Double>>();
-            return new ConditionalValues<Double>(valueSetList);
-        } else {
-            List<ValueSet<Double>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Double>(valueSetsList);
-        }
+        List<ValueSet<Double>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Double>(valueSetsList);
     }
 
     /**
@@ -211,13 +178,8 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static ConditionalValues<?> createObjectConditionalValues(final ValueSet<?>... valueSets) {
-        if (valueSets == null) {
-            List<ValueSet<Object>> valueSetList = new ArrayList<ValueSet<Object>>();
-            return new ConditionalValues<Object>(valueSetList);
-        } else {
-            List<ValueSet<Object>> valueSetsList = createValueSetsList(valueSets);
-            return new ConditionalValues<Object>(valueSetsList);
-        }
+        List<ValueSet<Object>> valueSetsList = createValueSetsList(valueSets);
+        return new ConditionalValues<Object>(valueSetsList);
     }
 
     @SuppressWarnings("unchecked")
@@ -225,7 +187,9 @@ public final class ConditionalValues<T> {
         List<ValueSet<E>> valueSetsList = new ArrayList<ValueSet<E>>();
         if (valueSets != null) {
             for (ValueSet<?> valueSet : valueSets) {
-                valueSetsList.add((ValueSet<E>) valueSet);
+                if (valueSet != null) {
+                    valueSetsList.add((ValueSet<E>) valueSet);
+                }
             }
         }
         return valueSetsList;
