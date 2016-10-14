@@ -4,6 +4,7 @@
 // //////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -22,8 +23,8 @@ public final class ConditionSet {
 
     ConditionSet(final Map<String, String> conditions) {
         super();
-        _conditions = new HashMap<String, String>(conditions);
-        _conditionNames = _conditions.keySet();
+        _conditions = Collections.unmodifiableMap(new HashMap<String, String>(conditions));
+        _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
     }
 
     Iterator<String> nameIterator() {
