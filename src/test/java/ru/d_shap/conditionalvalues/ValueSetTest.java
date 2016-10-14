@@ -351,4 +351,28 @@ public final class ValueSetTest {
         Assert.assertTrue(allValues.contains("val3"));
     }
 
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
+    public void toStringTest() {
+        Map<String, Set<String>> conditions = new HashMap<String, Set<String>>();
+        Set<String> condition1 = new HashSet<String>();
+        condition1.add("val11");
+        condition1.add("val12");
+        conditions.put("cond1", condition1);
+        Set<String> condition2 = new HashSet<String>();
+        condition2.add("val2");
+        conditions.put("cond2", condition2);
+        Set<String> values = new HashSet<String>();
+        values.add("val1");
+        values.add("val2");
+        values.add("val3");
+        ValueSet<String> valueSet = new ValueSet<String>(conditions, values);
+
+        String str = valueSet.toString();
+        Assert.assertTrue(str.contains("cond1=["));
+        Assert.assertTrue(str.contains("cond2=[val2]"));
+    }
+
 }
