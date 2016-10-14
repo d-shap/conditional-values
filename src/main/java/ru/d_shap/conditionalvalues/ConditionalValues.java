@@ -275,12 +275,17 @@ public final class ConditionalValues<T> {
      */
     public Values<T> getValues(final ConditionSet conditionSet) {
         List<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
-        removeLessSpecificValueSets(matchingValueSets);
+        if (!matchingValueSets.isEmpty()) {
+            removeLessSpecificValueSets(matchingValueSets);
+        }
         return new Values<T>(matchingValueSets);
     }
 
     private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
         List<ValueSet<T>> matchingValueSets = new ArrayList<ValueSet<T>>();
+        if (conditionSet == null) {
+            return matchingValueSets;
+        }
         for (ValueSet<T> valueSet : _valueSets) {
             if (valueSet.isMatchConditions(conditionSet)) {
                 matchingValueSets.add(valueSet);
