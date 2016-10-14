@@ -116,4 +116,25 @@ public final class ValuesTest {
         Assert.assertTrue(allValues.contains("val6"));
     }
 
+    /**
+     * {@link Values} class test.
+     */
+    @Test
+    public void toStringTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
+        valueSetBuilder.addStringCondition("cond2", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        Values<String> values = new Values<String>(valueSets);
+        String str = values.toString();
+        Assert.assertTrue(str.contains("cond1=["));
+        Assert.assertTrue(str.contains("cond2=[val2]"));
+        Assert.assertTrue(str.contains("cond3=["));
+    }
+
 }
