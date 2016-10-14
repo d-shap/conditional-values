@@ -60,9 +60,6 @@ public final class ValueSet<T> {
     }
 
     boolean isMatchConditions(final ConditionSet conditionSet) {
-        if (conditionSet == null) {
-            return false;
-        }
         int matchCount = 0;
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
