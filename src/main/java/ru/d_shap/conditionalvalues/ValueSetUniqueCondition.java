@@ -58,10 +58,7 @@ public final class ValueSetUniqueCondition {
         for (String key : conditionKeys) {
             String conditionValue = _conditions.get(key);
             String otherConditionValue = other._conditions.get(key);
-            if (conditionValue == null && otherConditionValue != null) {
-                return false;
-            }
-            if (conditionValue != null && !conditionValue.equals(otherConditionValue)) {
+            if (!conditionValue.equals(otherConditionValue)) {
                 return false;
             }
         }
@@ -72,14 +69,8 @@ public final class ValueSetUniqueCondition {
     public int hashCode() {
         int result = 0;
         for (Map.Entry<String, String> entry : _conditions.entrySet()) {
-            String conditionKey = entry.getKey();
-            if (conditionKey != null) {
-                result = result * 31 + conditionKey.hashCode();
-            }
-            String conditionValue = entry.getValue();
-            if (conditionValue != null) {
-                result = result * 31 + conditionValue.hashCode();
-            }
+            result = result * 31 + entry.getKey().hashCode();
+            result = result * 31 + entry.getValue().hashCode();
         }
         return result;
     }
