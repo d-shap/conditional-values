@@ -84,6 +84,34 @@ public final class ValueSetUniqueConditionTest {
      * {@link ValueSetUniqueCondition} class test.
      */
     @Test
+    public void equalsToSelfTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
+        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
+        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
+
+        Assert.assertEquals(valueSetUniqueCondition1, valueSetUniqueCondition1);
+        Assert.assertEquals(valueSetUniqueCondition2, valueSetUniqueCondition2);
+        Assert.assertEquals(valueSetUniqueCondition3, valueSetUniqueCondition3);
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test
+    public void equalsWrongTypeTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
+        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
+        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
+
+        Assert.assertNotEquals(valueSetUniqueCondition1, "str");
+        Assert.assertNotEquals(valueSetUniqueCondition2, new StringBuilder());
+        Assert.assertNotEquals(valueSetUniqueCondition3, 5);
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test
     public void hashCodeTest() {
         ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition();
         ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
@@ -99,6 +127,31 @@ public final class ValueSetUniqueConditionTest {
         Assert.assertEquals(valueSetUniqueCondition12.hashCode(), valueSetUniqueCondition22.hashCode());
         Assert.assertEquals(valueSetUniqueCondition13.hashCode(), valueSetUniqueCondition23.hashCode());
         Assert.assertNotEquals(valueSetUniqueCondition14.hashCode(), valueSetUniqueCondition24.hashCode());
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test
+    public void toStringTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
+        String str1 = valueSetUniqueCondition1.toString();
+        Assert.assertEquals("{}", str1);
+
+        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
+        String str2 = valueSetUniqueCondition2.toString();
+        Assert.assertEquals("{name1=value1}", str2);
+
+        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
+        String str3 = valueSetUniqueCondition3.toString();
+        Assert.assertTrue(str3.contains("name1=value1"));
+        Assert.assertTrue(str3.contains("name2=value2"));
+
+        ValueSetUniqueCondition valueSetUniqueCondition4 = new ValueSetUniqueCondition(valueSetUniqueCondition3, "name3", "value3");
+        String str4 = valueSetUniqueCondition4.toString();
+        Assert.assertTrue(str4.contains("name1=value1"));
+        Assert.assertTrue(str4.contains("name2=value2"));
+        Assert.assertTrue(str4.contains("name3=value3"));
     }
 
 }
