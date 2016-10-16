@@ -1,5 +1,5 @@
 ^// Conditional values simplify conditional logic and get rid of if-statements in the code.$
-^// Copyright \(C\) 2016 Dmitry Shapovalov.$
+^// Copyright \(C\) \d{4} Dmitry Shapovalov.$
 ^//$
 ^// This program is free software: you can redistribute it and/or modify$
 ^// it under the terms of the GNU General Public License as published by$
