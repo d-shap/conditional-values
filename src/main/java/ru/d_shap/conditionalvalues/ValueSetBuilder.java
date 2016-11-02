@@ -43,25 +43,26 @@ import java.util.Set;
  * </p>
  * <pre>{@code
  * ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
- * valueSetBuilder.addStringCondition("type", "type1");
- * valueSetBuilder.addIntegerCondition("state", 1, 2);
- * valueSetBuilder.addIntegerCondition("state", 3);
+ * valueSetBuilder.addCondition("type", "someType");
+ * valueSetBuilder.addCondition("state", 1);
+ * valueSetBuilder.addCondition("state", 2);
+ * valueSetBuilder.addCondition("state", 3);
  * ValueSet<String> valueSet = valueSetBuilder.build();
  * }</pre>
  * <p>
- * means type = type1 AND (state = 1 OR state = 2 OR state = 3).
+ * means type = someType AND (state = 1 OR state = 2 OR state = 3).
  * </p>
  * <p>
- * Methods {@link #addBooleanCondition(String, boolean...)}, {@link #addIntegerCondition(String, int...)},
- * {@link #addLongCondition(String, long...)}, {@link #addFloatCondition(String, float...)},
- * {@link #addDoubleCondition(String, double...)} and {@link #addObjectCondition(String, Object...)}
- * are convenient methods for {@link #addStringCondition(String, String...)}
+ * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)},
+ * {@link #addCondition(String, long)}, {@link #addCondition(String, float)},
+ * {@link #addCondition(String, double)} and {@link #addCondition(String, Object)}
+ * are convenient methods for {@link #addCondition(String, String)}
  * </p>
  * <p>
- * Methods {@link #removeBooleanCondition(String, boolean...)}, {@link #removeIntegerCondition(String, int...)},
- * {@link #removeLongCondition(String, long...)}, {@link #removeFloatCondition(String, float...)},
- * {@link #removeDoubleCondition(String, double...)} and {@link #removeObjectCondition(String, Object...)}
- * are convenient methods for {@link #removeStringCondition(String, String...)}
+ * Methods {@link #removeCondition(String, boolean)}, {@link #removeCondition(String, int)},
+ * {@link #removeCondition(String, long)}, {@link #removeCondition(String, float)},
+ * {@link #removeCondition(String, double)} and {@link #removeCondition(String, Object)}
+ * are convenient methods for {@link #removeCondition(String, String)}
  * </p>
  * <p>
  * The internal presentation of values is {@code Set<T>}.
@@ -83,118 +84,90 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addStringCondition(final String name, final String... values) {
-        if (values != null) {
-            for (String value : values) {
-                doAddCondition(name, value);
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final String value) {
+        doAddCondition(name, value);
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addBooleanCondition(final String name, final boolean... values) {
-        if (values != null) {
-            for (boolean value : values) {
-                doAddCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final boolean value) {
+        doAddCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addIntegerCondition(final String name, final int... values) {
-        if (values != null) {
-            for (int value : values) {
-                doAddCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final int value) {
+        doAddCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addLongCondition(final String name, final long... values) {
-        if (values != null) {
-            for (long value : values) {
-                doAddCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final long value) {
+        doAddCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addFloatCondition(final String name, final float... values) {
-        if (values != null) {
-            for (float value : values) {
-                doAddCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final float value) {
+        doAddCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addDoubleCondition(final String name, final double... values) {
-        if (values != null) {
-            for (double value : values) {
-                doAddCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> addCondition(final String name, final double value) {
+        doAddCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Add conditions to the set.
+     * Add condition to the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addObjectCondition(final String name, final Object... values) {
-        if (values != null) {
-            for (Object value : values) {
-                if (value != null) {
-                    if (value instanceof String) {
-                        doAddCondition(name, (String) value);
-                    } else {
-                        doAddCondition(name, value.toString());
-                    }
-                }
+    public ValueSetBuilder<T> addCondition(final String name, final Object value) {
+        if (value != null) {
+            if (value instanceof String) {
+                doAddCondition(name, (String) value);
+            } else {
+                doAddCondition(name, value.toString());
             }
         }
         return this;
@@ -225,118 +198,90 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeStringCondition(final String name, final String... values) {
-        if (values != null) {
-            for (String value : values) {
-                doRemoveCondition(name, value);
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final String value) {
+        doRemoveCondition(name, value);
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeBooleanCondition(final String name, final boolean... values) {
-        if (values != null) {
-            for (boolean value : values) {
-                doRemoveCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final boolean value) {
+        doRemoveCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeIntegerCondition(final String name, final int... values) {
-        if (values != null) {
-            for (int value : values) {
-                doRemoveCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final int value) {
+        doRemoveCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeLongCondition(final String name, final long... values) {
-        if (values != null) {
-            for (long value : values) {
-                doRemoveCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final long value) {
+        doRemoveCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeFloatCondition(final String name, final float... values) {
-        if (values != null) {
-            for (float value : values) {
-                doRemoveCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final float value) {
+        doRemoveCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeDoubleCondition(final String name, final double... values) {
-        if (values != null) {
-            for (double value : values) {
-                doRemoveCondition(name, String.valueOf(value));
-            }
-        }
+    public ValueSetBuilder<T> removeCondition(final String name, final double value) {
+        doRemoveCondition(name, String.valueOf(value));
         return this;
     }
 
     /**
-     * Remove conditions from the set.
+     * Remove condition from the set.
      *
-     * @param name   condition name.
-     * @param values condition values.
+     * @param name  condition name.
+     * @param value condition value.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeObjectCondition(final String name, final Object... values) {
-        if (values != null) {
-            for (Object value : values) {
-                if (value != null) {
-                    if (value instanceof String) {
-                        doRemoveCondition(name, (String) value);
-                    } else {
-                        doRemoveCondition(name, value.toString());
-                    }
-                }
+    public ValueSetBuilder<T> removeCondition(final String name, final Object value) {
+        if (value != null) {
+            if (value instanceof String) {
+                doRemoveCondition(name, (String) value);
+            } else {
+                doRemoveCondition(name, value.toString());
             }
         }
         return this;
@@ -355,6 +300,19 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
+     * Add value to the set.
+     *
+     * @param value value to add.
+     * @return current object for chaining.
+     */
+    public ValueSetBuilder<T> addValue(final T value) {
+        if (value != null) {
+            _values.add(value);
+        }
+        return this;
+    }
+
+    /**
      * Add values to the set.
      *
      * @param values values to add.
@@ -363,10 +321,21 @@ public final class ValueSetBuilder<T> {
     public ValueSetBuilder<T> addValue(final T... values) {
         if (values != null) {
             for (T value : values) {
-                if (value != null) {
-                    _values.add(value);
-                }
+                addValue(value);
             }
+        }
+        return this;
+    }
+
+    /**
+     * Remove value from the set.
+     *
+     * @param value value to remove.
+     * @return current object for chaining.
+     */
+    public ValueSetBuilder<T> removeValue(final T value) {
+        if (value != null) {
+            _values.remove(value);
         }
         return this;
     }
@@ -380,9 +349,7 @@ public final class ValueSetBuilder<T> {
     public ValueSetBuilder<T> removeValue(final T... values) {
         if (values != null) {
             for (T value : values) {
-                if (value != null) {
-                    _values.remove(value);
-                }
+                removeValue(value);
             }
         }
         return this;

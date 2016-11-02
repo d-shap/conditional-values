@@ -45,21 +45,23 @@
  * <pre>{@code
  * ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
  *
- * valueSetBuilder.addStringCondition("type", "type1");
- * valueSetBuilder.addIntegerCondition("state", 1);
- * valueSetBuilder.addStringCondition("role", "initiator");
+ * valueSetBuilder.addCondition("type", "type1");
+ * valueSetBuilder.addCondition("state", 1);
+ * valueSetBuilder.addCondition("role", "initiator");
  * valueSetBuilder.addValue("attribute1", "attribute2");
  * ValueSet<String> type1Initiator1ValueSet = valueSetBuilder.build();
  *
- * valueSetBuilder.addStringCondition("type", "type1");
- * valueSetBuilder.addIntegerCondition("state", 2, 3);
- * valueSetBuilder.addStringCondition("role", "initiator");
+ * valueSetBuilder.addCondition("type", "type1");
+ * valueSetBuilder.addCondition("state", 2);
+ * valueSetBuilder.addCondition("state", 3);
+ * valueSetBuilder.addCondition("role", "initiator");
  * valueSetBuilder.addValue("attribute2", "attribute3");
  * ValueSet<String> type1Initiator23ValueSet = valueSetBuilder.build();
  *
- * valueSetBuilder.addStringCondition("type", "type1");
- * valueSetBuilder.addIntegerCondition("state", 2, 3);
- * valueSetBuilder.addStringCondition("role", "performer");
+ * valueSetBuilder.addCondition("type", "type1");
+ * valueSetBuilder.addCondition("state", 2);
+ * valueSetBuilder.addCondition("state", 3);
+ * valueSetBuilder.addCondition("role", "performer");
  * valueSetBuilder.addValue("attribute1", "attribute3");
  * ValueSet<String> type1Performer23ValueSet = valueSetBuilder.build();
  * }</pre>
@@ -83,9 +85,9 @@
  * </p>
  * <pre>{@code
  * ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
- * conditionSetBuilder.addStringCondition("type", "type1");
- * conditionSetBuilder.addIntegerCondition("state", 2);
- * conditionSetBuilder.addStringCondition("role", "performer");
+ * conditionSetBuilder.addCondition("type", "type1");
+ * conditionSetBuilder.addCondition("state", 2);
+ * conditionSetBuilder.addCondition("role", "performer");
  * ConditionSet conditionSet = conditionSetBuilder.build();
  * }</pre>
  * <p>
