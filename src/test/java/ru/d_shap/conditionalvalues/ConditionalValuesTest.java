@@ -46,12 +46,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createConditionalValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
@@ -69,12 +73,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createStringConditionalValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
@@ -88,12 +96,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createBooleanConditionalValuesTest() {
         ValueSetBuilder<Boolean> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(true);
         ValueSet<Boolean> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(false);
         ValueSet<Boolean> valueSet2 = valueSetBuilder.build();
 
@@ -107,12 +119,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createIntegerConditionalValuesTest() {
         ValueSetBuilder<Integer> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(1);
         ValueSet<Integer> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(2);
         ValueSet<Integer> valueSet2 = valueSetBuilder.build();
 
@@ -126,12 +142,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createLongConditionalValuesTest() {
         ValueSetBuilder<Long> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(1L);
         ValueSet<Long> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(2L);
         ValueSet<Long> valueSet2 = valueSetBuilder.build();
 
@@ -145,12 +165,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createFloatConditionalValuesTest() {
         ValueSetBuilder<Float> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(1.0f);
         ValueSet<Float> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(2.0f);
         ValueSet<Float> valueSet2 = valueSetBuilder.build();
 
@@ -164,12 +188,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createDoubleConditionalValuesTest() {
         ValueSetBuilder<Double> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(1.0);
         ValueSet<Double> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(2.0);
         ValueSet<Double> valueSet2 = valueSetBuilder.build();
 
@@ -183,12 +211,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createObjectConditionalValuesTest() {
         ValueSetBuilder<StringBuilder> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue(new StringBuilder());
         ValueSet<StringBuilder> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue(new StringBuilder());
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.build();
 
@@ -248,11 +280,15 @@ public final class ConditionalValuesTest {
     @Test
     public void getAllConditionNamesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
@@ -273,11 +309,15 @@ public final class ConditionalValuesTest {
     @Test
     public void getAllConditionValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
@@ -314,11 +354,14 @@ public final class ConditionalValuesTest {
     @Test
     public void getAllValueSetUniqueConditionsTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val3");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2);
 
@@ -333,11 +376,15 @@ public final class ConditionalValuesTest {
     @Test(expected = DuplicateValueSetException.class)
     public void duplicateFullValueSetFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
@@ -351,11 +398,12 @@ public final class ConditionalValuesTest {
     @Test(expected = DuplicateValueSetException.class)
     public void duplicateValueSetUniqueConditionFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
@@ -369,12 +417,16 @@ public final class ConditionalValuesTest {
     @Test
     public void getValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val6", "val2", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
@@ -383,8 +435,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val11");
-        conditionSetBuilder.addStringCondition("cond2", "val22");
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val22");
         ConditionSet conditionSet = conditionSetBuilder.build();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
@@ -402,12 +454,16 @@ public final class ConditionalValuesTest {
     @Test
     public void getEmptyValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val6", "val2", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
@@ -416,8 +472,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val11");
-        conditionSetBuilder.addStringCondition("cond3", "val31");
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond3", "val31");
         ConditionSet conditionSet = conditionSetBuilder.build();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
@@ -430,8 +486,8 @@ public final class ConditionalValuesTest {
     @Test
     public void getAndValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
@@ -440,18 +496,18 @@ public final class ConditionalValuesTest {
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
         Assert.assertTrue(values1.isEmpty());
 
-        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
         Assert.assertTrue(values2.isEmpty());
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         Values<String> values3 = conditionalValues.getValues(conditionSet3);
         Assert.assertFalse(values3.isEmpty());
@@ -463,7 +519,8 @@ public final class ConditionalValuesTest {
     @Test
     public void getOrValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val1", "val2");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond1", "val2");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
@@ -472,12 +529,12 @@ public final class ConditionalValuesTest {
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
         Assert.assertFalse(values1.isEmpty());
 
-        conditionSetBuilder.addStringCondition("cond1", "val2");
+        conditionSetBuilder.addCondition("cond1", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
         Assert.assertFalse(values2.isEmpty());
@@ -493,29 +550,38 @@ public final class ConditionalValuesTest {
     @Test
     public void getSingleMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond3", "val31", "val23");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val23");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val11");
-        conditionSetBuilder.addStringCondition("cond2", "val21");
-        conditionSetBuilder.addStringCondition("cond3", "val31");
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond3", "val31");
         ConditionSet conditionSet = conditionSetBuilder.build();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
@@ -532,29 +598,38 @@ public final class ConditionalValuesTest {
     @Test
     public void getSeveralMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
-        valueSetBuilder.addStringCondition("cond3", "val31", "val32");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val21", "val22");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond3", "val31", "val23");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val23");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val11", "val12");
-        valueSetBuilder.addStringCondition("cond4", "val41", "val42");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val11");
-        conditionSetBuilder.addStringCondition("cond2", "val21");
-        conditionSetBuilder.addStringCondition("cond4", "val41");
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond4", "val41");
         ConditionSet conditionSet = conditionSetBuilder.build();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
@@ -571,26 +646,26 @@ public final class ConditionalValuesTest {
     @Test
     public void getDifferentCardinalityMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
-        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond4", "val4");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addStringCondition("cond2", "val2");
-        conditionSetBuilder.addStringCondition("cond4", "val4");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond4", "val4");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
         Assert.assertFalse(values1.isEmpty());
@@ -598,9 +673,9 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(values1.contains("val2"));
         Assert.assertTrue(values1.contains("val3"));
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addStringCondition("cond2", "val2");
-        conditionSetBuilder.addStringCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
         Assert.assertFalse(values2.isEmpty());
@@ -608,10 +683,10 @@ public final class ConditionalValuesTest {
         Assert.assertTrue(values2.contains("val2"));
         Assert.assertFalse(values2.contains("val3"));
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addStringCondition("cond2", "val2");
-        conditionSetBuilder.addStringCondition("cond3", "val3");
-        conditionSetBuilder.addStringCondition("cond4", "val4");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("cond4", "val4");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         Values<String> values3 = conditionalValues.getValues(conditionSet3);
         Assert.assertFalse(values3.isEmpty());
@@ -619,8 +694,8 @@ public final class ConditionalValuesTest {
         Assert.assertTrue(values3.contains("val2"));
         Assert.assertTrue(values3.contains("val3"));
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet4 = conditionSetBuilder.build();
         Values<String> values4 = conditionalValues.getValues(conditionSet4);
         Assert.assertFalse(values4.isEmpty());
@@ -628,8 +703,8 @@ public final class ConditionalValuesTest {
         Assert.assertFalse(values4.contains("val2"));
         Assert.assertFalse(values4.contains("val3"));
 
-        conditionSetBuilder.addStringCondition("cond2", "val2");
-        conditionSetBuilder.addStringCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet5 = conditionSetBuilder.build();
         Values<String> values5 = conditionalValues.getValues(conditionSet5);
         Assert.assertTrue(values5.isEmpty());
@@ -641,17 +716,17 @@ public final class ConditionalValuesTest {
     @Test
     public void getNullMatchingValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
-        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond4", "val4");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);
@@ -667,17 +742,17 @@ public final class ConditionalValuesTest {
     @Test
     public void toStringTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond3", "val3");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addStringCondition("cond1", "val1");
-        valueSetBuilder.addStringCondition("cond2", "val2");
-        valueSetBuilder.addStringCondition("cond4", "val4");
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond4", "val4");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, valueSet3);

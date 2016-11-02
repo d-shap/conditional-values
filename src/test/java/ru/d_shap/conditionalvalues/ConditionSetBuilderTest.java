@@ -47,21 +47,21 @@ public final class ConditionSetBuilderTest {
     public void buildTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
 
-        conditionSetBuilder.addStringCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Iterator<String> conditionSet1Names = conditionSet1.nameIterator();
         Assert.assertEquals("cond1", conditionSet1Names.next());
         Assert.assertFalse(conditionSet1Names.hasNext());
         Assert.assertEquals("val1", conditionSet1.getCondition("cond1"));
 
-        conditionSetBuilder.addStringCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
         Iterator<String> conditionSet2Names = conditionSet2.nameIterator();
         Assert.assertEquals("cond2", conditionSet2Names.next());
         Assert.assertFalse(conditionSet2Names.hasNext());
         Assert.assertEquals("val2", conditionSet2.getCondition("cond2"));
 
-        conditionSetBuilder.addStringCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         Iterator<String> conditionSet3Names = conditionSet3.nameIterator();
         Assert.assertEquals("cond3", conditionSet3Names.next());
@@ -75,16 +75,16 @@ public final class ConditionSetBuilderTest {
     @Test
     public void addConditionTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addBooleanCondition("cond2", true);
-        conditionSetBuilder.addBooleanCondition("cond3", false);
-        conditionSetBuilder.addIntegerCondition("cond4", 1);
-        conditionSetBuilder.addIntegerCondition("cond5", 2);
-        conditionSetBuilder.addLongCondition("cond6", 7L);
-        conditionSetBuilder.addFloatCondition("cond7", 3.5f);
-        conditionSetBuilder.addDoubleCondition("cond8", 4.9);
-        conditionSetBuilder.addObjectCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addObjectCondition("cond10", "val3");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", true);
+        conditionSetBuilder.addCondition("cond3", false);
+        conditionSetBuilder.addCondition("cond4", 1);
+        conditionSetBuilder.addCondition("cond5", 2);
+        conditionSetBuilder.addCondition("cond6", 7L);
+        conditionSetBuilder.addCondition("cond7", 3.5f);
+        conditionSetBuilder.addCondition("cond8", 4.9);
+        conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
+        conditionSetBuilder.addCondition("cond10", "val3");
 
         Set<String> allNames = new HashSet<String>();
         allNames.add("cond1");
@@ -130,16 +130,16 @@ public final class ConditionSetBuilderTest {
     @Test
     public void removeConditionTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
-        conditionSetBuilder.addStringCondition("cond1", "val1");
-        conditionSetBuilder.addBooleanCondition("cond2", true);
-        conditionSetBuilder.addBooleanCondition("cond3", false);
-        conditionSetBuilder.addIntegerCondition("cond4", 1);
-        conditionSetBuilder.addIntegerCondition("cond5", 2);
-        conditionSetBuilder.addLongCondition("cond6", 7L);
-        conditionSetBuilder.addFloatCondition("cond7", 3.5f);
-        conditionSetBuilder.addDoubleCondition("cond8", 4.9);
-        conditionSetBuilder.addObjectCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addObjectCondition("cond10", "val3");
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", true);
+        conditionSetBuilder.addCondition("cond3", false);
+        conditionSetBuilder.addCondition("cond4", 1);
+        conditionSetBuilder.addCondition("cond5", 2);
+        conditionSetBuilder.addCondition("cond6", 7L);
+        conditionSetBuilder.addCondition("cond7", 3.5f);
+        conditionSetBuilder.addCondition("cond8", 4.9);
+        conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
+        conditionSetBuilder.addCondition("cond10", "val3");
 
         conditionSetBuilder.removeCondition("cond3");
         conditionSetBuilder.removeCondition("cond5");

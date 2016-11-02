@@ -44,9 +44,9 @@ public final class ValueSetBuilderTest {
     @Test
     public void buildTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addStringCondition("cond1", "val11");
-        valueSetBuilder.addStringCondition("cond1", "val12");
-        valueSetBuilder.addStringCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val2", "val3");
         ValueSet<String> valueSet = valueSetBuilder.build();
 
@@ -80,14 +80,20 @@ public final class ValueSetBuilderTest {
     @Test
     public void addConditionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addBooleanCondition("cond1", true, true);
-        valueSetBuilder.addIntegerCondition("cond1", 1, 2);
-        valueSetBuilder.addLongCondition("cond1", 1L, 3L);
-        valueSetBuilder.addFloatCondition("cond1", 3.5f);
-        valueSetBuilder.addDoubleCondition("cond1", 4.9);
-        valueSetBuilder.addObjectCondition("cond2", new StringBuilder().append("val1"), new StringBuilder().append("val2"));
-        valueSetBuilder.addStringCondition("cond2", "val2", "val3");
-        valueSetBuilder.addObjectCondition("cond2", "val3", "val4");
+        valueSetBuilder.addCondition("cond1", true);
+        valueSetBuilder.addCondition("cond1", true);
+        valueSetBuilder.addCondition("cond1", 1);
+        valueSetBuilder.addCondition("cond1", 2);
+        valueSetBuilder.addCondition("cond1", 1L);
+        valueSetBuilder.addCondition("cond1", 3L);
+        valueSetBuilder.addCondition("cond1", 3.5f);
+        valueSetBuilder.addCondition("cond1", 4.9);
+        valueSetBuilder.addCondition("cond2", new StringBuilder().append("val1"));
+        valueSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addCondition("cond2", "val3");
+        valueSetBuilder.addCondition("cond2", "val3");
+        valueSetBuilder.addCondition("cond2", "val4");
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allConditionNames = valueSet.getAllConditionNames();
@@ -118,25 +124,37 @@ public final class ValueSetBuilderTest {
     @Test
     public void removeConditionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addBooleanCondition("cond1", true, true);
-        valueSetBuilder.addIntegerCondition("cond2", 1, 2);
-        valueSetBuilder.addLongCondition("cond2", 1L, 3L);
-        valueSetBuilder.addFloatCondition("cond3", 3.5f);
-        valueSetBuilder.addDoubleCondition("cond3", 4.9);
-        valueSetBuilder.addObjectCondition("cond4", new StringBuilder().append("val1"), new StringBuilder().append("val2"));
-        valueSetBuilder.addStringCondition("cond4", "val2", "val3");
-        valueSetBuilder.addObjectCondition("cond4", "val3", "val4");
+        valueSetBuilder.addCondition("cond1", true);
+        valueSetBuilder.addCondition("cond1", true);
+        valueSetBuilder.addCondition("cond2", 1);
+        valueSetBuilder.addCondition("cond2", 2);
+        valueSetBuilder.addCondition("cond2", 1L);
+        valueSetBuilder.addCondition("cond2", 3L);
+        valueSetBuilder.addCondition("cond3", 3.5f);
+        valueSetBuilder.addCondition("cond3", 4.9);
+        valueSetBuilder.addCondition("cond4", new StringBuilder().append("val1"));
+        valueSetBuilder.addCondition("cond4", new StringBuilder().append("val2"));
+        valueSetBuilder.addCondition("cond4", "val2");
+        valueSetBuilder.addCondition("cond4", "val3");
+        valueSetBuilder.addCondition("cond4", "val3");
+        valueSetBuilder.addCondition("cond4", "val4");
 
         valueSetBuilder.removeCondition("cond1");
-        valueSetBuilder.removeBooleanCondition("cond1", false, true);
-        valueSetBuilder.removeIntegerCondition("cond2", 1);
-        valueSetBuilder.removeStringCondition("cond2", "3");
-        valueSetBuilder.removeLongCondition("cond2", 2L);
-        valueSetBuilder.removeFloatCondition("cond3", 3.5f, 3.6f, 3.7f);
-        valueSetBuilder.removeDoubleCondition("cond3", 4.5, 4.6, 4.7);
-        valueSetBuilder.removeStringCondition("cond4", "val1");
-        valueSetBuilder.removeObjectCondition("cond4", new StringBuilder().append("val1"), new StringBuilder().append("val2"));
-        valueSetBuilder.removeObjectCondition("cond4", "val3");
+        valueSetBuilder.removeCondition("cond1", false);
+        valueSetBuilder.removeCondition("cond1", true);
+        valueSetBuilder.removeCondition("cond2", 1);
+        valueSetBuilder.removeCondition("cond2", "3");
+        valueSetBuilder.removeCondition("cond2", 2L);
+        valueSetBuilder.removeCondition("cond3", 3.5f);
+        valueSetBuilder.removeCondition("cond3", 3.6f);
+        valueSetBuilder.removeCondition("cond3", 3.7f);
+        valueSetBuilder.removeCondition("cond3", 4.5);
+        valueSetBuilder.removeCondition("cond3", 4.6);
+        valueSetBuilder.removeCondition("cond3", 4.7);
+        valueSetBuilder.removeCondition("cond4", "val1");
+        valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val1"));
+        valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val2"));
+        valueSetBuilder.removeCondition("cond4", "val3");
 
         ValueSet<String> valueSet = valueSetBuilder.build();
 
@@ -160,7 +178,7 @@ public final class ValueSetBuilderTest {
     @Test
     public void addValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addStringCondition("cond", "val");
+        valueSetBuilder.addCondition("cond", "val");
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
@@ -181,7 +199,7 @@ public final class ValueSetBuilderTest {
     @Test
     public void removeValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addStringCondition("cond", "val");
+        valueSetBuilder.addCondition("cond", "val");
         valueSetBuilder.addValue("val1", "val3", "val2");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
