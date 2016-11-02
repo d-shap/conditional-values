@@ -84,7 +84,7 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addCondition("cond7", 3.5f);
         conditionSetBuilder.addCondition("cond8", 4.9);
         conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addCondition("cond10", "val3");
+        conditionSetBuilder.addCondition("cond10", (Object) "val3");
 
         Set<String> allNames = new HashSet<String>();
         allNames.add("cond1");
@@ -139,7 +139,7 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addCondition("cond7", 3.5f);
         conditionSetBuilder.addCondition("cond8", 4.9);
         conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addCondition("cond10", "val3");
+        conditionSetBuilder.addCondition("cond10", (Object) "val3");
 
         conditionSetBuilder.removeCondition("cond3");
         conditionSetBuilder.removeCondition("cond5");
