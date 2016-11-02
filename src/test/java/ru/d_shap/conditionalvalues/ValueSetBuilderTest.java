@@ -90,8 +90,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond1", 4.9);
         valueSetBuilder.addCondition("cond2", new StringBuilder().append("val1"));
         valueSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addCondition("cond2", "val3");
+        valueSetBuilder.addCondition("cond2", (Object) "val2");
+        valueSetBuilder.addCondition("cond2", (Object) "val3");
         valueSetBuilder.addCondition("cond2", "val3");
         valueSetBuilder.addCondition("cond2", "val4");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -134,8 +134,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond3", 4.9);
         valueSetBuilder.addCondition("cond4", new StringBuilder().append("val1"));
         valueSetBuilder.addCondition("cond4", new StringBuilder().append("val2"));
-        valueSetBuilder.addCondition("cond4", "val2");
-        valueSetBuilder.addCondition("cond4", "val3");
+        valueSetBuilder.addCondition("cond4", (Object) "val2");
+        valueSetBuilder.addCondition("cond4", (Object) "val3");
         valueSetBuilder.addCondition("cond4", "val3");
         valueSetBuilder.addCondition("cond4", "val4");
 
@@ -154,7 +154,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.removeCondition("cond4", "val1");
         valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val1"));
         valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val2"));
-        valueSetBuilder.removeCondition("cond4", "val3");
+        valueSetBuilder.removeCondition("cond4", (Object) "val3");
 
         ValueSet<String> valueSet = valueSetBuilder.build();
 
