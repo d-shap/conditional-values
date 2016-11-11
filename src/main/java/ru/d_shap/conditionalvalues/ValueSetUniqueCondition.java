@@ -70,9 +70,9 @@ public final class ValueSetUniqueCondition {
         if (!conditionKeys.containsAll(otherConditionKeys) || !otherConditionKeys.containsAll(conditionKeys)) {
             return false;
         }
-        for (String key : conditionKeys) {
-            String conditionValue = _conditions.get(key);
-            String otherConditionValue = other._conditions.get(key);
+        for (Map.Entry<String, String> entry : _conditions.entrySet()) {
+            String conditionValue = entry.getValue();
+            String otherConditionValue = other._conditions.get(entry.getKey());
             if (!conditionValue.equals(otherConditionValue)) {
                 return false;
             }
