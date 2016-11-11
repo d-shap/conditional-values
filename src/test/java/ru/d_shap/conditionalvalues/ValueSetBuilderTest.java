@@ -90,10 +90,18 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond1", 4.9);
         valueSetBuilder.addCondition("cond2", new StringBuilder().append("val1"));
         valueSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
-        valueSetBuilder.addCondition("cond2", (Object) "val2");
-        valueSetBuilder.addCondition("cond2", (Object) "val3");
+        Object value2 = "val2";
+        valueSetBuilder.addCondition("cond2", value2);
+        Object value3 = "val3";
+        valueSetBuilder.addCondition("cond2", value3);
         valueSetBuilder.addCondition("cond2", "val3");
         valueSetBuilder.addCondition("cond2", "val4");
+        Object value5 = null;
+        valueSetBuilder.addCondition("cond2", value5);
+        String value6 = null;
+        valueSetBuilder.addCondition("cond2", value6);
+        valueSetBuilder.addCondition(null, "val7");
+        valueSetBuilder.addCondition(null, null);
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allConditionNames = valueSet.getAllConditionNames();
@@ -140,6 +148,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond4", "val4");
 
         valueSetBuilder.removeCondition("cond1");
+        valueSetBuilder.removeCondition(null);
         valueSetBuilder.removeCondition("cond1", false);
         valueSetBuilder.removeCondition("cond1", true);
         valueSetBuilder.removeCondition("cond2", 1);
@@ -154,7 +163,14 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.removeCondition("cond4", "val1");
         valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val1"));
         valueSetBuilder.removeCondition("cond4", new StringBuilder().append("val2"));
-        valueSetBuilder.removeCondition("cond4", (Object) "val3");
+        Object value3 = "val3";
+        valueSetBuilder.removeCondition("cond4", value3);
+        Object value4 = null;
+        valueSetBuilder.removeCondition("cond4", value4);
+        String value5 = null;
+        valueSetBuilder.removeCondition("cond4", value5);
+        valueSetBuilder.removeCondition(null, "val3");
+        valueSetBuilder.removeCondition(null, null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
 
@@ -182,6 +198,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
+        valueSetBuilder.addValue((String) null);
+        valueSetBuilder.addValue((String[]) null);
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allValues = valueSet.getAllValues();
@@ -207,6 +225,8 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.removeValue("val17", "val18");
         valueSetBuilder.removeValue("val3");
+        valueSetBuilder.removeValue((String) null);
+        valueSetBuilder.removeValue((String[]) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
 

@@ -63,6 +63,27 @@ public final class ValueSetUniqueConditionTest {
         Assert.assertEquals("value1", conditions3.get("name1"));
         Assert.assertTrue(conditions3.containsKey("name2"));
         Assert.assertEquals("value2", conditions3.get("name2"));
+
+        ValueSetUniqueCondition valueSetUniqueCondition4 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", null);
+        Map<String, String> conditions4 = valueSetUniqueCondition4.getConditions();
+        Assert.assertNotNull(conditions4);
+        Assert.assertEquals(1, conditions4.size());
+        Assert.assertTrue(conditions4.containsKey("name1"));
+        Assert.assertEquals("value1", conditions4.get("name1"));
+
+        ValueSetUniqueCondition valueSetUniqueCondition5 = new ValueSetUniqueCondition(valueSetUniqueCondition2, null, "value2");
+        Map<String, String> conditions5 = valueSetUniqueCondition5.getConditions();
+        Assert.assertNotNull(conditions5);
+        Assert.assertEquals(1, conditions5.size());
+        Assert.assertTrue(conditions5.containsKey("name1"));
+        Assert.assertEquals("value1", conditions5.get("name1"));
+
+        ValueSetUniqueCondition valueSetUniqueCondition6 = new ValueSetUniqueCondition(valueSetUniqueCondition2, null, null);
+        Map<String, String> conditions6 = valueSetUniqueCondition6.getConditions();
+        Assert.assertNotNull(conditions6);
+        Assert.assertEquals(1, conditions6.size());
+        Assert.assertTrue(conditions6.containsKey("name1"));
+        Assert.assertEquals("value1", conditions6.get("name1"));
     }
 
     /**

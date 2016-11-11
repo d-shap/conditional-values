@@ -83,8 +83,16 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addCondition("cond6", 7L);
         conditionSetBuilder.addCondition("cond7", 3.5f);
         conditionSetBuilder.addCondition("cond8", 4.9);
-        conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addCondition("cond10", (Object) "val3");
+        StringBuilder value9 = new StringBuilder().append("val2");
+        conditionSetBuilder.addCondition("cond9", value9);
+        Object value10 = "val3";
+        conditionSetBuilder.addCondition("cond10", value10);
+        String value11 = null;
+        conditionSetBuilder.addCondition("cond11", value11);
+        Object value12 = null;
+        conditionSetBuilder.addCondition("cond12", value12);
+        conditionSetBuilder.addCondition(null, "val3");
+        conditionSetBuilder.addCondition(null, null);
 
         Set<String> allNames = new HashSet<String>();
         allNames.add("cond1");
@@ -138,12 +146,15 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addCondition("cond6", 7L);
         conditionSetBuilder.addCondition("cond7", 3.5f);
         conditionSetBuilder.addCondition("cond8", 4.9);
-        conditionSetBuilder.addCondition("cond9", new StringBuilder().append("val2"));
-        conditionSetBuilder.addCondition("cond10", (Object) "val3");
+        StringBuilder value9 = new StringBuilder().append("val2");
+        conditionSetBuilder.addCondition("cond9", value9);
+        Object value10 = "val3";
+        conditionSetBuilder.addCondition("cond10", value10);
 
         conditionSetBuilder.removeCondition("cond3");
         conditionSetBuilder.removeCondition("cond5");
         conditionSetBuilder.removeCondition("cond9");
+        conditionSetBuilder.removeCondition(null);
 
         Set<String> allNames = new HashSet<String>();
         allNames.add("cond1");

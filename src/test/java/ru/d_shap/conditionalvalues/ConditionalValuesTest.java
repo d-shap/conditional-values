@@ -62,6 +62,7 @@ public final class ConditionalValuesTest {
         List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
+        valueSets.add(null);
 
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
         Assert.assertNotNull(conditionalValues);
@@ -86,7 +87,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<String> conditionalValues = ConditionalValues.createStringConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -109,7 +110,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(false);
         ValueSet<Boolean> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<Boolean> conditionalValues = ConditionalValues.createBooleanConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<Boolean> conditionalValues = ConditionalValues.createBooleanConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -132,7 +133,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(2);
         ValueSet<Integer> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<Integer> conditionalValues = ConditionalValues.createIntegerConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<Integer> conditionalValues = ConditionalValues.createIntegerConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -155,7 +156,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(2L);
         ValueSet<Long> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<Long> conditionalValues = ConditionalValues.createLongConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<Long> conditionalValues = ConditionalValues.createLongConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -178,7 +179,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(2.0f);
         ValueSet<Float> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<Float> conditionalValues = ConditionalValues.createFloatConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<Float> conditionalValues = ConditionalValues.createFloatConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -201,7 +202,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(2.0);
         ValueSet<Double> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<Double> conditionalValues = ConditionalValues.createDoubleConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<Double> conditionalValues = ConditionalValues.createDoubleConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
@@ -224,7 +225,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue(new StringBuilder());
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<?> conditionalValues = ConditionalValues.createObjectConditionalValues(valueSet1, valueSet2);
+        ConditionalValues<?> conditionalValues = ConditionalValues.createObjectConditionalValues(valueSet1, valueSet2, null);
         Assert.assertNotNull(conditionalValues);
     }
 
