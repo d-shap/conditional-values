@@ -56,13 +56,13 @@ import java.util.Set;
  * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)},
  * {@link #addCondition(String, long)}, {@link #addCondition(String, float)},
  * {@link #addCondition(String, double)} and {@link #addCondition(String, Object)}
- * are convenient methods for {@link #addCondition(String, String)}
+ * are convenient methods for {@link #addCondition(String, String)}.
  * </p>
  * <p>
  * Methods {@link #removeCondition(String, boolean)}, {@link #removeCondition(String, int)},
  * {@link #removeCondition(String, long)}, {@link #removeCondition(String, float)},
  * {@link #removeCondition(String, double)} and {@link #removeCondition(String, Object)}
- * are convenient methods for {@link #removeCondition(String, String)}
+ * are convenient methods for {@link #removeCondition(String, String)}.
  * </p>
  * <p>
  * The internal presentation of values is {@code Set<T>}.
@@ -191,9 +191,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name) {
-        if (name != null) {
-            _conditions.remove(name);
-        }
+        _conditions.remove(name);
         return this;
     }
 
@@ -300,6 +298,16 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
+     * Clear all conditions.
+     *
+     * @return current object for chaining.
+     */
+    public ValueSetBuilder<T> clearConditions() {
+        _conditions.clear();
+        return this;
+    }
+
+    /**
      * Add value to the set.
      *
      * @param value value to add.
@@ -318,7 +326,8 @@ public final class ValueSetBuilder<T> {
      * @param values values to add.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> addValue(final T... values) {
+    @SafeVarargs
+    public final ValueSetBuilder<T> addValue(final T... values) {
         if (values != null) {
             for (T value : values) {
                 addValue(value);
@@ -346,7 +355,8 @@ public final class ValueSetBuilder<T> {
      * @param values values to remove.
      * @return current object for chaining.
      */
-    public ValueSetBuilder<T> removeValue(final T... values) {
+    @SafeVarargs
+    public final ValueSetBuilder<T> removeValue(final T... values) {
         if (values != null) {
             for (T value : values) {
                 removeValue(value);
@@ -356,14 +366,43 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Creates new {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * Clear all values.
+     *
+     * @return current object for chaining.
+     */
+    public ValueSetBuilder<T> clearValues() {
+        _values.clear();
+        return this;
+    }
+
+    /**
+     * Clear all conditions and values.
+     *
+     * @return current object for chaining.
+     */
+    public ValueSetBuilder<T> clear() {
+        clearConditions();
+        clearValues();
+        return this;
+    }
+
+    /**
+     * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with the values, added to this builder.
      */
     public ValueSet<T> build() {
+        return new ValueSet<T>(_conditions, _values);
+    }
+
+    /**
+     * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object and clear all conditions and values.
+     *
+     * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with the values, added to this builder.
+     */
+    public ValueSet<T> buildAndClear() {
         ValueSet<T> valueSet = new ValueSet<T>(_conditions, _values);
-        _conditions.clear();
-        _values.clear();
+        clear();
         return valueSet;
     }
 
