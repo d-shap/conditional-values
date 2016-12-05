@@ -27,18 +27,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>
  * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best matching
- * {@link ru.d_shap.conditionalvalues.ValueSet} objects based on specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
- * </p>
- * <p>
- * Methods {@link #createStringConditionalValues(ValueSet...)}, {@link #createBooleanConditionalValues(ValueSet...)},
- * {@link #createIntegerConditionalValues(ValueSet...)}, {@link #createLongConditionalValues(ValueSet...)},
- * {@link #createFloatConditionalValues(ValueSet...)}, {@link #createDoubleConditionalValues(ValueSet...)} and
- * {@link #createObjectConditionalValues(ValueSet...)} are convenient methods to create
- * {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
- * But this methods are NOT type-safe!
- * </p>
+ * {@link ru.d_shap.conditionalvalues.ValueSet} objects based on specified
+ * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * @author Dmitry Shapovalov
@@ -108,107 +99,23 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with String
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      *
      * @param valueSets all value sets, used for lookup.
+     * @param <T>       value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
      * @return created object.
      */
-    public static ConditionalValues<String> createStringConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<String>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<String>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Boolean
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<Boolean> createBooleanConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Boolean>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Boolean>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Integer
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<Integer> createIntegerConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Integer>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Integer>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Long
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<Long> createLongConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Long>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Long>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Float
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<Float> createFloatConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Float>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Float>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Double
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<Double> createDoubleConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Double>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Double>(valueSetsList);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object with Object
-     * {@link ru.d_shap.conditionalvalues.ValueSet} type.
-     * This call is NOT type-safe!
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @return created object.
-     */
-    public static ConditionalValues<?> createObjectConditionalValues(final ValueSet<?>... valueSets) {
-        List<ValueSet<Object>> valueSetsList = createValueSetsList(valueSets);
-        return new ConditionalValues<Object>(valueSetsList);
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <E> List<ValueSet<E>> createValueSetsList(final ValueSet<?>[] valueSets) {
-        List<ValueSet<E>> valueSetsList = new ArrayList<ValueSet<E>>();
+    @SafeVarargs
+    public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
+        List<ValueSet<T>> valueSetsList = new ArrayList<ValueSet<T>>();
         if (valueSets != null) {
-            for (ValueSet<?> valueSet : valueSets) {
+            for (ValueSet<T> valueSet : valueSets) {
                 if (valueSet != null) {
-                    valueSetsList.add((ValueSet<E>) valueSet);
+                    valueSetsList.add(valueSet);
                 }
             }
         }
-        return valueSetsList;
+        return new ConditionalValues<T>(valueSetsList);
     }
 
     /**
