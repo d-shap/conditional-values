@@ -44,34 +44,158 @@ public final class ValueSetBuilderTest {
     @Test
     public void buildTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+
         valueSetBuilder.addCondition("cond1", "val11");
-        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        Set<String> allConditionNames1 = valueSet1.getAllConditionNames();
+        Assert.assertEquals(1, allConditionNames1.size());
+        Assert.assertTrue(allConditionNames1.contains("cond1"));
+        Assert.assertFalse(allConditionNames1.contains("cond2"));
+        Assert.assertFalse(allConditionNames1.contains("cond3"));
+        Set<String> allConditionValues11 = valueSet1.getAllConditionValues("cond1");
+        Assert.assertEquals(1, allConditionValues11.size());
+        Assert.assertTrue(allConditionValues11.contains("val11"));
+        Assert.assertFalse(allConditionValues11.contains("val12"));
+        Assert.assertFalse(allConditionValues11.contains("val13"));
+        Set<String> allConditionValues12 = valueSet1.getAllConditionValues("cond2");
+        Assert.assertEquals(0, allConditionValues12.size());
+        Set<String> allConditionValues13 = valueSet1.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues13.size());
+        Set<String> allValues1 = valueSet1.getAllValues();
+        Assert.assertEquals(1, allValues1.size());
+        Assert.assertTrue(allValues1.contains("val1"));
+        Assert.assertFalse(allValues1.contains("val2"));
+        Assert.assertFalse(allValues1.contains("val3"));
+        Assert.assertFalse(allValues1.contains("val4"));
+
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2", "val3");
-        ValueSet<String> valueSet = valueSetBuilder.build();
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        Set<String> allConditionNames2 = valueSet2.getAllConditionNames();
+        Assert.assertEquals(2, allConditionNames2.size());
+        Assert.assertTrue(allConditionNames2.contains("cond1"));
+        Assert.assertTrue(allConditionNames2.contains("cond2"));
+        Assert.assertFalse(allConditionNames2.contains("cond3"));
+        Set<String> allConditionValues21 = valueSet2.getAllConditionValues("cond1");
+        Assert.assertEquals(1, allConditionValues21.size());
+        Assert.assertTrue(allConditionValues21.contains("val11"));
+        Assert.assertFalse(allConditionValues21.contains("val12"));
+        Assert.assertFalse(allConditionValues21.contains("val13"));
+        Set<String> allConditionValues22 = valueSet2.getAllConditionValues("cond2");
+        Assert.assertEquals(1, allConditionValues22.size());
+        Assert.assertTrue(allConditionValues22.contains("val2"));
+        Set<String> allConditionValues23 = valueSet2.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues23.size());
+        Set<String> allValues2 = valueSet2.getAllValues();
+        Assert.assertEquals(2, allValues2.size());
+        Assert.assertTrue(allValues2.contains("val1"));
+        Assert.assertTrue(allValues2.contains("val2"));
+        Assert.assertFalse(allValues2.contains("val3"));
+        Assert.assertFalse(allValues2.contains("val4"));
 
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(2, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond1"));
-        Assert.assertTrue(allConditionNames.contains("cond2"));
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        Set<String> allConditionNames3 = valueSet3.getAllConditionNames();
+        Assert.assertEquals(2, allConditionNames3.size());
+        Assert.assertTrue(allConditionNames3.contains("cond1"));
+        Assert.assertTrue(allConditionNames3.contains("cond2"));
+        Assert.assertFalse(allConditionNames3.contains("cond3"));
+        Set<String> allConditionValues31 = valueSet3.getAllConditionValues("cond1");
+        Assert.assertEquals(2, allConditionValues31.size());
+        Assert.assertTrue(allConditionValues31.contains("val11"));
+        Assert.assertTrue(allConditionValues31.contains("val12"));
+        Assert.assertFalse(allConditionValues31.contains("val13"));
+        Set<String> allConditionValues32 = valueSet3.getAllConditionValues("cond2");
+        Assert.assertEquals(1, allConditionValues32.size());
+        Assert.assertTrue(allConditionValues32.contains("val2"));
+        Set<String> allConditionValues33 = valueSet3.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues33.size());
+        Set<String> allValues3 = valueSet3.getAllValues();
+        Assert.assertEquals(3, allValues3.size());
+        Assert.assertTrue(allValues3.contains("val1"));
+        Assert.assertTrue(allValues3.contains("val2"));
+        Assert.assertTrue(allValues3.contains("val3"));
+        Assert.assertFalse(allValues3.contains("val4"));
+    }
 
-        Set<String> allConditionValues1 = valueSet.getAllConditionValues("cond1");
-        Assert.assertEquals(2, allConditionValues1.size());
-        Assert.assertTrue(allConditionValues1.contains("val11"));
-        Assert.assertTrue(allConditionValues1.contains("val12"));
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void buildAndClearTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
 
-        Set<String> allConditionValues2 = valueSet.getAllConditionValues("cond2");
-        Assert.assertEquals(1, allConditionValues2.size());
-        Assert.assertTrue(allConditionValues2.contains("val2"));
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.buildAndClear();
+        Set<String> allConditionNames1 = valueSet1.getAllConditionNames();
+        Assert.assertEquals(1, allConditionNames1.size());
+        Assert.assertTrue(allConditionNames1.contains("cond1"));
+        Assert.assertFalse(allConditionNames1.contains("cond2"));
+        Assert.assertFalse(allConditionNames1.contains("cond3"));
+        Set<String> allConditionValues11 = valueSet1.getAllConditionValues("cond1");
+        Assert.assertEquals(1, allConditionValues11.size());
+        Assert.assertTrue(allConditionValues11.contains("val11"));
+        Assert.assertFalse(allConditionValues11.contains("val12"));
+        Assert.assertFalse(allConditionValues11.contains("val13"));
+        Set<String> allConditionValues12 = valueSet1.getAllConditionValues("cond2");
+        Assert.assertEquals(0, allConditionValues12.size());
+        Set<String> allConditionValues13 = valueSet1.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues13.size());
+        Set<String> allValues1 = valueSet1.getAllValues();
+        Assert.assertEquals(1, allValues1.size());
+        Assert.assertTrue(allValues1.contains("val1"));
+        Assert.assertFalse(allValues1.contains("val2"));
+        Assert.assertFalse(allValues1.contains("val3"));
+        Assert.assertFalse(allValues1.contains("val4"));
 
-        Set<String> allConditionValues3 = valueSet.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues3.size());
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
+        Set<String> allConditionNames2 = valueSet2.getAllConditionNames();
+        Assert.assertEquals(1, allConditionNames2.size());
+        Assert.assertFalse(allConditionNames2.contains("cond1"));
+        Assert.assertTrue(allConditionNames2.contains("cond2"));
+        Assert.assertFalse(allConditionNames2.contains("cond3"));
+        Set<String> allConditionValues21 = valueSet2.getAllConditionValues("cond1");
+        Assert.assertEquals(0, allConditionValues21.size());
+        Set<String> allConditionValues22 = valueSet2.getAllConditionValues("cond2");
+        Assert.assertEquals(1, allConditionValues22.size());
+        Assert.assertTrue(allConditionValues22.contains("val2"));
+        Set<String> allConditionValues23 = valueSet2.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues23.size());
+        Set<String> allValues2 = valueSet2.getAllValues();
+        Assert.assertEquals(1, allValues2.size());
+        Assert.assertFalse(allValues2.contains("val1"));
+        Assert.assertTrue(allValues2.contains("val2"));
+        Assert.assertFalse(allValues2.contains("val3"));
+        Assert.assertFalse(allValues2.contains("val4"));
 
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(3, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val3"));
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.buildAndClear();
+        Set<String> allConditionNames3 = valueSet3.getAllConditionNames();
+        Assert.assertEquals(1, allConditionNames3.size());
+        Assert.assertTrue(allConditionNames3.contains("cond1"));
+        Assert.assertFalse(allConditionNames3.contains("cond2"));
+        Assert.assertFalse(allConditionNames3.contains("cond3"));
+        Set<String> allConditionValues31 = valueSet3.getAllConditionValues("cond1");
+        Assert.assertEquals(1, allConditionValues31.size());
+        Assert.assertFalse(allConditionValues31.contains("val11"));
+        Assert.assertTrue(allConditionValues31.contains("val12"));
+        Assert.assertFalse(allConditionValues31.contains("val13"));
+        Set<String> allConditionValues32 = valueSet3.getAllConditionValues("cond2");
+        Assert.assertEquals(0, allConditionValues32.size());
+        Set<String> allConditionValues33 = valueSet3.getAllConditionValues("cond3");
+        Assert.assertEquals(0, allConditionValues33.size());
+        Set<String> allValues3 = valueSet3.getAllValues();
+        Assert.assertEquals(1, allValues3.size());
+        Assert.assertFalse(allValues3.contains("val1"));
+        Assert.assertFalse(allValues3.contains("val2"));
+        Assert.assertTrue(allValues3.contains("val3"));
+        Assert.assertFalse(allValues3.contains("val4"));
     }
 
     /**
@@ -101,7 +225,8 @@ public final class ValueSetBuilderTest {
         String value6 = null;
         valueSetBuilder.addCondition("cond2", value6);
         valueSetBuilder.addCondition(null, "val7");
-        valueSetBuilder.addCondition(null, null);
+        valueSetBuilder.addCondition(null, (Object) null);
+
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allConditionNames = valueSet.getAllConditionNames();
@@ -124,6 +249,47 @@ public final class ValueSetBuilderTest {
         Assert.assertTrue(allConditionValues2.contains("val2"));
         Assert.assertTrue(allConditionValues2.contains("val3"));
         Assert.assertTrue(allConditionValues2.contains("val4"));
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void addConditionChainTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder = valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder = valueSetBuilder.addCondition("cond2", true);
+        valueSetBuilder = valueSetBuilder.addCondition("cond3", 1);
+        valueSetBuilder = valueSetBuilder.addCondition("cond4", 2L);
+        valueSetBuilder = valueSetBuilder.addCondition("cond5", 1.1f);
+        valueSetBuilder = valueSetBuilder.addCondition("cond6", 1.2);
+        valueSetBuilder = valueSetBuilder.addCondition("cond7", new StringBuilder("val2"));
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allConditionNames = valueSet.getAllConditionNames();
+        Assert.assertEquals(7, allConditionNames.size());
+        Assert.assertTrue(allConditionNames.contains("cond1"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond1").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond1").contains("val1"));
+        Assert.assertTrue(allConditionNames.contains("cond2"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond2").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond2").contains("true"));
+        Assert.assertTrue(allConditionNames.contains("cond3"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond3").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond3").contains("1"));
+        Assert.assertTrue(allConditionNames.contains("cond4"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond4").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond4").contains("2"));
+        Assert.assertTrue(allConditionNames.contains("cond5"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond5").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond5").contains("1.1"));
+        Assert.assertTrue(allConditionNames.contains("cond6"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond6").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond6").contains("1.2"));
+        Assert.assertTrue(allConditionNames.contains("cond7"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond7").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond7").contains("val2"));
     }
 
     /**
@@ -170,7 +336,7 @@ public final class ValueSetBuilderTest {
         String value5 = null;
         valueSetBuilder.removeCondition("cond4", value5);
         valueSetBuilder.removeCondition(null, "val3");
-        valueSetBuilder.removeCondition(null, null);
+        valueSetBuilder.removeCondition(null, (Object) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
 
@@ -192,14 +358,95 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
+    public void removeConditionChainTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond1", "val2");
+        valueSetBuilder.addCondition("cond2", true);
+        valueSetBuilder.addCondition("cond2", false);
+        valueSetBuilder.addCondition("cond3", 1);
+        valueSetBuilder.addCondition("cond3", 3);
+        valueSetBuilder.addCondition("cond4", 2L);
+        valueSetBuilder.addCondition("cond4", 4L);
+        valueSetBuilder.addCondition("cond5", 1.1f);
+        valueSetBuilder.addCondition("cond5", 1.3f);
+        valueSetBuilder.addCondition("cond6", 1.2);
+        valueSetBuilder.addCondition("cond6", 1.4);
+        valueSetBuilder.addCondition("cond7", new StringBuilder("val2"));
+        valueSetBuilder.addCondition("cond7", new StringBuilder("val3"));
+        valueSetBuilder.addCondition("cond8", "val4");
+        valueSetBuilder.addCondition("cond8", "val5");
+
+        valueSetBuilder = valueSetBuilder.removeCondition("cond1", "val1");
+        valueSetBuilder = valueSetBuilder.removeCondition("cond2", true);
+        valueSetBuilder = valueSetBuilder.removeCondition("cond3", 1);
+        valueSetBuilder = valueSetBuilder.removeCondition("cond4", 2L);
+        valueSetBuilder = valueSetBuilder.removeCondition("cond5", 1.1f);
+        valueSetBuilder = valueSetBuilder.removeCondition("cond6", 1.2);
+        valueSetBuilder = valueSetBuilder.removeCondition("cond7", new StringBuilder("val2"));
+        valueSetBuilder = valueSetBuilder.removeCondition("cond8");
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allConditionNames = valueSet.getAllConditionNames();
+        Assert.assertEquals(7, allConditionNames.size());
+        Assert.assertTrue(allConditionNames.contains("cond1"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond1").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond1").contains("val2"));
+        Assert.assertTrue(allConditionNames.contains("cond2"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond2").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond2").contains("false"));
+        Assert.assertTrue(allConditionNames.contains("cond3"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond3").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond3").contains("3"));
+        Assert.assertTrue(allConditionNames.contains("cond4"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond4").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond4").contains("4"));
+        Assert.assertTrue(allConditionNames.contains("cond5"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond5").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond5").contains("1.3"));
+        Assert.assertTrue(allConditionNames.contains("cond6"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond6").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond6").contains("1.4"));
+        Assert.assertTrue(allConditionNames.contains("cond7"));
+        Assert.assertEquals(1, valueSet.getAllConditionValues("cond7").size());
+        Assert.assertTrue(valueSet.getAllConditionValues("cond7").contains("val3"));
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void clearConditionsTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", true);
+        valueSetBuilder.addCondition("cond3", 1);
+        valueSetBuilder.addCondition("cond4", 2L);
+        valueSetBuilder.addCondition("cond5", 1.1f);
+        valueSetBuilder.addCondition("cond6", 1.2);
+        valueSetBuilder.addCondition("cond7", new StringBuilder("val2"));
+
+        valueSetBuilder = valueSetBuilder.clearConditions();
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allConditionNames = valueSet.getAllConditionNames();
+        Assert.assertEquals(0, allConditionNames.size());
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
     public void addValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addCondition("cond", "val");
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
         valueSetBuilder.addValue((String) null);
         valueSetBuilder.addValue((String[]) null);
+
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allValues = valueSet.getAllValues();
@@ -215,9 +462,28 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
+    public void addValueChainTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder = valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder = valueSetBuilder.addValue("val3");
+        valueSetBuilder = valueSetBuilder.addValue("val4");
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allValues = valueSet.getAllValues();
+        Assert.assertEquals(4, allValues.size());
+        Assert.assertTrue(allValues.contains("val1"));
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val3"));
+        Assert.assertTrue(allValues.contains("val4"));
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
     public void removeValueTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
-        valueSetBuilder.addCondition("cond", "val");
         valueSetBuilder.addValue("val1", "val3", "val2");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
@@ -238,6 +504,73 @@ public final class ValueSetBuilderTest {
         Assert.assertTrue(allValues.contains("val5"));
         Assert.assertTrue(allValues.contains("val19"));
         Assert.assertTrue(allValues.contains("val20"));
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void removeValueChainTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addValue("val1", "val2", "val3");
+        valueSetBuilder.addValue("val4", "val5");
+        valueSetBuilder.addValue("val6");
+
+        valueSetBuilder = valueSetBuilder.removeValue("val1", "val3");
+        valueSetBuilder = valueSetBuilder.removeValue("val5");
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allValues = valueSet.getAllValues();
+        Assert.assertEquals(3, allValues.size());
+        Assert.assertTrue(allValues.contains("val2"));
+        Assert.assertTrue(allValues.contains("val4"));
+        Assert.assertTrue(allValues.contains("val6"));
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void clearValuesTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addValue("val1", "val2", "val3");
+        valueSetBuilder.addValue("val4", "val5");
+        valueSetBuilder.addValue("val6");
+
+        valueSetBuilder = valueSetBuilder.clearValues();
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allValues = valueSet.getAllValues();
+        Assert.assertEquals(0, allValues.size());
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void clearTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", true);
+        valueSetBuilder.addCondition("cond3", 1);
+        valueSetBuilder.addCondition("cond4", 2L);
+        valueSetBuilder.addCondition("cond5", 1.1f);
+        valueSetBuilder.addCondition("cond6", 1.2);
+        valueSetBuilder.addCondition("cond7", new StringBuilder("val2"));
+        valueSetBuilder.addValue("val1", "val2", "val3");
+        valueSetBuilder.addValue("val4", "val5");
+        valueSetBuilder.addValue("val6");
+
+        valueSetBuilder = valueSetBuilder.clear();
+
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Set<String> allConditionNames = valueSet.getAllConditionNames();
+        Assert.assertEquals(0, allConditionNames.size());
+        Set<String> allValues = valueSet.getAllValues();
+        Assert.assertEquals(0, allValues.size());
     }
 
 }

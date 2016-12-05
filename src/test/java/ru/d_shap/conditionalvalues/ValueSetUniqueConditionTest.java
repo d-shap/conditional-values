@@ -150,12 +150,16 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void hashCodeTest() {
         ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition();
+        Assert.assertEquals(0, valueSetUniqueCondition11.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
+        Assert.assertEquals(-1876646246, valueSetUniqueCondition12.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition13 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition14 = new ValueSetUniqueCondition(valueSetUniqueCondition13, "name3", "value3");
 
         ValueSetUniqueCondition valueSetUniqueCondition21 = new ValueSetUniqueCondition();
+        Assert.assertEquals(0, valueSetUniqueCondition21.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition22 = new ValueSetUniqueCondition(valueSetUniqueCondition21, "name1", "value1");
+        Assert.assertEquals(-1876646246, valueSetUniqueCondition22.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition23 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition24 = new ValueSetUniqueCondition(valueSetUniqueCondition23, "name3", "value4");
 
