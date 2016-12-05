@@ -34,7 +34,7 @@ public final class DuplicateValueSetException extends RuntimeException {
      *
      * @param valueSet {@link ru.d_shap.conditionalvalues.ValueSet}, that is not unique.
      */
-    public DuplicateValueSetException(final ValueSet valueSet) {
+    DuplicateValueSetException(final ValueSet valueSet) {
         super("Duplicate value set: " + valueSet);
     }
 
