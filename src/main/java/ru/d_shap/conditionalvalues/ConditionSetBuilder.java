@@ -27,8 +27,8 @@ import java.util.Map;
  * Builder class used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
- * Object of this class is reusable. After calling the {@link #build()} method this object can be
- * used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * Object of this class is reusable. After calling the {@link #build()} or the {@link #buildAndClear()} method this
+ * object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  * </p>
  * <p>
  * The internal presentation of conditions is {@code Map<String, String>}.
@@ -154,20 +154,37 @@ public final class ConditionSetBuilder {
      * @return current object for chaining.
      */
     public ConditionSetBuilder removeCondition(final String name) {
-        if (name != null) {
-            _conditions.remove(name);
-        }
+        _conditions.remove(name);
         return this;
     }
 
     /**
-     * Creates new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Clear all conditions.
+     *
+     * @return current object for chaining.
+     */
+    public ConditionSetBuilder clear() {
+        _conditions.clear();
+        return this;
+    }
+
+    /**
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with the values, added to this builder.
      */
     public ConditionSet build() {
+        return new ConditionSet(_conditions);
+    }
+
+    /**
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear all conditions.
+     *
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with the values, added to this builder.
+     */
+    public ConditionSet buildAndClear() {
         ConditionSet conditionSet = new ConditionSet(_conditions);
-        _conditions.clear();
+        clear();
         return conditionSet;
     }
 
