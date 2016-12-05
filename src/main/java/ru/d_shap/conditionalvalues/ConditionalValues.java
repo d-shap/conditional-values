@@ -20,6 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -107,13 +108,11 @@ public final class ConditionalValues<T> {
      */
     @SafeVarargs
     public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
-        List<ValueSet<T>> valueSetsList = new ArrayList<ValueSet<T>>();
-        if (valueSets != null) {
-            for (ValueSet<T> valueSet : valueSets) {
-                if (valueSet != null) {
-                    valueSetsList.add(valueSet);
-                }
-            }
+        List<ValueSet<T>> valueSetsList;
+        if (valueSets == null) {
+            valueSetsList = new ArrayList<>();
+        } else {
+            valueSetsList = Arrays.asList(valueSets);
         }
         return new ConditionalValues<T>(valueSetsList);
     }

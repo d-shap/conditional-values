@@ -164,11 +164,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addCondition(final String name, final Object value) {
         if (value != null) {
-            if (value instanceof String) {
-                doAddCondition(name, (String) value);
-            } else {
-                doAddCondition(name, value.toString());
-            }
+            doAddCondition(name, value.toString());
         }
         return this;
     }
@@ -276,11 +272,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> removeCondition(final String name, final Object value) {
         if (value != null) {
-            if (value instanceof String) {
-                doRemoveCondition(name, (String) value);
-            } else {
-                doRemoveCondition(name, value.toString());
-            }
+            doRemoveCondition(name, value.toString());
         }
         return this;
     }
@@ -343,9 +335,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for chaining.
      */
     public ValueSetBuilder<T> removeValue(final T value) {
-        if (value != null) {
-            _values.remove(value);
-        }
+        _values.remove(value);
         return this;
     }
 

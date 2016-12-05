@@ -132,11 +132,7 @@ public final class ConditionSetBuilder {
      */
     public ConditionSetBuilder addCondition(final String name, final Object value) {
         if (value != null) {
-            if (value instanceof String) {
-                doAddCondition(name, (String) value);
-            } else {
-                doAddCondition(name, value.toString());
-            }
+            doAddCondition(name, value.toString());
         }
         return this;
     }
