@@ -49,21 +49,21 @@
  * valueSetBuilder.addCondition("state", 1);
  * valueSetBuilder.addCondition("role", "initiator");
  * valueSetBuilder.addValue("attribute1", "attribute2");
- * ValueSet<String> type1Initiator1ValueSet = valueSetBuilder.build();
+ * ValueSet<String> type1Initiator1ValueSet = valueSetBuilder.buildAndClear();
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 2);
  * valueSetBuilder.addCondition("state", 3);
  * valueSetBuilder.addCondition("role", "initiator");
  * valueSetBuilder.addValue("attribute2", "attribute3");
- * ValueSet<String> type1Initiator23ValueSet = valueSetBuilder.build();
+ * ValueSet<String> type1Initiator23ValueSet = valueSetBuilder.buildAndClear();
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 2);
  * valueSetBuilder.addCondition("state", 3);
  * valueSetBuilder.addCondition("role", "performer");
  * valueSetBuilder.addValue("attribute1", "attribute3");
- * ValueSet<String> type1Performer23ValueSet = valueSetBuilder.build();
+ * ValueSet<String> type1Performer23ValueSet = valueSetBuilder.buildAndClear();
  * }</pre>
  * <p>
  * Then we store this conditions in a single {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
@@ -88,7 +88,7 @@
  * conditionSetBuilder.addCondition("type", "type1");
  * conditionSetBuilder.addCondition("state", 2);
  * conditionSetBuilder.addCondition("role", "performer");
- * ConditionSet conditionSet = conditionSetBuilder.build();
+ * ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
  * }</pre>
  * <p>
  * And get matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
