@@ -42,12 +42,12 @@ public final class ValueSet<T> {
 
     ValueSet(final Map<String, Set<String>> conditions, final Set<T> values) {
         super();
-        Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+        Map<String, Set<String>> map = new HashMap<>();
         for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
-            map.put(entry.getKey(), Collections.unmodifiableSet(new HashSet<String>(entry.getValue())));
+            map.put(entry.getKey(), Collections.unmodifiableSet(new HashSet<>(entry.getValue())));
         }
         _conditions = Collections.unmodifiableMap(map);
-        _values = Collections.unmodifiableSet(new HashSet<T>(values));
+        _values = Collections.unmodifiableSet(new HashSet<>(values));
     }
 
     /**
@@ -103,7 +103,7 @@ public final class ValueSet<T> {
     }
 
     List<ValueSetUniqueCondition> getValueSetUniqueConditions() {
-        List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<ValueSetUniqueCondition>();
+        List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
         currentUniqueConditions.add(new ValueSetUniqueCondition());
         for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
             currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
@@ -112,7 +112,7 @@ public final class ValueSet<T> {
     }
 
     private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
-        List<ValueSetUniqueCondition> result = new ArrayList<ValueSetUniqueCondition>();
+        List<ValueSetUniqueCondition> result = new ArrayList<>();
         for (ValueSetUniqueCondition valueSetUniqueCondition : currentUniqueConditions) {
             for (String conditionValue : conditionValues) {
                 ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(valueSetUniqueCondition, conditionName, conditionValue);

@@ -46,8 +46,8 @@ public final class Values<T> {
 
     Values(final List<ValueSet<T>> valueSets) {
         super();
-        _valueSets = Collections.unmodifiableList(new ArrayList<ValueSet<T>>(valueSets));
-        Set<T> set = new HashSet<T>();
+        _valueSets = Collections.unmodifiableList(new ArrayList<>(valueSets));
+        Set<T> set = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             set.addAll(valueSet.getAllValues());
         }

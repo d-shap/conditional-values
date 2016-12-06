@@ -79,8 +79,8 @@ public final class ValueSetBuilder<T> {
 
     ValueSetBuilder() {
         super();
-        _conditions = new HashMap<String, Set<String>>();
-        _values = new HashSet<T>();
+        _conditions = new HashMap<>();
+        _values = new HashSet<>();
     }
 
     /**
@@ -173,7 +173,7 @@ public final class ValueSetBuilder<T> {
         if (name != null && value != null) {
             Set<String> conditionValues = _conditions.get(name);
             if (conditionValues == null) {
-                conditionValues = new HashSet<String>();
+                conditionValues = new HashSet<>();
                 _conditions.put(name, conditionValues);
             }
             conditionValues.add(value);
@@ -382,7 +382,7 @@ public final class ValueSetBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with the values, added to this builder.
      */
     public ValueSet<T> build() {
-        return new ValueSet<T>(_conditions, _values);
+        return new ValueSet<>(_conditions, _values);
     }
 
     /**
@@ -391,7 +391,7 @@ public final class ValueSetBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with the values, added to this builder.
      */
     public ValueSet<T> buildAndClear() {
-        ValueSet<T> valueSet = new ValueSet<T>(_conditions, _values);
+        ValueSet<T> valueSet = new ValueSet<>(_conditions, _values);
         clear();
         return valueSet;
     }

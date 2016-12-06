@@ -40,7 +40,7 @@ public final class ValueSetUniqueCondition {
 
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
-        Map<String, String> map = new HashMap<String, String>(valueSetUniqueCondition._conditions);
+        Map<String, String> map = new HashMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
             map.put(conditionName, conditionValue);
         }

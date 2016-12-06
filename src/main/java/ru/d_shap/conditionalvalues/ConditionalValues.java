@@ -43,7 +43,7 @@ public final class ConditionalValues<T> {
 
     private ConditionalValues(final List<ValueSet<T>> valueSets) {
         super();
-        List<ValueSet<T>> list = new ArrayList<ValueSet<T>>();
+        List<ValueSet<T>> list = new ArrayList<>();
         if (valueSets != null) {
             for (ValueSet<T> valueSet : valueSets) {
                 if (valueSet != null) {
@@ -57,7 +57,7 @@ public final class ConditionalValues<T> {
     }
 
     private Set<ValueSetUniqueCondition> getValueSetUniqueConditions(final List<ValueSet<T>> valueSets) {
-        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<ValueSetUniqueCondition>();
+        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<>();
         for (ValueSet<T> valueSet : valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
@@ -76,7 +76,7 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
-        return new ValueSetBuilder<T>();
+        return new ValueSetBuilder<>();
     }
 
     /**
@@ -96,7 +96,7 @@ public final class ConditionalValues<T> {
      * @return created object.
      */
     public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
-        return new ConditionalValues<T>(valueSets);
+        return new ConditionalValues<>(valueSets);
     }
 
     /**
@@ -114,7 +114,7 @@ public final class ConditionalValues<T> {
         } else {
             valueSetsList = Arrays.asList(valueSets);
         }
-        return new ConditionalValues<T>(valueSetsList);
+        return new ConditionalValues<>(valueSetsList);
     }
 
     /**
@@ -123,7 +123,7 @@ public final class ConditionalValues<T> {
      * @return all condition names.
      */
     public Set<String> getAllConditionNames() {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             result.addAll(valueSet.getAllConditionNames());
         }
@@ -137,7 +137,7 @@ public final class ConditionalValues<T> {
      * @return all condition values for specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             result.addAll(valueSet.getAllConditionValues(conditionName));
         }
@@ -164,11 +164,11 @@ public final class ConditionalValues<T> {
         if (!matchingValueSets.isEmpty()) {
             removeLessSpecificValueSets(matchingValueSets);
         }
-        return new Values<T>(matchingValueSets);
+        return new Values<>(matchingValueSets);
     }
 
     private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
-        List<ValueSet<T>> matchingValueSets = new ArrayList<ValueSet<T>>();
+        List<ValueSet<T>> matchingValueSets = new ArrayList<>();
         if (conditionSet == null) {
             return matchingValueSets;
         }

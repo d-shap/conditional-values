@@ -48,7 +48,7 @@ public final class ConditionSetBuilder {
 
     ConditionSetBuilder() {
         super();
-        _conditions = new HashMap<String, String>();
+        _conditions = new HashMap<>();
     }
 
     /**
