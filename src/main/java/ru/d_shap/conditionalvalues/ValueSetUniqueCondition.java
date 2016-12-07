@@ -67,7 +67,7 @@ public final class ValueSetUniqueCondition {
         ValueSetUniqueCondition other = (ValueSetUniqueCondition) object;
         Set<String> conditionKeys = _conditions.keySet();
         Set<String> otherConditionKeys = other._conditions.keySet();
-        if (!conditionKeys.containsAll(otherConditionKeys) || !otherConditionKeys.containsAll(conditionKeys)) {
+        if (!conditionKeys.containsAll(otherConditionKeys)) {
             return false;
         }
         for (Map.Entry<String, String> entry : _conditions.entrySet()) {
