@@ -91,7 +91,8 @@
  * ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
  * }</pre>
  * <p>
- * And get matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
+ * And get matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from
+ * {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
  * </p>
  * <pre>{@code
  * Values<String> values = conditionalValues.getValues(conditionSet);
