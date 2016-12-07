@@ -29,8 +29,8 @@ import java.util.Set;
  * Builder class used to create {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  * </p>
  * <p>
- * Object of this class is reusable. After calling the {@link #build()} method this object can be
- * used to create another {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Object of this class is reusable. After calling the {@link #build()} or the {@link #buildAndClear()} method this
+ * object can be used to create another {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * </p>
  * <p>
  * The internal presentation of conditions is {@code Map<String, Set<String>>}.
@@ -278,13 +278,11 @@ public final class ValueSetBuilder<T> {
     }
 
     private void doRemoveCondition(final String name, final String value) {
-        if (name != null && value != null) {
-            Set<String> conditionValues = _conditions.get(name);
-            if (conditionValues != null) {
-                conditionValues.remove(value);
-                if (conditionValues.isEmpty()) {
-                    _conditions.remove(name);
-                }
+        Set<String> conditionValues = _conditions.get(name);
+        if (conditionValues != null) {
+            conditionValues.remove(value);
+            if (conditionValues.isEmpty()) {
+                _conditions.remove(name);
             }
         }
     }
