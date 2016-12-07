@@ -20,7 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,12 +35,12 @@ public final class ValueSetUniqueCondition {
 
     ValueSetUniqueCondition() {
         super();
-        _conditions = Collections.unmodifiableMap(new HashMap<String, String>());
+        _conditions = Collections.unmodifiableMap(new LinkedHashMap<String, String>());
     }
 
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
-        Map<String, String> map = new HashMap<>(valueSetUniqueCondition._conditions);
+        Map<String, String> map = new LinkedHashMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
             map.put(conditionName, conditionValue);
         }
@@ -71,8 +71,9 @@ public final class ValueSetUniqueCondition {
             return false;
         }
         for (Map.Entry<String, String> entry : _conditions.entrySet()) {
+            String conditionKey = entry.getKey();
             String conditionValue = entry.getValue();
-            String otherConditionValue = other._conditions.get(entry.getKey());
+            String otherConditionValue = other._conditions.get(conditionKey);
             if (!conditionValue.equals(otherConditionValue)) {
                 return false;
             }
@@ -82,7 +83,7 @@ public final class ValueSetUniqueCondition {
 
     @Override
     public int hashCode() {
-        int result = 0;
+        int result = 1;
         for (Map.Entry<String, String> entry : _conditions.entrySet()) {
             result = result * 31 + entry.getKey().hashCode();
             result = result * 31 + entry.getValue().hashCode();
