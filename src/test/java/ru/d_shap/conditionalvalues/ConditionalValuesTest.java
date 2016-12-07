@@ -59,7 +59,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
 
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         valueSets.add(null);
@@ -291,7 +291,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond4", "val41");
         valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
@@ -320,7 +320,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond4", "val41");
         valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
@@ -387,7 +387,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond2", "val21");
         valueSetBuilder.addCondition("cond2", "val22");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues.createConditionalValues(valueSets);
@@ -406,7 +406,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val2");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues.createConditionalValues(valueSets);
@@ -430,7 +430,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val6", "val2", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
@@ -467,7 +467,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond4", "val42");
         valueSetBuilder.addValue("val6", "val2", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
@@ -491,7 +491,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 
@@ -524,7 +524,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond1", "val2");
         valueSetBuilder.addValue("val1", "val5", "val3");
         ValueSet<String> valueSet = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet);
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 

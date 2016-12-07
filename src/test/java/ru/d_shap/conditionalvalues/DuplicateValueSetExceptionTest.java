@@ -46,18 +46,18 @@ public final class DuplicateValueSetExceptionTest {
      */
     @Test
     public void messageTest() {
-        Map<String, Set<String>> conditions1 = new HashMap<String, Set<String>>();
-        Set<String> condition1 = new HashSet<String>();
+        Map<String, Set<String>> conditions1 = new HashMap<>();
+        Set<String> condition1 = new HashSet<>();
         condition1.add("val");
         conditions1.put("cond", condition1);
-        Set<String> values1 = new HashSet<String>();
-        ValueSet<String> valueSet1 = new ValueSet<String>(conditions1, values1);
+        Set<String> values1 = new HashSet<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(conditions1, values1);
         DuplicateValueSetException exception1 = new DuplicateValueSetException(valueSet1);
         Assert.assertEquals("Duplicate value set: {cond=[val]}", exception1.getMessage());
 
-        Map<String, Set<String>> conditions2 = new HashMap<String, Set<String>>();
-        Set<String> values2 = new HashSet<String>();
-        ValueSet<String> valueSet2 = new ValueSet<String>(conditions2, values2);
+        Map<String, Set<String>> conditions2 = new HashMap<>();
+        Set<String> values2 = new HashSet<>();
+        ValueSet<String> valueSet2 = new ValueSet<>(conditions2, values2);
         DuplicateValueSetException exception2 = new DuplicateValueSetException(valueSet2);
         Assert.assertEquals("Duplicate value set: {}", exception2.getMessage());
     }

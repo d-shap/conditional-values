@@ -114,6 +114,23 @@ public final class ValueSetUniqueConditionTest {
         ValueSetUniqueCondition valueSetUniqueCondition24 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name3", "value2");
         Assert.assertNotEquals(valueSetUniqueCondition14, valueSetUniqueCondition24);
         Assert.assertNotEquals(valueSetUniqueCondition24, valueSetUniqueCondition14);
+
+        ValueSetUniqueCondition valueSetUniqueCondition15 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        ValueSetUniqueCondition valueSetUniqueCondition25 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value3");
+        Assert.assertNotEquals(valueSetUniqueCondition15, valueSetUniqueCondition25);
+        Assert.assertNotEquals(valueSetUniqueCondition25, valueSetUniqueCondition15);
+
+        ValueSetUniqueCondition valueSetUniqueCondition161 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        ValueSetUniqueCondition valueSetUniqueCondition162 = new ValueSetUniqueCondition(valueSetUniqueCondition161, "name3", "value3");
+        ValueSetUniqueCondition valueSetUniqueCondition26 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
+        Assert.assertNotEquals(valueSetUniqueCondition162, valueSetUniqueCondition26);
+        Assert.assertNotEquals(valueSetUniqueCondition26, valueSetUniqueCondition162);
+
+        ValueSetUniqueCondition valueSetUniqueCondition17 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        ValueSetUniqueCondition valueSetUniqueCondition271 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
+        ValueSetUniqueCondition valueSetUniqueCondition272 = new ValueSetUniqueCondition(valueSetUniqueCondition271, "name3", "value3");
+        Assert.assertNotEquals(valueSetUniqueCondition17, valueSetUniqueCondition272);
+        Assert.assertNotEquals(valueSetUniqueCondition272, valueSetUniqueCondition17);
     }
 
     /**
@@ -150,18 +167,22 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void hashCodeTest() {
         ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition();
-        Assert.assertEquals(0, valueSetUniqueCondition11.hashCode());
+        Assert.assertEquals(1, valueSetUniqueCondition11.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
-        Assert.assertEquals(-1876646246, valueSetUniqueCondition12.hashCode());
+        Assert.assertEquals(-1876645285, valueSetUniqueCondition12.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition13 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        Assert.assertEquals(-1446500779, valueSetUniqueCondition13.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition14 = new ValueSetUniqueCondition(valueSetUniqueCondition13, "name3", "value3");
+        Assert.assertEquals(-394490897, valueSetUniqueCondition14.hashCode());
 
         ValueSetUniqueCondition valueSetUniqueCondition21 = new ValueSetUniqueCondition();
-        Assert.assertEquals(0, valueSetUniqueCondition21.hashCode());
+        Assert.assertEquals(1, valueSetUniqueCondition21.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition22 = new ValueSetUniqueCondition(valueSetUniqueCondition21, "name1", "value1");
-        Assert.assertEquals(-1876646246, valueSetUniqueCondition22.hashCode());
+        Assert.assertEquals(-1876645285, valueSetUniqueCondition22.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition23 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
+        Assert.assertEquals(-1446500779, valueSetUniqueCondition23.hashCode());
         ValueSetUniqueCondition valueSetUniqueCondition24 = new ValueSetUniqueCondition(valueSetUniqueCondition23, "name3", "value4");
+        Assert.assertEquals(-394490896, valueSetUniqueCondition24.hashCode());
 
         Assert.assertEquals(valueSetUniqueCondition11.hashCode(), valueSetUniqueCondition21.hashCode());
         Assert.assertEquals(valueSetUniqueCondition12.hashCode(), valueSetUniqueCondition22.hashCode());

@@ -43,7 +43,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void buildTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
 
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
@@ -125,7 +125,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void buildAndClearTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
 
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
@@ -203,7 +203,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void addConditionTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", true);
         valueSetBuilder.addCondition("cond1", true);
         valueSetBuilder.addCondition("cond1", 1);
@@ -256,7 +256,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void addConditionChainTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder = valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder = valueSetBuilder.addCondition("cond2", true);
         valueSetBuilder = valueSetBuilder.addCondition("cond3", 1);
@@ -297,7 +297,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void removeConditionTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", true);
         valueSetBuilder.addCondition("cond1", true);
         valueSetBuilder.addCondition("cond2", 1);
@@ -359,7 +359,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void removeConditionChainTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond1", "val2");
         valueSetBuilder.addCondition("cond2", true);
@@ -418,7 +418,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void clearConditionsTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", true);
         valueSetBuilder.addCondition("cond3", 1);
@@ -440,7 +440,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void addValueTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
@@ -463,7 +463,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void addValueChainTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder = valueSetBuilder.addValue("val1", "val2");
         valueSetBuilder = valueSetBuilder.addValue("val3");
         valueSetBuilder = valueSetBuilder.addValue("val4");
@@ -483,7 +483,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void removeValueTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addValue("val1", "val3", "val2");
         valueSetBuilder.addValue("val5");
         valueSetBuilder.addValue("val4");
@@ -511,7 +511,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void removeValueChainTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val4", "val5");
         valueSetBuilder.addValue("val6");
@@ -533,7 +533,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void clearValuesTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addValue("val1", "val2", "val3");
         valueSetBuilder.addValue("val4", "val5");
         valueSetBuilder.addValue("val6");
@@ -551,7 +551,7 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void clearTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", true);
         valueSetBuilder.addCondition("cond3", 1);

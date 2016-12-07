@@ -45,17 +45,17 @@ public final class ValuesTest {
      */
     @Test
     public void isEmptyTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         ValueSet<String> valueSet11 = valueSetBuilder.buildAndClear();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet12 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets1 = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets1 = new ArrayList<>();
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
-        Values<String> values1 = new Values<String>(valueSets1);
+        Values<String> values1 = new Values<>(valueSets1);
         Assert.assertTrue(values1.isEmpty());
 
         valueSetBuilder.addCondition("cond1", "val1");
@@ -64,15 +64,15 @@ public final class ValuesTest {
         ValueSet<String> valueSet21 = valueSetBuilder.buildAndClear();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet22 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets2 = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets2 = new ArrayList<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
-        Values<String> values2 = new Values<String>(valueSets2);
+        Values<String> values2 = new Values<>(valueSets2);
         Assert.assertFalse(values2.isEmpty());
 
-        List<ValueSet<String>> valueSets3 = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets3 = new ArrayList<>();
         valueSets3.add(valueSet22);
-        Values<String> values3 = new Values<String>(valueSets3);
+        Values<String> values3 = new Values<>(valueSets3);
         Assert.assertTrue(values3.isEmpty());
     }
 
@@ -81,7 +81,7 @@ public final class ValuesTest {
      */
     @Test
     public void containsTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val2");
@@ -90,11 +90,11 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
 
-        Values<String> values = new Values<String>(valueSets);
+        Values<String> values = new Values<>(valueSets);
         Assert.assertTrue(values.contains("val1"));
         Assert.assertTrue(values.contains("val2"));
         Assert.assertTrue(values.contains("val3"));
@@ -106,7 +106,7 @@ public final class ValuesTest {
      */
     @Test
     public void getAllValuesTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val4", "val2");
@@ -116,10 +116,10 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val5");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<String>(valueSets);
+        Values<String> values = new Values<>(valueSets);
 
         Set<String> allValues = values.getAllValues();
         Assert.assertEquals(6, allValues.size());
@@ -136,7 +136,7 @@ public final class ValuesTest {
      */
     @Test
     public void toStringTest() {
-        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<String>();
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val2");
@@ -144,10 +144,10 @@ public final class ValuesTest {
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
+        List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<String>(valueSets);
+        Values<String> values = new Values<>(valueSets);
         String str = values.toString();
         Assert.assertTrue(str.contains("cond1=["));
         Assert.assertTrue(str.contains("cond2=[val2]"));

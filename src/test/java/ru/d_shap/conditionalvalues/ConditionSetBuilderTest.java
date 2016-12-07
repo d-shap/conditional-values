@@ -49,7 +49,7 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
-        Set<String> conditionSet1AllNames = new HashSet<String>();
+        Set<String> conditionSet1AllNames = new HashSet<>();
         conditionSet1AllNames.add("cond1");
         Iterator<String> conditionSet1Names = conditionSet1.nameIterator();
         Assert.assertTrue(conditionSet1AllNames.contains(conditionSet1Names.next()));
@@ -60,7 +60,7 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
-        Set<String> conditionSet2AllNames = new HashSet<String>();
+        Set<String> conditionSet2AllNames = new HashSet<>();
         conditionSet2AllNames.add("cond1");
         conditionSet2AllNames.add("cond2");
         Iterator<String> conditionSet2Names = conditionSet2.nameIterator();
@@ -73,7 +73,7 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
-        Set<String> conditionSet3AllNames = new HashSet<String>();
+        Set<String> conditionSet3AllNames = new HashSet<>();
         conditionSet3AllNames.add("cond1");
         conditionSet3AllNames.add("cond2");
         conditionSet3AllNames.add("cond3");
@@ -147,7 +147,7 @@ public final class ConditionSetBuilderTest {
 
         ConditionSet conditionSet = conditionSetBuilder.build();
 
-        Set<String> allNames = new HashSet<String>();
+        Set<String> allNames = new HashSet<>();
         allNames.add("cond1");
         allNames.add("cond2");
         allNames.add("cond3");
@@ -200,7 +200,7 @@ public final class ConditionSetBuilderTest {
 
         ConditionSet conditionSet = conditionSetBuilder.build();
 
-        Set<String> allNames = new HashSet<String>();
+        Set<String> allNames = new HashSet<>();
         allNames.add("cond1");
         allNames.add("cond2");
         allNames.add("cond3");
@@ -254,7 +254,7 @@ public final class ConditionSetBuilderTest {
 
         ConditionSet conditionSet = conditionSetBuilder.build();
 
-        Set<String> allNames = new HashSet<String>();
+        Set<String> allNames = new HashSet<>();
         allNames.add("cond1");
         allNames.add("cond2");
         allNames.add("cond4");
@@ -301,7 +301,7 @@ public final class ConditionSetBuilderTest {
 
         ConditionSet conditionSet = conditionSetBuilder.build();
 
-        Set<String> allNames = new HashSet<String>();
+        Set<String> allNames = new HashSet<>();
         allNames.add("cond2");
         allNames.add("cond4");
 

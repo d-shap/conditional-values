@@ -47,13 +47,13 @@ public final class ConditionSetTest {
      */
     @Test
     public void nameIteratorTest() {
-        Map<String, String> conditions = new HashMap<String, String>();
+        Map<String, String> conditions = new HashMap<>();
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
         ConditionSet conditionSet = new ConditionSet(conditions);
 
-        Set<String> allNames = new HashSet<String>();
+        Set<String> allNames = new HashSet<>();
         allNames.add("cond1");
         allNames.add("cond2");
         allNames.add("cond3");
@@ -70,7 +70,7 @@ public final class ConditionSetTest {
      */
     @Test
     public void getConditionTest() {
-        Map<String, String> conditions = new HashMap<String, String>();
+        Map<String, String> conditions = new HashMap<>();
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
@@ -87,7 +87,7 @@ public final class ConditionSetTest {
      */
     @Test
     public void toStringTest() {
-        Map<String, String> conditions = new HashMap<String, String>();
+        Map<String, String> conditions = new HashMap<>();
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
