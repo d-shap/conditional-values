@@ -108,13 +108,12 @@ public final class ConditionalValues<T> {
      */
     @SafeVarargs
     public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
-        List<ValueSet<T>> valueSetsList;
         if (valueSets == null) {
-            valueSetsList = new ArrayList<>();
+            return new ConditionalValues<>(null);
         } else {
-            valueSetsList = Arrays.asList(valueSets);
+            List<ValueSet<T>> valueSetsList = Arrays.asList(valueSets);
+            return new ConditionalValues<>(valueSetsList);
         }
-        return new ConditionalValues<>(valueSetsList);
     }
 
     /**
