@@ -20,13 +20,11 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link ConditionSet}.
@@ -51,18 +49,9 @@ public final class ConditionSetTest {
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
+
         ConditionSet conditionSet = new ConditionSet(conditions);
-
-        Set<String> allNames = new HashSet<>();
-        allNames.add("cond1");
-        allNames.add("cond2");
-        allNames.add("cond3");
-
-        Iterator<String> nameIterator = conditionSet.nameIterator();
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertFalse(nameIterator.hasNext());
+        Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond1", "cond2", "cond3");
     }
 
     /**
@@ -76,10 +65,10 @@ public final class ConditionSetTest {
         conditions.put("cond3", "val3");
 
         ConditionSet conditionSet = new ConditionSet(conditions);
-        Assert.assertEquals("val1", conditionSet.getCondition("cond1"));
-        Assert.assertEquals("val2", conditionSet.getCondition("cond2"));
-        Assert.assertEquals("val3", conditionSet.getCondition("cond3"));
-        Assert.assertNull(conditionSet.getCondition("cond4"));
+        Assertions.assertThat(conditionSet.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet.getCondition("cond3")).isEqualTo("val3");
+        Assertions.assertThat(conditionSet.getCondition("cond4")).isNull();
     }
 
     /**
@@ -93,10 +82,9 @@ public final class ConditionSetTest {
         conditions.put("cond3", "val3");
 
         ConditionSet conditionSet = new ConditionSet(conditions);
-        String str = conditionSet.toString();
-        Assert.assertTrue(str.contains("cond1=val1"));
-        Assert.assertTrue(str.contains("cond2=val2"));
-        Assert.assertTrue(str.contains("cond3=val3"));
+        Assertions.assertThat(conditionSet).toStringContains("cond1=val1");
+        Assertions.assertThat(conditionSet).toStringContains("cond2=val2");
+        Assertions.assertThat(conditionSet).toStringContains("cond3=val3");
     }
 
 }

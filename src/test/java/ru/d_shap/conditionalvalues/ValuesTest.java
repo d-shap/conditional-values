@@ -23,8 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link Values}.
@@ -56,7 +57,7 @@ public final class ValuesTest {
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
         Values<String> values1 = new Values<>(valueSets1);
-        Assert.assertTrue(values1.isEmpty());
+        Assertions.assertThat(values1.isEmpty()).isTrue();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
@@ -68,12 +69,12 @@ public final class ValuesTest {
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(valueSets2);
-        Assert.assertFalse(values2.isEmpty());
+        Assertions.assertThat(values2.isEmpty()).isFalse();
 
         List<ValueSet<String>> valueSets3 = new ArrayList<>();
         valueSets3.add(valueSet22);
         Values<String> values3 = new Values<>(valueSets3);
-        Assert.assertTrue(values3.isEmpty());
+        Assertions.assertThat(values3.isEmpty()).isTrue();
     }
 
     /**
@@ -93,12 +94,11 @@ public final class ValuesTest {
         List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-
         Values<String> values = new Values<>(valueSets);
-        Assert.assertTrue(values.contains("val1"));
-        Assert.assertTrue(values.contains("val2"));
-        Assert.assertTrue(values.contains("val3"));
-        Assert.assertTrue(values.contains("val4"));
+        Assertions.assertThat(values.contains("val1")).isTrue();
+        Assertions.assertThat(values.contains("val2")).isTrue();
+        Assertions.assertThat(values.contains("val3")).isTrue();
+        Assertions.assertThat(values.contains("val4")).isTrue();
     }
 
     /**
@@ -122,13 +122,8 @@ public final class ValuesTest {
         Values<String> values = new Values<>(valueSets);
 
         Set<String> allValues = values.getAllValues();
-        Assert.assertEquals(6, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val3"));
-        Assert.assertTrue(allValues.contains("val4"));
-        Assert.assertTrue(allValues.contains("val5"));
-        Assert.assertTrue(allValues.contains("val6"));
+        Assertions.assertThat(allValues).isNotNull();
+        Assertions.assertThat(allValues).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
     }
 
     /**
@@ -147,11 +142,11 @@ public final class ValuesTest {
         List<ValueSet<String>> valueSets = new ArrayList<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
+
         Values<String> values = new Values<>(valueSets);
-        String str = values.toString();
-        Assert.assertTrue(str.contains("cond1=["));
-        Assert.assertTrue(str.contains("cond2=[val2]"));
-        Assert.assertTrue(str.contains("cond3=["));
+        Assertions.assertThat(values).toStringContains("cond1=[");
+        Assertions.assertThat(values).toStringContains("cond2=[val2]");
+        Assertions.assertThat(values).toStringContains("cond3=[");
     }
 
 }

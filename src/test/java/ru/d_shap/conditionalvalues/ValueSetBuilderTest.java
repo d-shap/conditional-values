@@ -21,8 +21,9 @@ package ru.d_shap.conditionalvalues;
 
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link ValueSetBuilder}.
@@ -48,76 +49,32 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        Set<String> allConditionNames1 = valueSet1.getAllConditionNames();
-        Assert.assertEquals(1, allConditionNames1.size());
-        Assert.assertTrue(allConditionNames1.contains("cond1"));
-        Assert.assertFalse(allConditionNames1.contains("cond2"));
-        Assert.assertFalse(allConditionNames1.contains("cond3"));
-        Set<String> allConditionValues11 = valueSet1.getAllConditionValues("cond1");
-        Assert.assertEquals(1, allConditionValues11.size());
-        Assert.assertTrue(allConditionValues11.contains("val11"));
-        Assert.assertFalse(allConditionValues11.contains("val12"));
-        Assert.assertFalse(allConditionValues11.contains("val13"));
-        Set<String> allConditionValues12 = valueSet1.getAllConditionValues("cond2");
-        Assert.assertEquals(0, allConditionValues12.size());
-        Set<String> allConditionValues13 = valueSet1.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues13.size());
-        Set<String> allValues1 = valueSet1.getAllValues();
-        Assert.assertEquals(1, allValues1.size());
-        Assert.assertTrue(allValues1.contains("val1"));
-        Assert.assertFalse(allValues1.contains("val2"));
-        Assert.assertFalse(allValues1.contains("val3"));
-        Assert.assertFalse(allValues1.contains("val4"));
+        Assertions.assertThat(valueSet1).isNotNull();
+        Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val11");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).isEmpty();
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet1.getAllValues()).containsExactly("val1");
 
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        Set<String> allConditionNames2 = valueSet2.getAllConditionNames();
-        Assert.assertEquals(2, allConditionNames2.size());
-        Assert.assertTrue(allConditionNames2.contains("cond1"));
-        Assert.assertTrue(allConditionNames2.contains("cond2"));
-        Assert.assertFalse(allConditionNames2.contains("cond3"));
-        Set<String> allConditionValues21 = valueSet2.getAllConditionValues("cond1");
-        Assert.assertEquals(1, allConditionValues21.size());
-        Assert.assertTrue(allConditionValues21.contains("val11"));
-        Assert.assertFalse(allConditionValues21.contains("val12"));
-        Assert.assertFalse(allConditionValues21.contains("val13"));
-        Set<String> allConditionValues22 = valueSet2.getAllConditionValues("cond2");
-        Assert.assertEquals(1, allConditionValues22.size());
-        Assert.assertTrue(allConditionValues22.contains("val2"));
-        Set<String> allConditionValues23 = valueSet2.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues23.size());
-        Set<String> allValues2 = valueSet2.getAllValues();
-        Assert.assertEquals(2, allValues2.size());
-        Assert.assertTrue(allValues2.contains("val1"));
-        Assert.assertTrue(allValues2.contains("val2"));
-        Assert.assertFalse(allValues2.contains("val3"));
-        Assert.assertFalse(allValues2.contains("val4"));
+        Assertions.assertThat(valueSet2).isNotNull();
+        Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("val11");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("val2");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet2.getAllValues()).containsExactly("val1", "val2");
 
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
-        Set<String> allConditionNames3 = valueSet3.getAllConditionNames();
-        Assert.assertEquals(2, allConditionNames3.size());
-        Assert.assertTrue(allConditionNames3.contains("cond1"));
-        Assert.assertTrue(allConditionNames3.contains("cond2"));
-        Assert.assertFalse(allConditionNames3.contains("cond3"));
-        Set<String> allConditionValues31 = valueSet3.getAllConditionValues("cond1");
-        Assert.assertEquals(2, allConditionValues31.size());
-        Assert.assertTrue(allConditionValues31.contains("val11"));
-        Assert.assertTrue(allConditionValues31.contains("val12"));
-        Assert.assertFalse(allConditionValues31.contains("val13"));
-        Set<String> allConditionValues32 = valueSet3.getAllConditionValues("cond2");
-        Assert.assertEquals(1, allConditionValues32.size());
-        Assert.assertTrue(allConditionValues32.contains("val2"));
-        Set<String> allConditionValues33 = valueSet3.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues33.size());
-        Set<String> allValues3 = valueSet3.getAllValues();
-        Assert.assertEquals(3, allValues3.size());
-        Assert.assertTrue(allValues3.contains("val1"));
-        Assert.assertTrue(allValues3.contains("val2"));
-        Assert.assertTrue(allValues3.contains("val3"));
-        Assert.assertFalse(allValues3.contains("val4"));
+        Assertions.assertThat(valueSet3).isNotNull();
+        Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1", "cond2");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val11", "val12");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond2")).containsExactly("val2");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet3.getAllValues()).containsExactly("val1", "val2", "val3");
     }
 
     /**
@@ -130,72 +87,32 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.buildAndClear();
-        Set<String> allConditionNames1 = valueSet1.getAllConditionNames();
-        Assert.assertEquals(1, allConditionNames1.size());
-        Assert.assertTrue(allConditionNames1.contains("cond1"));
-        Assert.assertFalse(allConditionNames1.contains("cond2"));
-        Assert.assertFalse(allConditionNames1.contains("cond3"));
-        Set<String> allConditionValues11 = valueSet1.getAllConditionValues("cond1");
-        Assert.assertEquals(1, allConditionValues11.size());
-        Assert.assertTrue(allConditionValues11.contains("val11"));
-        Assert.assertFalse(allConditionValues11.contains("val12"));
-        Assert.assertFalse(allConditionValues11.contains("val13"));
-        Set<String> allConditionValues12 = valueSet1.getAllConditionValues("cond2");
-        Assert.assertEquals(0, allConditionValues12.size());
-        Set<String> allConditionValues13 = valueSet1.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues13.size());
-        Set<String> allValues1 = valueSet1.getAllValues();
-        Assert.assertEquals(1, allValues1.size());
-        Assert.assertTrue(allValues1.contains("val1"));
-        Assert.assertFalse(allValues1.contains("val2"));
-        Assert.assertFalse(allValues1.contains("val3"));
-        Assert.assertFalse(allValues1.contains("val4"));
+        Assertions.assertThat(valueSet1).isNotNull();
+        Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val11");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).isEmpty();
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet1.getAllValues()).containsExactly("val1");
 
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
-        Set<String> allConditionNames2 = valueSet2.getAllConditionNames();
-        Assert.assertEquals(1, allConditionNames2.size());
-        Assert.assertFalse(allConditionNames2.contains("cond1"));
-        Assert.assertTrue(allConditionNames2.contains("cond2"));
-        Assert.assertFalse(allConditionNames2.contains("cond3"));
-        Set<String> allConditionValues21 = valueSet2.getAllConditionValues("cond1");
-        Assert.assertEquals(0, allConditionValues21.size());
-        Set<String> allConditionValues22 = valueSet2.getAllConditionValues("cond2");
-        Assert.assertEquals(1, allConditionValues22.size());
-        Assert.assertTrue(allConditionValues22.contains("val2"));
-        Set<String> allConditionValues23 = valueSet2.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues23.size());
-        Set<String> allValues2 = valueSet2.getAllValues();
-        Assert.assertEquals(1, allValues2.size());
-        Assert.assertFalse(allValues2.contains("val1"));
-        Assert.assertTrue(allValues2.contains("val2"));
-        Assert.assertFalse(allValues2.contains("val3"));
-        Assert.assertFalse(allValues2.contains("val4"));
+        Assertions.assertThat(valueSet2).isNotNull();
+        Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond2");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).isEmpty();
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("val2");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet2.getAllValues()).containsExactly("val2");
 
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.buildAndClear();
-        Set<String> allConditionNames3 = valueSet3.getAllConditionNames();
-        Assert.assertEquals(1, allConditionNames3.size());
-        Assert.assertTrue(allConditionNames3.contains("cond1"));
-        Assert.assertFalse(allConditionNames3.contains("cond2"));
-        Assert.assertFalse(allConditionNames3.contains("cond3"));
-        Set<String> allConditionValues31 = valueSet3.getAllConditionValues("cond1");
-        Assert.assertEquals(1, allConditionValues31.size());
-        Assert.assertFalse(allConditionValues31.contains("val11"));
-        Assert.assertTrue(allConditionValues31.contains("val12"));
-        Assert.assertFalse(allConditionValues31.contains("val13"));
-        Set<String> allConditionValues32 = valueSet3.getAllConditionValues("cond2");
-        Assert.assertEquals(0, allConditionValues32.size());
-        Set<String> allConditionValues33 = valueSet3.getAllConditionValues("cond3");
-        Assert.assertEquals(0, allConditionValues33.size());
-        Set<String> allValues3 = valueSet3.getAllValues();
-        Assert.assertEquals(1, allValues3.size());
-        Assert.assertFalse(allValues3.contains("val1"));
-        Assert.assertFalse(allValues3.contains("val2"));
-        Assert.assertTrue(allValues3.contains("val3"));
-        Assert.assertFalse(allValues3.contains("val4"));
+        Assertions.assertThat(valueSet3).isNotNull();
+        Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val12");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond2")).isEmpty();
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond3")).isEmpty();
+        Assertions.assertThat(valueSet3.getAllValues()).containsExactly("val3");
     }
 
     /**
@@ -228,27 +145,10 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition(null, (Object) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(2, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond1"));
-        Assert.assertTrue(allConditionNames.contains("cond2"));
-
-        Set<String> allConditionValues1 = valueSet.getAllConditionValues("cond1");
-        Assert.assertEquals(6, allConditionValues1.size());
-        Assert.assertTrue(allConditionValues1.contains("true"));
-        Assert.assertTrue(allConditionValues1.contains("1"));
-        Assert.assertTrue(allConditionValues1.contains("2"));
-        Assert.assertTrue(allConditionValues1.contains("3"));
-        Assert.assertTrue(allConditionValues1.contains("3.5"));
-        Assert.assertTrue(allConditionValues1.contains("4.9"));
-
-        Set<String> allConditionValues2 = valueSet.getAllConditionValues("cond2");
-        Assert.assertEquals(4, allConditionValues2.size());
-        Assert.assertTrue(allConditionValues2.contains("val1"));
-        Assert.assertTrue(allConditionValues2.contains("val2"));
-        Assert.assertTrue(allConditionValues2.contains("val3"));
-        Assert.assertTrue(allConditionValues2.contains("val4"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond1")).containsExactly("true", "1", "2", "3", "3.5", "4.9");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond2")).containsExactly("val1", "val2", "val3", "val4");
     }
 
     /**
@@ -266,30 +166,15 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.addCondition("cond7", new StringBuilder("val2"));
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(7, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond1"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond1").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond1").contains("val1"));
-        Assert.assertTrue(allConditionNames.contains("cond2"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond2").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond2").contains("true"));
-        Assert.assertTrue(allConditionNames.contains("cond3"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond3").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond3").contains("1"));
-        Assert.assertTrue(allConditionNames.contains("cond4"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond4").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond4").contains("2"));
-        Assert.assertTrue(allConditionNames.contains("cond5"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond5").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond5").contains("1.1"));
-        Assert.assertTrue(allConditionNames.contains("cond6"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond6").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond6").contains("1.2"));
-        Assert.assertTrue(allConditionNames.contains("cond7"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond7").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond7").contains("val2"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4", "cond5", "cond6", "cond7");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond1")).containsExactly("val1");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond2")).containsExactly("true");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond3")).containsExactly("1");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond4")).containsExactly("2");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond5")).containsExactly("1.1");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond6")).containsExactly("1.2");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond7")).containsExactly("val2");
     }
 
     /**
@@ -339,19 +224,10 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.removeCondition(null, (Object) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(2, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond3"));
-        Assert.assertTrue(allConditionNames.contains("cond4"));
-
-        Set<String> allConditionValues1 = valueSet.getAllConditionValues("cond3");
-        Assert.assertEquals(1, allConditionValues1.size());
-        Assert.assertTrue(allConditionValues1.contains("4.9"));
-
-        Set<String> allConditionValues2 = valueSet.getAllConditionValues("cond4");
-        Assert.assertEquals(1, allConditionValues2.size());
-        Assert.assertTrue(allConditionValues2.contains("val4"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond3", "cond4");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond3")).containsExactly("4.9");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond4")).containsExactly("val4");
     }
 
     /**
@@ -387,30 +263,15 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.removeCondition("cond8");
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(7, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond1"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond1").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond1").contains("val2"));
-        Assert.assertTrue(allConditionNames.contains("cond2"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond2").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond2").contains("false"));
-        Assert.assertTrue(allConditionNames.contains("cond3"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond3").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond3").contains("3"));
-        Assert.assertTrue(allConditionNames.contains("cond4"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond4").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond4").contains("4"));
-        Assert.assertTrue(allConditionNames.contains("cond5"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond5").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond5").contains("1.3"));
-        Assert.assertTrue(allConditionNames.contains("cond6"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond6").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond6").contains("1.4"));
-        Assert.assertTrue(allConditionNames.contains("cond7"));
-        Assert.assertEquals(1, valueSet.getAllConditionValues("cond7").size());
-        Assert.assertTrue(valueSet.getAllConditionValues("cond7").contains("val3"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4", "cond5", "cond6", "cond7");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond1")).containsExactly("val2");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond2")).containsExactly("false");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond3")).containsExactly("3");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond4")).containsExactly("4");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond5")).containsExactly("1.3");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond6")).containsExactly("1.4");
+        Assertions.assertThat(valueSet.getAllConditionValues("cond7")).containsExactly("val3");
     }
 
     /**
@@ -430,9 +291,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.clearConditions();
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(0, allConditionNames.size());
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).isEmpty();
     }
 
     /**
@@ -448,14 +308,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addValue((String[]) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(5, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val3"));
-        Assert.assertTrue(allValues.contains("val4"));
-        Assert.assertTrue(allValues.contains("val5"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllValues()).containsExactly("val1", "val2", "val3", "val4", "val5");
     }
 
     /**
@@ -471,11 +325,8 @@ public final class ValueSetBuilderTest {
         ValueSet<String> valueSet = valueSetBuilder.build();
 
         Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(4, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val3"));
-        Assert.assertTrue(allValues.contains("val4"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
     }
 
     /**
@@ -495,15 +346,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.removeValue((String[]) null);
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(6, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val4"));
-        Assert.assertTrue(allValues.contains("val5"));
-        Assert.assertTrue(allValues.contains("val19"));
-        Assert.assertTrue(allValues.contains("val20"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllValues()).containsExactly("val1", "val2", "val4", "val5", "val19", "val20");
     }
 
     /**
@@ -520,12 +364,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.removeValue("val5");
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(3, allValues.size());
-        Assert.assertTrue(allValues.contains("val2"));
-        Assert.assertTrue(allValues.contains("val4"));
-        Assert.assertTrue(allValues.contains("val6"));
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllValues()).containsExactly("val2", "val4", "val6");
     }
 
     /**
@@ -541,9 +381,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.clearValues();
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(0, allValues.size());
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllValues()).isEmpty();
     }
 
     /**
@@ -566,11 +405,9 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.clear();
 
         ValueSet<String> valueSet = valueSetBuilder.build();
-
-        Set<String> allConditionNames = valueSet.getAllConditionNames();
-        Assert.assertEquals(0, allConditionNames.size());
-        Set<String> allValues = valueSet.getAllValues();
-        Assert.assertEquals(0, allValues.size());
+        Assertions.assertThat(valueSet).isNotNull();
+        Assertions.assertThat(valueSet.getAllConditionNames()).isEmpty();
+        Assertions.assertThat(valueSet.getAllValues()).isEmpty();
     }
 
 }

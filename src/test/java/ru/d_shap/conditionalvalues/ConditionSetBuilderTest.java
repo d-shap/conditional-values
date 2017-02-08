@@ -19,12 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link ConditionSetBuilder}.
@@ -49,42 +46,27 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
-        Set<String> conditionSet1AllNames = new HashSet<>();
-        conditionSet1AllNames.add("cond1");
-        Iterator<String> conditionSet1Names = conditionSet1.nameIterator();
-        Assert.assertTrue(conditionSet1AllNames.contains(conditionSet1Names.next()));
-        Assert.assertFalse(conditionSet1Names.hasNext());
-        Assert.assertEquals("val1", conditionSet1.getCondition("cond1"));
-        Assert.assertNull(conditionSet1.getCondition("cond2"));
-        Assert.assertNull(conditionSet1.getCondition("cond3"));
+        Assertions.assertThat(conditionSet1).isNotNull();
+        Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond1");
+        Assertions.assertThat(conditionSet1.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet1.getCondition("cond2")).isNull();
+        Assertions.assertThat(conditionSet1.getCondition("cond3")).isNull();
 
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
-        Set<String> conditionSet2AllNames = new HashSet<>();
-        conditionSet2AllNames.add("cond1");
-        conditionSet2AllNames.add("cond2");
-        Iterator<String> conditionSet2Names = conditionSet2.nameIterator();
-        Assert.assertTrue(conditionSet2AllNames.contains(conditionSet2Names.next()));
-        Assert.assertTrue(conditionSet2AllNames.contains(conditionSet2Names.next()));
-        Assert.assertFalse(conditionSet2Names.hasNext());
-        Assert.assertEquals("val1", conditionSet2.getCondition("cond1"));
-        Assert.assertEquals("val2", conditionSet2.getCondition("cond2"));
-        Assert.assertNull(conditionSet2.getCondition("cond3"));
+        Assertions.assertThat(conditionSet2).isNotNull();
+        Assertions.assertThat(conditionSet2.nameIterator()).containsExactly("cond1", "cond2");
+        Assertions.assertThat(conditionSet2.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet2.getCondition("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet2.getCondition("cond3")).isNull();
 
         conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
-        Set<String> conditionSet3AllNames = new HashSet<>();
-        conditionSet3AllNames.add("cond1");
-        conditionSet3AllNames.add("cond2");
-        conditionSet3AllNames.add("cond3");
-        Iterator<String> conditionSet3Names = conditionSet3.nameIterator();
-        Assert.assertTrue(conditionSet3AllNames.contains(conditionSet3Names.next()));
-        Assert.assertTrue(conditionSet3AllNames.contains(conditionSet3Names.next()));
-        Assert.assertTrue(conditionSet3AllNames.contains(conditionSet3Names.next()));
-        Assert.assertFalse(conditionSet3Names.hasNext());
-        Assert.assertEquals("val1", conditionSet3.getCondition("cond1"));
-        Assert.assertEquals("val2", conditionSet3.getCondition("cond2"));
-        Assert.assertEquals("val3", conditionSet3.getCondition("cond3"));
+        Assertions.assertThat(conditionSet3).isNotNull();
+        Assertions.assertThat(conditionSet3.nameIterator()).containsExactly("cond1", "cond2", "cond3");
+        Assertions.assertThat(conditionSet3.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet3.getCondition("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet3.getCondition("cond3")).isEqualTo("val3");
     }
 
     /**
@@ -96,28 +78,31 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.buildAndClear();
-        Iterator<String> conditionSet1Names = conditionSet1.nameIterator();
-        Assert.assertEquals("cond1", conditionSet1Names.next());
-        Assert.assertFalse(conditionSet1Names.hasNext());
-        Assert.assertEquals("val1", conditionSet1.getCondition("cond1"));
+        Assertions.assertThat(conditionSet1).isNotNull();
+        Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond1");
+        Assertions.assertThat(conditionSet1.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet1.getCondition("cond2")).isNull();
+        Assertions.assertThat(conditionSet1.getCondition("cond3")).isNull();
 
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.buildAndClear();
-        Iterator<String> conditionSet2Names = conditionSet2.nameIterator();
-        Assert.assertEquals("cond2", conditionSet2Names.next());
-        Assert.assertFalse(conditionSet2Names.hasNext());
-        Assert.assertEquals("val2", conditionSet2.getCondition("cond2"));
+        Assertions.assertThat(conditionSet2).isNotNull();
+        Assertions.assertThat(conditionSet2.nameIterator()).containsExactly("cond2");
+        Assertions.assertThat(conditionSet2.getCondition("cond1")).isNull();
+        Assertions.assertThat(conditionSet2.getCondition("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet2.getCondition("cond3")).isNull();
 
         conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet3 = conditionSetBuilder.buildAndClear();
-        Iterator<String> conditionSet3Names = conditionSet3.nameIterator();
-        Assert.assertEquals("cond3", conditionSet3Names.next());
-        Assert.assertFalse(conditionSet3Names.hasNext());
-        Assert.assertEquals("val3", conditionSet3.getCondition("cond3"));
+        Assertions.assertThat(conditionSet3).isNotNull();
+        Assertions.assertThat(conditionSet3.nameIterator()).containsExactly("cond3");
+        Assertions.assertThat(conditionSet3.getCondition("cond1")).isNull();
+        Assertions.assertThat(conditionSet3.getCondition("cond2")).isNull();
+        Assertions.assertThat(conditionSet3.getCondition("cond3")).isEqualTo("val3");
 
         ConditionSet conditionSet4 = conditionSetBuilder.buildAndClear();
-        Iterator<String> conditionSet4Names = conditionSet4.nameIterator();
-        Assert.assertFalse(conditionSet4Names.hasNext());
+        Assertions.assertThat(conditionSet4).isNotNull();
+        Assertions.assertThat(conditionSet4.nameIterator()).isEmpty();
     }
 
     /**
@@ -146,42 +131,18 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.addCondition(null, null);
 
         ConditionSet conditionSet = conditionSetBuilder.build();
-
-        Set<String> allNames = new HashSet<>();
-        allNames.add("cond1");
-        allNames.add("cond2");
-        allNames.add("cond3");
-        allNames.add("cond4");
-        allNames.add("cond5");
-        allNames.add("cond6");
-        allNames.add("cond7");
-        allNames.add("cond8");
-        allNames.add("cond9");
-        allNames.add("cond10");
-
-        Iterator<String> nameIterator = conditionSet.nameIterator();
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertFalse(nameIterator.hasNext());
-
-        Assert.assertEquals("val1", conditionSet.getCondition("cond1"));
-        Assert.assertEquals("true", conditionSet.getCondition("cond2"));
-        Assert.assertEquals("false", conditionSet.getCondition("cond3"));
-        Assert.assertEquals("1", conditionSet.getCondition("cond4"));
-        Assert.assertEquals("2", conditionSet.getCondition("cond5"));
-        Assert.assertEquals("7", conditionSet.getCondition("cond6"));
-        Assert.assertEquals("3.5", conditionSet.getCondition("cond7"));
-        Assert.assertEquals("4.9", conditionSet.getCondition("cond8"));
-        Assert.assertEquals("val2", conditionSet.getCondition("cond9"));
-        Assert.assertEquals("val3", conditionSet.getCondition("cond10"));
+        Assertions.assertThat(conditionSet).isNotNull();
+        Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4", "cond5", "cond6", "cond7", "cond8", "cond9", "cond10");
+        Assertions.assertThat(conditionSet.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("true");
+        Assertions.assertThat(conditionSet.getCondition("cond3")).isEqualTo("false");
+        Assertions.assertThat(conditionSet.getCondition("cond4")).isEqualTo("1");
+        Assertions.assertThat(conditionSet.getCondition("cond5")).isEqualTo("2");
+        Assertions.assertThat(conditionSet.getCondition("cond6")).isEqualTo("7");
+        Assertions.assertThat(conditionSet.getCondition("cond7")).isEqualTo("3.5");
+        Assertions.assertThat(conditionSet.getCondition("cond8")).isEqualTo("4.9");
+        Assertions.assertThat(conditionSet.getCondition("cond9")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet.getCondition("cond10")).isEqualTo("val3");
     }
 
     /**
@@ -199,33 +160,15 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder = conditionSetBuilder.addCondition("cond7", new StringBuilder("val2"));
 
         ConditionSet conditionSet = conditionSetBuilder.build();
-
-        Set<String> allNames = new HashSet<>();
-        allNames.add("cond1");
-        allNames.add("cond2");
-        allNames.add("cond3");
-        allNames.add("cond4");
-        allNames.add("cond5");
-        allNames.add("cond6");
-        allNames.add("cond7");
-
-        Iterator<String> nameIterator = conditionSet.nameIterator();
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertFalse(nameIterator.hasNext());
-
-        Assert.assertEquals("val1", conditionSet.getCondition("cond1"));
-        Assert.assertEquals("true", conditionSet.getCondition("cond2"));
-        Assert.assertEquals("1", conditionSet.getCondition("cond3"));
-        Assert.assertEquals("2", conditionSet.getCondition("cond4"));
-        Assert.assertEquals("1.1", conditionSet.getCondition("cond5"));
-        Assert.assertEquals("1.2", conditionSet.getCondition("cond6"));
-        Assert.assertEquals("val2", conditionSet.getCondition("cond7"));
+        Assertions.assertThat(conditionSet).isNotNull();
+        Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4", "cond5", "cond6", "cond7");
+        Assertions.assertThat(conditionSet.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("true");
+        Assertions.assertThat(conditionSet.getCondition("cond3")).isEqualTo("1");
+        Assertions.assertThat(conditionSet.getCondition("cond4")).isEqualTo("2");
+        Assertions.assertThat(conditionSet.getCondition("cond5")).isEqualTo("1.1");
+        Assertions.assertThat(conditionSet.getCondition("cond6")).isEqualTo("1.2");
+        Assertions.assertThat(conditionSet.getCondition("cond7")).isEqualTo("val2");
     }
 
     /**
@@ -253,36 +196,18 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder.removeCondition(null);
 
         ConditionSet conditionSet = conditionSetBuilder.build();
-
-        Set<String> allNames = new HashSet<>();
-        allNames.add("cond1");
-        allNames.add("cond2");
-        allNames.add("cond4");
-        allNames.add("cond6");
-        allNames.add("cond7");
-        allNames.add("cond8");
-        allNames.add("cond10");
-
-        Iterator<String> nameIterator = conditionSet.nameIterator();
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertFalse(nameIterator.hasNext());
-
-        Assert.assertEquals("val1", conditionSet.getCondition("cond1"));
-        Assert.assertEquals("true", conditionSet.getCondition("cond2"));
-        Assert.assertNull(conditionSet.getCondition("cond3"));
-        Assert.assertEquals("1", conditionSet.getCondition("cond4"));
-        Assert.assertNull(conditionSet.getCondition("cond5"));
-        Assert.assertEquals("7", conditionSet.getCondition("cond6"));
-        Assert.assertEquals("3.5", conditionSet.getCondition("cond7"));
-        Assert.assertEquals("4.9", conditionSet.getCondition("cond8"));
-        Assert.assertNull(conditionSet.getCondition("cond9"));
-        Assert.assertEquals("val3", conditionSet.getCondition("cond10"));
+        Assertions.assertThat(conditionSet).isNotNull();
+        Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond1", "cond2", "cond4", "cond6", "cond7", "cond8", "cond10");
+        Assertions.assertThat(conditionSet.getCondition("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("true");
+        Assertions.assertThat(conditionSet.getCondition("cond3")).isNull();
+        Assertions.assertThat(conditionSet.getCondition("cond4")).isEqualTo("1");
+        Assertions.assertThat(conditionSet.getCondition("cond5")).isNull();
+        Assertions.assertThat(conditionSet.getCondition("cond6")).isEqualTo("7");
+        Assertions.assertThat(conditionSet.getCondition("cond7")).isEqualTo("3.5");
+        Assertions.assertThat(conditionSet.getCondition("cond8")).isEqualTo("4.9");
+        Assertions.assertThat(conditionSet.getCondition("cond9")).isNull();
+        Assertions.assertThat(conditionSet.getCondition("cond10")).isEqualTo("val3");
     }
 
     /**
@@ -300,18 +225,10 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder = conditionSetBuilder.removeCondition("cond3");
 
         ConditionSet conditionSet = conditionSetBuilder.build();
-
-        Set<String> allNames = new HashSet<>();
-        allNames.add("cond2");
-        allNames.add("cond4");
-
-        Iterator<String> nameIterator = conditionSet.nameIterator();
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertTrue(allNames.contains(nameIterator.next()));
-        Assert.assertFalse(nameIterator.hasNext());
-
-        Assert.assertEquals("true", conditionSet.getCondition("cond2"));
-        Assert.assertEquals("2", conditionSet.getCondition("cond4"));
+        Assertions.assertThat(conditionSet).isNotNull();
+        Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond2", "cond4");
+        Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("true");
+        Assertions.assertThat(conditionSet.getCondition("cond4")).isEqualTo("2");
     }
 
     /**
@@ -328,7 +245,7 @@ public final class ConditionSetBuilderTest {
         conditionSetBuilder = conditionSetBuilder.clear();
 
         ConditionSet conditionSet = conditionSetBuilder.build();
-        Assert.assertFalse(conditionSet.nameIterator().hasNext());
+        Assertions.assertThat(conditionSet.nameIterator()).isEmpty();
     }
 
 }

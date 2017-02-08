@@ -23,8 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link ConditionalValues}.
@@ -65,7 +66,7 @@ public final class ConditionalValuesTest {
         valueSets.add(null);
 
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -88,7 +89,7 @@ public final class ConditionalValuesTest {
         ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -111,7 +112,7 @@ public final class ConditionalValuesTest {
         ValueSet<Boolean> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<Boolean> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -134,7 +135,7 @@ public final class ConditionalValuesTest {
         ValueSet<Integer> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<Integer> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -157,7 +158,7 @@ public final class ConditionalValuesTest {
         ValueSet<Long> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<Long> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -180,7 +181,7 @@ public final class ConditionalValuesTest {
         ValueSet<Float> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<Float> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -203,7 +204,7 @@ public final class ConditionalValuesTest {
         ValueSet<Double> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<Double> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -226,7 +227,7 @@ public final class ConditionalValuesTest {
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.buildAndClear();
 
         ConditionalValues<?> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, null);
-        Assert.assertNotNull(conditionalValues);
+        Assertions.assertThat(conditionalValues).isNotNull();
     }
 
     /**
@@ -236,43 +237,43 @@ public final class ConditionalValuesTest {
     public void createNullConditionalValuesTest() {
         List<ValueSet<String>> valueSets1 = null;
         ConditionalValues<String> conditionalValues1 = ConditionalValues.createConditionalValues(valueSets1);
-        Assert.assertNotNull(conditionalValues1);
-        Assert.assertTrue(conditionalValues1.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).isEmpty();
 
         ValueSet<String>[] valueSets2 = null;
         ConditionalValues<String> conditionalValues2 = ConditionalValues.createConditionalValues(valueSets2);
-        Assert.assertNotNull(conditionalValues2);
-        Assert.assertTrue(conditionalValues2.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues2).isNotNull();
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).isEmpty();
 
         ValueSet<Boolean>[] valueSets3 = null;
         ConditionalValues<Boolean> conditionalValues3 = ConditionalValues.createConditionalValues(valueSets3);
-        Assert.assertNotNull(conditionalValues3);
-        Assert.assertTrue(conditionalValues3.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues3).isNotNull();
+        Assertions.assertThat(conditionalValues3.getAllConditionNames()).isEmpty();
 
         ValueSet<Integer>[] valueSets4 = null;
         ConditionalValues<Integer> conditionalValues4 = ConditionalValues.createConditionalValues(valueSets4);
-        Assert.assertNotNull(conditionalValues4);
-        Assert.assertTrue(conditionalValues4.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues4).isNotNull();
+        Assertions.assertThat(conditionalValues4.getAllConditionNames()).isEmpty();
 
         ValueSet<Long>[] valueSets5 = null;
         ConditionalValues<Long> conditionalValues5 = ConditionalValues.createConditionalValues(valueSets5);
-        Assert.assertNotNull(conditionalValues5);
-        Assert.assertTrue(conditionalValues5.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues5).isNotNull();
+        Assertions.assertThat(conditionalValues5.getAllConditionNames()).isEmpty();
 
         ValueSet<Float>[] valueSets6 = null;
         ConditionalValues<Float> conditionalValues6 = ConditionalValues.createConditionalValues(valueSets6);
-        Assert.assertNotNull(conditionalValues6);
-        Assert.assertTrue(conditionalValues6.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues6).isNotNull();
+        Assertions.assertThat(conditionalValues6.getAllConditionNames()).isEmpty();
 
         ValueSet<Double>[] valueSets7 = null;
         ConditionalValues<Double> conditionalValues7 = ConditionalValues.createConditionalValues(valueSets7);
-        Assert.assertNotNull(conditionalValues7);
-        Assert.assertTrue(conditionalValues7.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues7).isNotNull();
+        Assertions.assertThat(conditionalValues7.getAllConditionNames()).isEmpty();
 
         ValueSet<Object>[] valueSets8 = null;
         ConditionalValues<Object> conditionalValues8 = ConditionalValues.createConditionalValues(valueSets8);
-        Assert.assertNotNull(conditionalValues8);
-        Assert.assertTrue(conditionalValues8.getAllConditionNames().isEmpty());
+        Assertions.assertThat(conditionalValues8).isNotNull();
+        Assertions.assertThat(conditionalValues8.getAllConditionNames()).isEmpty();
     }
 
     /**
@@ -297,11 +298,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 
         Set<String> allConditionNames = conditionalValues.getAllConditionNames();
-        Assert.assertEquals(4, allConditionNames.size());
-        Assert.assertTrue(allConditionNames.contains("cond1"));
-        Assert.assertTrue(allConditionNames.contains("cond2"));
-        Assert.assertTrue(allConditionNames.contains("cond3"));
-        Assert.assertTrue(allConditionNames.contains("cond4"));
+        Assertions.assertThat(allConditionNames).isNotNull();
+        Assertions.assertThat(allConditionNames).containsExactly("cond1", "cond2", "cond3", "cond4");
     }
 
     /**
@@ -326,27 +324,24 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 
         Set<String> allConditionValues1 = conditionalValues.getAllConditionValues("cond1");
-        Assert.assertEquals(2, allConditionValues1.size());
-        Assert.assertTrue(allConditionValues1.contains("val11"));
-        Assert.assertTrue(allConditionValues1.contains("val12"));
+        Assertions.assertThat(allConditionValues1).isNotNull();
+        Assertions.assertThat(allConditionValues1).containsExactly("val11", "val12");
 
         Set<String> allConditionValues2 = conditionalValues.getAllConditionValues("cond2");
-        Assert.assertEquals(2, allConditionValues2.size());
-        Assert.assertTrue(allConditionValues2.contains("val21"));
-        Assert.assertTrue(allConditionValues2.contains("val22"));
+        Assertions.assertThat(allConditionValues2).isNotNull();
+        Assertions.assertThat(allConditionValues2).containsExactly("val21", "val22");
 
         Set<String> allConditionValues3 = conditionalValues.getAllConditionValues("cond3");
-        Assert.assertEquals(2, allConditionValues3.size());
-        Assert.assertTrue(allConditionValues3.contains("val31"));
-        Assert.assertTrue(allConditionValues3.contains("val32"));
+        Assertions.assertThat(allConditionValues3).isNotNull();
+        Assertions.assertThat(allConditionValues3).containsExactly("val31", "val32");
 
         Set<String> allConditionValues4 = conditionalValues.getAllConditionValues("cond4");
-        Assert.assertEquals(2, allConditionValues4.size());
-        Assert.assertTrue(allConditionValues4.contains("val41"));
-        Assert.assertTrue(allConditionValues4.contains("val42"));
+        Assertions.assertThat(allConditionValues4).isNotNull();
+        Assertions.assertThat(allConditionValues4).containsExactly("val41", "val42");
 
         Set<String> allConditionValues5 = conditionalValues.getAllConditionValues("cond5");
-        Assert.assertEquals(0, allConditionValues5.size());
+        Assertions.assertThat(allConditionValues5).isNotNull();
+        Assertions.assertThat(allConditionValues5).isEmpty();
     }
 
     /**
@@ -367,8 +362,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2);
 
         Set<ValueSetUniqueCondition> valueSetUniqueConditions = conditionalValues.getAllValueSetUniqueConditions();
-        Assert.assertNotNull(valueSetUniqueConditions);
-        Assert.assertEquals(6, valueSetUniqueConditions.size());
+        Assertions.assertThat(valueSetUniqueConditions).isNotNull();
+        Assertions.assertThat(valueSetUniqueConditions).hasSize(6);
     }
 
     /**
@@ -441,12 +436,9 @@ public final class ConditionalValuesTest {
         ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
-        Assert.assertFalse(values.isEmpty());
-        Set<String> allValues = values.getAllValues();
-        Assert.assertEquals(3, allValues.size());
-        Assert.assertTrue(allValues.contains("val1"));
-        Assert.assertTrue(allValues.contains("val3"));
-        Assert.assertTrue(allValues.contains("val5"));
+        Assertions.assertThat(values).isNotNull();
+        Assertions.assertThat(values.isEmpty()).isFalse();
+        Assertions.assertThat(values.getAllValues()).containsExactly("val1", "val3", "val5");
     }
 
     /**
@@ -478,7 +470,8 @@ public final class ConditionalValuesTest {
         ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
-        Assert.assertTrue(values.isEmpty());
+        Assertions.assertThat(values).isNotNull();
+        Assertions.assertThat(values.isEmpty()).isTrue();
     }
 
     /**
@@ -500,18 +493,21 @@ public final class ConditionalValuesTest {
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.buildAndClear();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
-        Assert.assertTrue(values1.isEmpty());
+        Assertions.assertThat(values1).isNotNull();
+        Assertions.assertThat(values1.isEmpty()).isTrue();
 
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.buildAndClear();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
-        Assert.assertTrue(values2.isEmpty());
+        Assertions.assertThat(values2).isNotNull();
+        Assertions.assertThat(values2.isEmpty()).isTrue();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet3 = conditionSetBuilder.buildAndClear();
         Values<String> values3 = conditionalValues.getValues(conditionSet3);
-        Assert.assertFalse(values3.isEmpty());
+        Assertions.assertThat(values3).isNotNull();
+        Assertions.assertThat(values3.isEmpty()).isFalse();
     }
 
     /**
@@ -533,16 +529,19 @@ public final class ConditionalValuesTest {
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.buildAndClear();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
-        Assert.assertFalse(values1.isEmpty());
+        Assertions.assertThat(values1).isNotNull();
+        Assertions.assertThat(values1.isEmpty()).isFalse();
 
         conditionSetBuilder.addCondition("cond1", "val2");
         ConditionSet conditionSet2 = conditionSetBuilder.buildAndClear();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
-        Assert.assertFalse(values2.isEmpty());
+        Assertions.assertThat(values2).isNotNull();
+        Assertions.assertThat(values2.isEmpty()).isFalse();
 
         ConditionSet conditionSet3 = conditionSetBuilder.buildAndClear();
         Values<String> values3 = conditionalValues.getValues(conditionSet3);
-        Assert.assertTrue(values3.isEmpty());
+        Assertions.assertThat(values3).isNotNull();
+        Assertions.assertThat(values3.isEmpty()).isTrue();
     }
 
     /**
@@ -586,11 +585,9 @@ public final class ConditionalValuesTest {
         ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
-        Assert.assertFalse(values.isEmpty());
-        Assert.assertTrue(values.contains("val1"));
-        Assert.assertFalse(values.contains("val2"));
-        Assert.assertFalse(values.contains("val3"));
-        Assert.assertFalse(values.contains("val4"));
+        Assertions.assertThat(values).isNotNull();
+        Assertions.assertThat(values.isEmpty()).isFalse();
+        Assertions.assertThat(values.getAllValues()).containsExactly("val1");
     }
 
     /**
@@ -634,11 +631,9 @@ public final class ConditionalValuesTest {
         ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
 
         Values<String> values = conditionalValues.getValues(conditionSet);
-        Assert.assertFalse(values.isEmpty());
-        Assert.assertFalse(values.contains("val1"));
-        Assert.assertTrue(values.contains("val2"));
-        Assert.assertFalse(values.contains("val3"));
-        Assert.assertTrue(values.contains("val4"));
+        Assertions.assertThat(values).isNotNull();
+        Assertions.assertThat(values.isEmpty()).isFalse();
+        Assertions.assertThat(values.getAllValues()).containsExactly("val2", "val4");
     }
 
     /**
@@ -669,20 +664,18 @@ public final class ConditionalValuesTest {
         conditionSetBuilder.addCondition("cond4", "val4");
         ConditionSet conditionSet1 = conditionSetBuilder.buildAndClear();
         Values<String> values1 = conditionalValues.getValues(conditionSet1);
-        Assert.assertFalse(values1.isEmpty());
-        Assert.assertFalse(values1.contains("val1"));
-        Assert.assertFalse(values1.contains("val2"));
-        Assert.assertTrue(values1.contains("val3"));
+        Assertions.assertThat(values1).isNotNull();
+        Assertions.assertThat(values1.isEmpty()).isFalse();
+        Assertions.assertThat(values1.getAllValues()).containsExactly("val3");
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
         conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet2 = conditionSetBuilder.buildAndClear();
         Values<String> values2 = conditionalValues.getValues(conditionSet2);
-        Assert.assertFalse(values2.isEmpty());
-        Assert.assertTrue(values2.contains("val1"));
-        Assert.assertTrue(values2.contains("val2"));
-        Assert.assertFalse(values2.contains("val3"));
+        Assertions.assertThat(values2).isNotNull();
+        Assertions.assertThat(values2.isEmpty()).isFalse();
+        Assertions.assertThat(values2.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -690,25 +683,24 @@ public final class ConditionalValuesTest {
         conditionSetBuilder.addCondition("cond4", "val4");
         ConditionSet conditionSet3 = conditionSetBuilder.buildAndClear();
         Values<String> values3 = conditionalValues.getValues(conditionSet3);
-        Assert.assertFalse(values3.isEmpty());
-        Assert.assertFalse(values3.contains("val1"));
-        Assert.assertTrue(values3.contains("val2"));
-        Assert.assertTrue(values3.contains("val3"));
+        Assertions.assertThat(values3).isNotNull();
+        Assertions.assertThat(values3.isEmpty()).isFalse();
+        Assertions.assertThat(values3.getAllValues()).containsExactly("val2", "val3");
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
         ConditionSet conditionSet4 = conditionSetBuilder.buildAndClear();
         Values<String> values4 = conditionalValues.getValues(conditionSet4);
-        Assert.assertFalse(values4.isEmpty());
-        Assert.assertTrue(values4.contains("val1"));
-        Assert.assertFalse(values4.contains("val2"));
-        Assert.assertFalse(values4.contains("val3"));
+        Assertions.assertThat(values4).isNotNull();
+        Assertions.assertThat(values4.isEmpty()).isFalse();
+        Assertions.assertThat(values4.getAllValues()).containsExactly("val1");
 
         conditionSetBuilder.addCondition("cond2", "val2");
         conditionSetBuilder.addCondition("cond3", "val3");
         ConditionSet conditionSet5 = conditionSetBuilder.buildAndClear();
         Values<String> values5 = conditionalValues.getValues(conditionSet5);
-        Assert.assertTrue(values5.isEmpty());
+        Assertions.assertThat(values5).isNotNull();
+        Assertions.assertThat(values5.isEmpty()).isTrue();
     }
 
     /**
@@ -733,8 +725,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, valueSet3);
 
         Values<String> values = conditionalValues.getValues(null);
-        Assert.assertNotNull(values);
-        Assert.assertTrue(values.isEmpty());
+        Assertions.assertThat(values).isNotNull();
+        Assertions.assertThat(values.isEmpty()).isTrue();
     }
 
     /**
@@ -757,11 +749,10 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.buildAndClear();
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, valueSet3);
-        String str = conditionalValues.toString();
-        Assert.assertTrue(str.contains("cond1=[val1]"));
-        Assert.assertTrue(str.contains("cond2=[val2]"));
-        Assert.assertTrue(str.contains("cond3=[val3]"));
-        Assert.assertTrue(str.contains("cond4=[val4]"));
+        Assertions.assertThat(conditionalValues).toStringContains("cond1=[val1]");
+        Assertions.assertThat(conditionalValues).toStringContains("cond2=[val2]");
+        Assertions.assertThat(conditionalValues).toStringContains("cond3=[val3]");
+        Assertions.assertThat(conditionalValues).toStringContains("cond4=[val4]");
     }
 
 }
