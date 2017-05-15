@@ -2,7 +2,7 @@
 // Conditional values simplify conditional logic and get rid of if-statements in the code.
 // Copyright (C) 2016 Dmitry Shapovalov.
 //
-// This file is part of Conditional values.
+// This file is part of conditional values.
 //
 // Conditional values is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
