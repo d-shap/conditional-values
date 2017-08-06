@@ -4,8 +4,24 @@
 
     <groupId>ru.d_shap</groupId>
     <artifactId>conditional-values</artifactId>
-    <version>1.0.5</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
+
+    <name>Conditional values</name>
+    <description>Conditional values simplify conditional logic and get rid of if-statements in the code</description>
+    <url>https://github.com/d-shap/conditional-values</url>
+
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License, Version 3</name>
+            <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/d-shap/conditional-values</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -90,7 +106,7 @@
                     </rulesets>
                     <ignoreIdentifiers>false</ignoreIdentifiers>
                     <ignoreLiterals>true</ignoreLiterals>
-                    <minimumTokens>200</minimumTokens>
+                    <minimumTokens>500</minimumTokens>
                 </configuration>
             </plugin>
             <plugin>
