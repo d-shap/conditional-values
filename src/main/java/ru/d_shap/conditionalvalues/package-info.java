@@ -88,7 +88,7 @@
  * conditionSetBuilder.addCondition("type", "type1");
  * conditionSetBuilder.addCondition("state", 2);
  * conditionSetBuilder.addCondition("role", "performer");
- * ConditionSet conditionSet = conditionSetBuilder.buildAndClear();
+ * ConditionSet conditionSet = conditionSetBuilder.build();
  * }</pre>
  * <p>
  * And get matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from
