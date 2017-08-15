@@ -80,13 +80,13 @@ For example, there are predefined conditions:
 * isInitiator: **true**
 
 **Value Set 2**
-type: *type1*
-isPerformer: *true*
+* type: *type1*
+* isPerformer: *true*
 
 **Value Set 3**
-type: *type1*
-state: *1*
-isInitiator: *true*
+* type: *type1*
+* state: *1*
+* isInitiator: *true*
 
 Then if we have runtime conditions (type = **type1**, state = **1**, isInitiator = **true**), then the best matching value set is **Value Set 3** (the only one matching value set).
 
