@@ -53,7 +53,8 @@ ConditionalValues<String> conditionalValues = ConditionalValues.createConditiona
  
 This `ConditionalValues` object could be created statically.
 
-In runtime now we can define visible attributes based on current condition. To perform this we create `ConditionSet` object:
+In runtime now we can define visible attributes based on current condition.
+To perform this we create `ConditionSet` object:
 
 ```
 ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
