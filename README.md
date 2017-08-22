@@ -15,7 +15,6 @@ The conditions could be:
 And based on this conditions there are different visible attributes (attribute1, attribute2, attribute3, etc.)
 
 First we create `ValueSet` for each distinct condition:
-
 ```
 ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
 
@@ -41,7 +40,6 @@ ValueSet<String> type1Performer23ValueSet = valueSetBuilder.buildAndClear();
 ```
 
 Then we store this conditions in a single `ConditionalValues` object:
-
 ```
 List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
 valueSets.add(type1Initiator1ValueSet);
@@ -50,12 +48,11 @@ valueSets.add(type1Performer23ValueSet);
 ...
 ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
 ```
- 
+
 This `ConditionalValues` object could be created statically.
 
 In runtime now we can define visible attributes based on current condition.
 To perform this we create `ConditionSet` object:
-
 ```
 ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
 conditionSetBuilder.addCondition("type", "type1");
@@ -63,13 +60,12 @@ conditionSetBuilder.addCondition("state", 2);
 conditionSetBuilder.addCondition("role", "performer");
 ConditionSet conditionSet = conditionSetBuilder.build();
 ```
- 
-And get matching `ValueSet` objects from `ConditionalValues` object:
 
+And get matching `ValueSet` objects from `ConditionalValues` object:
 ```
 Values<String> values = conditionalValues.getValues(conditionSet);
 ```
- 
+
 Now we can use `Values` to get all visible attributes, or to test if `Values` object contains specified attribute.
 
 The best condition is defined by matching conditions count.
