@@ -29,9 +29,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Class represents distinct condition with corresponding values for this condition.
+ * Class represents a distinct condition with a corresponding values for this condition.
  *
- * @param <T> value type.
+ * @param <T> generic value type.
  * @author Dmitry Shapovalov
  */
 public final class ValueSet<T> {
@@ -60,10 +60,10 @@ public final class ValueSet<T> {
     }
 
     /**
-     * Get all condition values for specified condition name, defined in this object.
+     * Get all condition values for the specified condition name, defined in this object.
      *
-     * @param conditionName condition name.
-     * @return all condition values for specified condition name.
+     * @param conditionName the specified condition name.
+     * @return all condition values for the specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> values = _conditions.get(conditionName);
@@ -79,12 +79,10 @@ public final class ValueSet<T> {
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
+            String conditionValue = conditionSet.getCondition(conditionName);
             Set<String> conditionValues = _conditions.get(conditionName);
-            if (conditionValues != null) {
-                String conditionValue = conditionSet.getCondition(conditionName);
-                if (conditionValues.contains(conditionValue)) {
-                    matchCount++;
-                }
+            if (conditionValues != null && conditionValues.contains(conditionValue)) {
+                matchCount++;
             }
         }
         return matchCount == _conditions.size();
@@ -112,14 +110,14 @@ public final class ValueSet<T> {
     }
 
     private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
-        List<ValueSetUniqueCondition> result = new ArrayList<>();
-        for (ValueSetUniqueCondition valueSetUniqueCondition : currentUniqueConditions) {
+        List<ValueSetUniqueCondition> newUniqueConditions = new ArrayList<>();
+        for (ValueSetUniqueCondition currentUniqueCondition : currentUniqueConditions) {
             for (String conditionValue : conditionValues) {
-                ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(valueSetUniqueCondition, conditionName, conditionValue);
-                result.add(newUniqueCondition);
+                ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(currentUniqueCondition, conditionName, conditionValue);
+                newUniqueConditions.add(newUniqueCondition);
             }
         }
-        return result;
+        return newUniqueConditions;
     }
 
     Set<T> getAllValues() {
