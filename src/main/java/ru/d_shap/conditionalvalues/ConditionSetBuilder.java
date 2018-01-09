@@ -20,15 +20,16 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  * <p>
- * Builder class used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
+ * Builder class is used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
- * Object of this class is reusable. After calling the {@link #build()} or the {@link #buildAndClear()} method this
- * object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * Objects of this class are reusable. After calling the {@link #build()} method this object can be
+ * used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  * </p>
  * <p>
  * The internal presentation of conditions is {@code Map<String, String>}.
@@ -52,11 +53,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final String value) {
         doAddCondition(name, value);
@@ -64,11 +65,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final boolean value) {
         doAddCondition(name, String.valueOf(value));
@@ -76,11 +77,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
@@ -88,11 +89,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final long value) {
         doAddCondition(name, String.valueOf(value));
@@ -100,11 +101,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final float value) {
         doAddCondition(name, String.valueOf(value));
@@ -112,11 +113,11 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final double value) {
         doAddCondition(name, String.valueOf(value));
@@ -124,15 +125,33 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. Replaces old value with the new one.
+     * Add contition to the set. An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final Object value) {
         if (value != null) {
             doAddCondition(name, value.toString());
+        }
+        return this;
+    }
+
+    /**
+     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the set. Old value are replaced by the new ones.
+     *
+     * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder addConditions(final ConditionSet conditionSet) {
+        if (conditionSet != null) {
+            Iterator<String> conditionNameIterator = conditionSet.nameIterator();
+            while (conditionNameIterator.hasNext()) {
+                String conditionName = conditionNameIterator.next();
+                String conditionValue = conditionSet.getCondition(conditionName);
+                doAddCondition(conditionName, conditionValue);
+            }
         }
         return this;
     }
@@ -147,7 +166,7 @@ public final class ConditionSetBuilder {
      * Remove contition from the set.
      *
      * @param name condition name.
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name) {
         _conditions.remove(name);
@@ -155,9 +174,26 @@ public final class ConditionSetBuilder {
     }
 
     /**
+     * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
+     *
+     * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeConditions(final ConditionSet conditionSet) {
+        if (conditionSet != null) {
+            Iterator<String> conditionNameIterator = conditionSet.nameIterator();
+            while (conditionNameIterator.hasNext()) {
+                String conditionName = conditionNameIterator.next();
+                _conditions.remove(conditionName);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Clear all conditions.
      *
-     * @return current object for chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder clear() {
         _conditions.clear();
@@ -165,22 +201,25 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear all conditions.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with the values, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
     public ConditionSet build() {
-        return new ConditionSet(_conditions);
+        return build(true);
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear all conditions.
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with the values, added to this builder.
+     * @param clear true to clear all conditions.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
-    public ConditionSet buildAndClear() {
+    public ConditionSet build(final boolean clear) {
         ConditionSet conditionSet = new ConditionSet(_conditions);
-        clear();
+        if (clear) {
+            clear();
+        }
         return conditionSet;
     }
 
