@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Class represents single unique combination of conditions in a value set.
+ * Class represents a single unique combination of conditions in a value set.
  *
  * @author Dmitry Shapovalov
  */
@@ -48,7 +48,7 @@ public final class ValueSetUniqueCondition {
     }
 
     /**
-     * Get combination of conditions.
+     * Get a combination of conditions.
      *
      * @return Combination of conditions
      */
