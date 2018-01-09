@@ -35,7 +35,7 @@ import java.util.Set;
  * one {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * </p>
  *
- * @param <T> value type.
+ * @param <T> generic value type.
  * @author Dmitry Shapovalov
  */
 public final class Values<T> {
