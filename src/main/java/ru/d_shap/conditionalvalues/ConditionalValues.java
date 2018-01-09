@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best matching
- * {@link ru.d_shap.conditionalvalues.ValueSet} objects based on specified
+ * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best
+ * matching {@link ru.d_shap.conditionalvalues.ValueSet} objects based on the specified
  * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
- * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * @param <T> generic value type.
  * @author Dmitry Shapovalov
  */
 public final class ConditionalValues<T> {
