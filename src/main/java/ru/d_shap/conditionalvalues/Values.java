@@ -74,6 +74,15 @@ public final class Values<T> {
     }
 
     /**
+     * Return all values contained in this object.
+     *
+     * @return all values.
+     */
+    public Set<T> getAllValues() {
+        return _allValues;
+    }
+
+    /**
      * Perform the specified action with each value in this object.
      *
      * @param action the specified action.
