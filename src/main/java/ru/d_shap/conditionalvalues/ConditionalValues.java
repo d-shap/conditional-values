@@ -128,7 +128,8 @@ public final class ConditionalValues<T> {
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            result.addAll(valueSet.getAllConditionValues(conditionName));
+            Set<String> allConditionValues = valueSet.getAllConditionValues(conditionName);
+            result.addAll(allConditionValues);
         }
         return result;
     }
