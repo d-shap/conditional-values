@@ -150,9 +150,7 @@ public final class ConditionalValues<T> {
      */
     public Values<T> lookup(final ConditionSet conditionSet) {
         List<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
-        if (!matchingValueSets.isEmpty()) {
-            removeLessSpecificValueSets(matchingValueSets);
-        }
+        removeLessSpecificValueSets(matchingValueSets);
         return new Values<>(matchingValueSets);
     }
 
