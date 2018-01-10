@@ -88,8 +88,10 @@ public final class Values<T> {
      * @param action the specified action.
      */
     public void performAction(final Action<T> action) {
-        for (T value : _allValues) {
-            action.perform(value);
+        if (action != null) {
+            for (T value : _allValues) {
+                action.perform(value);
+            }
         }
     }
 
