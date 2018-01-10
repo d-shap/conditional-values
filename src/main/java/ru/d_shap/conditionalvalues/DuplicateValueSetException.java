@@ -20,8 +20,8 @@
 package ru.d_shap.conditionalvalues;
 
 /**
- * Exception is thrown when the {@link ru.d_shap.conditionalvalues.ValueSet} object is not unique within
- * the {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+ * Exception is thrown when a {@link ru.d_shap.conditionalvalues.ValueSet} object is not unique within
+ * a {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
  *
  * @author Dmitry Shapovalov
  */
