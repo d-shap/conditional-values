@@ -22,9 +22,11 @@ package ru.d_shap.conditionalvalues;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -57,16 +59,20 @@ public final class ConditionalValues<T> {
     }
 
     private Set<ValueSetUniqueCondition> getValueSetUniqueConditions(final List<ValueSet<T>> valueSets) {
-        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = new HashSet<>();
+        Map<ValueSetUniqueCondition, Set<T>> valueSetUniqueConditionMap = new HashMap<>();
         for (ValueSet<T> valueSet : valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
+            Set<T> allValues = valueSet.getAllValues();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                if (!allValueSetUniqueConditions.add(valueSetUniqueCondition)) {
+                Set<T> values = valueSetUniqueConditionMap.get(valueSetUniqueCondition);
+                if (values == null) {
+                    valueSetUniqueConditionMap.put(valueSetUniqueCondition, allValues);
+                } else if (!values.containsAll(allValues) || !allValues.containsAll(values)) {
                     throw new DuplicateValueSetException(valueSet);
                 }
             }
         }
-        return allValueSetUniqueConditions;
+        return valueSetUniqueConditionMap.keySet();
     }
 
     /**
