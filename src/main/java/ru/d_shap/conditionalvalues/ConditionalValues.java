@@ -123,7 +123,7 @@ public final class ConditionalValues<T> {
      * Get all condition values for the specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName the specified condition name.
-     * @return all condition values for specified condition name.
+     * @return all condition values for the specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> result = new HashSet<>();
