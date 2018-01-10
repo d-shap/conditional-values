@@ -29,11 +29,6 @@ public final class DuplicateValueSetException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Creates new object.
-     *
-     * @param valueSet {@link ru.d_shap.conditionalvalues.ValueSet}, that is not unique.
-     */
     DuplicateValueSetException(final ValueSet<?> valueSet) {
         super("Duplicate value set: " + valueSet);
     }
