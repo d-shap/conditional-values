@@ -64,10 +64,10 @@ public final class ConditionalValues<T> {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             Set<T> allValues = valueSet.getAllValues();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                Set<T> values = valueSetUniqueConditionMap.get(valueSetUniqueCondition);
-                if (values == null) {
+                Set<T> oldValues = valueSetUniqueConditionMap.get(valueSetUniqueCondition);
+                if (oldValues == null) {
                     valueSetUniqueConditionMap.put(valueSetUniqueCondition, allValues);
-                } else if (!values.containsAll(allValues) || !allValues.containsAll(values)) {
+                } else if (!oldValues.containsAll(allValues) || !allValues.containsAll(oldValues)) {
                     throw new DuplicateValueSetException(valueSet);
                 }
             }
