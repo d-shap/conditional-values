@@ -78,7 +78,7 @@ public final class ConditionalValues<T> {
     /**
      * Create {@link ru.d_shap.conditionalvalues.ValueSetBuilder} object.
      *
-     * @param <T> value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param <T> generic value type.
      * @return created object.
      */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
@@ -98,18 +98,7 @@ public final class ConditionalValues<T> {
      * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      *
      * @param valueSets all value sets, used for lookup.
-     * @param <T>       value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     * @return created object.
-     */
-    public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
-        return new ConditionalValues<>(valueSets);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       value type of {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param <T>       generic value type.
      * @return created object.
      */
     @SafeVarargs
@@ -120,6 +109,17 @@ public final class ConditionalValues<T> {
             List<ValueSet<T>> valueSetsList = Arrays.asList(valueSets);
             return new ConditionalValues<>(valueSetsList);
         }
+    }
+
+    /**
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+     *
+     * @param valueSets all value sets, used for lookup.
+     * @param <T>       generic value type.
+     * @return created object.
+     */
+    public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
+        return new ConditionalValues<>(valueSets);
     }
 
     /**
