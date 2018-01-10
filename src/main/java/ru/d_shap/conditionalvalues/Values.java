@@ -83,7 +83,7 @@ public final class Values<T> {
     }
 
     /**
-     * Perform the specified action with each value in this object.
+     * Perform the specified action for each value in this object.
      *
      * @param action the specified action.
      */
