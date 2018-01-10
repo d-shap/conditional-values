@@ -212,7 +212,7 @@ public final class ConditionSetBuilder {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param clear true to clear all conditions.
+     * @param clear whether to clear all conditions or not.
      * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
     public ConditionSet build(final boolean clear) {

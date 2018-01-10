@@ -456,7 +456,7 @@ public final class ValueSetBuilder<T> {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
-     * @param clear true to clear all conditions and values.
+     * @param clear whether to clear all conditions and values or not.
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
     public ValueSet<T> build(final boolean clear) {
