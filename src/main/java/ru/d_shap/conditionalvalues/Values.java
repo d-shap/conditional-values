@@ -64,9 +64,9 @@ public final class Values<T> {
     }
 
     /**
-     * Tests if this object contains specified value.
+     * Tests if this object contains the specified value.
      *
-     * @param value value to test.
+     * @param value the specified value.
      * @return true if this object contains specified value.
      */
     public boolean contains(final T value) {
@@ -74,12 +74,14 @@ public final class Values<T> {
     }
 
     /**
-     * Return all values contained in this object.
+     * Perform the specified action with each value in this object.
      *
-     * @return all values.
+     * @param action the specified action.
      */
-    public Set<T> getAllValues() {
-        return _allValues;
+    public void performAction(final Action<T> action) {
+        for (T value : _allValues) {
+            action.perform(value);
+        }
     }
 
     @Override
