@@ -155,7 +155,7 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects and perform the specified action with each value.
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects and perform the specified action for each value.
      *
      * @param conditionSet conditions, used for lookup.
      * @param action       the specified action.
