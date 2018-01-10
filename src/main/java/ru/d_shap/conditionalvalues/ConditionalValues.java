@@ -20,7 +20,6 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +42,8 @@ public final class ConditionalValues<T> {
 
     private final Set<ValueSetUniqueCondition> _allValueSetUniqueConditions;
 
-    private ConditionalValues(final List<ValueSet<T>> valueSets) {
+    @SafeVarargs
+    private ConditionalValues(final ValueSet<T>... valueSets) {
         super();
         List<ValueSet<T>> list = new ArrayList<>();
         if (valueSets != null) {
@@ -103,22 +103,6 @@ public final class ConditionalValues<T> {
      */
     @SafeVarargs
     public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
-        if (valueSets == null) {
-            return new ConditionalValues<>(null);
-        } else {
-            List<ValueSet<T>> valueSetsList = Arrays.asList(valueSets);
-            return new ConditionalValues<>(valueSetsList);
-        }
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       generic value type.
-     * @return created object.
-     */
-    public static <T> ConditionalValues<T> createConditionalValues(final List<ValueSet<T>> valueSets) {
         return new ConditionalValues<>(valueSets);
     }
 
