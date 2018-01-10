@@ -21,7 +21,7 @@ package ru.d_shap.conditionalvalues;
 
 /**
  * Exception is thrown when {@link ru.d_shap.conditionalvalues.ValueSet} object,
- * added to {@link ru.d_shap.conditionalvalues.ConditionSet} object, is not unique.
+ * added to {@link ru.d_shap.conditionalvalues.ConditionalValues} object, is not unique.
  *
  * @author Dmitry Shapovalov
  */
