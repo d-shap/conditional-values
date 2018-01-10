@@ -164,12 +164,23 @@ public final class ConditionalValues<T> {
      * @param conditionSet conditions, used to lookup.
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
-    public Values<T> getValues(final ConditionSet conditionSet) {
+    public Values<T> lookup(final ConditionSet conditionSet) {
         List<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
         if (!matchingValueSets.isEmpty()) {
             removeLessSpecificValueSets(matchingValueSets);
         }
         return new Values<>(matchingValueSets);
+    }
+
+    /**
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects and perform the specified action with each value.
+     *
+     * @param conditionSet conditions, used to lookup.
+     * @param action       the specified action.
+     */
+    public void lookup(final ConditionSet conditionSet, final Action<T> action) {
+        Values<T> values = lookup(conditionSet);
+        values.performAction(action);
     }
 
     private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
