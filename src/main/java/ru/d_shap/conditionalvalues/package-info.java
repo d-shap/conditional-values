@@ -25,69 +25,67 @@
  * The main purpose is to find the best result from many predefined conditions.
  * </p>
  * <p>
- * For example, we should display object attributes based on some conditions.
+ * For example, we should edit form fields based on some conditions.
  * </p>
  * <p>
- * The conditions could be:
+ * This conditions could be:
  * </p>
  * <ul>
- * <li>object type with many differen values (type1, type2, type3, etc.)</li>
- * <li>object current state with many differen values (1, 2, 3, etc.)</li>
- * <li>user role (initiator, performer, administrator, etc.)</li>
- * <li>some other values</li>
+ * <li>form type with many different values (type1, type2, type3, etc.)</li>
+ * <li>form state with many different values (1, 2, 3, etc.)</li>
+ * <li>user role (viewer, editor, administrator, etc.)</li>
+ * <li>some other conditions</li>
  * </ul>
  * <p>
- * And based on this conditions there are different visible attributes (attribute1, attribute2, attribute3, etc.)
+ * And based on this conditions there are different editable fields (field1, field2, field3, etc.).
  * </p>
  * <p>
- * First we create {@link ru.d_shap.conditionalvalues.ValueSet} for each distinct condition:
+ * First we create a {@link ru.d_shap.conditionalvalues.ValueSet} object for each distinct condition:
  * </p>
  * <pre>{@code
  * ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 1);
- * valueSetBuilder.addCondition("role", "initiator");
- * valueSetBuilder.addValue("attribute1", "attribute2");
- * ValueSet<String> type1Initiator1ValueSet = valueSetBuilder.buildAndClear();
+ * valueSetBuilder.addCondition("role", "viewer");
+ * valueSetBuilder.addValue("field1", "field2");
+ * ValueSet<String> type1Viewer1ValueSet = valueSetBuilder.build();
  *
  * valueSetBuilder.addCondition("type", "type1");
- * valueSetBuilder.addCondition("state", 2);
- * valueSetBuilder.addCondition("state", 3);
- * valueSetBuilder.addCondition("role", "initiator");
- * valueSetBuilder.addValue("attribute2", "attribute3");
- * ValueSet<String> type1Initiator23ValueSet = valueSetBuilder.buildAndClear();
+ * valueSetBuilder.addCondition("state", 2)
+ *                .addCondition("state", 3);
+ * valueSetBuilder.addCondition("role", "viewer");
+ * valueSetBuilder.addValue("field2", "field3");
+ * ValueSet<String> type1Viewer23ValueSet = valueSetBuilder.build();
  *
  * valueSetBuilder.addCondition("type", "type1");
- * valueSetBuilder.addCondition("state", 2);
- * valueSetBuilder.addCondition("state", 3);
- * valueSetBuilder.addCondition("role", "performer");
- * valueSetBuilder.addValue("attribute1", "attribute3");
- * ValueSet<String> type1Performer23ValueSet = valueSetBuilder.buildAndClear();
+ * valueSetBuilder.addCondition("state", 2)
+ *                .addCondition("state", 3);
+ * valueSetBuilder.addCondition("role", "editor");
+ * valueSetBuilder.addValue("field1", "field3");
+ * ValueSet<String> type1Editor23ValueSet = valueSetBuilder.build();
  * }</pre>
  * <p>
  * Then we store this conditions in a single {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
  * </p>
  * <pre>{@code
- * List<ValueSet<String>> valueSets = new ArrayList<ValueSet<String>>();
- * valueSets.add(type1Initiator1ValueSet);
- * valueSets.add(type1Initiator23ValueSet);
- * valueSets.add(type1Performer23ValueSet);
- * ...
- * ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSets);
+ * ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(type1Viewer1ValueSet,
+ *                                                                                         type1Viewer23ValueSet,
+ *                                                                                         type1Editor23ValueSet);
  * }</pre>
  * <p>
- * This {@link ru.d_shap.conditionalvalues.ConditionalValues} object could be created statically.
+ * This {@link ru.d_shap.conditionalvalues.ConditionalValues} object could be created in static initializer.
  * </p>
  * <p>
- * In runtime now we can define visible attributes based on current condition.
- * To perform this we create {@link ru.d_shap.conditionalvalues.ConditionSet} object:
+ * In runtime now we can define editable fields based on current condition (current form type, current form state,
+ * current user role, etc).
+ * To perform this we create a {@link ru.d_shap.conditionalvalues.ConditionSet} object:
  * </p>
  * <pre>{@code
  * ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
  * conditionSetBuilder.addCondition("type", "type1");
  * conditionSetBuilder.addCondition("state", 2);
- * conditionSetBuilder.addCondition("role", "performer");
+ * conditionSetBuilder.addCondition("role", "editor");
  * ConditionSet conditionSet = conditionSetBuilder.build();
  * }</pre>
  * <p>
@@ -95,14 +93,28 @@
  * {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
  * </p>
  * <pre>{@code
- * Values<String> values = conditionalValues.getValues(conditionSet);
+ * Values<String> values = conditionalValues.lookup(conditionSet);
  * }</pre>
  * <p>
- * Now we can use {@link ru.d_shap.conditionalvalues.Values} to get all visible attributes, or to
- * test if {@link ru.d_shap.conditionalvalues.Values} object contains specified attribute.
+ * Now we can use {@link ru.d_shap.conditionalvalues.Values} to get all editable fields.
  * </p>
  * <p>
- * The best condition is defined by matching conditions count.
+ * The lookup algorithm  for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects
+ * is the following:
+ * </p>
+ * <p>
+ * First, all matching {@link ru.d_shap.conditionalvalues.ValueSet} objects are defined. A
+ * {@link ru.d_shap.conditionalvalues.ValueSet} object matches if all the object's conditions match a
+ * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * </p>
+ * <p>
+ * Then less specific {@link ru.d_shap.conditionalvalues.ValueSet} objects are removed. The
+ * {@link ru.d_shap.conditionalvalues.ValueSet} object is less specific then another one if
+ * another object has all of the conditions this object have, and some more additional conditions.
+ * </p>
+ * <p>
+ * Then values of remaining {@link ru.d_shap.conditionalvalues.ValueSet} objects are joined and
+ * returned as a lookup result.
  * </p>
  * <p>
  * For example, there are predefined conditions:
@@ -112,14 +124,14 @@
  * </p>
  * <ul>
  * <li>type: <b>type1</b></li>
- * <li>isInitiator: <b>true</b></li>
+ * <li>isViewer: <b>true</b></li>
  * </ul>
  * <p>
  * <b>Value Set 2</b>
  * </p>
  * <ul>
  * <li>type: <b>type1</b></li>
- * <li>isPerformer: <b>true</b></li>
+ * <li>isEditor: <b>true</b></li>
  * </ul>
  * <p>
  * <b>Value Set 3</b>
@@ -127,28 +139,33 @@
  * <ul>
  * <li>type: <b>type1</b></li>
  * <li>state: <b>1</b></li>
- * <li>isInitiator: <b>true</b></li>
+ * <li>isViewer: <b>true</b></li>
  * </ul>
  * <p>
- * Then if we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>),
+ * Then if we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isViewer = <b>true</b>),
  * then the best matching value set is <b>Value Set 3</b> (the only one matching value set).
  * </p>
  * <p>
- * If we have runtime conditions (type = <b>type1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>),
- * then the best matching value sets are <b>Value Set 1</b> and <b>Value Set 2</b> ({@link ru.d_shap.conditionalvalues.Values} object
- * contains values from both {@link ru.d_shap.conditionalvalues.ValueSet} objects).
- * </p>
- * <p>
- * If we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isInitiator = <b>true</b>, isPerformer = <b>true</b>),
- * then the best matching value sets are <b>Value Set 2</b> and  <b>Value Set 3</b> (<b>Value Set 1</b> also matches,
- * but <b>Value Set 3</b> is more specific then <b>Value Set 1</b>).
- * </p>
- * <p>
- * If we have runtime conditions (type = <b>type1</b>, isInitiator = <b>true</b>),
+ * If we have runtime conditions (type = <b>type1</b>, state = <b>2</b>, isViewer = <b>true</b>),
  * then the best matching value set is <b>Value Set 1</b> (the only one matching value set).
  * </p>
  * <p>
- * If we have runtime conditions (isInitiator = <b>true</b>, isPerformer = <b>true</b>),
+ * If we have runtime conditions (type = <b>type1</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
+ * then the best matching value sets are <b>Value Set 1</b> and <b>Value Set 2</b>
+ * ({@link ru.d_shap.conditionalvalues.Values} object contains values from both
+ * {@link ru.d_shap.conditionalvalues.ValueSet} objects).
+ * </p>
+ * <p>
+ * If we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
+ * then the best matching value sets are <b>Value Set 2</b> and <b>Value Set 3</b> (<b>Value Set 1</b> also matches,
+ * but <b>Value Set 3</b> is more specific then <b>Value Set 1</b>).
+ * </p>
+ * <p>
+ * If we have runtime conditions (type = <b>type1</b>, isViewer = <b>true</b>),
+ * then the best matching value set is <b>Value Set 1</b> (the only one matching value set).
+ * </p>
+ * <p>
+ * If we have runtime conditions (isViewer = <b>true</b>, isEditor = <b>true</b>),
  * then there are no matching value sets ({@link ru.d_shap.conditionalvalues.Values} object is empty).
  * </p>
  */
