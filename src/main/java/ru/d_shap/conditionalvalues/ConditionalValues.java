@@ -60,6 +60,7 @@ public final class ConditionalValues<T> {
 
     private Set<ValueSetUniqueCondition> getValueSetUniqueConditions(final List<ValueSet<T>> valueSets) {
         Map<ValueSetUniqueCondition, Set<T>> valueSetUniqueConditionMap = new HashMap<>();
+        Set<ValueSetUniqueCondition> valueSetUniqueConditionSet = new HashSet<>();
         for (ValueSet<T> valueSet : valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             Set<T> allValues = valueSet.getAllValues();
@@ -67,12 +68,13 @@ public final class ConditionalValues<T> {
                 Set<T> oldValues = valueSetUniqueConditionMap.get(valueSetUniqueCondition);
                 if (oldValues == null) {
                     valueSetUniqueConditionMap.put(valueSetUniqueCondition, allValues);
+                    valueSetUniqueConditionSet.add(valueSetUniqueCondition);
                 } else if (!oldValues.containsAll(allValues) || !allValues.containsAll(oldValues)) {
                     throw new DuplicateValueSetException(valueSet);
                 }
             }
         }
-        return valueSetUniqueConditionMap.keySet();
+        return valueSetUniqueConditionSet;
     }
 
     /**
@@ -156,7 +158,7 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects and perform the specified action for each value.
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects, and perform the specified action for each value.
      *
      * @param conditionSet conditions, used for lookup.
      * @param action       the specified action.
