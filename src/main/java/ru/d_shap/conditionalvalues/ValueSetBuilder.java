@@ -53,15 +53,23 @@ import java.util.Set;
  * means (type = someType AND (state = 1 OR state = 2 OR state = 3)).
  * </p>
  * <p>
- * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)},
- * {@link #addCondition(String, long)}, {@link #addCondition(String, float)},
- * {@link #addCondition(String, double)} and {@link #addCondition(String, Object)}
+ * Methods {@link #addCondition(String, String...)},
+ * {@link #addCondition(String, boolean)}, {@link #addCondition(String, boolean...)},
+ * {@link #addCondition(String, int)}, {@link #addCondition(String, int...)},
+ * {@link #addCondition(String, long)}, {@link #addCondition(String, long...)},
+ * {@link #addCondition(String, float)}, {@link #addCondition(String, float...)},
+ * {@link #addCondition(String, double)}, {@link #addCondition(String, double...)},
+ * {@link #addCondition(String, Object)} and {@link #addCondition(String, Object...)}
  * are convenient methods for {@link #addCondition(String, String)}.
  * </p>
  * <p>
- * Methods {@link #removeCondition(String, boolean)}, {@link #removeCondition(String, int)},
- * {@link #removeCondition(String, long)}, {@link #removeCondition(String, float)},
- * {@link #removeCondition(String, double)} and {@link #removeCondition(String, Object)}
+ * Methods {@link #removeCondition(String, String...)},
+ * {@link #removeCondition(String, boolean)}, {@link #removeCondition(String, boolean...)},
+ * {@link #removeCondition(String, int)}, {@link #removeCondition(String, int...)},
+ * {@link #removeCondition(String, long)}, {@link #removeCondition(String, long...)},
+ * {@link #removeCondition(String, float)}, {@link #removeCondition(String, float...)},
+ * {@link #removeCondition(String, double)}, {@link #removeCondition(String, double...)},
+ * {@link #removeCondition(String, Object)} and {@link #removeCondition(String, Object...)}
  * are convenient methods for {@link #removeCondition(String, String)}.
  * </p>
  * <p>
