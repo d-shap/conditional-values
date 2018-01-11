@@ -96,6 +96,22 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final String... values) {
+        if (values != null) {
+            for (String value : values) {
+                doAddCondition(name, value);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Add condition to the set.
      *
      * @param name  condition name.
@@ -104,6 +120,22 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addCondition(final String name, final boolean value) {
         doAddCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final boolean... values) {
+        if (values != null) {
+            for (boolean value : values) {
+                doAddCondition(name, String.valueOf(value));
+            }
+        }
         return this;
     }
 
@@ -120,6 +152,22 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final int... values) {
+        if (values != null) {
+            for (int value : values) {
+                doAddCondition(name, String.valueOf(value));
+            }
+        }
+        return this;
+    }
+
+    /**
      * Add condition to the set.
      *
      * @param name  condition name.
@@ -128,6 +176,22 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addCondition(final String name, final long value) {
         doAddCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final long... values) {
+        if (values != null) {
+            for (long value : values) {
+                doAddCondition(name, String.valueOf(value));
+            }
+        }
         return this;
     }
 
@@ -144,6 +208,22 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final float... values) {
+        if (values != null) {
+            for (float value : values) {
+                doAddCondition(name, String.valueOf(value));
+            }
+        }
+        return this;
+    }
+
+    /**
      * Add condition to the set.
      *
      * @param name  condition name.
@@ -152,6 +232,22 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addCondition(final String name, final double value) {
         doAddCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final double... values) {
+        if (values != null) {
+            for (double value : values) {
+                doAddCondition(name, String.valueOf(value));
+            }
+        }
         return this;
     }
 
@@ -165,6 +261,24 @@ public final class ValueSetBuilder<T> {
     public ValueSetBuilder<T> addCondition(final String name, final Object value) {
         if (value != null) {
             doAddCondition(name, value.toString());
+        }
+        return this;
+    }
+
+    /**
+     * Add conditions to the set.
+     *
+     * @param name   condition name.
+     * @param values condition values.
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> addCondition(final String name, final Object... values) {
+        if (values != null) {
+            for (Object value : values) {
+                if (value != null) {
+                    doAddCondition(name, value.toString());
+                }
+            }
         }
         return this;
     }
