@@ -48,7 +48,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
-        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        ValueSet<String> valueSet1 = valueSetBuilder.build(false);
         Assertions.assertThat(valueSet1).isNotNull();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1");
         Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val11");
@@ -58,7 +58,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
-        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        ValueSet<String> valueSet2 = valueSetBuilder.build(false);
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
         Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("val11");
@@ -68,7 +68,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addValue("val3");
-        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        ValueSet<String> valueSet3 = valueSetBuilder.build(false);
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1", "cond2");
         Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val11", "val12");
@@ -86,7 +86,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addValue("val1");
-        ValueSet<String> valueSet1 = valueSetBuilder.buildAndClear();
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1).isNotNull();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1");
         Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val11");
@@ -96,7 +96,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
-        ValueSet<String> valueSet2 = valueSetBuilder.buildAndClear();
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond2");
         Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).isEmpty();
@@ -106,7 +106,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addValue("val3");
-        ValueSet<String> valueSet3 = valueSetBuilder.buildAndClear();
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1");
         Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val12");
@@ -198,8 +198,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond4", "val3");
         valueSetBuilder.addCondition("cond4", "val4");
 
-        valueSetBuilder.removeCondition("cond1");
-        valueSetBuilder.removeCondition(null);
+        valueSetBuilder.removeConditions("cond1");
+        valueSetBuilder.removeConditions((String) null);
         valueSetBuilder.removeCondition("cond1", false);
         valueSetBuilder.removeCondition("cond1", true);
         valueSetBuilder.removeCondition("cond2", 1);
@@ -260,7 +260,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.removeCondition("cond5", 1.1f);
         valueSetBuilder = valueSetBuilder.removeCondition("cond6", 1.2);
         valueSetBuilder = valueSetBuilder.removeCondition("cond7", new StringBuilder("val2"));
-        valueSetBuilder = valueSetBuilder.removeCondition("cond8");
+        valueSetBuilder = valueSetBuilder.removeConditions("cond8");
 
         ValueSet<String> valueSet = valueSetBuilder.build();
         Assertions.assertThat(valueSet).isNotNull();
