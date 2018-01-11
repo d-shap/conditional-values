@@ -67,7 +67,7 @@ public final class Values<T> {
      * Tests if this object contains the specified value.
      *
      * @param value the specified value.
-     * @return true if this object contains specified value.
+     * @return true if this object contains the specified value.
      */
     public boolean contains(final T value) {
         return _allValues.contains(value);
