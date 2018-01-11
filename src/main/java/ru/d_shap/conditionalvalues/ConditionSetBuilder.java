@@ -174,6 +174,21 @@ public final class ConditionSetBuilder {
     }
 
     /**
+     * Remove contitions from the set.
+     *
+     * @param names condition names.
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeConditions(final String... names) {
+        if (names != null) {
+            for (String name : names) {
+                _conditions.remove(name);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
