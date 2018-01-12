@@ -49,7 +49,6 @@ public final class ConditionSetTest {
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
-
         ConditionSet conditionSet = new ConditionSet(conditions);
         Assertions.assertThat(conditionSet.nameIterator()).containsExactly("cond1", "cond2", "cond3");
     }
@@ -63,7 +62,6 @@ public final class ConditionSetTest {
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
-
         ConditionSet conditionSet = new ConditionSet(conditions);
         Assertions.assertThat(conditionSet.getCondition("cond1")).isEqualTo("val1");
         Assertions.assertThat(conditionSet.getCondition("cond2")).isEqualTo("val2");
@@ -80,7 +78,6 @@ public final class ConditionSetTest {
         conditions.put("cond1", "val1");
         conditions.put("cond2", "val2");
         conditions.put("cond3", "val3");
-
         ConditionSet conditionSet = new ConditionSet(conditions);
         Assertions.assertThat(conditionSet).toStringContains("cond1=val1");
         Assertions.assertThat(conditionSet).toStringContains("cond2=val2");
