@@ -28,17 +28,11 @@ import java.util.Map;
  * Builder class is used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
- * Objects of this class are reusable. After calling the {@link #build()} method this object can be
- * used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
+ * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  * </p>
  * <p>
  * The internal presentation of conditions is {@code Map<String, String>}.
- * </p>
- * <p>
- * Methods {@link #addCondition(String, boolean)}, {@link #addCondition(String, int)},
- * {@link #addCondition(String, long)}, {@link #addCondition(String, float)},
- * {@link #addCondition(String, double)} and {@link #addCondition(String, Object)}
- * are convenient methods for {@link #addCondition(String, String)}.
  * </p>
  *
  * @author Dmitry Shapovalov
@@ -170,21 +164,6 @@ public final class ConditionSetBuilder {
      */
     public ConditionSetBuilder removeCondition(final String name) {
         _conditions.remove(name);
-        return this;
-    }
-
-    /**
-     * Remove contitions from the set.
-     *
-     * @param names condition names.
-     * @return current object for the method chaining.
-     */
-    public ConditionSetBuilder removeConditions(final String... names) {
-        if (names != null) {
-            for (String name : names) {
-                _conditions.remove(name);
-            }
-        }
         return this;
     }
 
