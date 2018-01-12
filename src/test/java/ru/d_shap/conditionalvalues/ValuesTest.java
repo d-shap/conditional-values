@@ -19,8 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -53,7 +52,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet11 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet12 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets1 = new ArrayList<>();
+        Set<ValueSet<String>> valueSets1 = new HashSet<>();
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
         Values<String> values1 = new Values<>(valueSets1);
@@ -65,13 +64,13 @@ public final class ValuesTest {
         ValueSet<String> valueSet21 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet22 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets2 = new ArrayList<>();
+        Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(valueSets2);
         Assertions.assertThat(values2.isEmpty()).isFalse();
 
-        List<ValueSet<String>> valueSets3 = new ArrayList<>();
+        Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet22);
         Values<String> values3 = new Values<>(valueSets3);
         Assertions.assertThat(values3.isEmpty()).isTrue();
@@ -91,7 +90,7 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val4");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets = new ArrayList<>();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         Values<String> values = new Values<>(valueSets);
@@ -99,6 +98,7 @@ public final class ValuesTest {
         Assertions.assertThat(values.contains("val2")).isTrue();
         Assertions.assertThat(values.contains("val3")).isTrue();
         Assertions.assertThat(values.contains("val4")).isTrue();
+        Assertions.assertThat(values.contains("val5")).isFalse();
     }
 
     /**
@@ -116,14 +116,60 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val5");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets = new ArrayList<>();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        Values<String> values = new Values<>(valueSets);
+        Assertions.assertThat(values.getAllValues()).isNotNull();
+        Assertions.assertThat(values.getAllValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test
+    public void performActionTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val4", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValue("val6");
+        valueSetBuilder.addValue("val3");
+        valueSetBuilder.addValue("val5");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         Values<String> values = new Values<>(valueSets);
 
-        Set<String> allValues = values.getAllValues();
-        Assertions.assertThat(allValues).isNotNull();
-        Assertions.assertThat(allValues).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
+        ActionImpl action = new ActionImpl();
+        values.performAction(action);
+        Assertions.assertThat(action._values).isNotNull();
+        Assertions.assertThat(action._values).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4", "proc_val5", "proc_val6");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test
+    public void performNullActionTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val4", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValue("val6");
+        valueSetBuilder.addValue("val3");
+        valueSetBuilder.addValue("val5");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        Values<String> values = new Values<>(valueSets);
+        values.performAction(null);
     }
 
     /**
@@ -139,14 +185,34 @@ public final class ValuesTest {
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets = new ArrayList<>();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-
         Values<String> values = new Values<>(valueSets);
-        Assertions.assertThat(values).toStringContains("cond1=[");
+        Assertions.assertThat(values).toStringContains("cond1=[val1");
         Assertions.assertThat(values).toStringContains("cond2=[val2]");
-        Assertions.assertThat(values).toStringContains("cond3=[");
+        Assertions.assertThat(values).toStringContains("cond3=[val3");
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class ActionImpl implements Action<String> {
+
+        private final Set<String> _values;
+
+        ActionImpl() {
+            super();
+            _values = new HashSet<>();
+        }
+
+        @Override
+        public void perform(final String value) {
+            _values.add("proc_" + value);
+        }
+
     }
 
 }
