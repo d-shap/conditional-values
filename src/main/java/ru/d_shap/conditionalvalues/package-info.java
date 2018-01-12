@@ -110,7 +110,7 @@
  * <p>
  * Then less specific {@link ru.d_shap.conditionalvalues.ValueSet} objects are removed. The
  * {@link ru.d_shap.conditionalvalues.ValueSet} object is less specific then another one if
- * another object has all of the conditions this object have, and some more additional conditions.
+ * another object has all of the conditions this object has, and some more additional conditions.
  * </p>
  * <p>
  * Then values of remaining {@link ru.d_shap.conditionalvalues.ValueSet} objects are joined and
