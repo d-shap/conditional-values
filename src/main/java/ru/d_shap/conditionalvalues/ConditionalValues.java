@@ -152,7 +152,7 @@ public final class ConditionalValues<T> {
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> lookup(final ConditionSet conditionSet) {
-        List<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
+        Set<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
         removeLessSpecificValueSets(matchingValueSets);
         return new Values<>(matchingValueSets);
     }
@@ -168,8 +168,8 @@ public final class ConditionalValues<T> {
         values.performAction(action);
     }
 
-    private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
-        List<ValueSet<T>> matchingValueSets = new ArrayList<>();
+    private Set<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
+        Set<ValueSet<T>> matchingValueSets = new HashSet<>();
         if (conditionSet == null) {
             return matchingValueSets;
         }
@@ -181,7 +181,7 @@ public final class ConditionalValues<T> {
         return matchingValueSets;
     }
 
-    private void removeLessSpecificValueSets(final List<ValueSet<T>> valueSets) {
+    private void removeLessSpecificValueSets(final Set<ValueSet<T>> valueSets) {
         Iterator<ValueSet<T>> valueSetIterator = valueSets.iterator();
         while (valueSetIterator.hasNext()) {
             ValueSet<T> valueSet = valueSetIterator.next();

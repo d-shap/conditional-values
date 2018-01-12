@@ -19,10 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -30,7 +28,7 @@ import java.util.Set;
  * The lookup result of the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  * </p>
  * <p>
- * If {@link ru.d_shap.conditionalvalues.Values} object created for several matchig
+ * If {@link ru.d_shap.conditionalvalues.Values} object created from several matchig
  * {@link ru.d_shap.conditionalvalues.ValueSet} objects, then values are obtained from every
  * one {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * </p>
@@ -40,13 +38,13 @@ import java.util.Set;
  */
 public final class Values<T> {
 
-    private final List<ValueSet<T>> _valueSets;
+    private final Set<ValueSet<T>> _valueSets;
 
     private final Set<T> _allValues;
 
-    Values(final List<ValueSet<T>> valueSets) {
+    Values(final Set<ValueSet<T>> valueSets) {
         super();
-        _valueSets = Collections.unmodifiableList(new ArrayList<>(valueSets));
+        _valueSets = Collections.unmodifiableSet(new HashSet<>(valueSets));
         Set<T> set = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             set.addAll(valueSet.getAllValues());
