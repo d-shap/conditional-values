@@ -368,8 +368,9 @@ public final class ValueSetTest {
         values.add("val3");
 
         ValueSet<String> valueSet = new ValueSet<>(conditions, values);
-        Assertions.assertThat(valueSet).toStringContains("cond1=[");
+        Assertions.assertThat(valueSet).toStringContains("cond1=[val1");
         Assertions.assertThat(valueSet).toStringContains("cond2=[val2]");
+        Assertions.assertThat(valueSet).toToString().doesNotContain("val3");
     }
 
 }
