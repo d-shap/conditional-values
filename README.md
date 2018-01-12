@@ -71,7 +71,7 @@ First, all matching `ValueSet` objects are defined.
 A `ValueSet` object matches if all the object's conditions match a `ConditionSet` object.
 
 Then less specific `ValueSet` objects are removed.
-The `ValueSet` object is less specific then another one if another object has all of the conditions this object have, and some more additional conditions.
+The `ValueSet` object is less specific then another one if another object has all of the conditions this object has, and some more additional conditions.
 
 Then values of remaining `ValueSet` objects are joined and returned as a lookup result.
 
