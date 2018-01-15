@@ -58,7 +58,7 @@ conditionSetBuilder.addCondition("role", "editor");
 ConditionSet conditionSet = conditionSetBuilder.build();
 ```
 
-And get matching `ValueSet` objects from `ConditionalValues` object:
+And perform lookup for the best matching `ValueSet` objects from `ConditionalValues` object:
 ```
 Values<String> values = conditionalValues.lookup(conditionSet);
 ```
@@ -72,6 +72,7 @@ A `ValueSet` object matches if all the object's conditions match a `ConditionSet
 
 Then less specific `ValueSet` objects are removed.
 The `ValueSet` object is less specific then another one if another object has all of the conditions this object has, and some more additional conditions.
+And, according to the first step, both objects match a 'ConditionSet' object.
 
 Then values of remaining `ValueSet` objects are joined and returned as a lookup result.
 

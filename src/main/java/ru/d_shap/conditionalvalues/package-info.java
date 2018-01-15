@@ -89,7 +89,7 @@
  * ConditionSet conditionSet = conditionSetBuilder.build();
  * }</pre>
  * <p>
- * And get matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from
+ * And perform lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects from
  * {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
  * </p>
  * <pre>{@code
@@ -99,7 +99,7 @@
  * Now we can use {@link ru.d_shap.conditionalvalues.Values} to get all editable fields.
  * </p>
  * <p>
- * The lookup algorithm  for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects
+ * The lookup algorithm for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects
  * is the following:
  * </p>
  * <p>
@@ -111,6 +111,8 @@
  * Then less specific {@link ru.d_shap.conditionalvalues.ValueSet} objects are removed. The
  * {@link ru.d_shap.conditionalvalues.ValueSet} object is less specific then another one if
  * another object has all of the conditions this object has, and some more additional conditions.
+ * And, according to the first step, both objects match a {@link ru.d_shap.conditionalvalues.ConditionSet}
+ * object.
  * </p>
  * <p>
  * Then values of remaining {@link ru.d_shap.conditionalvalues.ValueSet} objects are joined and
