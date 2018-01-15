@@ -53,7 +53,7 @@ public final class Values<T> {
     }
 
     /**
-     * Tests if this object contains any value.
+     * Check if this object contains any value.
      *
      * @return true if this object does not contain any value.
      */
@@ -62,7 +62,7 @@ public final class Values<T> {
     }
 
     /**
-     * Tests if this object contains the specified value.
+     * Check if this object contains the specified value.
      *
      * @param value the specified value.
      * @return true if this object contains the specified value.
