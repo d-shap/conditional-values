@@ -20,9 +20,9 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Class represents a single unique combination of conditions in a {@link ru.d_shap.conditionalvalues.ValueSet} object.
@@ -35,12 +35,12 @@ public final class ValueSetUniqueCondition {
 
     ValueSetUniqueCondition() {
         super();
-        _conditions = Collections.unmodifiableMap(new LinkedHashMap<String, String>());
+        _conditions = Collections.unmodifiableMap(new TreeMap<String, String>());
     }
 
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
-        Map<String, String> map = new LinkedHashMap<>(valueSetUniqueCondition._conditions);
+        Map<String, String> map = new TreeMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
             map.put(conditionName, conditionValue);
         }
