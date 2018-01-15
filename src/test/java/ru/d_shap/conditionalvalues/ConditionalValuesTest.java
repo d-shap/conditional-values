@@ -1601,67 +1601,76 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
-    public void getDifferentCardinalityMatchingValueSetTest() {
+    public void lookupExampleValueSetsTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1");
+        valueSetBuilder.addCondition("type", "type1");
+        valueSetBuilder.addCondition("isViewer", true);
+        valueSetBuilder.addValue("field1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val2");
+        valueSetBuilder.addCondition("type", "type1");
+        valueSetBuilder.addCondition("isEditor", true);
+        valueSetBuilder.addValue("field2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addCondition("cond4", "val4");
-        valueSetBuilder.addValue("val3");
+        valueSetBuilder.addCondition("type", "type1");
+        valueSetBuilder.addCondition("state", 1);
+        valueSetBuilder.addCondition("isViewer", true);
+        valueSetBuilder.addValue("field3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, valueSet3);
 
         ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
 
-        conditionSetBuilder.addCondition("cond1", "val1");
-        conditionSetBuilder.addCondition("cond2", "val2");
-        conditionSetBuilder.addCondition("cond4", "val4");
+        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("state", 1);
+        conditionSetBuilder.addCondition("isViewer", true);
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Values<String> values1 = conditionalValues.lookup(conditionSet1);
         Assertions.assertThat(values1).isNotNull();
         Assertions.assertThat(values1.isEmpty()).isFalse();
-        Assertions.assertThat(values1.getAllValues()).containsExactly("val3");
+        Assertions.assertThat(values1.getAllValues()).containsExactly("field3");
 
-        conditionSetBuilder.addCondition("cond1", "val1");
-        conditionSetBuilder.addCondition("cond2", "val2");
-        conditionSetBuilder.addCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("state", 2);
+        conditionSetBuilder.addCondition("isViewer", true);
         ConditionSet conditionSet2 = conditionSetBuilder.build();
         Values<String> values2 = conditionalValues.lookup(conditionSet2);
         Assertions.assertThat(values2).isNotNull();
         Assertions.assertThat(values2.isEmpty()).isFalse();
-        Assertions.assertThat(values2.getAllValues()).containsExactly("val1", "val2");
+        Assertions.assertThat(values2.getAllValues()).containsExactly("field1");
 
-        conditionSetBuilder.addCondition("cond1", "val1");
-        conditionSetBuilder.addCondition("cond2", "val2");
-        conditionSetBuilder.addCondition("cond3", "val3");
-        conditionSetBuilder.addCondition("cond4", "val4");
+        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition("isEditor", true);
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         Values<String> values3 = conditionalValues.lookup(conditionSet3);
         Assertions.assertThat(values3).isNotNull();
         Assertions.assertThat(values3.isEmpty()).isFalse();
-        Assertions.assertThat(values3.getAllValues()).containsExactly("val2", "val3");
+        Assertions.assertThat(values3.getAllValues()).containsExactly("field1", "field2");
 
-        conditionSetBuilder.addCondition("cond1", "val1");
-        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("state", 1);
+        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition("isEditor", true);
         ConditionSet conditionSet4 = conditionSetBuilder.build();
         Values<String> values4 = conditionalValues.lookup(conditionSet4);
         Assertions.assertThat(values4).isNotNull();
         Assertions.assertThat(values4.isEmpty()).isFalse();
-        Assertions.assertThat(values4.getAllValues()).containsExactly("val1");
+        Assertions.assertThat(values4.getAllValues()).containsExactly("field2", "field3");
 
-        conditionSetBuilder.addCondition("cond2", "val2");
-        conditionSetBuilder.addCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("isViewer", true);
         ConditionSet conditionSet5 = conditionSetBuilder.build();
         Values<String> values5 = conditionalValues.lookup(conditionSet5);
         Assertions.assertThat(values5).isNotNull();
-        Assertions.assertThat(values5.isEmpty()).isTrue();
+        Assertions.assertThat(values5.isEmpty()).isFalse();
+        Assertions.assertThat(values5.getAllValues()).containsExactly("field1");
+
+        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition("isEditor", true);
+        ConditionSet conditionSet6 = conditionSetBuilder.build();
+        Values<String> values6 = conditionalValues.lookup(conditionSet6);
+        Assertions.assertThat(values6).isNotNull();
+        Assertions.assertThat(values6.isEmpty()).isTrue();
     }
 
     /**
