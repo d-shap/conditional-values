@@ -19,6 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
@@ -1703,6 +1706,55 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
+    public void lookupValueSetsWithActionTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2);
+
+        ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
+
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val22");
+        ConditionSet conditionSet1 = conditionSetBuilder.build();
+        ActionImpl action1 = new ActionImpl();
+        conditionalValues.lookup(conditionSet1, action1);
+        Assertions.assertThat(action1._values).isNotNull();
+        Assertions.assertThat(action1._values).containsExactly("proc_val1");
+
+        conditionSetBuilder.addCondition("cond3", "val31");
+        conditionSetBuilder.addCondition("cond4", "val42");
+        ConditionSet conditionSet2 = conditionSetBuilder.build();
+        ActionImpl action2 = new ActionImpl();
+        conditionalValues.lookup(conditionSet2, action2);
+        Assertions.assertThat(action2._values).isNotNull();
+        Assertions.assertThat(action2._values).containsExactly("proc_val2");
+
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val22");
+        conditionSetBuilder.addCondition("cond3", "val31");
+        conditionSetBuilder.addCondition("cond4", "val42");
+        ConditionSet conditionSet3 = conditionSetBuilder.build();
+        ActionImpl action3 = new ActionImpl();
+        conditionalValues.lookup(conditionSet3, action3);
+        Assertions.assertThat(action3._values).isNotNull();
+        Assertions.assertThat(action3._values).containsExactly("proc_val1", "proc_val2");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
     public void toStringTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addCondition("cond1", "val1");
@@ -1723,6 +1775,27 @@ public final class ConditionalValuesTest {
         Assertions.assertThat(conditionalValues).toStringContains("cond2=[val2]");
         Assertions.assertThat(conditionalValues).toStringContains("cond3=[val3]");
         Assertions.assertThat(conditionalValues).toStringContains("cond4=[val4]");
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class ActionImpl implements Action<String> {
+
+        private final Set<String> _values;
+
+        ActionImpl() {
+            super();
+            _values = new HashSet<>();
+        }
+
+        @Override
+        public void perform(final String value) {
+            _values.add("proc_" + value);
+        }
+
     }
 
 }
