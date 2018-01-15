@@ -351,8 +351,11 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet7 = valueSetBuilder.build();
 
-        ConditionalValues<?> conditionalValues = ConditionalValues.createConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4, valueSet5, valueSet6, valueSet7, valueSet1);
-        Assertions.assertThat(conditionalValues).isNotNull();
+        ConditionalValues<?> conditionalValues1 = ConditionalValues.createConditionalValues(valueSet1, valueSet2, valueSet3, valueSet4, valueSet5, valueSet6, valueSet7, valueSet1);
+        Assertions.assertThat(conditionalValues1).isNotNull();
+
+        ConditionalValues<?> conditionalValues2 = ConditionalValues.createConditionalValues(valueSet1, valueSet7, valueSet6, valueSet5, valueSet4, valueSet3, valueSet2, valueSet1);
+        Assertions.assertThat(conditionalValues2).isNotNull();
     }
 
     /**
