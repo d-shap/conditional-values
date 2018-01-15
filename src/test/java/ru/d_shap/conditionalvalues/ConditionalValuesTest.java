@@ -1677,7 +1677,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
-    public void getNullMatchingValueSetTest() {
+    public void lookupValueSetsNullConditionsTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
