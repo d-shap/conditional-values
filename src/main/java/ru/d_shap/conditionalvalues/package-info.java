@@ -100,22 +100,13 @@
  * </p>
  * <p>
  * The lookup algorithm for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects
- * is the following:
- * </p>
- * <p>
- * First, all matching {@link ru.d_shap.conditionalvalues.ValueSet} objects are defined. A
- * {@link ru.d_shap.conditionalvalues.ValueSet} object matches if all the object's conditions match a
- * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
- * </p>
- * <p>
- * Then less specific {@link ru.d_shap.conditionalvalues.ValueSet} objects are removed. The
- * {@link ru.d_shap.conditionalvalues.ValueSet} object is less specific then another one if
+ * is the following. First, all matching {@link ru.d_shap.conditionalvalues.ValueSet} objects are defined.
+ * A {@link ru.d_shap.conditionalvalues.ValueSet} object matches if all the object's conditions match a
+ * {@link ru.d_shap.conditionalvalues.ConditionSet} object. Then less specific {@link ru.d_shap.conditionalvalues.ValueSet}
+ * objects are removed. The {@link ru.d_shap.conditionalvalues.ValueSet} object is less specific than another one if
  * another object has all of the conditions this object has, and some more additional conditions.
- * And, according to the first step, both objects match a {@link ru.d_shap.conditionalvalues.ConditionSet}
- * object.
- * </p>
- * <p>
- * Then values of remaining {@link ru.d_shap.conditionalvalues.ValueSet} objects are joined and
+ * And, according to the previous step, both objects match a {@link ru.d_shap.conditionalvalues.ConditionSet}
+ * object. Then values of remaining {@link ru.d_shap.conditionalvalues.ValueSet} objects are joined and
  * returned as a lookup result.
  * </p>
  * <p>
@@ -169,6 +160,24 @@
  * <p>
  * If we have runtime conditions (isViewer = <b>true</b>, isEditor = <b>true</b>),
  * then there are no matching value sets ({@link ru.d_shap.conditionalvalues.Values} object is empty).
+ * </p>
+ * <p>
+ * To select conditions the following should be considered.
+ * </p>
+ * <p>
+ * Form in the example above could be only in one state at any given moment of time. So the condition
+ * with the name <b>state</b> and values <b>1</b>, <b>2</b>, <b>3</b> is good enough.
+ * </p>
+ * <p>
+ * If the user in the examample above could have only one role, then condition with the name <b>role</b>
+ * and values <b>viewer</b>, <b>editor</b>, <b>administrator</b> is also good enough.
+ * </p>
+ * <p>
+ * But if the user can have several roles simultaneously, then this condition would not work. In this
+ * case several conditions should be used: condition with the name <b>isViewer</b> and values
+ * <b>true</b> and <b>false</b>, condition with the name <b>isEditor</b> and values <b>true</b> and
+ * <b>false</b>, condition with the name <b>isAdministrator</b> and values <b>true</b> and <b>false</b>.
+ * Then if the user has several roles, then this user could edit form fields available for each role.
  * </p>
  */
 package ru.d_shap.conditionalvalues;

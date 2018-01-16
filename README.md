@@ -65,15 +65,12 @@ Values<String> values = conditionalValues.lookup(conditionSet);
 
 Now we can use `Values` to get all editable fields.
 
-The lookup algorithm for the best matching `ValueSet` objects is the following:
-
+The lookup algorithm for the best matching `ValueSet` objects is the following.
 First, all matching `ValueSet` objects are defined.
 A `ValueSet` object matches if all the object's conditions match a `ConditionSet` object.
-
 Then less specific `ValueSet` objects are removed.
-The `ValueSet` object is less specific then another one if another object has all of the conditions this object has, and some more additional conditions.
-And, according to the first step, both objects match a 'ConditionSet' object.
-
+The `ValueSet` object is less specific than another one if another object has all of the conditions this object has, and some more additional conditions.
+And, according to the previous step, both objects match a `ConditionSet` object.
 Then values of remaining `ValueSet` objects are joined and returned as a lookup result.
 
 For example, there are predefined conditions:
@@ -102,3 +99,13 @@ If we have runtime conditions (type = **type1**, state = **1**, isViewer = **tru
 If we have runtime conditions (type = **type1**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
 
 If we have runtime conditions (isViewer = **true**, isEditor = **true**), then there are no matching value sets (`Values` object is empty).
+
+To select conditions the following should be considered.
+
+Form in the example above could be only in one state at any given moment of time. So the condition with the name **state** and values **1**, **2**, **3** is good enough.
+
+If the user in the examample above could have only one role, then condition with the name **role** and values **viewer**, **editor**, **administrator** is also good enough.
+
+But if the user can have several roles simultaneously, then this condition would not work.
+In this case several conditions should be used: condition with the name **isViewer** and values **true** and **false**, condition with the name **isEditor** and values **true** and **false**, condition with the name **isAdministrator** and values **true** and **false**.
+Then if the user has several roles, then this user could edit form fields available for each role.
