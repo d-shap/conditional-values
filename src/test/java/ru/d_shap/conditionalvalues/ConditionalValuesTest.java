@@ -402,6 +402,38 @@ public final class ConditionalValuesTest {
     /**
      * {@link ConditionalValues} class test.
      */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetValuesContains1FailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+
+        ConditionalValues.createConditionalValues(valueSet1, valueSet2);
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetValuesContains2FailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+
+        ConditionalValues.createConditionalValues(valueSet1, valueSet2);
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
     @Test
     public void getAllConditionNamesTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
