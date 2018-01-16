@@ -362,7 +362,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test(expected = DuplicateValueSetException.class)
-    public void duplicateFullValueSetFailTest() {
+    public void duplicateValueSetAllConditionsFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
