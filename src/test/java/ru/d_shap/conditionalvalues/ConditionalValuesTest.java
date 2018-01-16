@@ -403,7 +403,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test(expected = DuplicateValueSetException.class)
-    public void duplicateValueSetValuesContains1FailTest() {
+    public void duplicateValueSetFirstValuesContainsSecondValuesFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addValue("val1", "val2");
@@ -419,7 +419,7 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test(expected = DuplicateValueSetException.class)
-    public void duplicateValueSetValuesContains2FailTest() {
+    public void duplicateValueSetSecondValuesContainsFirstValuesFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addValue("val1");
@@ -1421,161 +1421,161 @@ public final class ConditionalValuesTest {
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet01 = conditionSetBuilder.build();
-        Values<String> values01 = conditionalValues.lookup(conditionSet01);
-        Assertions.assertThat(values01).isNotNull();
-        Assertions.assertThat(values01.isEmpty()).isFalse();
-        Assertions.assertThat(values01.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1111 = conditionSetBuilder.build();
+        Values<String> values1111 = conditionalValues.lookup(conditionSet1111);
+        Assertions.assertThat(values1111).isNotNull();
+        Assertions.assertThat(values1111.isEmpty()).isFalse();
+        Assertions.assertThat(values1111.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet02 = conditionSetBuilder.build();
-        Values<String> values02 = conditionalValues.lookup(conditionSet02);
-        Assertions.assertThat(values02).isNotNull();
-        Assertions.assertThat(values02.isEmpty()).isFalse();
-        Assertions.assertThat(values02.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1112 = conditionSetBuilder.build();
+        Values<String> values1112 = conditionalValues.lookup(conditionSet1112);
+        Assertions.assertThat(values1112).isNotNull();
+        Assertions.assertThat(values1112.isEmpty()).isFalse();
+        Assertions.assertThat(values1112.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet03 = conditionSetBuilder.build();
-        Values<String> values03 = conditionalValues.lookup(conditionSet03);
-        Assertions.assertThat(values03).isNotNull();
-        Assertions.assertThat(values03.isEmpty()).isFalse();
-        Assertions.assertThat(values03.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1121 = conditionSetBuilder.build();
+        Values<String> values1121 = conditionalValues.lookup(conditionSet1121);
+        Assertions.assertThat(values1121).isNotNull();
+        Assertions.assertThat(values1121.isEmpty()).isFalse();
+        Assertions.assertThat(values1121.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet04 = conditionSetBuilder.build();
-        Values<String> values04 = conditionalValues.lookup(conditionSet04);
-        Assertions.assertThat(values04).isNotNull();
-        Assertions.assertThat(values04.isEmpty()).isFalse();
-        Assertions.assertThat(values04.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1122 = conditionSetBuilder.build();
+        Values<String> values1122 = conditionalValues.lookup(conditionSet1122);
+        Assertions.assertThat(values1122).isNotNull();
+        Assertions.assertThat(values1122.isEmpty()).isFalse();
+        Assertions.assertThat(values1122.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet05 = conditionSetBuilder.build();
-        Values<String> values05 = conditionalValues.lookup(conditionSet05);
-        Assertions.assertThat(values05).isNotNull();
-        Assertions.assertThat(values05.isEmpty()).isFalse();
-        Assertions.assertThat(values05.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1211 = conditionSetBuilder.build();
+        Values<String> values1211 = conditionalValues.lookup(conditionSet1211);
+        Assertions.assertThat(values1211).isNotNull();
+        Assertions.assertThat(values1211.isEmpty()).isFalse();
+        Assertions.assertThat(values1211.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet06 = conditionSetBuilder.build();
-        Values<String> values06 = conditionalValues.lookup(conditionSet06);
-        Assertions.assertThat(values06).isNotNull();
-        Assertions.assertThat(values06.isEmpty()).isFalse();
-        Assertions.assertThat(values06.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1212 = conditionSetBuilder.build();
+        Values<String> values1212 = conditionalValues.lookup(conditionSet1212);
+        Assertions.assertThat(values1212).isNotNull();
+        Assertions.assertThat(values1212.isEmpty()).isFalse();
+        Assertions.assertThat(values1212.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet07 = conditionSetBuilder.build();
-        Values<String> values07 = conditionalValues.lookup(conditionSet07);
-        Assertions.assertThat(values07).isNotNull();
-        Assertions.assertThat(values07.isEmpty()).isFalse();
-        Assertions.assertThat(values07.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1221 = conditionSetBuilder.build();
+        Values<String> values1221 = conditionalValues.lookup(conditionSet1221);
+        Assertions.assertThat(values1221).isNotNull();
+        Assertions.assertThat(values1221.isEmpty()).isFalse();
+        Assertions.assertThat(values1221.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet08 = conditionSetBuilder.build();
-        Values<String> values08 = conditionalValues.lookup(conditionSet08);
-        Assertions.assertThat(values08).isNotNull();
-        Assertions.assertThat(values08.isEmpty()).isFalse();
-        Assertions.assertThat(values08.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet1222 = conditionSetBuilder.build();
+        Values<String> values1222 = conditionalValues.lookup(conditionSet1222);
+        Assertions.assertThat(values1222).isNotNull();
+        Assertions.assertThat(values1222.isEmpty()).isFalse();
+        Assertions.assertThat(values1222.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet09 = conditionSetBuilder.build();
-        Values<String> values09 = conditionalValues.lookup(conditionSet09);
-        Assertions.assertThat(values09).isNotNull();
-        Assertions.assertThat(values09.isEmpty()).isFalse();
-        Assertions.assertThat(values09.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2111 = conditionSetBuilder.build();
+        Values<String> values2111 = conditionalValues.lookup(conditionSet2111);
+        Assertions.assertThat(values2111).isNotNull();
+        Assertions.assertThat(values2111.isEmpty()).isFalse();
+        Assertions.assertThat(values2111.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet10 = conditionSetBuilder.build();
-        Values<String> values10 = conditionalValues.lookup(conditionSet10);
-        Assertions.assertThat(values10).isNotNull();
-        Assertions.assertThat(values10.isEmpty()).isFalse();
-        Assertions.assertThat(values10.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2112 = conditionSetBuilder.build();
+        Values<String> values2112 = conditionalValues.lookup(conditionSet2112);
+        Assertions.assertThat(values2112).isNotNull();
+        Assertions.assertThat(values2112.isEmpty()).isFalse();
+        Assertions.assertThat(values2112.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet11 = conditionSetBuilder.build();
-        Values<String> values11 = conditionalValues.lookup(conditionSet11);
-        Assertions.assertThat(values11).isNotNull();
-        Assertions.assertThat(values11.isEmpty()).isFalse();
-        Assertions.assertThat(values11.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2121 = conditionSetBuilder.build();
+        Values<String> values2121 = conditionalValues.lookup(conditionSet2121);
+        Assertions.assertThat(values2121).isNotNull();
+        Assertions.assertThat(values2121.isEmpty()).isFalse();
+        Assertions.assertThat(values2121.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet12 = conditionSetBuilder.build();
-        Values<String> values12 = conditionalValues.lookup(conditionSet12);
-        Assertions.assertThat(values12).isNotNull();
-        Assertions.assertThat(values12.isEmpty()).isFalse();
-        Assertions.assertThat(values12.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2122 = conditionSetBuilder.build();
+        Values<String> values2122 = conditionalValues.lookup(conditionSet2122);
+        Assertions.assertThat(values2122).isNotNull();
+        Assertions.assertThat(values2122.isEmpty()).isFalse();
+        Assertions.assertThat(values2122.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet13 = conditionSetBuilder.build();
-        Values<String> values13 = conditionalValues.lookup(conditionSet13);
-        Assertions.assertThat(values13).isNotNull();
-        Assertions.assertThat(values13.isEmpty()).isFalse();
-        Assertions.assertThat(values13.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2211 = conditionSetBuilder.build();
+        Values<String> values2211 = conditionalValues.lookup(conditionSet2211);
+        Assertions.assertThat(values2211).isNotNull();
+        Assertions.assertThat(values2211.isEmpty()).isFalse();
+        Assertions.assertThat(values2211.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet14 = conditionSetBuilder.build();
-        Values<String> values14 = conditionalValues.lookup(conditionSet14);
-        Assertions.assertThat(values14).isNotNull();
-        Assertions.assertThat(values14.isEmpty()).isFalse();
-        Assertions.assertThat(values14.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2212 = conditionSetBuilder.build();
+        Values<String> values2212 = conditionalValues.lookup(conditionSet2212);
+        Assertions.assertThat(values2212).isNotNull();
+        Assertions.assertThat(values2212.isEmpty()).isFalse();
+        Assertions.assertThat(values2212.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet15 = conditionSetBuilder.build();
-        Values<String> values15 = conditionalValues.lookup(conditionSet15);
-        Assertions.assertThat(values15).isNotNull();
-        Assertions.assertThat(values15.isEmpty()).isFalse();
-        Assertions.assertThat(values15.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2221 = conditionSetBuilder.build();
+        Values<String> values2221 = conditionalValues.lookup(conditionSet2221);
+        Assertions.assertThat(values2221).isNotNull();
+        Assertions.assertThat(values2221.isEmpty()).isFalse();
+        Assertions.assertThat(values2221.getAllValues()).containsExactly("val1", "val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val22");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet16 = conditionSetBuilder.build();
-        Values<String> values16 = conditionalValues.lookup(conditionSet16);
-        Assertions.assertThat(values16).isNotNull();
-        Assertions.assertThat(values16.isEmpty()).isFalse();
-        Assertions.assertThat(values16.getAllValues()).containsExactly("val1", "val2");
+        ConditionSet conditionSet2222 = conditionSetBuilder.build();
+        Values<String> values2222 = conditionalValues.lookup(conditionSet2222);
+        Assertions.assertThat(values2222).isNotNull();
+        Assertions.assertThat(values2222.isEmpty()).isFalse();
+        Assertions.assertThat(values2222.getAllValues()).containsExactly("val1", "val2");
     }
 
     /**
@@ -1775,10 +1775,10 @@ public final class ConditionalValuesTest {
         Assertions.assertThat(action2._values).isNotNull();
         Assertions.assertThat(action2._values).containsExactly("proc_val2");
 
-        conditionSetBuilder.addCondition("cond1", "val11");
-        conditionSetBuilder.addCondition("cond2", "val22");
-        conditionSetBuilder.addCondition("cond3", "val31");
-        conditionSetBuilder.addCondition("cond4", "val42");
+        conditionSetBuilder.addCondition("cond1", "val12");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond3", "val32");
+        conditionSetBuilder.addCondition("cond4", "val41");
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         ActionImpl action3 = new ActionImpl();
         conditionalValues.lookup(conditionSet3, action3);
