@@ -1,6 +1,6 @@
 Conditional values
 ==================
-Classes simplify conditional logic, getting rid of **if**-statements in the code.
+Conditional values simplify conditional logic and get rid of if-statements in the code.
 
 The main purpose is to find the best result from many predefined conditions.
 
