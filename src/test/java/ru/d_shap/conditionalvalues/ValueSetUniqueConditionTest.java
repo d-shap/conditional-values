@@ -162,22 +162,22 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void hashCodeTest() {
         ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition();
-        Assertions.assertThat(valueSetUniqueCondition11).isHashCodeEqualTo(1);
+        Assertions.assertThat(valueSetUniqueCondition11).hasHashCode(1);
         ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
-        Assertions.assertThat(valueSetUniqueCondition12).isHashCodeEqualTo(-1876645285);
+        Assertions.assertThat(valueSetUniqueCondition12).hasHashCode(-1876645285);
         ValueSetUniqueCondition valueSetUniqueCondition13 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
-        Assertions.assertThat(valueSetUniqueCondition13).isHashCodeEqualTo(-1446500779);
+        Assertions.assertThat(valueSetUniqueCondition13).hasHashCode(-1446500779);
         ValueSetUniqueCondition valueSetUniqueCondition14 = new ValueSetUniqueCondition(valueSetUniqueCondition13, "name3", "value3");
-        Assertions.assertThat(valueSetUniqueCondition14).isHashCodeEqualTo(-394490897);
+        Assertions.assertThat(valueSetUniqueCondition14).hasHashCode(-394490897);
 
         ValueSetUniqueCondition valueSetUniqueCondition21 = new ValueSetUniqueCondition();
-        Assertions.assertThat(valueSetUniqueCondition21).isHashCodeEqualTo(1);
+        Assertions.assertThat(valueSetUniqueCondition21).hasHashCode(1);
         ValueSetUniqueCondition valueSetUniqueCondition22 = new ValueSetUniqueCondition(valueSetUniqueCondition21, "name1", "value1");
-        Assertions.assertThat(valueSetUniqueCondition22).isHashCodeEqualTo(-1876645285);
+        Assertions.assertThat(valueSetUniqueCondition22).hasHashCode(-1876645285);
         ValueSetUniqueCondition valueSetUniqueCondition23 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
-        Assertions.assertThat(valueSetUniqueCondition23).isHashCodeEqualTo(-1446500779);
+        Assertions.assertThat(valueSetUniqueCondition23).hasHashCode(-1446500779);
         ValueSetUniqueCondition valueSetUniqueCondition24 = new ValueSetUniqueCondition(valueSetUniqueCondition23, "name3", "value4");
-        Assertions.assertThat(valueSetUniqueCondition24).isHashCodeEqualTo(-394490896);
+        Assertions.assertThat(valueSetUniqueCondition24).hasHashCode(-394490896);
 
         Assertions.assertThat(valueSetUniqueCondition11.hashCode()).isEqualTo(valueSetUniqueCondition21.hashCode());
         Assertions.assertThat(valueSetUniqueCondition12.hashCode()).isEqualTo(valueSetUniqueCondition22.hashCode());
@@ -191,10 +191,10 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void toStringTest() {
         ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
-        Assertions.assertThat(valueSetUniqueCondition1).isToStringEqualTo("{}");
+        Assertions.assertThat(valueSetUniqueCondition1).hasToString("{}");
 
         ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
-        Assertions.assertThat(valueSetUniqueCondition2).isToStringEqualTo("{name1=value1}");
+        Assertions.assertThat(valueSetUniqueCondition2).hasToString("{name1=value1}");
 
         ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
         Assertions.assertThat(valueSetUniqueCondition3).toStringContains("name1=value1");
