@@ -112,4 +112,4 @@ Then if the user has several roles, then this user could edit form fields availa
 
 Donation
 ========
-If you find my code useful, you can [![bye me a coffee](donation.png)](https://www.paypal.me/dshapovalov)
+If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
