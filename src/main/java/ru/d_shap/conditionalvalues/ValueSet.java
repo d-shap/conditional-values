@@ -32,6 +32,7 @@ import java.util.Set;
  * Class represents a distinct condition with a corresponding values for this condition.
  *
  * @param <T> generic value type.
+ *
  * @author Dmitry Shapovalov
  */
 public final class ValueSet<T> {
@@ -63,6 +64,7 @@ public final class ValueSet<T> {
      * Get all condition values for the specified condition name, defined in this object.
      *
      * @param conditionName the specified condition name.
+     *
      * @return all condition values for the specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {

@@ -57,6 +57,7 @@ import java.util.Set;
  * </p>
  *
  * @param <T> generic value type.
+ *
  * @author Dmitry Shapovalov
  */
 public final class ValueSetBuilder<T> {
@@ -76,6 +77,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final String value) {
@@ -88,6 +90,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final boolean value) {
@@ -100,6 +103,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final int value) {
@@ -112,6 +116,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final long value) {
@@ -124,6 +129,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final float value) {
@@ -136,6 +142,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final double value) {
@@ -148,6 +155,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final Object value) {
@@ -161,6 +169,7 @@ public final class ValueSetBuilder<T> {
      * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addConditions(final ValueSet<T> valueSet) {
@@ -192,6 +201,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final String value) {
@@ -204,6 +214,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final boolean value) {
@@ -216,6 +227,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final int value) {
@@ -228,6 +240,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final long value) {
@@ -240,6 +253,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final float value) {
@@ -252,6 +266,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final double value) {
@@ -264,6 +279,7 @@ public final class ValueSetBuilder<T> {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final Object value) {
@@ -277,6 +293,7 @@ public final class ValueSetBuilder<T> {
      * Remove all conditions with the specified condition name from the set.
      *
      * @param name the specified condition name.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeConditions(final String name) {
@@ -288,6 +305,7 @@ public final class ValueSetBuilder<T> {
      * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeConditions(final ValueSet<T> valueSet) {
@@ -327,6 +345,7 @@ public final class ValueSetBuilder<T> {
      * Add value to the set.
      *
      * @param value value to add.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addValue(final T value) {
@@ -340,6 +359,7 @@ public final class ValueSetBuilder<T> {
      * Add all values to the set.
      *
      * @param values values to add.
+     *
      * @return current object for the method chaining.
      */
     @SafeVarargs
@@ -356,6 +376,7 @@ public final class ValueSetBuilder<T> {
      * Add all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addValues(final ValueSet<T> valueSet) {
@@ -372,6 +393,7 @@ public final class ValueSetBuilder<T> {
      * Remove value from the set.
      *
      * @param value value to remove.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeValue(final T value) {
@@ -383,6 +405,7 @@ public final class ValueSetBuilder<T> {
      * Remove all values from the set.
      *
      * @param values values to remove.
+     *
      * @return current object for the method chaining.
      */
     @SafeVarargs
@@ -399,6 +422,7 @@ public final class ValueSetBuilder<T> {
      * Remove all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeValues(final ValueSet<T> valueSet) {
@@ -445,6 +469,7 @@ public final class ValueSetBuilder<T> {
      * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @param clear whether to clear all conditions and values or not.
+     *
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
     public ValueSet<T> build(final boolean clear) {

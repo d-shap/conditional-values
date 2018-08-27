@@ -34,6 +34,7 @@ import java.util.Set;
  * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @param <T> generic value type.
+ *
  * @author Dmitry Shapovalov
  */
 public final class ConditionalValues<T> {
@@ -81,6 +82,7 @@ public final class ConditionalValues<T> {
      * Create {@link ru.d_shap.conditionalvalues.ValueSetBuilder} object.
      *
      * @param <T> generic value type.
+     *
      * @return created object.
      */
     public static <T> ValueSetBuilder<T> createValueSetBuilder() {
@@ -101,6 +103,7 @@ public final class ConditionalValues<T> {
      *
      * @param valueSets all value sets, used for lookup.
      * @param <T>       generic value type.
+     *
      * @return created object.
      */
     @SafeVarargs
@@ -125,6 +128,7 @@ public final class ConditionalValues<T> {
      * Get all condition values for the specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName the specified condition name.
+     *
      * @return all condition values for the specified condition name.
      */
     public Set<String> getAllConditionValues(final String conditionName) {
@@ -149,6 +153,7 @@ public final class ConditionalValues<T> {
      * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionSet conditions, used for lookup.
+     *
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> lookup(final ConditionSet conditionSet) {

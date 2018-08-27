@@ -34,6 +34,7 @@ import java.util.Set;
  * </p>
  *
  * @param <T> generic value type.
+ *
  * @author Dmitry Shapovalov
  */
 public final class Values<T> {
@@ -65,6 +66,7 @@ public final class Values<T> {
      * Check if this object contains the specified value.
      *
      * @param value the specified value.
+     *
      * @return true if this object contains the specified value.
      */
     public boolean contains(final T value) {

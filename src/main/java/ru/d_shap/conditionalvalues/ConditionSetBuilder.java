@@ -51,6 +51,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final String value) {
@@ -63,6 +64,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final boolean value) {
@@ -75,6 +77,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final int value) {
@@ -87,6 +90,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final long value) {
@@ -99,6 +103,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final float value) {
@@ -111,6 +116,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final double value) {
@@ -123,6 +129,7 @@ public final class ConditionSetBuilder {
      *
      * @param name  condition name.
      * @param value condition value.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final Object value) {
@@ -136,6 +143,7 @@ public final class ConditionSetBuilder {
      * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the set. Old value are replaced by the new ones.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addConditions(final ConditionSet conditionSet) {
@@ -160,6 +168,7 @@ public final class ConditionSetBuilder {
      * Remove contition from the set.
      *
      * @param name condition name.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name) {
@@ -171,6 +180,7 @@ public final class ConditionSetBuilder {
      * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeConditions(final ConditionSet conditionSet) {
@@ -207,6 +217,7 @@ public final class ConditionSetBuilder {
      * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param clear whether to clear all conditions or not.
+     *
      * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
     public ConditionSet build(final boolean clear) {
