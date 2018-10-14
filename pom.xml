@@ -306,7 +306,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>maven signature - conditional-values</keyname>
+                            <keyname>(maven signature - conditional-values)</keyname>
                         </configuration>
                     </plugin>
                 </plugins>
