@@ -110,11 +110,11 @@ But if the user can have several roles simultaneously, then this condition would
 In this case several conditions should be used: condition with the name **isViewer** and values **true** and **false**, condition with the name **isEditor** and values **true** and **false**, condition with the name **isAdministrator** and values **true** and **false**.
 Then if the user has several roles, then this user could edit form fields available for each role.
 
-Maven artifact
+Latest release
 ==============
-* **groupId**: ru.d-shap
-* **artifactId**: conditional-values
-* **version**: 1.1
+* **&lt;groupId&gt;**: ru.d-shap
+* **&lt;artifactId&gt;**: conditional-values
+* **&lt;version&gt;**: 1.1
 
 Donation
 ========
