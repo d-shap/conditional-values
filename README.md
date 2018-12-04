@@ -110,6 +110,7 @@ In this case several conditions should be used: condition with the name **isView
 Then if the user has several roles, then this user could edit form fields available for each role.
 
 # Latest release
+Conditional values:
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: conditional-values
 * **&lt;version&gt;**: 1.1
