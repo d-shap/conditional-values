@@ -443,23 +443,36 @@ public final class ValueSetTest {
      */
     @Test
     public void toStringTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> condition1 = new HashSet<>();
-        condition1.add("val11");
-        condition1.add("val12");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<>();
-        condition2.add("val2");
-        conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<>();
-        values.add("val1");
-        values.add("val2");
-        values.add("val3");
+        Map<String, Set<String>> conditions1 = new HashMap<>();
+        Set<String> values1 = new HashSet<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(conditions1, values1);
+        Assertions.assertThat(valueSet1).hasToString("{}");
 
-        ValueSet<String> valueSet = new ValueSet<>(conditions, values);
-        Assertions.assertThat(valueSet).toStringContains("cond1=[val1");
-        Assertions.assertThat(valueSet).toStringContains("cond2=[val2]");
-        Assertions.assertThat(valueSet).toToString().doesNotContain("val3");
+        Map<String, Set<String>> conditions2 = new HashMap<>();
+        Set<String> condition2 = new HashSet<>();
+        condition2.add("val1");
+        conditions2.put("cond1", condition2);
+        Set<String> values2 = new HashSet<>();
+        values2.add("val1");
+        ValueSet<String> valueSet2 = new ValueSet<>(conditions2, values2);
+        Assertions.assertThat(valueSet2).hasToString("{cond1=[val1]}");
+
+        Map<String, Set<String>> conditions3 = new HashMap<>();
+        Set<String> condition31 = new HashSet<>();
+        condition31.add("val11");
+        condition31.add("val12");
+        conditions3.put("cond1", condition31);
+        Set<String> condition32 = new HashSet<>();
+        condition32.add("val2");
+        conditions3.put("cond2", condition32);
+        Set<String> values3 = new HashSet<>();
+        values3.add("val1");
+        values3.add("val2");
+        values3.add("val3");
+        ValueSet<String> valueSet3 = new ValueSet<>(conditions3, values3);
+        Assertions.assertThat(valueSet3).toStringContains("cond1=[val1");
+        Assertions.assertThat(valueSet3).toStringContains("cond2=[val2]");
+        Assertions.assertThat(valueSet3).toToString().doesNotContain("val3");
     }
 
 }
