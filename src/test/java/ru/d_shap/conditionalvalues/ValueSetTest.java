@@ -295,53 +295,45 @@ public final class ValueSetTest {
     @Test
     public void getValueSetUniqueConditionsTest() {
         Map<String, Set<String>> conditions1 = new HashMap<>();
-        Set<String> condition11 = new HashSet<>();
-        condition11.add("val1");
-        conditions1.put("cond1", condition11);
         Set<String> values1 = new HashSet<>();
         ValueSet<String> valueSet1 = new ValueSet<>(conditions1, values1);
         List<ValueSetUniqueCondition> valueSetUniqueConditions1 = valueSet1.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions1).isNotNull();
-        Assertions.assertThat(valueSetUniqueConditions1).hasSize(1);
+        Assertions.assertThat(valueSetUniqueConditions1).hasSize(0);
 
         Map<String, Set<String>> conditions2 = new HashMap<>();
         Set<String> condition21 = new HashSet<>();
         condition21.add("val1");
-        condition21.add("val2");
         conditions2.put("cond1", condition21);
         Set<String> values2 = new HashSet<>();
         ValueSet<String> valueSet2 = new ValueSet<>(conditions2, values2);
         List<ValueSetUniqueCondition> valueSetUniqueConditions2 = valueSet2.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions2).isNotNull();
-        Assertions.assertThat(valueSetUniqueConditions2).hasSize(2);
+        Assertions.assertThat(valueSetUniqueConditions2).hasSize(1);
 
         Map<String, Set<String>> conditions3 = new HashMap<>();
         Set<String> condition31 = new HashSet<>();
         condition31.add("val1");
+        condition31.add("val2");
         conditions3.put("cond1", condition31);
-        Set<String> condition32 = new HashSet<>();
-        condition32.add("val2");
-        conditions3.put("cond2", condition32);
         Set<String> values3 = new HashSet<>();
         ValueSet<String> valueSet3 = new ValueSet<>(conditions3, values3);
         List<ValueSetUniqueCondition> valueSetUniqueConditions3 = valueSet3.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions3).isNotNull();
-        Assertions.assertThat(valueSetUniqueConditions3).hasSize(1);
+        Assertions.assertThat(valueSetUniqueConditions3).hasSize(2);
 
         Map<String, Set<String>> conditions4 = new HashMap<>();
         Set<String> condition41 = new HashSet<>();
         condition41.add("val1");
-        condition41.add("val2");
         conditions4.put("cond1", condition41);
         Set<String> condition42 = new HashSet<>();
-        condition42.add("val1");
         condition42.add("val2");
         conditions4.put("cond2", condition42);
         Set<String> values4 = new HashSet<>();
         ValueSet<String> valueSet4 = new ValueSet<>(conditions4, values4);
         List<ValueSetUniqueCondition> valueSetUniqueConditions4 = valueSet4.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions4).isNotNull();
-        Assertions.assertThat(valueSetUniqueConditions4).hasSize(4);
+        Assertions.assertThat(valueSetUniqueConditions4).hasSize(1);
 
         Map<String, Set<String>> conditions5 = new HashMap<>();
         Set<String> condition51 = new HashSet<>();
@@ -352,16 +344,31 @@ public final class ValueSetTest {
         condition52.add("val1");
         condition52.add("val2");
         conditions5.put("cond2", condition52);
-        Set<String> condition53 = new HashSet<>();
-        condition53.add("val1");
-        condition53.add("val2");
-        condition53.add("val3");
-        conditions5.put("cond3", condition53);
         Set<String> values5 = new HashSet<>();
         ValueSet<String> valueSet5 = new ValueSet<>(conditions5, values5);
         List<ValueSetUniqueCondition> valueSetUniqueConditions5 = valueSet5.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions5).isNotNull();
-        Assertions.assertThat(valueSetUniqueConditions5).hasSize(12);
+        Assertions.assertThat(valueSetUniqueConditions5).hasSize(4);
+
+        Map<String, Set<String>> conditions6 = new HashMap<>();
+        Set<String> condition61 = new HashSet<>();
+        condition61.add("val1");
+        condition61.add("val2");
+        conditions6.put("cond1", condition61);
+        Set<String> condition62 = new HashSet<>();
+        condition62.add("val1");
+        condition62.add("val2");
+        conditions6.put("cond2", condition62);
+        Set<String> condition63 = new HashSet<>();
+        condition63.add("val1");
+        condition63.add("val2");
+        condition63.add("val3");
+        conditions6.put("cond3", condition63);
+        Set<String> values6 = new HashSet<>();
+        ValueSet<String> valueSet6 = new ValueSet<>(conditions6, values6);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions6 = valueSet6.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions6).isNotNull();
+        Assertions.assertThat(valueSetUniqueConditions6).hasSize(12);
     }
 
     /**
