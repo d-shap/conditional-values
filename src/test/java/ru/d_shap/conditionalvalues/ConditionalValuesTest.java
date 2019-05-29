@@ -19,6 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -88,6 +90,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<String> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<String> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -120,6 +125,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<Boolean> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<Boolean> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -152,6 +160,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<Integer> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<Integer> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -184,6 +195,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<Long> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<Long> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -216,6 +230,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<Float> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<Float> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -248,6 +265,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<Double> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<Double> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -280,6 +300,9 @@ public final class ConditionalValuesTest {
 
         ConditionalValues<?> conditionalValues4 = ConditionalValues.createConditionalValues(null, valueSet1, valueSet2);
         Assertions.assertThat(conditionalValues4).isNotNull();
+
+        ConditionalValues<?> conditionalValues5 = ConditionalValues.createConditionalValues(Arrays.asList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues5).isNotNull();
     }
 
     /**
@@ -298,6 +321,10 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues3 = ConditionalValues.createConditionalValues(null, null);
         Assertions.assertThat(conditionalValues3).isNotNull();
         Assertions.assertThat(conditionalValues3.getAllConditionNames()).isEmpty();
+
+        ConditionalValues<String> conditionalValues4 = ConditionalValues.createConditionalValues((Collection<ValueSet<String>>) null);
+        Assertions.assertThat(conditionalValues4).isNotNull();
+        Assertions.assertThat(conditionalValues4.getAllConditionNames()).isEmpty();
     }
 
     /**
