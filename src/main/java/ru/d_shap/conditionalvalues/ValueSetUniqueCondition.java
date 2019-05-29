@@ -40,11 +40,11 @@ public final class ValueSetUniqueCondition {
 
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
-        Map<String, String> map = new TreeMap<>(valueSetUniqueCondition._conditions);
+        Map<String, String> conditions = new TreeMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
-            map.put(conditionName, conditionValue);
+            conditions.put(conditionName, conditionValue);
         }
-        _conditions = Collections.unmodifiableMap(map);
+        _conditions = Collections.unmodifiableMap(conditions);
     }
 
     /**
