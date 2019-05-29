@@ -70,7 +70,7 @@ public final class ValueSet<T> {
     public Set<String> getAllConditionValues(final String conditionName) {
         Set<String> values = _conditions.get(conditionName);
         if (values == null) {
-            return Collections.unmodifiableSet(new HashSet<String>());
+            return Collections.emptySet();
         } else {
             return values;
         }
