@@ -54,6 +54,7 @@ import java.util.Set;
  * </p>
  * <p>
  * The internal presentation of values is {@code Set<T>}, so no value duplicates are allowed.
+ * Also the value type should implement {@link java.lang.Object#equals(Object)} and {@link Object#hashCode()} methods.
  * </p>
  *
  * @param <T> generic value type.
