@@ -104,11 +104,15 @@ public final class ValueSet<T> {
 
     List<ValueSetUniqueCondition> getValueSetUniqueConditions() {
         List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
-        currentUniqueConditions.add(new ValueSetUniqueCondition());
-        for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
-            currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
+        if (_conditions.isEmpty()) {
+            return currentUniqueConditions;
+        } else {
+            currentUniqueConditions.add(new ValueSetUniqueCondition());
+            for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
+                currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
+            }
+            return currentUniqueConditions;
         }
-        return currentUniqueConditions;
     }
 
     private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
