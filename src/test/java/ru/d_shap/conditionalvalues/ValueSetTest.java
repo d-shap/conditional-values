@@ -430,6 +430,17 @@ public final class ValueSetTest {
     /**
      * {@link ValueSet} class test.
      */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValuesUnmodifiableFailTest() {
+        Map<String, Set<String>> conditions = new HashMap<>();
+        Set<String> values = new HashSet<>();
+        ValueSet<String> valueSet = new ValueSet<>(conditions, values);
+        valueSet.getAllValues().add("value");
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
     @Test
     public void toStringTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
