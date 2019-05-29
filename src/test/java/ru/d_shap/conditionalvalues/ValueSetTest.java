@@ -375,6 +375,41 @@ public final class ValueSetTest {
      * {@link ValueSet} class test.
      */
     @Test
+    public void getValueSetUniqueConditionsUnmodifiableTest() {
+        Map<String, Set<String>> conditions1 = new HashMap<>();
+        Set<String> values1 = new HashSet<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(conditions1, values1);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions11 = valueSet1.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions11).hasSize(0);
+        valueSetUniqueConditions11.add(new ValueSetUniqueCondition());
+        Assertions.assertThat(valueSetUniqueConditions11).hasSize(1);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions12 = valueSet1.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions12).hasSize(0);
+
+        Map<String, Set<String>> conditions2 = new HashMap<>();
+        Set<String> condition21 = new HashSet<>();
+        condition21.add("val1");
+        condition21.add("val2");
+        conditions2.put("cond1", condition21);
+        Set<String> condition22 = new HashSet<>();
+        condition22.add("val1");
+        condition22.add("val2");
+        condition22.add("val3");
+        conditions2.put("cond2", condition22);
+        Set<String> values2 = new HashSet<>();
+        ValueSet<String> valueSet2 = new ValueSet<>(conditions2, values2);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions21 = valueSet2.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions21).hasSize(6);
+        valueSetUniqueConditions21.add(new ValueSetUniqueCondition());
+        Assertions.assertThat(valueSetUniqueConditions21).hasSize(7);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions22 = valueSet2.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions22).hasSize(6);
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
     public void getAllValuesTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
         Set<String> condition1 = new HashSet<>();
