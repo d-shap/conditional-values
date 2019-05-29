@@ -303,13 +303,32 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
+     * Remove all conditions with the names obtained from the specified
+     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return current object for the method chaining.
      */
-    public ValueSetBuilder<T> removeConditions(final ValueSet<T> valueSet) {
+    public ValueSetBuilder<T> removeConditionNames(final ValueSet<T> valueSet) {
+        if (valueSet != null) {
+            Set<String> conditionNames = valueSet.getAllConditionNames();
+            for (String conditionName : conditionNames) {
+                removeConditions(conditionName);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Remove all conditions with the names and values obtained from the specified
+     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
+     *
+     * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> removeConditionValues(final ValueSet<T> valueSet) {
         if (valueSet != null) {
             Set<String> conditionNames = valueSet.getAllConditionNames();
             for (String conditionName : conditionNames) {
