@@ -20,6 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,14 +56,14 @@ public final class ConditionalValues<T> {
             }
         }
         _valueSets = Collections.unmodifiableList(list);
-        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = getValueSetUniqueConditions(_valueSets);
+        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = getValueSetUniqueConditions();
         _allValueSetUniqueConditions = Collections.unmodifiableSet(allValueSetUniqueConditions);
     }
 
-    private Set<ValueSetUniqueCondition> getValueSetUniqueConditions(final List<ValueSet<T>> valueSets) {
+    private Set<ValueSetUniqueCondition> getValueSetUniqueConditions() {
         Map<ValueSetUniqueCondition, Set<T>> valueSetUniqueConditionMap = new HashMap<>();
         Set<ValueSetUniqueCondition> valueSetUniqueConditionSet = new HashSet<>();
-        for (ValueSet<T> valueSet : valueSets) {
+        for (ValueSet<T> valueSet : _valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             Set<T> allValues = valueSet.getAllValues();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
@@ -109,6 +110,25 @@ public final class ConditionalValues<T> {
     @SafeVarargs
     public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
         return new ConditionalValues<>(valueSets);
+    }
+
+    /**
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+     *
+     * @param valueSets all value sets, used for lookup.
+     * @param <T>       generic value type.
+     *
+     * @return created object.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> ConditionalValues<T> createConditionalValues(final Collection<ValueSet<T>> valueSets) {
+        if (valueSets == null) {
+            return new ConditionalValues<>();
+        } else {
+            ValueSet<T>[] array = (ValueSet<T>[]) new ValueSet<?>[valueSets.size()];
+            valueSets.toArray(array);
+            return new ConditionalValues<>(array);
+        }
     }
 
     /**
