@@ -76,15 +76,20 @@ public final class ValueSet<T> {
         }
     }
 
-    boolean isMatchConditions(final ConditionSet conditionSet) {
+    boolean isMatchConditions(final ConditionSet conditionSet, final Predicate predicate) {
         int matchCount = 0;
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
             String conditionValue = conditionSet.getCondition(conditionName);
-            Set<String> conditionValues = _conditions.get(conditionName);
-            if (conditionValues != null && conditionValues.contains(conditionValue)) {
-                matchCount++;
+            Set<String> checkValues = _conditions.get(conditionName);
+            if (checkValues != null) {
+                for (String checkValue : checkValues) {
+                    if (predicate.evaluate(conditionName, conditionValue, checkValue)) {
+                        matchCount++;
+                        break;
+                    }
+                }
             }
         }
         return matchCount == _conditions.size();
