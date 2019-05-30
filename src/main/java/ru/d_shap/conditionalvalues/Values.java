@@ -41,25 +41,28 @@ public final class Values<T> {
 
     private final Set<ValueSet<T>> _valueSets;
 
+    private final Set<T> _values;
+
     private final Set<T> _allValues;
 
-    Values(final Set<ValueSet<T>> valueSets) {
+    Values(final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
         super();
         _valueSets = Collections.unmodifiableSet(new HashSet<>(valueSets));
         Set<T> set = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             set.addAll(valueSet.getAllValues());
         }
-        _allValues = Collections.unmodifiableSet(set);
+        _values = Collections.unmodifiableSet(set);
+        _allValues = allValues;
     }
 
     /**
-     * Check if this object contains any value.
+     * Check if this object contains no value.
      *
-     * @return true if this object does not contain any value.
+     * @return true, if this object contains no value.
      */
     public boolean isEmpty() {
-        return _allValues.isEmpty();
+        return _values.isEmpty();
     }
 
     /**
@@ -67,14 +70,34 @@ public final class Values<T> {
      *
      * @param value the specified value.
      *
-     * @return true if this object contains the specified value.
+     * @return true, if this object contains the specified value.
      */
     public boolean contains(final T value) {
+        return _values.contains(value);
+    }
+
+    /**
+     * Check if all values contain the specified value.
+     *
+     * @param value the specified value.
+     *
+     * @return true, if all values contain the specified value.
+     */
+    public boolean allValuesContains(final T value) {
         return _allValues.contains(value);
     }
 
     /**
-     * Return all values contained in this object.
+     * Get values contained in this object.
+     *
+     * @return all values.
+     */
+    public Set<T> getValues() {
+        return _values;
+    }
+
+    /**
+     * Get all values.
      *
      * @return all values.
      */
@@ -89,7 +112,7 @@ public final class Values<T> {
      */
     public void performAction(final Action<T> action) {
         if (action != null) {
-            for (T value : _allValues) {
+            for (T value : _values) {
                 action.perform(value);
             }
         }
