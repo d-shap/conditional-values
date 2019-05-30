@@ -35,8 +35,7 @@ public interface Predicate {
      * @param conditionValue condition value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      * @param value          value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
-     * @return true if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object matches
-     * the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @return true if the values match.
      */
     boolean evaluate(String conditionName, String conditionValue, String value);
 
