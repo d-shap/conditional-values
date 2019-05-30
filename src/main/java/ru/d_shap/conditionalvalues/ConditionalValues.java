@@ -50,6 +50,8 @@ public final class ConditionalValues<T> {
 
     private final Set<ValueSetUniqueCondition> _allValueSetUniqueConditions;
 
+    private final Set<T> _allValues;
+
     @SafeVarargs
     private ConditionalValues(final Predicate predicate, final ValueSet<T>... valueSets) {
         super();
@@ -69,6 +71,8 @@ public final class ConditionalValues<T> {
         _valueSets = Collections.unmodifiableList(list);
         Set<ValueSetUniqueCondition> allValueSetUniqueConditions = getValueSetUniqueConditions();
         _allValueSetUniqueConditions = Collections.unmodifiableSet(allValueSetUniqueConditions);
+        Set<T> allValues = getAllValues();
+        _allValues = Collections.unmodifiableSet(allValues);
     }
 
     private Set<ValueSetUniqueCondition> getValueSetUniqueConditions() {
@@ -88,6 +92,14 @@ public final class ConditionalValues<T> {
             }
         }
         return valueSetUniqueConditionSet;
+    }
+
+    private Set<T> getAllValues() {
+        Set<T> allValues = new HashSet<>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            allValues.addAll(valueSet.getAllValues());
+        }
+        return allValues;
     }
 
     /**
@@ -219,7 +231,7 @@ public final class ConditionalValues<T> {
     public Values<T> lookup(final ConditionSet conditionSet) {
         Set<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
         removeLessSpecificValueSets(matchingValueSets);
-        return new Values<>(matchingValueSets);
+        return new Values<>(matchingValueSets, _allValues);
     }
 
     /**
@@ -234,16 +246,17 @@ public final class ConditionalValues<T> {
     }
 
     private Set<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
-        Set<ValueSet<T>> matchingValueSets = new HashSet<>();
         if (conditionSet == null) {
+            return Collections.emptySet();
+        } else {
+            Set<ValueSet<T>> matchingValueSets = new HashSet<>();
+            for (ValueSet<T> valueSet : _valueSets) {
+                if (valueSet.isMatchConditions(conditionSet, _predicate)) {
+                    matchingValueSets.add(valueSet);
+                }
+            }
             return matchingValueSets;
         }
-        for (ValueSet<T> valueSet : _valueSets) {
-            if (valueSet.isMatchConditions(conditionSet, _predicate)) {
-                matchingValueSets.add(valueSet);
-            }
-        }
-        return matchingValueSets;
     }
 
     private void removeLessSpecificValueSets(final Set<ValueSet<T>> valueSets) {
