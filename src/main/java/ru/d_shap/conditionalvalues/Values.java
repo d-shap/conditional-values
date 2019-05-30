@@ -50,7 +50,7 @@ public final class Values<T> {
         _valueSets = Collections.unmodifiableSet(new HashSet<>(valueSets));
         Set<T> set = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            set.addAll(valueSet.getAllValues());
+            set.addAll(valueSet.getValues());
         }
         _values = Collections.unmodifiableSet(set);
         _allValues = Collections.unmodifiableSet(allValues);
