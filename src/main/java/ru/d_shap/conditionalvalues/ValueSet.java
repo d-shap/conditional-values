@@ -81,7 +81,7 @@ public final class ValueSet<T> {
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
-            String conditionValue = conditionSet.getCondition(conditionName);
+            String conditionValue = conditionSet.getValue(conditionName);
             Set<String> checkValues = _conditions.get(conditionName);
             if (checkValues != null) {
                 for (String checkValue : checkValues) {
@@ -108,10 +108,10 @@ public final class ValueSet<T> {
     }
 
     List<ValueSetUniqueCondition> getValueSetUniqueConditions() {
-        List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
         if (_conditions.isEmpty()) {
-            return currentUniqueConditions;
+            return Collections.emptyList();
         } else {
+            List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
             currentUniqueConditions.add(new ValueSetUniqueCondition());
             for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
                 currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
