@@ -131,7 +131,7 @@ public final class ValueSet<T> {
         return newUniqueConditions;
     }
 
-    Set<T> getAllValues() {
+    Set<T> getValues() {
         return _values;
     }
 
