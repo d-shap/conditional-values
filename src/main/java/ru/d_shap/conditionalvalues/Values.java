@@ -53,7 +53,7 @@ public final class Values<T> {
             set.addAll(valueSet.getAllValues());
         }
         _values = Collections.unmodifiableSet(set);
-        _allValues = allValues;
+        _allValues = Collections.unmodifiableSet(allValues);
     }
 
     /**
