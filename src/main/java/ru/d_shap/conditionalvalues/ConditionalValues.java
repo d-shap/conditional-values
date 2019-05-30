@@ -40,13 +40,24 @@ import java.util.Set;
  */
 public final class ConditionalValues<T> {
 
+    public static final Predicate EQUALS_PREDICATE = new EqualsPredicate();
+
+    public static final Predicate EQUALS_IGNORE_CASE_PREDICATE = new EqualsIgnoreCasePredicate();
+
+    private final Predicate _predicate;
+
     private final List<ValueSet<T>> _valueSets;
 
     private final Set<ValueSetUniqueCondition> _allValueSetUniqueConditions;
 
     @SafeVarargs
-    private ConditionalValues(final ValueSet<T>... valueSets) {
+    private ConditionalValues(final Predicate predicate, final ValueSet<T>... valueSets) {
         super();
+        if (predicate == null) {
+            _predicate = EQUALS_PREDICATE;
+        } else {
+            _predicate = predicate;
+        }
         List<ValueSet<T>> list = new ArrayList<>();
         if (valueSets != null) {
             for (ValueSet<T> valueSet : valueSets) {
@@ -109,7 +120,22 @@ public final class ConditionalValues<T> {
      */
     @SafeVarargs
     public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
-        return new ConditionalValues<>(valueSets);
+        return createConditionalValues(null, valueSets);
+    }
+
+    /**
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+     *
+     * @param predicate predicate to match values from the {@link ru.d_shap.conditionalvalues.ValueSet}
+     *                  and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param valueSets all value sets, used for lookup.
+     * @param <T>       generic value type.
+     *
+     * @return created object.
+     */
+    @SafeVarargs
+    public static <T> ConditionalValues<T> createConditionalValues(final Predicate predicate, final ValueSet<T>... valueSets) {
+        return new ConditionalValues<>(predicate, valueSets);
     }
 
     /**
@@ -120,14 +146,28 @@ public final class ConditionalValues<T> {
      *
      * @return created object.
      */
-    @SuppressWarnings("unchecked")
     public static <T> ConditionalValues<T> createConditionalValues(final Collection<ValueSet<T>> valueSets) {
+        return createConditionalValues(null, valueSets);
+    }
+
+    /**
+     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
+     *
+     * @param predicate predicate to match values from the {@link ru.d_shap.conditionalvalues.ValueSet}
+     *                  and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param valueSets all value sets, used for lookup.
+     * @param <T>       generic value type.
+     *
+     * @return created object.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> ConditionalValues<T> createConditionalValues(final Predicate predicate, final Collection<ValueSet<T>> valueSets) {
         if (valueSets == null) {
-            return new ConditionalValues<>();
+            return new ConditionalValues<>(predicate);
         } else {
             ValueSet<T>[] array = (ValueSet<T>[]) new ValueSet<?>[valueSets.size()];
             valueSets.toArray(array);
-            return new ConditionalValues<>(array);
+            return new ConditionalValues<>(predicate, array);
         }
     }
 
@@ -199,7 +239,7 @@ public final class ConditionalValues<T> {
             return matchingValueSets;
         }
         for (ValueSet<T> valueSet : _valueSets) {
-            if (valueSet.isMatchConditions(conditionSet)) {
+            if (valueSet.isMatchConditions(conditionSet, _predicate)) {
                 matchingValueSets.add(valueSet);
             }
         }
@@ -222,6 +262,44 @@ public final class ConditionalValues<T> {
     @Override
     public String toString() {
         return _valueSets.toString();
+    }
+
+    /**
+     * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class EqualsPredicate implements Predicate {
+
+        EqualsPredicate() {
+            super();
+        }
+
+        @Override
+        public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
+            return conditionValue.equals(checkValue);
+        }
+
+    }
+
+    /**
+     * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class EqualsIgnoreCasePredicate implements Predicate {
+
+        EqualsIgnoreCasePredicate() {
+            super();
+        }
+
+        @Override
+        public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
+            return conditionValue.equalsIgnoreCase(checkValue);
+        }
+
     }
 
 }
