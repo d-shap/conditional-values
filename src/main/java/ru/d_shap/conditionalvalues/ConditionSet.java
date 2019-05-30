@@ -46,7 +46,7 @@ public final class ConditionSet {
         return _conditionNames.iterator();
     }
 
-    String getCondition(final String name) {
+    String getValue(final String name) {
         return _conditions.get(name);
     }
 
