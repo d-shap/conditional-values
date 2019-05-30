@@ -107,6 +107,19 @@ public final class ValueSetBuilder<T> {
      *
      * @return current object for the method chaining.
      */
+    public ValueSetBuilder<T> addCondition(final String name, final char value) {
+        doAddCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Add condition to the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
     public ValueSetBuilder<T> addCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
         return this;
@@ -219,6 +232,19 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final boolean value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove condition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> removeCondition(final String name, final char value) {
         doRemoveCondition(name, String.valueOf(value));
         return this;
     }
@@ -401,7 +427,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addValues(final ValueSet<T> valueSet) {
         if (valueSet != null) {
-            Set<T> values = valueSet.getAllValues();
+            Set<T> values = valueSet.getValues();
             for (T value : values) {
                 addValue(value);
             }
@@ -447,7 +473,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> removeValues(final ValueSet<T> valueSet) {
         if (valueSet != null) {
-            Set<T> values = valueSet.getAllValues();
+            Set<T> values = valueSet.getValues();
             for (T value : values) {
                 removeValue(value);
             }
