@@ -153,7 +153,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the set. Old value are replaced by the new ones.
+     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the set.
+     * Old value are replaced by the new ones.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
@@ -164,7 +165,7 @@ public final class ConditionSetBuilder {
             Iterator<String> conditionNameIterator = conditionSet.nameIterator();
             while (conditionNameIterator.hasNext()) {
                 String conditionName = conditionNameIterator.next();
-                String conditionValue = conditionSet.getCondition(conditionName);
+                String conditionValue = conditionSet.getValue(conditionName);
                 doAddCondition(conditionName, conditionValue);
             }
         }
@@ -180,6 +181,112 @@ public final class ConditionSetBuilder {
     /**
      * Remove contition from the set.
      *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final String value) {
+        doRemoveCondition(name, value);
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final boolean value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final char value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final int value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final long value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final float value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final double value) {
+        doRemoveCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionSetBuilder removeCondition(final String name, final Object value) {
+        if (value != null) {
+            doRemoveCondition(name, value.toString());
+        }
+        return this;
+    }
+
+    /**
+     * Remove contition from the set.
+     *
      * @param name condition name.
      *
      * @return current object for the method chaining.
@@ -190,13 +297,14 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
+     * Remove all conditions with the names obtained from the specified
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @return current object for the method chaining.
+     * @return urrent object for the method chaining.
      */
-    public ConditionSetBuilder removeConditions(final ConditionSet conditionSet) {
+    public ConditionSetBuilder removeConditionNames(final ConditionSet conditionSet) {
         if (conditionSet != null) {
             Iterator<String> conditionNameIterator = conditionSet.nameIterator();
             while (conditionNameIterator.hasNext()) {
@@ -205,6 +313,33 @@ public final class ConditionSetBuilder {
             }
         }
         return this;
+    }
+
+    /**
+     * Remove all conditions with the names and values obtained from the specified
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
+     *
+     * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return urrent object for the method chaining.
+     */
+    public ConditionSetBuilder removeConditionValues(final ConditionSet conditionSet) {
+        if (conditionSet != null) {
+            Iterator<String> conditionNameIterator = conditionSet.nameIterator();
+            while (conditionNameIterator.hasNext()) {
+                String conditionName = conditionNameIterator.next();
+                String conditionValue = conditionSet.getValue(conditionName);
+                doRemoveCondition(conditionName, conditionValue);
+            }
+        }
+        return this;
+    }
+
+    private void doRemoveCondition(final String name, final String value) {
+        String oldValue = _conditions.get(name);
+        if (oldValue != null && oldValue.equals(value)) {
+            _conditions.remove(name);
+        }
     }
 
     /**
