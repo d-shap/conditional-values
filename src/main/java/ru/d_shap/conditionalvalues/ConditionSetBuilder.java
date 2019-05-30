@@ -80,6 +80,19 @@ public final class ConditionSetBuilder {
      *
      * @return current object for the method chaining.
      */
+    public ConditionSetBuilder addCondition(final String name, final char value) {
+        doAddCondition(name, String.valueOf(value));
+        return this;
+    }
+
+    /**
+     * Add contition to the set. An old value is replaced by the new one.
+     *
+     * @param name  condition name.
+     * @param value condition value.
+     *
+     * @return current object for the method chaining.
+     */
     public ConditionSetBuilder addCondition(final String name, final int value) {
         doAddCondition(name, String.valueOf(value));
         return this;
