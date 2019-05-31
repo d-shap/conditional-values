@@ -19,8 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,6 +47,8 @@ public final class Values<T> {
 
     private final Set<T> _allValues;
 
+    private final List<String> _valueSetIds;
+
     Values(final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
         super();
         _valueSets = Collections.unmodifiableSet(new HashSet<>(valueSets));
@@ -54,6 +58,11 @@ public final class Values<T> {
         }
         _values = Collections.unmodifiableSet(set);
         _allValues = Collections.unmodifiableSet(allValues);
+        List<String> valueSetIds = new ArrayList<>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            valueSetIds.add(valueSet.getId());
+        }
+        _valueSetIds = Collections.unmodifiableList(valueSetIds);
     }
 
     /**
@@ -103,6 +112,15 @@ public final class Values<T> {
      */
     public Set<T> getAllValues() {
         return _allValues;
+    }
+
+    /**
+     * Get the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects, used to create this object.
+     *
+     * @return the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     */
+    public List<String> getValueSetIds() {
+        return _valueSetIds;
     }
 
     /**
