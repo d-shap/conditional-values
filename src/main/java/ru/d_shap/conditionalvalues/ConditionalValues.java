@@ -193,7 +193,7 @@ public final class ConditionalValues<T> {
         for (ValueSet<T> valueSet : _valueSets) {
             result.addAll(valueSet.getAllConditionNames());
         }
-        return result;
+        return Collections.unmodifiableSet(result);
     }
 
     /**
@@ -209,7 +209,7 @@ public final class ConditionalValues<T> {
             Set<String> allConditionValues = valueSet.getAllConditionValues(conditionName);
             result.addAll(allConditionValues);
         }
-        return result;
+        return Collections.unmodifiableSet(result);
     }
 
     /**
