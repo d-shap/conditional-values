@@ -116,7 +116,7 @@ public final class ValueSet<T> {
             for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
                 currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
             }
-            return currentUniqueConditions;
+            return Collections.unmodifiableList(currentUniqueConditions);
         }
     }
 
