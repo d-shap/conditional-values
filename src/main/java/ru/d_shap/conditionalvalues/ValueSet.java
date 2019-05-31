@@ -39,6 +39,8 @@ public final class ValueSet<T> {
 
     private final Map<String, Set<String>> _conditions;
 
+    private final Set<String> _conditionNames;
+
     private final Set<T> _values;
 
     ValueSet(final Map<String, Set<String>> conditions, final Set<T> values) {
@@ -48,6 +50,7 @@ public final class ValueSet<T> {
             map.put(entry.getKey(), Collections.unmodifiableSet(new HashSet<>(entry.getValue())));
         }
         _conditions = Collections.unmodifiableMap(map);
+        _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
         _values = Collections.unmodifiableSet(new HashSet<>(values));
     }
 
@@ -57,7 +60,7 @@ public final class ValueSet<T> {
      * @return all condition names.
      */
     public Set<String> getAllConditionNames() {
-        return _conditions.keySet();
+        return _conditionNames;
     }
 
     /**
@@ -97,7 +100,7 @@ public final class ValueSet<T> {
 
     boolean isMoreSpecificValueSet(final ValueSet<T> valueSet) {
         int matchCount = 0;
-        Iterator<String> conditionNameIterator = _conditions.keySet().iterator();
+        Iterator<String> conditionNameIterator = _conditionNames.iterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
             if (valueSet._conditions.containsKey(conditionName)) {
