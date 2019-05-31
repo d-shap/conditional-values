@@ -37,14 +37,17 @@ import java.util.Set;
  */
 public final class ValueSet<T> {
 
+    private final String _id;
+
     private final Map<String, Set<String>> _conditions;
 
     private final Set<String> _conditionNames;
 
     private final Set<T> _values;
 
-    ValueSet(final Map<String, Set<String>> conditions, final Set<T> values) {
+    ValueSet(final String id, final Map<String, Set<String>> conditions, final Set<T> values) {
         super();
+        _id = id;
         Map<String, Set<String>> map = new HashMap<>();
         for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
             map.put(entry.getKey(), Collections.unmodifiableSet(new HashSet<>(entry.getValue())));
@@ -52,6 +55,15 @@ public final class ValueSet<T> {
         _conditions = Collections.unmodifiableMap(map);
         _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
         _values = Collections.unmodifiableSet(new HashSet<>(values));
+    }
+
+    /**
+     * Get the ID of this object.
+     *
+     * @return the ID of this object.
+     */
+    public String getId() {
+        return _id;
     }
 
     /**
@@ -140,7 +152,11 @@ public final class ValueSet<T> {
 
     @Override
     public String toString() {
-        return _conditions.toString();
+        String conditions = _conditions.toString();
+        if (_id != null) {
+            conditions = _id + "=" + conditions;
+        }
+        return conditions;
     }
 
 }
