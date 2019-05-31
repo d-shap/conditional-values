@@ -321,7 +321,71 @@ public final class ConditionSetBuilderTest {
      * {@link ConditionSetBuilder} class test.
      */
     @Test
-    public void removeConditionTest() {
+    public void removeConditionStringTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionBooleanTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionCharTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionIntTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionLongTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionFloatTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionDoubleTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionObjectTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
+    public void removeConditionNameTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
 
         conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2");
