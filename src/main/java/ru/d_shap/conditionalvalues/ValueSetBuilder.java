@@ -63,14 +63,29 @@ import java.util.Set;
  */
 public final class ValueSetBuilder<T> {
 
+    private String _id;
+
     private final Map<String, Set<String>> _conditions;
 
     private final Set<T> _values;
 
     ValueSetBuilder() {
         super();
+        _id = null;
         _conditions = new HashMap<>();
         _values = new HashSet<>();
+    }
+
+    /**
+     * Set the ID of the set.
+     *
+     * @param id the ID of the set.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> setId(final String id) {
+        _id = id;
+        return this;
     }
 
     /**
@@ -519,7 +534,8 @@ public final class ValueSetBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
     public ValueSet<T> build(final boolean clear) {
-        ValueSet<T> valueSet = new ValueSet<>(_conditions, _values);
+        ValueSet<T> valueSet = new ValueSet<>(_id, _conditions, _values);
+        _id = null;
         if (clear) {
             clear();
         }
