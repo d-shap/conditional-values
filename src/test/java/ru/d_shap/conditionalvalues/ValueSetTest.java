@@ -607,8 +607,7 @@ public final class ValueSetTest {
         condition2.add("val2");
         condition2.add("val3");
         conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions).hasSize(6);
         valueSetUniqueConditions.add(new ValueSetUniqueCondition());
@@ -620,8 +619,7 @@ public final class ValueSetTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getValueSetUniqueConditionsUnmodifiableEmptyFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions).hasSize(0);
         valueSetUniqueConditions.add(new ValueSetUniqueCondition());
