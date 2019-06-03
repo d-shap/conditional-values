@@ -148,11 +148,12 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void equalsToSelfTest() {
         ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
-        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
-        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
-
         Assertions.assertThat(valueSetUniqueCondition1).isEqualTo(valueSetUniqueCondition1);
+
+        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
         Assertions.assertThat(valueSetUniqueCondition2).isEqualTo(valueSetUniqueCondition2);
+
+        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
         Assertions.assertThat(valueSetUniqueCondition3).isEqualTo(valueSetUniqueCondition3);
     }
 
@@ -162,11 +163,12 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void equalsWrongTypeTest() {
         ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
-        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
-        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
-
         Assertions.assertThat(valueSetUniqueCondition1).isNotEqualTo("str");
+
+        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
         Assertions.assertThat(valueSetUniqueCondition2).isNotEqualTo(new StringBuilder());
+
+        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
         Assertions.assertThat(valueSetUniqueCondition3).isNotEqualTo(5);
     }
 
