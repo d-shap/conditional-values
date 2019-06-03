@@ -50,7 +50,8 @@ public final class ValueSet<T> {
         _id = id;
         Map<String, Set<String>> map = new HashMap<>();
         for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
-            map.put(entry.getKey(), Collections.unmodifiableSet(new HashSet<>(entry.getValue())));
+            Set<String> set = new HashSet<>(entry.getValue());
+            map.put(entry.getKey(), Collections.unmodifiableSet(set));
         }
         _conditions = Collections.unmodifiableMap(map);
         _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
