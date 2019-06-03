@@ -66,17 +66,38 @@ public final class ValueSetTest {
      */
     @Test
     public void getAllConditionNamesTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> condition1 = new HashSet<>();
-        condition1.add("val11");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<>();
-        condition2.add("val21");
-        conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<>();
+        Map<String, Set<String>> conditions1 = new HashMap<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(null, conditions1, new HashSet<String>());
+        Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly();
 
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
-        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2");
+        Map<String, Set<String>> conditions2 = new HashMap<>();
+        Set<String> condition2 = new HashSet<>();
+        condition2.add("val");
+        conditions2.put("cond", condition2);
+        ValueSet<String> valueSet2 = new ValueSet<>(null, conditions2, new HashSet<String>());
+        Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond");
+
+        Map<String, Set<String>> conditions3 = new HashMap<>();
+        Set<String> condition31 = new HashSet<>();
+        condition31.add("val1");
+        conditions3.put("cond1", condition31);
+        Set<String> condition32 = new HashSet<>();
+        condition32.add("val2");
+        conditions3.put("cond2", condition32);
+        ValueSet<String> valueSet3 = new ValueSet<>(null, conditions3, new HashSet<String>());
+        Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1", "cond2");
+
+        Map<String, Set<String>> conditions4 = new HashMap<>();
+        Set<String> condition41 = new HashSet<>();
+        condition41.add("val11");
+        condition41.add("val12");
+        conditions4.put("cond1", condition41);
+        Set<String> condition42 = new HashSet<>();
+        condition42.add("val21");
+        condition42.add("val22");
+        conditions4.put("cond2", condition42);
+        ValueSet<String> valueSet4 = new ValueSet<>(null, conditions4, new HashSet<String>());
+        Assertions.assertThat(valueSet4.getAllConditionNames()).containsExactly("cond1", "cond2");
     }
 
     /**
@@ -85,9 +106,28 @@ public final class ValueSetTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getAllConditionNamesUnmodifiableFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
-        valueSet.getAllConditionNames().add("value");
+        Set<String> condition1 = new HashSet<>();
+        condition1.add("val11");
+        condition1.add("val12");
+        conditions.put("cond1", condition1);
+        Set<String> condition2 = new HashSet<>();
+        condition2.add("val21");
+        condition2.add("val22");
+        conditions.put("cond2", condition2);
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2");
+        valueSet.getAllConditionNames().add("cond");
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllConditionNamesUnmodifiableEmptyFailTest() {
+        Map<String, Set<String>> conditions = new HashMap<>();
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
+        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly();
+        valueSet.getAllConditionNames().add("cond");
     }
 
     /**
@@ -393,19 +433,6 @@ public final class ValueSetTest {
      * {@link ValueSet} class test.
      */
     @Test(expected = UnsupportedOperationException.class)
-    public void getValueSetUniqueConditionsEmptyUnmodifiableFailTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
-        List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
-        Assertions.assertThat(valueSetUniqueConditions).hasSize(0);
-        valueSetUniqueConditions.add(new ValueSetUniqueCondition());
-    }
-
-    /**
-     * {@link ValueSet} class test.
-     */
-    @Test(expected = UnsupportedOperationException.class)
     public void getValueSetUniqueConditionsUnmodifiableFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
         Set<String> condition1 = new HashSet<>();
@@ -421,6 +448,19 @@ public final class ValueSetTest {
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions).hasSize(6);
+        valueSetUniqueConditions.add(new ValueSetUniqueCondition());
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getValueSetUniqueConditionsUnmodifiableEmptyFailTest() {
+        Map<String, Set<String>> conditions = new HashMap<>();
+        Set<String> values = new HashSet<>();
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
+        Assertions.assertThat(valueSetUniqueConditions).hasSize(0);
         valueSetUniqueConditions.add(new ValueSetUniqueCondition());
     }
 
@@ -450,6 +490,17 @@ public final class ValueSetTest {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableFailTest() {
+        Map<String, Set<String>> conditions = new HashMap<>();
+        Set<String> values = new HashSet<>();
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        valueSet.getValues().add("value");
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getValuesUnmodifiableEmptyFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
         Set<String> values = new HashSet<>();
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
