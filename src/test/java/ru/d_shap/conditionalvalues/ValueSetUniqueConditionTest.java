@@ -195,6 +195,15 @@ public final class ValueSetUniqueConditionTest {
         ValueSetUniqueCondition valueSetUniqueCondition24 = new ValueSetUniqueCondition(valueSetUniqueCondition23, "name3", "value4");
         Assertions.assertThat(valueSetUniqueCondition24).hasHashCode(-394490896);
 
+        ValueSetUniqueCondition valueSetUniqueCondition31 = new ValueSetUniqueCondition();
+        Assertions.assertThat(valueSetUniqueCondition31).hasHashCode(1);
+        ValueSetUniqueCondition valueSetUniqueCondition32 = new ValueSetUniqueCondition(valueSetUniqueCondition31, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition32).hasHashCode(-1876645253);
+        ValueSetUniqueCondition valueSetUniqueCondition33 = new ValueSetUniqueCondition(valueSetUniqueCondition32, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition33).hasHashCode(-1446500779);
+        ValueSetUniqueCondition valueSetUniqueCondition34 = new ValueSetUniqueCondition(valueSetUniqueCondition33, "name3", "value3");
+        Assertions.assertThat(valueSetUniqueCondition34).hasHashCode(-394490897);
+
         Assertions.assertThat(valueSetUniqueCondition11.hashCode()).isEqualTo(valueSetUniqueCondition21.hashCode());
         Assertions.assertThat(valueSetUniqueCondition12.hashCode()).isEqualTo(valueSetUniqueCondition22.hashCode());
         Assertions.assertThat(valueSetUniqueCondition13.hashCode()).isEqualTo(valueSetUniqueCondition23.hashCode());
