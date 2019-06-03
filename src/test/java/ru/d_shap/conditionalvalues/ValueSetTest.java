@@ -48,7 +48,17 @@ public final class ValueSetTest {
      */
     @Test
     public void getIdTest() {
-        // TODO
+        ValueSet<String> valueSet1 = new ValueSet<>(null, new HashMap<String, Set<String>>(), new HashSet<String>());
+        Assertions.assertThat(valueSet1.getId()).isNull();
+
+        ValueSet<String> valueSet2 = new ValueSet<>("", new HashMap<String, Set<String>>(), new HashSet<String>());
+        Assertions.assertThat(valueSet2.getId()).isEqualTo("");
+
+        ValueSet<String> valueSet3 = new ValueSet<>(" ", new HashMap<String, Set<String>>(), new HashSet<String>());
+        Assertions.assertThat(valueSet3.getId()).isEqualTo(" ");
+
+        ValueSet<String> valueSet4 = new ValueSet<>("id", new HashMap<String, Set<String>>(), new HashSet<String>());
+        Assertions.assertThat(valueSet4.getId()).isEqualTo("id");
     }
 
     /**
