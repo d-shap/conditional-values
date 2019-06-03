@@ -42,7 +42,11 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void setIdTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        Assertions.assertThat(valueSetBuilder.setId(null).build().getId()).isNull();
+        Assertions.assertThat(valueSetBuilder.setId("").build().getId()).isEqualTo("");
+        Assertions.assertThat(valueSetBuilder.setId(" ").build().getId()).isEqualTo(" ");
+        Assertions.assertThat(valueSetBuilder.setId("id").build().getId()).isEqualTo("id");
     }
 
     /**
