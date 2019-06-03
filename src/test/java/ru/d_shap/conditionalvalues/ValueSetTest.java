@@ -630,20 +630,21 @@ public final class ValueSetTest {
      */
     @Test
     public void getValuesTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> condition1 = new HashSet<>();
-        condition1.add("val11");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<>();
-        condition2.add("val21");
-        conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<>();
-        values.add("val1");
-        values.add("val2");
-        values.add("val3");
+        Set<String> values1 = new HashSet<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values1);
+        Assertions.assertThat(valueSet1.getValues()).containsExactly();
 
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
-        Assertions.assertThat(valueSet.getValues()).containsExactly("val1", "val2", "val3");
+        Set<String> values2 = new HashSet<>();
+        values2.add("val");
+        ValueSet<String> valueSet2 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values2);
+        Assertions.assertThat(valueSet2.getValues()).containsExactly("val");
+
+        Set<String> values3 = new HashSet<>();
+        values3.add("val1");
+        values3.add("val2");
+        values3.add("val3");
+        ValueSet<String> valueSet3 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values3);
+        Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3");
     }
 
     /**
@@ -651,9 +652,12 @@ public final class ValueSetTest {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableFailTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
         Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        values.add("val1");
+        values.add("val2");
+        values.add("val3");
+        ValueSet<String> valueSet = new ValueSet<>(null, new HashMap<String, Set<String>>(), values);
+        Assertions.assertThat(valueSet.getValues()).hasSize(3);
         valueSet.getValues().add("value");
     }
 
@@ -662,9 +666,9 @@ public final class ValueSetTest {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableEmptyFailTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
         Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        ValueSet<String> valueSet = new ValueSet<>(null, new HashMap<String, Set<String>>(), values);
+        Assertions.assertThat(valueSet.getValues()).hasSize(0);
         valueSet.getValues().add("value");
     }
 
