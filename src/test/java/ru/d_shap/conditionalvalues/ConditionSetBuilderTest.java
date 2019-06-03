@@ -333,8 +333,8 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addConditions(addTemplate);
         conditionSetBuilder.removeCondition("cond1", "val1");
-        conditionSetBuilder.removeCondition("cond1", "val2");
-        conditionSetBuilder.removeCondition("cond2", "val1").removeCondition("cond3", "val3");
+        conditionSetBuilder.removeCondition("cond1", "val3");
+        conditionSetBuilder.removeCondition("cond2", "val3").removeCondition("cond3", "val3");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Assertions.assertThat(conditionSet1).isNotNull();
         Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond2", "cond4");
@@ -423,8 +423,8 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addConditions(addTemplate);
         conditionSetBuilder.removeCondition("cond1", '1');
-        conditionSetBuilder.removeCondition("cond1", '3');
-        conditionSetBuilder.removeCondition("cond2", '3').removeCondition("cond3", 'a');
+        conditionSetBuilder.removeCondition("cond1", 'a');
+        conditionSetBuilder.removeCondition("cond2", 'a').removeCondition("cond3", 'a');
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Assertions.assertThat(conditionSet1).isNotNull();
         Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond2", "cond4");
@@ -589,7 +589,54 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionObjectTest() {
-        // TODO
+        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+
+        conditionSetBuilder.addCondition("cond1", new StringBuilder().append("val1"));
+        conditionSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
+        conditionSetBuilder.addCondition("cond3", new StringBuilder().append("val3")).addCondition("cond4", new StringBuilder().append("val4"));
+        ConditionSet addTemplate = conditionSetBuilder.build();
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition("cond1", new StringBuilder().append("val1"));
+        conditionSetBuilder.removeCondition("cond1", new StringBuilder().append("val3"));
+        conditionSetBuilder.removeCondition("cond2", new StringBuilder().append("val3")).removeCondition("cond3", new StringBuilder().append("val3"));
+        ConditionSet conditionSet1 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet1).isNotNull();
+        Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond2", "cond4");
+        Assertions.assertThat(conditionSet1.getValue("cond1")).isNull();
+        Assertions.assertThat(conditionSet1.getValue("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet1.getValue("cond3")).isNull();
+        Assertions.assertThat(conditionSet1.getValue("cond4")).isEqualTo("val4");
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition(null, new StringBuilder().append("val1"));
+        ConditionSet conditionSet2 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet2).isNotNull();
+        Assertions.assertThat(conditionSet2.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionSet2.getValue("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet2.getValue("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet2.getValue("cond3")).isEqualTo("val3");
+        Assertions.assertThat(conditionSet2.getValue("cond4")).isEqualTo("val4");
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition("cond1", (Object) null);
+        ConditionSet conditionSet3 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet3).isNotNull();
+        Assertions.assertThat(conditionSet3.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionSet3.getValue("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet3.getValue("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet3.getValue("cond3")).isEqualTo("val3");
+        Assertions.assertThat(conditionSet3.getValue("cond4")).isEqualTo("val4");
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition(null, (Object) null);
+        ConditionSet conditionSet4 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet4).isNotNull();
+        Assertions.assertThat(conditionSet4.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionSet4.getValue("cond1")).isEqualTo("val1");
+        Assertions.assertThat(conditionSet4.getValue("cond2")).isEqualTo("val2");
+        Assertions.assertThat(conditionSet4.getValue("cond3")).isEqualTo("val3");
+        Assertions.assertThat(conditionSet4.getValue("cond4")).isEqualTo("val4");
     }
 
     /**
