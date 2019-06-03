@@ -115,7 +115,7 @@ public final class ValueSetTest {
         condition2.add("val22");
         conditions.put("cond2", condition2);
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
-        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly("cond1", "cond2");
+        Assertions.assertThat(valueSet.getAllConditionNames()).hasSize(2);
         valueSet.getAllConditionNames().add("cond");
     }
 
@@ -126,7 +126,7 @@ public final class ValueSetTest {
     public void getAllConditionNamesUnmodifiableEmptyFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
-        Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly();
+        Assertions.assertThat(valueSet.getAllConditionNames()).hasSize(0);
         valueSet.getAllConditionNames().add("cond");
     }
 
@@ -135,23 +135,42 @@ public final class ValueSetTest {
      */
     @Test
     public void getAllConditionValuesTest() {
-        Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> condition1 = new HashSet<>();
-        condition1.add("val11");
-        condition1.add("val12");
-        condition1.add("val13");
-        conditions.put("cond1", condition1);
-        Set<String> condition2 = new HashSet<>();
-        condition2.add("val21");
-        condition2.add("val22");
-        condition2.add("val23");
-        conditions.put("cond2", condition2);
-        Set<String> values = new HashSet<>();
+        Map<String, Set<String>> conditions1 = new HashMap<>();
+        ValueSet<String> valueSet1 = new ValueSet<>(null, conditions1, new HashSet<String>());
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly();
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly();
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond3")).containsExactly();
 
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
-        Assertions.assertThat(valueSet.getAllConditionValues("cond1")).containsExactly("val11", "val12", "val13");
-        Assertions.assertThat(valueSet.getAllConditionValues("cond2")).containsExactly("val21", "val22", "val23");
-        Assertions.assertThat(valueSet.getAllConditionValues("cond3")).containsExactly();
+        Map<String, Set<String>> conditions2 = new HashMap<>();
+        Set<String> condition21 = new HashSet<>();
+        condition21.add("val1");
+        conditions2.put("cond1", condition21);
+        Set<String> condition22 = new HashSet<>();
+        condition22.add("val2");
+        conditions2.put("cond2", condition22);
+        Set<String> condition23 = new HashSet<>();
+        condition23.add("val3");
+        conditions2.put("cond3", condition23);
+        ValueSet<String> valueSet2 = new ValueSet<>(null, conditions2, new HashSet<String>());
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("val1");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("val2");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond3")).containsExactly("val3");
+
+        Map<String, Set<String>> conditions3 = new HashMap<>();
+        Set<String> condition31 = new HashSet<>();
+        condition31.add("val11");
+        condition31.add("val12");
+        condition31.add("val13");
+        conditions3.put("cond1", condition31);
+        Set<String> condition32 = new HashSet<>();
+        condition32.add("val21");
+        condition32.add("val22");
+        condition32.add("val23");
+        conditions3.put("cond2", condition32);
+        ValueSet<String> valueSet3 = new ValueSet<>(null, conditions3, new HashSet<String>());
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val11", "val12", "val13");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond2")).containsExactly("val21", "val22", "val23");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond3")).containsExactly();
     }
 
     /**
@@ -163,8 +182,8 @@ public final class ValueSetTest {
         Set<String> condition = new HashSet<>();
         condition.add("val");
         conditions.put("cond", condition);
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
+        Assertions.assertThat(valueSet.getAllConditionValues("cond")).hasSize(1);
         valueSet.getAllConditionValues("cond").add("value");
     }
 
@@ -174,8 +193,8 @@ public final class ValueSetTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getAllConditionValuesUnmodifiableEmptyFailTest() {
         Map<String, Set<String>> conditions = new HashMap<>();
-        Set<String> values = new HashSet<>();
-        ValueSet<String> valueSet = new ValueSet<>(null, conditions, values);
+        ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
+        Assertions.assertThat(valueSet.getAllConditionValues("cond")).hasSize(0);
         valueSet.getAllConditionValues("cond").add("value");
     }
 
