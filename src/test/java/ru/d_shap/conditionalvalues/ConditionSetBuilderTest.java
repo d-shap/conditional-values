@@ -256,11 +256,13 @@ public final class ConditionSetBuilderTest {
     public void addConditionsTest() {
         ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
 
-        conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2");
-        conditionSetBuilder.addCondition("cond3", "val3").addCondition("cond4", "val4");
-        ConditionSet template = conditionSetBuilder.build();
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        conditionSetBuilder.addCondition("cond3", "val3");
+        conditionSetBuilder.addCondition("cond4", "val4");
+        ConditionSet addTemplate = conditionSetBuilder.build();
 
-        conditionSetBuilder = conditionSetBuilder.addConditions(template);
+        conditionSetBuilder = conditionSetBuilder.addConditions(addTemplate);
         ConditionSet conditionSet1 = conditionSetBuilder.build();
         Assertions.assertThat(conditionSet1).isNotNull();
         Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4");
@@ -269,7 +271,7 @@ public final class ConditionSetBuilderTest {
         Assertions.assertThat(conditionSet1.getValue("cond3")).isEqualTo("val3");
         Assertions.assertThat(conditionSet1.getValue("cond4")).isEqualTo("val4");
 
-        conditionSetBuilder = conditionSetBuilder.addConditions(template);
+        conditionSetBuilder = conditionSetBuilder.addConditions(addTemplate);
         conditionSetBuilder.addCondition("cond2", "val6");
         conditionSetBuilder.addCondition("cond5", "val5");
         ConditionSet conditionSet2 = conditionSetBuilder.build();
@@ -283,7 +285,7 @@ public final class ConditionSetBuilderTest {
 
         conditionSetBuilder.addCondition("cond2", "val6");
         conditionSetBuilder.addCondition("cond5", "val5");
-        conditionSetBuilder.addConditions(template);
+        conditionSetBuilder.addConditions(addTemplate);
         ConditionSet conditionSet3 = conditionSetBuilder.build();
         Assertions.assertThat(conditionSet3).isNotNull();
         Assertions.assertThat(conditionSet3.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4", "cond5");
