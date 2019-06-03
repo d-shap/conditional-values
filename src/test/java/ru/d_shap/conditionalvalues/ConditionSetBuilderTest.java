@@ -519,7 +519,34 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionFloatTest() {
-        // TODO
+        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+
+        conditionSetBuilder.addCondition("cond1", 1.0f);
+        conditionSetBuilder.addCondition("cond2", 2.0f);
+        conditionSetBuilder.addCondition("cond3", 3.0f).addCondition("cond4", 4.0f);
+        ConditionSet addTemplate = conditionSetBuilder.build();
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition("cond1", 1.0f);
+        conditionSetBuilder.removeCondition("cond1", 3.0f);
+        conditionSetBuilder.removeCondition("cond2", 3.0f).removeCondition("cond3", 3.0f);
+        ConditionSet conditionSet1 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet1).isNotNull();
+        Assertions.assertThat(conditionSet1.nameIterator()).containsExactly("cond2", "cond4");
+        Assertions.assertThat(conditionSet1.getValue("cond1")).isNull();
+        Assertions.assertThat(conditionSet1.getValue("cond2")).isEqualTo("2.0");
+        Assertions.assertThat(conditionSet1.getValue("cond3")).isNull();
+        Assertions.assertThat(conditionSet1.getValue("cond4")).isEqualTo("4.0");
+
+        conditionSetBuilder.addConditions(addTemplate);
+        conditionSetBuilder.removeCondition(null, 1.0f);
+        ConditionSet conditionSet2 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet2).isNotNull();
+        Assertions.assertThat(conditionSet2.nameIterator()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionSet2.getValue("cond1")).isEqualTo("1.0");
+        Assertions.assertThat(conditionSet2.getValue("cond2")).isEqualTo("2.0");
+        Assertions.assertThat(conditionSet2.getValue("cond3")).isEqualTo("3.0");
+        Assertions.assertThat(conditionSet2.getValue("cond4")).isEqualTo("4.0");
     }
 
     /**
