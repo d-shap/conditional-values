@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * <p>
- * Builder class is used to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
+ * Builder to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
@@ -41,9 +41,18 @@ public final class ConditionSetBuilder {
 
     private final Map<String, String> _conditions;
 
-    ConditionSetBuilder() {
+    private ConditionSetBuilder() {
         super();
         _conditions = new HashMap<>();
+    }
+
+    /**
+     * Create new builder instance.
+     *
+     * @return created builder instance.
+     */
+    public static ConditionSetBuilder createConditionSetBuilder() {
+        return new ConditionSetBuilder();
     }
 
     /**
