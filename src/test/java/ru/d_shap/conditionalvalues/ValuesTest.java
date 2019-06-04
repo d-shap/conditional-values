@@ -229,6 +229,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableFailTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         valueSetBuilder.addValue("val3", "val4");
@@ -247,6 +248,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableEmptyFailTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets = new HashSet<>();
@@ -292,6 +294,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getAllValuesUnmodifiableFailTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         Set<String> allValues = new HashSet<>();
         allValues.add("val1");
         allValues.add("val2");
@@ -306,6 +309,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getAllValuesUnmodifiableEmptyFailTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         Set<String> allValues = new HashSet<>();
         Values<String> values = new Values<>(new HashSet<ValueSet<String>>(), allValues);
         Assertions.assertThat(values.getAllValues()).hasSize(0);
@@ -392,6 +396,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getIdsUnmodifiableFailTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         valueSetBuilder.setId("id1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         valueSetBuilder.setId("id2");
@@ -424,6 +429,7 @@ public final class ValuesTest {
     @Test
     public void performActionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val4", "val2");
@@ -450,6 +456,7 @@ public final class ValuesTest {
     @Test
     public void performNullActionTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val4", "val2");
@@ -463,6 +470,7 @@ public final class ValuesTest {
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         Values<String> values = new Values<>(valueSets, new HashSet<String>());
+
         values.performAction(null);
     }
 
