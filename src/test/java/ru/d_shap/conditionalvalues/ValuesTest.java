@@ -262,7 +262,54 @@ public final class ValuesTest {
      */
     @Test
     public void getAllValuesTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
+        Set<String> allValues1 = new HashSet<>();
+        Values<String> values1 = new Values<>(new HashSet<ValueSet<String>>(), allValues1);
+        Assertions.assertThat(values1.getAllValues()).isNotNull();
+        Assertions.assertThat(values1.getAllValues()).containsExactly();
+
+        Set<String> allValues2 = new HashSet<>();
+        allValues2.add("val1");
+        allValues2.add("val2");
+        Values<String> values2 = new Values<>(new HashSet<ValueSet<String>>(), allValues2);
+        Assertions.assertThat(values2.getAllValues()).isNotNull();
+        Assertions.assertThat(values2.getAllValues()).containsExactly("val1", "val2");
+
+        Set<String> allValues3 = new HashSet<>();
+        allValues3.add("val1");
+        allValues3.add("val2");
+        allValues3.add("val3");
+        allValues3.add("val4");
+        Values<String> values3 = new Values<>(new HashSet<ValueSet<String>>(), allValues3);
+        Assertions.assertThat(values3.getAllValues()).isNotNull();
+        Assertions.assertThat(values3.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValuesUnmodifiableFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        Set<String> allValues = new HashSet<>();
+        allValues.add("val1");
+        allValues.add("val2");
+        Values<String> values = new Values<>(new HashSet<ValueSet<String>>(), allValues);
+        Assertions.assertThat(values.getAllValues()).hasSize(2);
+        values.getAllValues().add("value");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValuesUnmodifiableEmptyFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        Set<String> allValues = new HashSet<>();
+        Values<String> values = new Values<>(new HashSet<ValueSet<String>>(), allValues);
+        Assertions.assertThat(values.getAllValues()).hasSize(0);
+        values.getAllValues().add("value");
     }
 
     /**
