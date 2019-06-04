@@ -45,7 +45,7 @@ public final class Values<T> {
 
     private final Set<T> _allValues;
 
-    private final Set<String> _valueSetIds;
+    private final Set<String> _ids;
 
     Values(final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
         super();
@@ -56,11 +56,11 @@ public final class Values<T> {
         }
         _values = Collections.unmodifiableSet(values);
         _allValues = Collections.unmodifiableSet(allValues);
-        Set<String> valueSetIds = new HashSet<>();
+        Set<String> ids = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            valueSetIds.add(valueSet.getId());
+            ids.add(valueSet.getId());
         }
-        _valueSetIds = Collections.unmodifiableSet(valueSetIds);
+        _ids = Collections.unmodifiableSet(ids);
     }
 
     /**
@@ -117,8 +117,8 @@ public final class Values<T> {
      *
      * @return the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
-    public Set<String> getValueSetIds() {
-        return _valueSetIds;
+    public Set<String> getIds() {
+        return _ids;
     }
 
     /**

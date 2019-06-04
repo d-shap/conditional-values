@@ -316,7 +316,7 @@ public final class ValuesTest {
      * {@link Values} class test.
      */
     @Test
-    public void getValueSetIdsTest() {
+    public void getIdsTest() {
         // TODO
     }
 
