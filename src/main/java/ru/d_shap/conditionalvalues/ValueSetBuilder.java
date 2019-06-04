@@ -26,7 +26,7 @@ import java.util.Set;
 
 /**
  * <p>
- * Builder class is used to create {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+ * Builder class to create {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
@@ -42,7 +42,7 @@ import java.util.Set;
  * For example:
  * </p>
  * <pre>{@code
- * ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+ * ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
  * valueSetBuilder.addCondition("type", "someType");
  * valueSetBuilder.addCondition("state", 1)
  *                .addCondition("state", 2)
@@ -69,11 +69,22 @@ public final class ValueSetBuilder<T> {
 
     private final Set<T> _values;
 
-    ValueSetBuilder() {
+    private ValueSetBuilder() {
         super();
         _id = null;
         _conditions = new HashMap<>();
         _values = new HashSet<>();
+    }
+
+    /**
+     * Create new builder instance.
+     *
+     * @param <T> generic value type.
+     *
+     * @return created builder instance.
+     */
+    public static <T> ValueSetBuilder<T> newInstance() {
+        return new ValueSetBuilder<>();
     }
 
     /**
