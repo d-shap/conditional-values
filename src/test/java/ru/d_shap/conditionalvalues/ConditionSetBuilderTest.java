@@ -41,8 +41,22 @@ public final class ConditionSetBuilderTest {
      * {@link ConditionSetBuilder} class test.
      */
     @Test
+    public void newInstanceTest() {
+        ConditionSetBuilder conditionSetBuilder1 = ConditionSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder2 = ConditionSetBuilder.newInstance();
+
+        Assertions.assertThat(conditionSetBuilder1).isNotNull();
+        Assertions.assertThat(conditionSetBuilder2).isNotNull();
+        Assertions.assertThat(conditionSetBuilder1).isNotSameAs(conditionSetBuilder2);
+        Assertions.assertThat(conditionSetBuilder2).isNotSameAs(conditionSetBuilder1);
+    }
+
+    /**
+     * {@link ConditionSetBuilder} class test.
+     */
+    @Test
     public void addConditionStringTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -76,7 +90,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionBooleanTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", true);
         conditionSetBuilder.addCondition("cond2", false);
@@ -100,7 +114,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionCharTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", '1');
         conditionSetBuilder.addCondition("cond2", '2');
@@ -124,7 +138,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionIntTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1);
         conditionSetBuilder.addCondition("cond2", 2);
@@ -148,7 +162,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionLongTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1L);
         conditionSetBuilder.addCondition("cond2", 2L);
@@ -172,7 +186,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionFloatTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1.0f);
         conditionSetBuilder.addCondition("cond2", 2.0f);
@@ -196,7 +210,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionDoubleTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1.0);
         conditionSetBuilder.addCondition("cond2", 2.0);
@@ -220,7 +234,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionObjectTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", new StringBuilder().append("val1"));
         conditionSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
@@ -254,7 +268,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void addConditionsTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -324,7 +338,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionStringTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -379,7 +393,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionBooleanTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", true);
         conditionSetBuilder.addCondition("cond2", false);
@@ -414,7 +428,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionCharTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", '1');
         conditionSetBuilder.addCondition("cond2", '2');
@@ -449,7 +463,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionIntTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1);
         conditionSetBuilder.addCondition("cond2", 2);
@@ -484,7 +498,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionLongTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1L);
         conditionSetBuilder.addCondition("cond2", 2L);
@@ -519,7 +533,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionFloatTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1.0f);
         conditionSetBuilder.addCondition("cond2", 2.0f);
@@ -554,7 +568,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionDoubleTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", 1.0);
         conditionSetBuilder.addCondition("cond2", 2.0);
@@ -589,7 +603,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionObjectTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", new StringBuilder().append("val1"));
         conditionSetBuilder.addCondition("cond2", new StringBuilder().append("val2"));
@@ -644,7 +658,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionNameTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -682,7 +696,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionNamesTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -744,7 +758,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void removeConditionValuesTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         conditionSetBuilder.addCondition("cond2", "val2");
@@ -810,7 +824,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void clearTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2");
         conditionSetBuilder.addCondition("cond3", "val3").addCondition("cond4", "val4");
@@ -825,7 +839,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void buildTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build();
@@ -864,7 +878,7 @@ public final class ConditionSetBuilderTest {
      */
     @Test
     public void buildClearTest() {
-        ConditionSetBuilder conditionSetBuilder = new ConditionSetBuilder();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionSetBuilder.addCondition("cond1", "val1");
         ConditionSet conditionSet1 = conditionSetBuilder.build(true);
