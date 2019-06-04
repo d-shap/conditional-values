@@ -103,26 +103,6 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Create {@link ru.d_shap.conditionalvalues.ValueSetBuilder} object.
-     *
-     * @param <T> generic value type.
-     *
-     * @return created object.
-     */
-    public static <T> ValueSetBuilder<T> createValueSetBuilder() {
-        return new ValueSetBuilder<>();
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionSetBuilder} object.
-     *
-     * @return created object.
-     */
-    public static ConditionSetBuilder createConditionSetBuilder() {
-        return new ConditionSetBuilder();
-    }
-
-    /**
      * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      *
      * @param valueSets all value sets, used for lookup.
