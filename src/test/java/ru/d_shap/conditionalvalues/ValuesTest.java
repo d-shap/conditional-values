@@ -226,6 +226,40 @@ public final class ValuesTest {
     /**
      * {@link Values} class test.
      */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getValuesUnmodifiableFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addValue("val3", "val4");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Assertions.assertThat(values.getValues()).hasSize(4);
+        values.getValues().add("value");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getValuesUnmodifiableEmptyFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Assertions.assertThat(values.getValues()).hasSize(0);
+        values.getValues().add("value");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
     @Test
     public void getAllValuesTest() {
         // TODO
