@@ -266,42 +266,4 @@ public final class ConditionalValues<T> {
         return _valueSets.toString();
     }
 
-    /**
-     * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class EqualsPredicate implements Predicate {
-
-        EqualsPredicate() {
-            super();
-        }
-
-        @Override
-        public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-            return conditionValue.equals(checkValue);
-        }
-
-    }
-
-    /**
-     * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class EqualsIgnoreCasePredicate implements Predicate {
-
-        EqualsIgnoreCasePredicate() {
-            super();
-        }
-
-        @Override
-        public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-            return conditionValue.equalsIgnoreCase(checkValue);
-        }
-
-    }
-
 }
