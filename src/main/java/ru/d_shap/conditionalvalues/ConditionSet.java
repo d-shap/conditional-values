@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Object represents conditions, used to lookup the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+ * Class represents conditions, used to lookup the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  *
  * @author Dmitry Shapovalov
  */

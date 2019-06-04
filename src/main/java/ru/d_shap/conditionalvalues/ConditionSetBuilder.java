@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * <p>
- * Builder to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
+ * Builder class to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
