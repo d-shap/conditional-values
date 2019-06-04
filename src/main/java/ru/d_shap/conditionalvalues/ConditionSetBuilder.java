@@ -51,7 +51,7 @@ public final class ConditionSetBuilder {
      *
      * @return created builder instance.
      */
-    public static ConditionSetBuilder createConditionSetBuilder() {
+    public static ConditionSetBuilder newInstance() {
         return new ConditionSetBuilder();
     }
 
