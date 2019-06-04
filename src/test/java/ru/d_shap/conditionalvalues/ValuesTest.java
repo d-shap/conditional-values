@@ -317,7 +317,105 @@ public final class ValuesTest {
      */
     @Test
     public void getIdsTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets1 = new HashSet<>();
+        valueSets1.add(valueSet1);
+        Values<String> values1 = new Values<>(valueSets1, new HashSet<String>());
+        Assertions.assertThat(values1.getIds()).isNotNull();
+        Assertions.assertThat(values1.getIds()).containsExactly((String) null);
+
+        ValueSet<String> valueSet21 = valueSetBuilder.build();
+        ValueSet<String> valueSet22 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets2 = new HashSet<>();
+        valueSets2.add(valueSet21);
+        valueSets2.add(valueSet22);
+        Values<String> values2 = new Values<>(valueSets2, new HashSet<String>());
+        Assertions.assertThat(values2.getIds()).isNotNull();
+        Assertions.assertThat(values2.getIds()).containsExactly((String) null);
+
+        valueSetBuilder.setId("id");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets3 = new HashSet<>();
+        valueSets3.add(valueSet3);
+        Values<String> values3 = new Values<>(valueSets3, new HashSet<String>());
+        Assertions.assertThat(values3.getIds()).isNotNull();
+        Assertions.assertThat(values3.getIds()).containsExactly("id");
+
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet41 = valueSetBuilder.build();
+        valueSetBuilder.setId("id2");
+        ValueSet<String> valueSet42 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets4 = new HashSet<>();
+        valueSets4.add(valueSet41);
+        valueSets4.add(valueSet42);
+        Values<String> values4 = new Values<>(valueSets4, new HashSet<String>());
+        Assertions.assertThat(values4.getIds()).isNotNull();
+        Assertions.assertThat(values4.getIds()).containsExactly("id1", "id2");
+
+        valueSetBuilder.setId("id");
+        ValueSet<String> valueSet51 = valueSetBuilder.build();
+        ValueSet<String> valueSet52 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets5 = new HashSet<>();
+        valueSets5.add(valueSet51);
+        valueSets5.add(valueSet52);
+        Values<String> values5 = new Values<>(valueSets5, new HashSet<String>());
+        Assertions.assertThat(values5.getIds()).isNotNull();
+        Assertions.assertThat(values5.getIds()).containsExactly("id", null);
+
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet61 = valueSetBuilder.build();
+        ValueSet<String> valueSet62 = valueSetBuilder.build();
+        valueSetBuilder.setId("id2");
+        ValueSet<String> valueSet63 = valueSetBuilder.build();
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet64 = valueSetBuilder.build();
+        ValueSet<String> valueSet65 = valueSetBuilder.build();
+        valueSetBuilder.setId("id3");
+        ValueSet<String> valueSet66 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets6 = new HashSet<>();
+        valueSets6.add(valueSet61);
+        valueSets6.add(valueSet62);
+        valueSets6.add(valueSet63);
+        valueSets6.add(valueSet64);
+        valueSets6.add(valueSet65);
+        valueSets6.add(valueSet66);
+        Values<String> values6 = new Values<>(valueSets6, new HashSet<String>());
+        Assertions.assertThat(values6.getIds()).isNotNull();
+        Assertions.assertThat(values6.getIds()).containsExactly("id1", "id2", "id3", null);
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getIdsUnmodifiableFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.setId("id2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.setId("id3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        valueSets.add(valueSet1);
+        valueSets.add(valueSet2);
+        valueSets.add(valueSet3);
+        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Assertions.assertThat(values.getIds()).hasSize(3);
+        values.getIds().add("id");
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getIdsUnmodifiableEmptyFailTest() {
+        Set<ValueSet<String>> valueSets = new HashSet<>();
+        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Assertions.assertThat(values.getIds()).hasSize(0);
+        values.getIds().add("id");
     }
 
     /**
