@@ -43,6 +43,7 @@ public final class ValueSetBuilderTest {
     @Test
     public void setIdTest() {
         ValueSetBuilder<String> valueSetBuilder = new ValueSetBuilder<>();
+
         Assertions.assertThat(valueSetBuilder.setId(null).build().getId()).isNull();
         Assertions.assertThat(valueSetBuilder.setId("").build().getId()).isEqualTo("");
         Assertions.assertThat(valueSetBuilder.setId(" ").build().getId()).isEqualTo(" ");
