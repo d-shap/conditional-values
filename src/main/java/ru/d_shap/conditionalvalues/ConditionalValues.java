@@ -180,17 +180,15 @@ public final class ConditionalValues<T> {
     }
 
     private Set<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
-        if (conditionSet == null) {
-            return Collections.emptySet();
-        } else {
-            Set<ValueSet<T>> result = new HashSet<>();
+        Set<ValueSet<T>> result = new HashSet<>();
+        if (conditionSet != null) {
             for (ValueSet<T> valueSet : _valueSets) {
                 if (valueSet.isMatchConditions(conditionSet, _predicate)) {
                     result.add(valueSet);
                 }
             }
-            return result;
         }
+        return result;
     }
 
     private void removeLessSpecificValueSets(final Set<ValueSet<T>> valueSets) {
