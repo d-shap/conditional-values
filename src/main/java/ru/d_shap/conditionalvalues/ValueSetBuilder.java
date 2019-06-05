@@ -33,9 +33,6 @@ import java.util.Set;
  * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * </p>
  * <p>
- * The internal presentation of conditions is {@code Map<String, Set<String>>}.
- * </p>
- * <p>
  * Conditions with different names are ANDed. Conditions with the same name are ORed.
  * </p>
  * <p>
@@ -53,8 +50,8 @@ import java.util.Set;
  * means (type = someType AND (state = 1 OR state = 2 OR state = 3)).
  * </p>
  * <p>
- * The internal presentation of values is {@code Set<T>}, so no value duplicates are allowed.
- * Also the value type should implement {@link java.lang.Object#equals(Object)} and {@link java.lang.Object#hashCode()} methods.
+ * The value type should implement {@link java.lang.Object#equals(Object)} and {@link java.lang.Object#hashCode()}
+ * methods or all values should be unique within the {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
  * </p>
  *
  * @param <T> generic value type.
@@ -414,9 +411,9 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add value to the set.
+     * Add the value to the set.
      *
-     * @param value value to add.
+     * @param value the value to add.
      *
      * @return current object for the method chaining.
      */
@@ -462,9 +459,9 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove value from the set.
+     * Remove the value from the set.
      *
-     * @param value value to remove.
+     * @param value the value to remove.
      *
      * @return current object for the method chaining.
      */
@@ -518,18 +515,19 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Clear all conditions and values.
+     * Clear this builder.
      *
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> clear() {
+        _id = null;
         clearConditions();
         clearValues();
         return this;
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object and clear all conditions and values.
+     * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object and clear this builder.
      *
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
@@ -540,7 +538,7 @@ public final class ValueSetBuilder<T> {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
-     * @param clear whether to clear all conditions and values or not.
+     * @param clear true to clear this builder.
      *
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
