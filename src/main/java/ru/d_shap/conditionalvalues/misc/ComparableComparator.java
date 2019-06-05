@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues.misc;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -28,11 +29,13 @@ import java.util.Comparator;
  *
  * @author Dmitry Shapovalov
  */
-public final class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
+public final class ComparableComparator<T extends Comparable<T>> implements Comparator<T>, Serializable {
 
     private static final int POSITIVE = 1;
 
     private static final int NEGATIVE = -1;
+
+    private static final long serialVersionUID = 1L;
 
     private final int _comparable1Null;
 
