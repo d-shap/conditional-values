@@ -20,8 +20,10 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <p>
@@ -47,20 +49,63 @@ public final class Values<T> {
 
     private final Set<String> _ids;
 
-    Values(final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
+    Values(final Comparator<T> comparator, final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
         super();
-        _valueSets = Collections.unmodifiableSet(new HashSet<>(valueSets));
-        Set<T> values = new HashSet<>();
-        for (ValueSet<T> valueSet : _valueSets) {
-            values.addAll(valueSet.getValues());
+        _valueSets = createValueSets(valueSets);
+        _values = createValues(comparator);
+        _allValues = createAllValues(comparator, allValues);
+        _ids = createIds();
+    }
+
+    private Set<ValueSet<T>> createValueSets(final Set<ValueSet<T>> valueSets) {
+        Set<ValueSet<T>> result = new HashSet<>();
+        if (valueSets != null) {
+            for (ValueSet<T> valueSet : valueSets) {
+                if (valueSet != null) {
+                    result.add(valueSet);
+                }
+            }
         }
-        _values = Collections.unmodifiableSet(values);
-        _allValues = Collections.unmodifiableSet(allValues);
-        Set<String> ids = new HashSet<>();
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<T> createValues(final Comparator<T> comparator) {
+        Set<T> result = createSet(comparator);
         for (ValueSet<T> valueSet : _valueSets) {
-            ids.add(valueSet.getId());
+            result.addAll(valueSet.getValues());
         }
-        _ids = Collections.unmodifiableSet(ids);
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<T> createAllValues(final Comparator<T> comparator, final Set<T> allValues) {
+        Set<T> result = createSet(comparator);
+        if (allValues != null) {
+            for (T value : allValues) {
+                if (value != null) {
+                    result.add(value);
+                }
+            }
+        }
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<String> createIds() {
+        Set<String> result = new TreeSet<>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            String id = valueSet.getId();
+            if (id != null) {
+                result.add(id);
+            }
+        }
+        return Collections.unmodifiableSet(result);
+    }
+
+    static <T> Set<T> createSet(final Comparator<T> comparator) {
+        if (comparator == null) {
+            return new HashSet<>();
+        } else {
+            return new TreeSet<>(comparator);
+        }
     }
 
     /**
