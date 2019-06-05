@@ -30,6 +30,10 @@ import java.util.Comparator;
  */
 public final class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
 
+    private static final int POSITIVE = 1;
+
+    private static final int NEGATIVE = -1;
+
     private final int _comparable1Null;
 
     private final int _comparable2Null;
@@ -49,11 +53,11 @@ public final class ComparableComparator<T extends Comparable<T>> implements Comp
     public ComparableComparator(final boolean nullsFirst) {
         super();
         if (nullsFirst) {
-            _comparable1Null = -1;
-            _comparable2Null = 1;
+            _comparable1Null = NEGATIVE;
+            _comparable2Null = POSITIVE;
         } else {
-            _comparable1Null = 1;
-            _comparable2Null = -1;
+            _comparable1Null = POSITIVE;
+            _comparable2Null = NEGATIVE;
         }
     }
 
