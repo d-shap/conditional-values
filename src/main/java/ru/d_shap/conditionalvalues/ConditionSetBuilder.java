@@ -31,9 +31,6 @@ import java.util.Map;
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
  * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  * </p>
- * <p>
- * The internal presentation of conditions is {@code Map<String, String>}.
- * </p>
  *
  * @author Dmitry Shapovalov
  */
@@ -352,7 +349,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Clear all conditions.
+     * Clear this builder.
      *
      * @return current object for the method chaining.
      */
@@ -362,7 +359,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear all conditions.
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear this builder.
      *
      * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
@@ -373,7 +370,7 @@ public final class ConditionSetBuilder {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param clear whether to clear all conditions or not.
+     * @param clear true to clear this builder.
      *
      * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
      */
