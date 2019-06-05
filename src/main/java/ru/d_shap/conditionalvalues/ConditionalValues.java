@@ -163,9 +163,9 @@ public final class ConditionalValues<T> {
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> lookup(final ConditionSet conditionSet) {
-        Set<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
-        removeLessSpecificValueSets(matchingValueSets);
-        return new Values<>(matchingValueSets, _comparator, _allValues);
+        Set<ValueSet<T>> valueSets = getMatchingValueSets(conditionSet);
+        removeLessSpecificValueSets(valueSets);
+        return new Values<>(_comparator, valueSets, _allValues);
     }
 
     /**
@@ -183,13 +183,13 @@ public final class ConditionalValues<T> {
         if (conditionSet == null) {
             return Collections.emptySet();
         } else {
-            Set<ValueSet<T>> matchingValueSets = new HashSet<>();
+            Set<ValueSet<T>> result = new HashSet<>();
             for (ValueSet<T> valueSet : _valueSets) {
                 if (valueSet.isMatchConditions(conditionSet, _predicate)) {
-                    matchingValueSets.add(valueSet);
+                    result.add(valueSet);
                 }
             }
-            return matchingValueSets;
+            return result;
         }
     }
 
