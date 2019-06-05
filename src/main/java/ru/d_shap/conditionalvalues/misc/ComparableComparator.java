@@ -22,7 +22,7 @@ package ru.d_shap.conditionalvalues.misc;
 import java.util.Comparator;
 
 /**
- * Comparator for the comparable values.
+ * Comparator for the comparable values (native order).
  *
  * @param <T> generic value type.
  *
@@ -30,12 +30,44 @@ import java.util.Comparator;
  */
 public final class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
 
+    private final int _comparable1Null;
+
+    private final int _comparable2Null;
+
+    /**
+     * Create new object.
+     */
     public ComparableComparator() {
+        this(false);
+    }
+
+    /**
+     * Create new object.
+     *
+     * @param nullsFirst if true, then null values precede the other values, false otherwise.
+     */
+    public ComparableComparator(final boolean nullsFirst) {
         super();
+        if (nullsFirst) {
+            _comparable1Null = -1;
+            _comparable2Null = 1;
+        } else {
+            _comparable1Null = 1;
+            _comparable2Null = -1;
+        }
     }
 
     @Override
     public int compare(final T comparable1, final T comparable2) {
+        if (comparable1 == null && comparable2 == null) {
+            return 0;
+        }
+        if (comparable1 == null && comparable2 != null) {
+            return _comparable1Null;
+        }
+        if (comparable1 != null && comparable2 == null) {
+            return _comparable2Null;
+        }
         return comparable1.compareTo(comparable2);
     }
 
