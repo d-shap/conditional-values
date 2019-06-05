@@ -44,7 +44,7 @@ public final class ComparableComparator<T extends Comparable<T>> implements Comp
     /**
      * Create new object.
      *
-     * @param nullsFirst if true, then null values precede the other values, false otherwise.
+     * @param nullsFirst if true, then null values precede the other values.
      */
     public ComparableComparator(final boolean nullsFirst) {
         super();
