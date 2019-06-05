@@ -66,16 +66,19 @@ public final class ComparableComparator<T extends Comparable<T>> implements Comp
 
     @Override
     public int compare(final T comparable1, final T comparable2) {
-        if (comparable1 == null && comparable2 == null) {
-            return 0;
+        if (comparable1 == null) {
+            if (comparable2 == null) {
+                return 0;
+            } else {
+                return _comparable1Null;
+            }
+        } else {
+            if (comparable2 == null) {
+                return _comparable2Null;
+            } else {
+                return comparable1.compareTo(comparable2);
+            }
         }
-        if (comparable1 == null && comparable2 != null) {
-            return _comparable1Null;
-        }
-        if (comparable1 != null && comparable2 == null) {
-            return _comparable2Null;
-        }
-        return comparable1.compareTo(comparable2);
     }
 
 }
