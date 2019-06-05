@@ -36,6 +36,9 @@ import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
  * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
  * </p>
+ * <p>
+ * Builder instance is NOT thread-safe.
+ * </p>
  *
  * @param <T> generic value type.
  *

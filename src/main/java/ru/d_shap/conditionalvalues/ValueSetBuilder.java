@@ -53,6 +53,9 @@ import java.util.Set;
  * The value type should implement {@link java.lang.Object#equals(Object)} and {@link java.lang.Object#hashCode()}
  * methods or all values should be unique within the {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
  * </p>
+ * <p>
+ * Builder instance is NOT thread-safe.
+ * </p>
  *
  * @param <T> generic value type.
  *

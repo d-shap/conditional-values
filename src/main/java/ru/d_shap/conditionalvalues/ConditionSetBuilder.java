@@ -31,6 +31,9 @@ import java.util.Map;
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
  * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  * </p>
+ * <p>
+ * Builder instance is NOT thread-safe.
+ * </p>
  *
  * @author Dmitry Shapovalov
  */
