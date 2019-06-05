@@ -38,7 +38,7 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-        return conditionValue.equalsIgnoreCase(checkValue);
+        return conditionValue != null && conditionValue.equalsIgnoreCase(checkValue);
     }
 
 }

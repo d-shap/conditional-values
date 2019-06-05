@@ -38,7 +38,7 @@ public final class EqualsPredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-        return conditionValue.equals(checkValue);
+        return conditionValue != null && conditionValue.equals(checkValue);
     }
 
 }
