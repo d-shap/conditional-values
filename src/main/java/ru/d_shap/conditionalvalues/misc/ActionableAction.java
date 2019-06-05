@@ -24,7 +24,7 @@ import ru.d_shap.conditionalvalues.Actionable;
 
 /**
  * Action to perform for each value in the {@link ru.d_shap.conditionalvalues.Values} object.
- * Values in the {@link ru.d_shap.conditionalvalues.Values} object should implement
+ * Values in the {@link ru.d_shap.conditionalvalues.Values} object should implement the
  * {@link ru.d_shap.conditionalvalues.Actionable} interface.
  *
  * @author Dmitry Shapovalov
