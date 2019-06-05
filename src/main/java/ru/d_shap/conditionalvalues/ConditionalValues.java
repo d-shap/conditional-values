@@ -29,6 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
+
 /**
  * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best
  * matching {@link ru.d_shap.conditionalvalues.ValueSet} objects based on the specified
