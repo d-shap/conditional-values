@@ -40,41 +40,38 @@
  * And based on this conditions there are different editable fields (field1, field2, field3, etc.).
  * </p>
  * <p>
- * First we create a {@link ru.d_shap.conditionalvalues.ValueSet} object for each distinct condition:
+ * First we create a {@link ru.d_shap.conditionalvalues.ValueSet} object for each distinct condition
+ * and store this objects in a single {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
  * </p>
  * <pre>{@code
- * ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+ * ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+ * ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 1);
  * valueSetBuilder.addCondition("role", "viewer");
  * valueSetBuilder.addValue("field1", "field2");
- * ValueSet<String> type1Viewer1ValueSet = valueSetBuilder.build();
+ * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 2)
  *                .addCondition("state", 3);
  * valueSetBuilder.addCondition("role", "viewer");
  * valueSetBuilder.addValue("field2", "field3");
- * ValueSet<String> type1Viewer23ValueSet = valueSetBuilder.build();
+ * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * valueSetBuilder.addCondition("type", "type1");
  * valueSetBuilder.addCondition("state", 2)
  *                .addCondition("state", 3);
  * valueSetBuilder.addCondition("role", "editor");
  * valueSetBuilder.addValue("field1", "field3");
- * ValueSet<String> type1Editor23ValueSet = valueSetBuilder.build();
+ * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+ *
+ * ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
  * }</pre>
  * <p>
- * Then we store this conditions in a single {@link ru.d_shap.conditionalvalues.ConditionalValues} object:
- * </p>
- * <pre>{@code
- * ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(type1Viewer1ValueSet,
- *                                                                                         type1Viewer23ValueSet,
- *                                                                                         type1Editor23ValueSet);
- * }</pre>
- * <p>
- * This {@link ru.d_shap.conditionalvalues.ConditionalValues} object could be created in static initializer.
+ * This {@link ru.d_shap.conditionalvalues.ConditionalValues} object could be created during design-time,
+ * for example in the class static initializer, context startup listener and so on.
  * </p>
  * <p>
  * In runtime now we can define editable fields based on current condition (current form type, current form state,
@@ -82,10 +79,12 @@
  * To perform this we create a {@link ru.d_shap.conditionalvalues.ConditionSet} object:
  * </p>
  * <pre>{@code
- * ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
+ * ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+ *
  * conditionSetBuilder.addCondition("type", "type1");
  * conditionSetBuilder.addCondition("state", 2);
  * conditionSetBuilder.addCondition("role", "editor");
+ *
  * ConditionSet conditionSet = conditionSetBuilder.build();
  * }</pre>
  * <p>
