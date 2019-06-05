@@ -40,7 +40,9 @@ public final class ActionableAction<T extends Actionable> implements Action<T> {
 
     @Override
     public void perform(final T value) {
-        value.perform();
+        if (value != null) {
+            value.perform();
+        }
     }
 
 }
