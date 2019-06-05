@@ -20,8 +20,8 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
 import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
 
 /**
@@ -43,11 +42,9 @@ import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
  */
 public final class ConditionalValues<T> {
 
-    public static final Predicate EQUALS_PREDICATE = new EqualsPredicate();
-
-    public static final Predicate EQUALS_IGNORE_CASE_PREDICATE = new EqualsIgnoreCasePredicate();
-
     private final Predicate _predicate;
+
+    private final Comparator<T> _comparator;
 
     private final List<ValueSet<T>> _valueSets;
 
@@ -55,115 +52,60 @@ public final class ConditionalValues<T> {
 
     private final Set<T> _allValues;
 
-    @SafeVarargs
-    private ConditionalValues(final Predicate predicate, final ValueSet<T>... valueSets) {
+    ConditionalValues(final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
+        _predicate = createPredicate(predicate);
+        _comparator = comparator;
+        _valueSets = createValueSets(valueSets);
+        _allValueSetUniqueConditions = createAllValueSetUniqueConditions();
+        _allValues = createAllValues();
+    }
+
+    private Predicate createPredicate(final Predicate predicate) {
         if (predicate == null) {
-            _predicate = EQUALS_PREDICATE;
+            return new EqualsPredicate();
         } else {
-            _predicate = predicate;
+            return _predicate;
         }
-        List<ValueSet<T>> list = new ArrayList<>();
+    }
+
+    private List<ValueSet<T>> createValueSets(final List<ValueSet<T>> valueSets) {
+        List<ValueSet<T>> result = new ArrayList<>();
         if (valueSets != null) {
             for (ValueSet<T> valueSet : valueSets) {
                 if (valueSet != null) {
-                    list.add(valueSet);
+                    result.add(valueSet);
                 }
             }
         }
-        _valueSets = Collections.unmodifiableList(list);
-        Set<ValueSetUniqueCondition> allValueSetUniqueConditions = createValueSetUniqueConditions();
-        _allValueSetUniqueConditions = Collections.unmodifiableSet(allValueSetUniqueConditions);
-        Set<T> allValues = createAllValues();
-        _allValues = Collections.unmodifiableSet(allValues);
+        return Collections.unmodifiableList(result);
     }
 
-    private Set<ValueSetUniqueCondition> createValueSetUniqueConditions() {
-        Map<ValueSetUniqueCondition, Set<T>> valueSetUniqueConditionMap = new HashMap<>();
-        Set<ValueSetUniqueCondition> valueSetUniqueConditionSet = new HashSet<>();
+    private Set<ValueSetUniqueCondition> createAllValueSetUniqueConditions() {
+        Map<ValueSetUniqueCondition, Set<T>> map = new HashMap<>();
+        Set<ValueSetUniqueCondition> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             Set<T> values = valueSet.getValues();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                Set<T> oldValues = valueSetUniqueConditionMap.get(valueSetUniqueCondition);
+                Set<T> oldValues = map.get(valueSetUniqueCondition);
                 if (oldValues == null) {
-                    valueSetUniqueConditionMap.put(valueSetUniqueCondition, values);
-                    valueSetUniqueConditionSet.add(valueSetUniqueCondition);
+                    map.put(valueSetUniqueCondition, values);
+                    result.add(valueSetUniqueCondition);
                 } else if (!oldValues.containsAll(values) || !values.containsAll(oldValues)) {
                     throw new DuplicateValueSetException(valueSet);
                 }
             }
         }
-        return valueSetUniqueConditionSet;
+        return Collections.unmodifiableSet(result);
     }
 
     private Set<T> createAllValues() {
-        Set<T> allValues = new HashSet<>();
+        Set<T> result = Values.createSet(_comparator);
         for (ValueSet<T> valueSet : _valueSets) {
-            allValues.addAll(valueSet.getValues());
+            result.addAll(valueSet.getValues());
         }
-        return allValues;
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       generic value type.
-     *
-     * @return created object.
-     */
-    @SafeVarargs
-    public static <T> ConditionalValues<T> createConditionalValues(final ValueSet<T>... valueSets) {
-        return createConditionalValues(null, valueSets);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param predicate predicate to match values from the {@link ru.d_shap.conditionalvalues.ValueSet}
-     *                  and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       generic value type.
-     *
-     * @return created object.
-     */
-    @SafeVarargs
-    public static <T> ConditionalValues<T> createConditionalValues(final Predicate predicate, final ValueSet<T>... valueSets) {
-        return new ConditionalValues<>(predicate, valueSets);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       generic value type.
-     *
-     * @return created object.
-     */
-    public static <T> ConditionalValues<T> createConditionalValues(final Collection<ValueSet<T>> valueSets) {
-        return createConditionalValues(null, valueSets);
-    }
-
-    /**
-     * Create {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
-     *
-     * @param predicate predicate to match values from the {@link ru.d_shap.conditionalvalues.ValueSet}
-     *                  and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param valueSets all value sets, used for lookup.
-     * @param <T>       generic value type.
-     *
-     * @return created object.
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> ConditionalValues<T> createConditionalValues(final Predicate predicate, final Collection<ValueSet<T>> valueSets) {
-        if (valueSets == null) {
-            return new ConditionalValues<>(predicate);
-        } else {
-            ValueSet<T>[] array = (ValueSet<T>[]) new ValueSet<?>[valueSets.size()];
-            valueSets.toArray(array);
-            return new ConditionalValues<>(predicate, array);
-        }
+        return Collections.unmodifiableSet(result);
     }
 
     /**
@@ -180,7 +122,7 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Get all condition values for the specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     * Get all condition values for the specified condition name, defined in all{@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName the specified condition name.
      *
@@ -223,7 +165,7 @@ public final class ConditionalValues<T> {
     public Values<T> lookup(final ConditionSet conditionSet) {
         Set<ValueSet<T>> matchingValueSets = getMatchingValueSets(conditionSet);
         removeLessSpecificValueSets(matchingValueSets);
-        return new Values<>(matchingValueSets, _allValues);
+        return new Values<>(matchingValueSets, _comparator, _allValues);
     }
 
     /**
