@@ -71,7 +71,7 @@
  * }</pre>
  * <p>
  * This {@link ru.d_shap.conditionalvalues.ConditionalValues} object could be created during design-time,
- * for example in the class static initializer, context startup listener and so on.
+ * for example in the class static initializer.
  * </p>
  * <p>
  * In runtime now we can define editable fields based on current condition (current form type, current form state,
