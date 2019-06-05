@@ -48,14 +48,59 @@ public final class ValueSet<T> {
     ValueSet(final String id, final Map<String, Set<String>> conditions, final Set<T> values) {
         super();
         _id = id;
-        Map<String, Set<String>> map = new HashMap<>();
-        for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
-            Set<String> set = new HashSet<>(entry.getValue());
-            map.put(entry.getKey(), Collections.unmodifiableSet(set));
+        _conditions = createConditions(conditions);
+        _conditionNames = createConditionNames();
+        _values = createValues(values);
+    }
+
+    private Map<String, Set<String>> createConditions(final Map<String, Set<String>> conditions) {
+        Map<String, Set<String>> result = new HashMap<>();
+        if (conditions != null) {
+            for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
+                String key = entry.getKey();
+                Set<String> value = entry.getValue();
+                if (key != null) {
+                    result.put(key, createConditionValues(value));
+                }
+            }
         }
-        _conditions = Collections.unmodifiableMap(map);
-        _conditionNames = Collections.unmodifiableSet(_conditions.keySet());
-        _values = Collections.unmodifiableSet(new HashSet<>(values));
+        for (Iterator<Map.Entry<String, Set<String>>> iterator = result.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<String, Set<String>> entry = iterator.next();
+            Set<String> value = entry.getValue();
+            if (value.isEmpty()) {
+                iterator.remove();
+            }
+        }
+        return Collections.unmodifiableMap(result);
+    }
+
+    private Set<String> createConditionValues(final Set<String> values) {
+        Set<String> result = new HashSet<>();
+        if (values != null) {
+            for (String value : values) {
+                if (value != null) {
+                    result.add(value);
+                }
+            }
+        }
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<String> createConditionNames() {
+        Set<String> result = _conditions.keySet();
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<T> createValues(final Set<T> values) {
+        Set<T> result = new HashSet<>();
+        if (values != null) {
+            for (T value : values) {
+                if (value != null) {
+                    result.add(value);
+                }
+            }
+        }
+        return Collections.unmodifiableSet(result);
     }
 
     /**
@@ -93,6 +138,9 @@ public final class ValueSet<T> {
     }
 
     boolean isMatchConditions(final ConditionSet conditionSet, final Predicate predicate) {
+        if (conditionSet == null || predicate == null) {
+            return false;
+        }
         int matchCount = 0;
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
@@ -112,6 +160,9 @@ public final class ValueSet<T> {
     }
 
     boolean isMoreSpecificValueSet(final ValueSet<T> valueSet) {
+        if (valueSet == null) {
+            return false;
+        }
         int matchCount = 0;
         Iterator<String> conditionNameIterator = _conditionNames.iterator();
         while (conditionNameIterator.hasNext()) {
