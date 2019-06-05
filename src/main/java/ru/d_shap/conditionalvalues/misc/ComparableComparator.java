@@ -22,7 +22,7 @@ package ru.d_shap.conditionalvalues.misc;
 import java.util.Comparator;
 
 /**
- * Comparator for the comparable values (native order).
+ * Comparator for the comparable values (natural order).
  *
  * @param <T> generic value type.
  *
