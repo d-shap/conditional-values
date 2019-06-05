@@ -25,6 +25,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
+import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
 
 /**
  * <p>
@@ -79,6 +81,32 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setEqualsPredicate() {
+        _predicate = new EqualsPredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setEqualsIgnoreCasePredicate() {
+        _predicate = new EqualsIgnoreCasePredicate();
+        return this;
+    }
+
+    /**
      * Set the comparator to sort all values in the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param comparator the comparator to sort all values.
@@ -117,7 +145,7 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Add the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * Add the {@link ru.d_shap.conditionalvalues.ValueSet} object to this builder.
      *
      * @param valueSet the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
