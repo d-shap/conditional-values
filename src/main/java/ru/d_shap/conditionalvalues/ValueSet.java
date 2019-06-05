@@ -64,7 +64,8 @@ public final class ValueSet<T> {
                 }
             }
         }
-        for (Iterator<Map.Entry<String, Set<String>>> iterator = result.entrySet().iterator(); iterator.hasNext(); ) {
+        Iterator<Map.Entry<String, Set<String>>> iterator = result.entrySet().iterator();
+        while (iterator.hasNext()) {
             Map.Entry<String, Set<String>> entry = iterator.next();
             Set<String> value = entry.getValue();
             if (value.isEmpty()) {
