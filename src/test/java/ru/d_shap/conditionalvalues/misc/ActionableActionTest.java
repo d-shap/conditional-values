@@ -19,7 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues.misc;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.Actionable;
 
 /**
  * Tests for {@link ActionableAction}.
@@ -40,7 +46,44 @@ public final class ActionableActionTest {
      */
     @Test
     public void performTest() {
-        // TODO
+        Set<String> set1 = new HashSet<>();
+        new ActionableAction<ActionableImpl>().perform(null);
+        Assertions.assertThat(set1).containsExactly();
+
+        Set<String> set2 = new HashSet<>();
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val"));
+        Assertions.assertThat(set2).containsExactly("proc_val");
+
+        Set<String> set3 = new HashSet<>();
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val1"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val2"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val3"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val4"));
+        Assertions.assertThat(set3).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4");
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class ActionableImpl implements Actionable {
+
+        private final Set<String> _values;
+
+        private final String _value;
+
+        ActionableImpl(final Set<String> values, final String value) {
+            super();
+            _values = values;
+            _value = value;
+        }
+
+        @Override
+        public void perform() {
+            _values.add("proc_" + _value);
+        }
+
     }
 
 }
