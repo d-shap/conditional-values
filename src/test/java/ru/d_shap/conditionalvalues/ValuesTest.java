@@ -19,12 +19,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.misc.ComparableComparator;
 
 /**
  * Tests for {@link Values}.
@@ -38,6 +41,16 @@ public final class ValuesTest {
      */
     public ValuesTest() {
         super();
+    }
+
+    /**
+     * {@link Values} class test.
+     */
+    @Test
+    public void createSetTest() {
+        Assertions.assertThat(Values.createSet(null)).isInstanceOf(HashSet.class);
+        Assertions.assertThat(Values.createSet(new ComparableComparator<String>())).isInstanceOf(TreeSet.class);
+        Assertions.assertThat(Values.createSet(Collections.reverseOrder())).isInstanceOf(TreeSet.class);
     }
 
     /**
