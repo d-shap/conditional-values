@@ -26,6 +26,10 @@ import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.Actionable;
+import ru.d_shap.conditionalvalues.ConditionSetBuilder;
+import ru.d_shap.conditionalvalues.ConditionalValues;
+import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.ValueSetBuilder;
 
 /**
  * Tests for {@link ActionableAction}.
@@ -60,6 +64,44 @@ public final class ActionableActionTest {
         new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val3"));
         new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val4"));
         Assertions.assertThat(set3).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4");
+    }
+
+    /**
+     * {@link ActionableActionTest} class test.
+     */
+    @Test
+    public void lookupTest() {
+        ConditionalValuesBuilder<ActionableImpl> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<ActionableImpl> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+        Set<String> set = new HashSet<>();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue(new ActionableImpl(set, "val11"));
+        valueSetBuilder.addValue(new ActionableImpl(set, "val12"));
+        valueSetBuilder.addValue(new ActionableImpl(set, "val13"));
+        valueSetBuilder.addValue(new ActionableImpl(set, "val14"));
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addValue(new ActionableImpl(set, "val21"));
+        valueSetBuilder.addValue(new ActionableImpl(set, "val22"));
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<ActionableImpl> conditionalValues = conditionalValuesBuilder.build();
+
+        set.clear();
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").build(), new ActionableAction<ActionableImpl>());
+        Assertions.assertThat(set).containsExactly("proc_val11", "proc_val12", "proc_val13", "proc_val14");
+
+        set.clear();
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond2", "val2").build(), new ActionableAction<ActionableImpl>());
+        Assertions.assertThat(set).containsExactly("proc_val21", "proc_val22");
+
+        set.clear();
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2").build(), new ActionableAction<ActionableImpl>());
+        Assertions.assertThat(set).containsExactly("proc_val11", "proc_val12", "proc_val13", "proc_val14");
+
+        set.clear();
+        conditionalValues.lookup(conditionSetBuilder.build(), new ActionableAction<ActionableImpl>());
+        Assertions.assertThat(set).containsExactly("proc_val21", "proc_val22");
     }
 
     /**
