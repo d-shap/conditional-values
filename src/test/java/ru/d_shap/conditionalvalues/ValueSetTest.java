@@ -28,6 +28,8 @@ import java.util.Set;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
 
 /**
  * Tests for {@link ValueSet}.
@@ -219,177 +221,177 @@ public final class ValueSetTest {
         Map<String, String> conditions11 = new HashMap<>();
         conditions11.put("cond1", "val11");
         conditions11.put("cond2", "val21");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions11), ConditionalValues.EQUALS_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions11), new EqualsPredicate())).isTrue();
 
         Map<String, String> conditions12 = new HashMap<>();
         conditions12.put("cond1", "VAL11");
         conditions12.put("cond2", "VAL21");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions12), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions12), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions13 = new HashMap<>();
         conditions13.put("cond1", "val11");
         conditions13.put("cond2", "val21");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions13), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions13), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions14 = new HashMap<>();
         conditions14.put("cond1", "VAL11");
         conditions14.put("cond2", "VAL21");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions14), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions14), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions21 = new HashMap<>();
         conditions21.put("cond1", "val12");
         conditions21.put("cond2", "val22");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions21), ConditionalValues.EQUALS_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions21), new EqualsPredicate())).isTrue();
 
         Map<String, String> conditions22 = new HashMap<>();
         conditions22.put("cond1", "VAL12");
         conditions22.put("cond2", "VAL22");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions22), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions22), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions23 = new HashMap<>();
         conditions23.put("cond1", "val12");
         conditions23.put("cond2", "val22");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions23), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions23), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions24 = new HashMap<>();
         conditions24.put("cond1", "VAL12");
         conditions24.put("cond2", "VAL22");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions24), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions24), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions31 = new HashMap<>();
         conditions31.put("cond1", "val14");
         conditions31.put("cond2", "val23");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions31), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions31), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions32 = new HashMap<>();
         conditions32.put("cond1", "VAL14");
         conditions32.put("cond2", "VAL23");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions32), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions32), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions33 = new HashMap<>();
         conditions33.put("cond1", "val14");
         conditions33.put("cond2", "val23");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions33), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions33), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions34 = new HashMap<>();
         conditions34.put("cond1", "VAL14");
         conditions34.put("cond2", "VAL23");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions34), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions34), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions41 = new HashMap<>();
         conditions41.put("cond1", "val12");
         conditions41.put("cond2", "val24");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions41), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions41), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions42 = new HashMap<>();
         conditions42.put("cond1", "VAL12");
         conditions42.put("cond2", "VAL24");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions42), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions42), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions43 = new HashMap<>();
         conditions43.put("cond1", "val12");
         conditions43.put("cond2", "val24");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions43), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions43), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions44 = new HashMap<>();
         conditions44.put("cond1", "VAL12");
         conditions44.put("cond2", "VAL24");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions44), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions44), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions51 = new HashMap<>();
         conditions51.put("cond1", "val13");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions51), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions51), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions52 = new HashMap<>();
         conditions52.put("cond1", "VAL13");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions52), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions52), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions53 = new HashMap<>();
         conditions53.put("cond1", "val13");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions53), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions53), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions54 = new HashMap<>();
         conditions54.put("cond1", "VAL13");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions54), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions54), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions6 = new HashMap<>();
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions6), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions6), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions71 = new HashMap<>();
         conditions71.put("cond1", "val12");
         conditions71.put("cond2", "val22");
         conditions71.put("cond3", "val32");
         conditions71.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions71), ConditionalValues.EQUALS_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions71), new EqualsPredicate())).isTrue();
 
         Map<String, String> conditions72 = new HashMap<>();
         conditions72.put("cond1", "VAL12");
         conditions72.put("cond2", "VAL22");
         conditions72.put("cond3", "VAL32");
         conditions72.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions72), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions72), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions73 = new HashMap<>();
         conditions73.put("cond1", "val12");
         conditions73.put("cond2", "val22");
         conditions73.put("cond3", "val32");
         conditions73.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions73), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions73), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions74 = new HashMap<>();
         conditions74.put("cond1", "VAL12");
         conditions74.put("cond2", "VAL22");
         conditions74.put("cond3", "VAL32");
         conditions74.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions74), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions74), new EqualsIgnoreCasePredicate())).isTrue();
 
         Map<String, String> conditions81 = new HashMap<>();
         conditions81.put("cond2", "val22");
         conditions81.put("cond3", "val32");
         conditions81.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions81), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions81), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions82 = new HashMap<>();
         conditions82.put("cond2", "VAL22");
         conditions82.put("cond3", "VAL32");
         conditions82.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions82), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions82), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions83 = new HashMap<>();
         conditions83.put("cond2", "val22");
         conditions83.put("cond3", "val32");
         conditions83.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions83), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions83), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions84 = new HashMap<>();
         conditions84.put("cond2", "VAL22");
         conditions84.put("cond3", "VAL32");
         conditions84.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions84), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions84), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions91 = new HashMap<>();
         conditions91.put("cond1", "val12");
         conditions91.put("cond3", "val32");
         conditions91.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions91), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions91), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions92 = new HashMap<>();
         conditions92.put("cond1", "VAL12");
         conditions92.put("cond3", "VAL32");
         conditions92.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions92), ConditionalValues.EQUALS_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions92), new EqualsPredicate())).isFalse();
 
         Map<String, String> conditions93 = new HashMap<>();
         conditions93.put("cond1", "val12");
         conditions93.put("cond3", "val32");
         conditions93.put("cond4", "val42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions93), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions93), new EqualsIgnoreCasePredicate())).isFalse();
 
         Map<String, String> conditions94 = new HashMap<>();
         conditions94.put("cond1", "VAL12");
         conditions94.put("cond3", "VAL32");
         conditions94.put("cond4", "VAL42");
-        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions94), ConditionalValues.EQUALS_IGNORE_CASE_PREDICATE)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions94), new EqualsIgnoreCasePredicate())).isFalse();
     }
 
     /**
