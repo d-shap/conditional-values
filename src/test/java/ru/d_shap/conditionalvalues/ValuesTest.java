@@ -685,100 +685,134 @@ public final class ValuesTest {
     public void toStringTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        ValueSet<String> valueSet11 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets11 = new HashSet<>();
-        valueSets11.add(valueSet11);
-        Values<String> values11 = new Values<>(null, valueSets11, new HashSet<String>());
-        Assertions.assertThat(values11).hasToString("[{}]");
+        Set<ValueSet<String>> valueSets1 = null;
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
+        Assertions.assertThat(values1).hasToString("[]");
 
-        valueSetBuilder.setId("");
-        ValueSet<String> valueSet12 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets12 = new HashSet<>();
-        valueSets12.add(valueSet12);
-        Values<String> values12 = new Values<>(null, valueSets12, new HashSet<String>());
-        Assertions.assertThat(values12).hasToString("[={}]");
+        Set<ValueSet<String>> valueSets2 = new HashSet<>();
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
+        Assertions.assertThat(values2).hasToString("[]");
 
-        valueSetBuilder.setId("id");
-        ValueSet<String> valueSet13 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets13 = new HashSet<>();
-        valueSets13.add(valueSet13);
-        Values<String> values13 = new Values<>(null, valueSets13, new HashSet<String>());
-        Assertions.assertThat(values13).hasToString("[id={}]");
-
-        valueSetBuilder.addCondition("cond", "val");
-        ValueSet<String> valueSet21 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets21 = new HashSet<>();
-        valueSets21.add(valueSet21);
-        Values<String> values21 = new Values<>(null, valueSets21, new HashSet<String>());
-        Assertions.assertThat(values21).hasToString("[{cond=[val]}]");
-
-        valueSetBuilder.setId("");
-        valueSetBuilder.addCondition("cond", "val");
-        ValueSet<String> valueSet22 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets22 = new HashSet<>();
-        valueSets22.add(valueSet22);
-        Values<String> values22 = new Values<>(null, valueSets22, new HashSet<String>());
-        Assertions.assertThat(values22).hasToString("[={cond=[val]}]");
-
-        valueSetBuilder.setId("id");
-        valueSetBuilder.addCondition("cond", "val");
-        ValueSet<String> valueSet23 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets23 = new HashSet<>();
-        valueSets23.add(valueSet23);
-        Values<String> values23 = new Values<>(null, valueSets23, new HashSet<String>());
-        Assertions.assertThat(values23).hasToString("[id={cond=[val]}]");
-
-        valueSetBuilder.addCondition("cond1", "val11");
-        valueSetBuilder.addCondition("cond1", "val12");
-        valueSetBuilder.addCondition("cond2", "val2");
-        ValueSet<String> valueSet311 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond3", "val31");
-        valueSetBuilder.addCondition("cond3", "val32");
-        ValueSet<String> valueSet312 = valueSetBuilder.build();
+        ValueSet<String> valueSet31 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets31 = new HashSet<>();
-        valueSets31.add(valueSet311);
-        valueSets31.add(valueSet312);
+        valueSets31.add(valueSet31);
         Values<String> values31 = new Values<>(null, valueSets31, new HashSet<String>());
-        Assertions.assertThat(values31).toToString().startsWith("[{");
-        Assertions.assertThat(values31).toStringContains("cond1=[val1");
-        Assertions.assertThat(values31).toStringContains("cond2=[val2]");
-        Assertions.assertThat(values31).toStringContains("cond3=[val3");
+        Assertions.assertThat(values31).hasToString("[{}]");
+
+        valueSetBuilder.setId("");
+        ValueSet<String> valueSet32 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets32 = new HashSet<>();
+        valueSets32.add(valueSet32);
+        Values<String> values32 = new Values<>(null, valueSets32, new HashSet<String>());
+        Assertions.assertThat(values32).hasToString("[={}]");
+
+        valueSetBuilder.setId("id");
+        ValueSet<String> valueSet33 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets33 = new HashSet<>();
+        valueSets33.add(valueSet33);
+        Values<String> values33 = new Values<>(null, valueSets33, new HashSet<String>());
+        Assertions.assertThat(values33).hasToString("[id={}]");
+
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet41 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets41 = new HashSet<>();
+        valueSets41.add(valueSet41);
+        Values<String> values41 = new Values<>(null, valueSets41, new HashSet<String>());
+        Assertions.assertThat(values41).hasToString("[{cond=[val]}]");
+
+        valueSetBuilder.setId("");
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet42 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets42 = new HashSet<>();
+        valueSets42.add(valueSet42);
+        Values<String> values42 = new Values<>(null, valueSets42, new HashSet<String>());
+        Assertions.assertThat(values42).hasToString("[={cond=[val]}]");
+
+        valueSetBuilder.setId("id");
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet43 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets43 = new HashSet<>();
+        valueSets43.add(valueSet43);
+        Values<String> values43 = new Values<>(null, valueSets43, new HashSet<String>());
+        Assertions.assertThat(values43).hasToString("[id={cond=[val]}]");
+
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet51 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets51 = new HashSet<>();
+        valueSets51.add(null);
+        valueSets51.add(valueSet51);
+        Values<String> values51 = new Values<>(null, valueSets51, new HashSet<String>());
+        Assertions.assertThat(values51).hasToString("[{cond=[val]}]");
+
+        valueSetBuilder.setId("");
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet52 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets52 = new HashSet<>();
+        valueSets52.add(null);
+        valueSets52.add(valueSet52);
+        Values<String> values52 = new Values<>(null, valueSets52, new HashSet<String>());
+        Assertions.assertThat(values52).hasToString("[={cond=[val]}]");
+
+        valueSetBuilder.setId("id");
+        valueSetBuilder.addCondition("cond", "val");
+        ValueSet<String> valueSet53 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets53 = new HashSet<>();
+        valueSets53.add(null);
+        valueSets53.add(valueSet53);
+        Values<String> values53 = new Values<>(null, valueSets53, new HashSet<String>());
+        Assertions.assertThat(values53).hasToString("[id={cond=[val]}]");
+
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val2");
+        ValueSet<String> valueSet611 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        ValueSet<String> valueSet612 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets61 = new HashSet<>();
+        valueSets61.add(valueSet611);
+        valueSets61.add(valueSet612);
+        Values<String> values61 = new Values<>(null, valueSets61, new HashSet<String>());
+        Assertions.assertThat(values61).toToString().startsWith("[{");
+        Assertions.assertThat(values61).toStringContains("cond1=[val1");
+        Assertions.assertThat(values61).toStringContains("cond2=[val2]");
+        Assertions.assertThat(values61).toStringContains("cond3=[val3");
 
         valueSetBuilder.setId("");
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val2");
-        ValueSet<String> valueSet321 = valueSetBuilder.build();
+        ValueSet<String> valueSet621 = valueSetBuilder.build();
         valueSetBuilder.setId("");
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
-        ValueSet<String> valueSet322 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets32 = new HashSet<>();
-        valueSets32.add(valueSet321);
-        valueSets32.add(valueSet322);
-        Values<String> values32 = new Values<>(null, valueSets32, new HashSet<String>());
-        Assertions.assertThat(values32).toToString().startsWith("[={");
-        Assertions.assertThat(values32).toStringContains("cond1=[val1");
-        Assertions.assertThat(values32).toStringContains("cond2=[val2]");
-        Assertions.assertThat(values32).toStringContains("cond3=[val3");
+        ValueSet<String> valueSet622 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets62 = new HashSet<>();
+        valueSets62.add(valueSet621);
+        valueSets62.add(valueSet622);
+        Values<String> values62 = new Values<>(null, valueSets62, new HashSet<String>());
+        Assertions.assertThat(values62).toToString().startsWith("[={");
+        Assertions.assertThat(values62).toStringContains("cond1=[val1");
+        Assertions.assertThat(values62).toStringContains("cond2=[val2]");
+        Assertions.assertThat(values62).toStringContains("cond3=[val3");
 
         valueSetBuilder.setId("id1");
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val2");
-        ValueSet<String> valueSet331 = valueSetBuilder.build();
+        ValueSet<String> valueSet631 = valueSetBuilder.build();
         valueSetBuilder.setId("id2");
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
-        ValueSet<String> valueSet332 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets33 = new HashSet<>();
-        valueSets33.add(valueSet331);
-        valueSets33.add(valueSet332);
-        Values<String> values33 = new Values<>(null, valueSets33, new HashSet<String>());
-        Assertions.assertThat(values33).toToString().startsWith("[id");
-        Assertions.assertThat(values33).toStringContains("cond1=[val1");
-        Assertions.assertThat(values33).toStringContains("cond2=[val2]");
-        Assertions.assertThat(values33).toStringContains("cond3=[val3");
+        ValueSet<String> valueSet632 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets63 = new HashSet<>();
+        valueSets63.add(valueSet631);
+        valueSets63.add(valueSet632);
+        Values<String> values63 = new Values<>(null, valueSets63, new HashSet<String>());
+        Assertions.assertThat(values63).toToString().startsWith("[id");
+        Assertions.assertThat(values63).toStringContains("cond1=[val1");
+        Assertions.assertThat(values63).toStringContains("cond2=[val2]");
+        Assertions.assertThat(values63).toStringContains("cond3=[val3");
     }
 
     /**
