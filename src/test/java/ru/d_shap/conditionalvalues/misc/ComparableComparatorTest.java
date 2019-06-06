@@ -43,4 +43,36 @@ public final class ComparableComparatorTest {
         // TODO
     }
 
+    /**
+     * {@link ComparableComparator} class test.
+     */
+    @Test
+    public void nullsFirstNaturalOrderTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ComparableComparator} class test.
+     */
+    @Test
+    public void nullsLastNaturalOrderTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ComparableComparator} class test.
+     */
+    @Test
+    public void nullsFirstReverseOrderTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ComparableComparator} class test.
+     */
+    @Test
+    public void nullsLastReverseOrderTest() {
+        // TODO
+    }
+
 }
