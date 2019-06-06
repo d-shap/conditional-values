@@ -19,7 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues.misc;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link ComparableComparator}.
@@ -48,7 +54,25 @@ public final class ComparableComparatorTest {
      */
     @Test
     public void nullsFirstNaturalOrderTest() {
-        // TODO
+        List<String> values1 = Arrays.asList("a", "b", "c", "d");
+        Collections.sort(values1, new ComparableComparator<String>(true));
+        Assertions.assertThat(values1).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values2 = Arrays.asList("d", "c", "b", "a");
+        Collections.sort(values2, new ComparableComparator<String>(true));
+        Assertions.assertThat(values2).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values3 = Arrays.asList("b", "d", "a", "c");
+        Collections.sort(values3, new ComparableComparator<String>(true));
+        Assertions.assertThat(values3).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values4 = Arrays.asList("a", "b", "b", "a");
+        Collections.sort(values4, new ComparableComparator<String>(true));
+        Assertions.assertThat(values4).containsExactlyInOrder("a", "a", "b", "b");
+
+        List<String> values5 = Arrays.asList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
+        Collections.sort(values5, new ComparableComparator<String>(true));
+        Assertions.assertThat(values5).containsExactlyInOrder(null, null, null, "a", "a", "b", "c", "c", "d", "d");
     }
 
     /**
@@ -56,7 +80,45 @@ public final class ComparableComparatorTest {
      */
     @Test
     public void nullsLastNaturalOrderTest() {
-        // TODO
+        List<String> values11 = Arrays.asList("a", "b", "c", "d");
+        Collections.sort(values11, new ComparableComparator<String>());
+        Assertions.assertThat(values11).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values12 = Arrays.asList("a", "b", "c", "d");
+        Collections.sort(values12, new ComparableComparator<String>(false));
+        Assertions.assertThat(values12).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values21 = Arrays.asList("d", "c", "b", "a");
+        Collections.sort(values21, new ComparableComparator<String>());
+        Assertions.assertThat(values21).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values22 = Arrays.asList("d", "c", "b", "a");
+        Collections.sort(values22, new ComparableComparator<String>(false));
+        Assertions.assertThat(values22).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values31 = Arrays.asList("b", "d", "a", "c");
+        Collections.sort(values31, new ComparableComparator<String>());
+        Assertions.assertThat(values31).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values32 = Arrays.asList("b", "d", "a", "c");
+        Collections.sort(values32, new ComparableComparator<String>(false));
+        Assertions.assertThat(values32).containsExactlyInOrder("a", "b", "c", "d");
+
+        List<String> values41 = Arrays.asList("a", "b", "b", "a");
+        Collections.sort(values41, new ComparableComparator<String>());
+        Assertions.assertThat(values41).containsExactlyInOrder("a", "a", "b", "b");
+
+        List<String> values42 = Arrays.asList("a", "b", "b", "a");
+        Collections.sort(values42, new ComparableComparator<String>(false));
+        Assertions.assertThat(values42).containsExactlyInOrder("a", "a", "b", "b");
+
+        List<String> values51 = Arrays.asList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
+        Collections.sort(values51, new ComparableComparator<String>());
+        Assertions.assertThat(values51).containsExactlyInOrder("a", "a", "b", "c", "c", "d", "d", null, null, null);
+
+        List<String> values52 = Arrays.asList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
+        Collections.sort(values52, new ComparableComparator<String>(false));
+        Assertions.assertThat(values52).containsExactlyInOrder("a", "a", "b", "c", "c", "d", "d", null, null, null);
     }
 
     /**
