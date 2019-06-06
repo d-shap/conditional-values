@@ -429,26 +429,57 @@ public final class ValuesTest {
     public void getAllValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        Set<String> allValues1 = new HashSet<>();
+        Set<String> allValues1 = null;
         Values<String> values1 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues1);
-        Assertions.assertThat(values1.getAllValues()).isNotNull();
         Assertions.assertThat(values1.getAllValues()).containsExactly();
 
         Set<String> allValues2 = new HashSet<>();
-        allValues2.add("val1");
-        allValues2.add("val2");
         Values<String> values2 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues2);
-        Assertions.assertThat(values2.getAllValues()).isNotNull();
-        Assertions.assertThat(values2.getAllValues()).containsExactly("val1", "val2");
+        Assertions.assertThat(values2.getAllValues()).containsExactly();
 
         Set<String> allValues3 = new HashSet<>();
-        allValues3.add("val1");
-        allValues3.add("val2");
-        allValues3.add("val3");
-        allValues3.add("val4");
+        allValues3.add(null);
         Values<String> values3 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues3);
-        Assertions.assertThat(values3.getAllValues()).isNotNull();
-        Assertions.assertThat(values3.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+        Assertions.assertThat(values3.getAllValues()).containsExactly();
+
+        Set<String> allValues4 = new HashSet<>();
+        allValues4.add("val1");
+        allValues4.add("val2");
+        Values<String> values4 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues4);
+        Assertions.assertThat(values4.getAllValues()).containsExactly("val1", "val2");
+
+        Set<String> allValues5 = new HashSet<>();
+        allValues5.add(null);
+        allValues5.add("val1");
+        allValues5.add("val2");
+        Values<String> values5 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues5);
+        Assertions.assertThat(values5.getAllValues()).containsExactly("val1", "val2");
+
+        Set<String> allValues6 = new HashSet<>();
+        allValues6.add("val1");
+        allValues6.add("val2");
+        allValues6.add("val3");
+        allValues6.add("val4");
+        Values<String> values6 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues6);
+        Assertions.assertThat(values6.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        Set<String> allValues7 = new HashSet<>();
+        allValues7.add(null);
+        allValues7.add("val1");
+        allValues7.add("val2");
+        allValues7.add("val3");
+        allValues7.add("val4");
+        Values<String> values7 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues7);
+        Assertions.assertThat(values7.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        Set<String> allValues8 = new HashSet<>();
+        allValues8.add(null);
+        allValues8.add("val1");
+        allValues8.add("val2");
+        allValues8.add("val3");
+        allValues8.add("val4");
+        Values<String> values8 = new Values<>(new ComparableComparator<String>(), new HashSet<ValueSet<String>>(), allValues8);
+        Assertions.assertThat(values8.getAllValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
     }
 
     /**
