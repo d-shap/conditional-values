@@ -60,38 +60,65 @@ public final class ValuesTest {
     public void isEmptyTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        ValueSet<String> valueSet11 = valueSetBuilder.build();
-        ValueSet<String> valueSet12 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets1 = new HashSet<>();
-        valueSets1.add(valueSet11);
-        valueSets1.add(valueSet12);
-        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
+        Values<String> values1 = new Values<>(null, null, new HashSet<String>());
         Assertions.assertThat(values1.isEmpty()).isTrue();
 
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet21 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet22 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
-        Assertions.assertThat(values2.isEmpty()).isFalse();
+        Assertions.assertThat(values2.isEmpty()).isTrue();
+
+        ValueSet<String> valueSet31 = valueSetBuilder.build();
+        ValueSet<String> valueSet32 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets3 = new HashSet<>();
+        valueSets3.add(null);
+        valueSets3.add(valueSet31);
+        valueSets3.add(null);
+        valueSets3.add(null);
+        valueSets3.add(valueSet32);
+        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
+        Assertions.assertThat(values3.isEmpty()).isTrue();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val2");
-        ValueSet<String> valueSet31 = valueSetBuilder.build();
+        ValueSet<String> valueSet41 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        ValueSet<String> valueSet42 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets4 = new HashSet<>();
+        valueSets4.add(valueSet41);
+        valueSets4.add(valueSet42);
+        Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
+        Assertions.assertThat(values4.isEmpty()).isFalse();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet51 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        ValueSet<String> valueSet52 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets5 = new HashSet<>();
+        valueSets5.add(valueSet51);
+        valueSets5.add(valueSet52);
+        valueSets5.add(null);
+        Values<String> values5 = new Values<>(null, valueSets5, new HashSet<String>());
+        Assertions.assertThat(values5.isEmpty()).isFalse();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val3", "val4");
-        ValueSet<String> valueSet32 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets3 = new HashSet<>();
-        valueSets3.add(valueSet31);
-        valueSets3.add(valueSet32);
-        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
-        Assertions.assertThat(values3.isEmpty()).isFalse();
+        ValueSet<String> valueSet62 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets6 = new HashSet<>();
+        valueSets6.add(valueSet61);
+        valueSets6.add(valueSet62);
+        Values<String> values6 = new Values<>(null, valueSets6, new HashSet<String>());
+        Assertions.assertThat(values6.isEmpty()).isFalse();
     }
 
     /**
