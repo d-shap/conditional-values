@@ -517,71 +517,73 @@ public final class ValuesTest {
     public void getIdsTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        ValueSet<String> valueSet1 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets1 = new HashSet<>();
-        valueSets1.add(valueSet1);
+        Set<ValueSet<String>> valueSets1 = null;
         Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
-        Assertions.assertThat(values1.getIds()).isNotNull();
         Assertions.assertThat(values1.getIds()).containsExactlyInOrder();
 
-        ValueSet<String> valueSet21 = valueSetBuilder.build();
-        ValueSet<String> valueSet22 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
-        valueSets2.add(valueSet21);
-        valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
-        Assertions.assertThat(values2.getIds()).isNotNull();
         Assertions.assertThat(values2.getIds()).containsExactlyInOrder();
 
-        valueSetBuilder.setId("id");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet3);
         Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
-        Assertions.assertThat(values3.getIds()).isNotNull();
-        Assertions.assertThat(values3.getIds()).containsExactlyInOrder("id");
+        Assertions.assertThat(values3.getIds()).containsExactlyInOrder();
 
-        valueSetBuilder.setId("id1");
         ValueSet<String> valueSet41 = valueSetBuilder.build();
-        valueSetBuilder.setId("id2");
         ValueSet<String> valueSet42 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets4 = new HashSet<>();
         valueSets4.add(valueSet41);
         valueSets4.add(valueSet42);
         Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
-        Assertions.assertThat(values4.getIds()).isNotNull();
-        Assertions.assertThat(values4.getIds()).containsExactlyInOrder("id1", "id2");
+        Assertions.assertThat(values4.getIds()).containsExactlyInOrder();
 
         valueSetBuilder.setId("id");
-        ValueSet<String> valueSet51 = valueSetBuilder.build();
-        ValueSet<String> valueSet52 = valueSetBuilder.build();
+        ValueSet<String> valueSet5 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets5 = new HashSet<>();
-        valueSets5.add(valueSet51);
-        valueSets5.add(valueSet52);
+        valueSets5.add(valueSet5);
         Values<String> values5 = new Values<>(null, valueSets5, new HashSet<String>());
-        Assertions.assertThat(values5.getIds()).isNotNull();
         Assertions.assertThat(values5.getIds()).containsExactlyInOrder("id");
 
         valueSetBuilder.setId("id1");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
-        ValueSet<String> valueSet62 = valueSetBuilder.build();
         valueSetBuilder.setId("id2");
-        ValueSet<String> valueSet63 = valueSetBuilder.build();
-        valueSetBuilder.setId("id1");
-        ValueSet<String> valueSet64 = valueSetBuilder.build();
-        ValueSet<String> valueSet65 = valueSetBuilder.build();
-        valueSetBuilder.setId("id3");
-        ValueSet<String> valueSet66 = valueSetBuilder.build();
+        ValueSet<String> valueSet62 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets6 = new HashSet<>();
         valueSets6.add(valueSet61);
         valueSets6.add(valueSet62);
-        valueSets6.add(valueSet63);
-        valueSets6.add(valueSet64);
-        valueSets6.add(valueSet65);
-        valueSets6.add(valueSet66);
         Values<String> values6 = new Values<>(null, valueSets6, new HashSet<String>());
-        Assertions.assertThat(values6.getIds()).isNotNull();
-        Assertions.assertThat(values6.getIds()).containsExactlyInOrder("id1", "id2", "id3");
+        Assertions.assertThat(values6.getIds()).containsExactlyInOrder("id1", "id2");
+
+        valueSetBuilder.setId("id");
+        ValueSet<String> valueSet71 = valueSetBuilder.build();
+        ValueSet<String> valueSet72 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets7 = new HashSet<>();
+        valueSets7.add(valueSet71);
+        valueSets7.add(valueSet72);
+        Values<String> values7 = new Values<>(null, valueSets7, new HashSet<String>());
+        Assertions.assertThat(values7.getIds()).containsExactlyInOrder("id");
+
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet81 = valueSetBuilder.build();
+        ValueSet<String> valueSet82 = valueSetBuilder.build();
+        valueSetBuilder.setId("id2");
+        ValueSet<String> valueSet83 = valueSetBuilder.build();
+        valueSetBuilder.setId("id1");
+        ValueSet<String> valueSet84 = valueSetBuilder.build();
+        ValueSet<String> valueSet85 = valueSetBuilder.build();
+        valueSetBuilder.setId("id3");
+        ValueSet<String> valueSet86 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets8 = new HashSet<>();
+        valueSets8.add(valueSet81);
+        valueSets8.add(valueSet82);
+        valueSets8.add(valueSet83);
+        valueSets8.add(valueSet84);
+        valueSets8.add(valueSet85);
+        valueSets8.add(valueSet86);
+        Values<String> values8 = new Values<>(null, valueSets8, new HashSet<String>());
+        Assertions.assertThat(values8.getIds()).containsExactlyInOrder("id1", "id2", "id3");
     }
 
     /**
@@ -640,7 +642,6 @@ public final class ValuesTest {
 
         ActionImpl action = new ActionImpl();
         values.performAction(action);
-        Assertions.assertThat(action._values).isNotNull();
         Assertions.assertThat(action._values).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4", "proc_val5", "proc_val6");
     }
 
