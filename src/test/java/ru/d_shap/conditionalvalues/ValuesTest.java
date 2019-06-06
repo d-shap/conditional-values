@@ -21,6 +21,7 @@ package ru.d_shap.conditionalvalues;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -629,44 +630,52 @@ public final class ValuesTest {
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val4", "val2");
-        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        ValueSet<String> valueSet11 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val6");
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val5");
-        ValueSet<String> valueSet2 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets = new HashSet<>();
-        valueSets.add(valueSet1);
-        valueSets.add(valueSet2);
-        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
-
-        ActionImpl action = new ActionImpl();
-        values.performAction(action);
-        Assertions.assertThat(action._values).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4", "proc_val5", "proc_val6");
-    }
-
-    /**
-     * {@link Values} class test.
-     */
-    @Test
-    public void performNullActionTest() {
-        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ValueSet<String> valueSet12 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets1 = new HashSet<>();
+        valueSets1.add(valueSet11);
+        valueSets1.add(valueSet12);
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
+        ActionImpl action1 = null;
+        values1.performAction(action1);
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1", "val4", "val2");
-        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        ValueSet<String> valueSet21 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val6");
         valueSetBuilder.addValue("val3");
         valueSetBuilder.addValue("val5");
-        ValueSet<String> valueSet2 = valueSetBuilder.build();
-        Set<ValueSet<String>> valueSets = new HashSet<>();
-        valueSets.add(valueSet1);
-        valueSets.add(valueSet2);
-        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
+        ValueSet<String> valueSet22 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets2 = new HashSet<>();
+        valueSets2.add(valueSet21);
+        valueSets2.add(valueSet22);
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
+        ActionImpl action2 = new ActionImpl();
+        values2.performAction(action2);
+        Assertions.assertThat(action2._values).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4", "proc_val5", "proc_val6");
 
-        values.performAction(null);
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val4", "val2");
+        ValueSet<String> valueSet31 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValue("val6");
+        valueSetBuilder.addValue("val3");
+        valueSetBuilder.addValue("val5");
+        ValueSet<String> valueSet32 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets3 = new HashSet<>();
+        valueSets3.add(valueSet31);
+        valueSets3.add(valueSet32);
+        Values<String> values3 = new Values<>(new ComparableComparator<String>(), valueSets3, new HashSet<String>());
+        ActionImpl action3 = new ActionImpl();
+        values3.performAction(action3);
+        Assertions.assertThat(action3._values).containsExactlyInOrder("proc_val1", "proc_val2", "proc_val3", "proc_val4", "proc_val5", "proc_val6");
     }
 
     /**
@@ -783,7 +792,7 @@ public final class ValuesTest {
 
         ActionImpl() {
             super();
-            _values = new HashSet<>();
+            _values = new LinkedHashSet<>();
         }
 
         @Override
