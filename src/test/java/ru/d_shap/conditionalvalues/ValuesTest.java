@@ -60,39 +60,30 @@ public final class ValuesTest {
     public void isEmptyTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        Values<String> values1 = new Values<>(null, null, new HashSet<String>());
+        Set<ValueSet<String>> valueSets1 = null;
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.isEmpty()).isTrue();
 
-        ValueSet<String> valueSet21 = valueSetBuilder.build();
-        ValueSet<String> valueSet22 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
-        valueSets2.add(valueSet21);
-        valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.isEmpty()).isTrue();
 
         ValueSet<String> valueSet31 = valueSetBuilder.build();
         ValueSet<String> valueSet32 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
-        valueSets3.add(null);
         valueSets3.add(valueSet31);
-        valueSets3.add(null);
-        valueSets3.add(null);
         valueSets3.add(valueSet32);
         Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.isEmpty()).isTrue();
 
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet41 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet42 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets4 = new HashSet<>();
+        valueSets4.add(null);
         valueSets4.add(valueSet41);
         valueSets4.add(valueSet42);
         Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
-        Assertions.assertThat(values4.isEmpty()).isFalse();
+        Assertions.assertThat(values4.isEmpty()).isTrue();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
@@ -103,7 +94,6 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets5 = new HashSet<>();
         valueSets5.add(valueSet51);
         valueSets5.add(valueSet52);
-        valueSets5.add(null);
         Values<String> values5 = new Values<>(null, valueSets5, new HashSet<String>());
         Assertions.assertThat(values5.isEmpty()).isFalse();
 
@@ -112,13 +102,26 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets6 = new HashSet<>();
+        valueSets6.add(null);
         valueSets6.add(valueSet61);
         valueSets6.add(valueSet62);
         Values<String> values6 = new Values<>(null, valueSets6, new HashSet<String>());
         Assertions.assertThat(values6.isEmpty()).isFalse();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet71 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValue("val3", "val4");
+        ValueSet<String> valueSet72 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets7 = new HashSet<>();
+        valueSets7.add(valueSet71);
+        valueSets7.add(valueSet72);
+        Values<String> values7 = new Values<>(null, valueSets7, new HashSet<String>());
+        Assertions.assertThat(values7.isEmpty()).isFalse();
     }
 
     /**
@@ -128,18 +131,15 @@ public final class ValuesTest {
     public void containsTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        Values<String> values1 = new Values<>(null, null, new HashSet<String>());
+        Set<ValueSet<String>> valueSets1 = null;
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.contains("val1")).isFalse();
         Assertions.assertThat(values1.contains("val2")).isFalse();
         Assertions.assertThat(values1.contains("val3")).isFalse();
         Assertions.assertThat(values1.contains("val4")).isFalse();
         Assertions.assertThat(values1.contains("val5")).isFalse();
 
-        ValueSet<String> valueSet21 = valueSetBuilder.build();
-        ValueSet<String> valueSet22 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
-        valueSets2.add(valueSet21);
-        valueSets2.add(valueSet22);
         Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.contains("val1")).isFalse();
         Assertions.assertThat(values2.contains("val2")).isFalse();
@@ -150,10 +150,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet31 = valueSetBuilder.build();
         ValueSet<String> valueSet32 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
-        valueSets3.add(null);
         valueSets3.add(valueSet31);
-        valueSets3.add(null);
-        valueSets3.add(null);
         valueSets3.add(valueSet32);
         Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.contains("val1")).isFalse();
@@ -162,18 +159,15 @@ public final class ValuesTest {
         Assertions.assertThat(values3.contains("val4")).isFalse();
         Assertions.assertThat(values3.contains("val5")).isFalse();
 
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet41 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet42 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets4 = new HashSet<>();
+        valueSets4.add(null);
         valueSets4.add(valueSet41);
         valueSets4.add(valueSet42);
         Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
-        Assertions.assertThat(values4.contains("val1")).isTrue();
-        Assertions.assertThat(values4.contains("val2")).isTrue();
+        Assertions.assertThat(values4.contains("val1")).isFalse();
+        Assertions.assertThat(values4.contains("val2")).isFalse();
         Assertions.assertThat(values4.contains("val3")).isFalse();
         Assertions.assertThat(values4.contains("val4")).isFalse();
         Assertions.assertThat(values4.contains("val5")).isFalse();
@@ -187,7 +181,6 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets5 = new HashSet<>();
         valueSets5.add(valueSet51);
         valueSets5.add(valueSet52);
-        valueSets5.add(null);
         Values<String> values5 = new Values<>(null, valueSets5, new HashSet<String>());
         Assertions.assertThat(values5.contains("val1")).isTrue();
         Assertions.assertThat(values5.contains("val2")).isTrue();
@@ -200,17 +193,34 @@ public final class ValuesTest {
         valueSetBuilder.addValue("val1", "val2");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets6 = new HashSet<>();
+        valueSets6.add(null);
         valueSets6.add(valueSet61);
         valueSets6.add(valueSet62);
         Values<String> values6 = new Values<>(null, valueSets6, new HashSet<String>());
         Assertions.assertThat(values6.contains("val1")).isTrue();
         Assertions.assertThat(values6.contains("val2")).isTrue();
-        Assertions.assertThat(values6.contains("val3")).isTrue();
-        Assertions.assertThat(values6.contains("val4")).isTrue();
+        Assertions.assertThat(values6.contains("val3")).isFalse();
+        Assertions.assertThat(values6.contains("val4")).isFalse();
         Assertions.assertThat(values6.contains("val5")).isFalse();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val1", "val2");
+        ValueSet<String> valueSet71 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValue("val3", "val4");
+        ValueSet<String> valueSet72 = valueSetBuilder.build();
+        Set<ValueSet<String>> valueSets7 = new HashSet<>();
+        valueSets7.add(valueSet71);
+        valueSets7.add(valueSet72);
+        Values<String> values7 = new Values<>(null, valueSets7, new HashSet<String>());
+        Assertions.assertThat(values7.contains("val1")).isTrue();
+        Assertions.assertThat(values7.contains("val2")).isTrue();
+        Assertions.assertThat(values7.contains("val3")).isTrue();
+        Assertions.assertThat(values7.contains("val4")).isTrue();
+        Assertions.assertThat(values7.contains("val5")).isFalse();
     }
 
     /**
@@ -220,7 +230,7 @@ public final class ValuesTest {
     public void allValuesContainsTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        Set<String> allValues1 = new HashSet<>();
+        Set<String> allValues1 = null;
         Values<String> values1 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues1);
         Assertions.assertThat(values1.allValuesContains("val1")).isFalse();
         Assertions.assertThat(values1.allValuesContains("val2")).isFalse();
@@ -229,26 +239,67 @@ public final class ValuesTest {
         Assertions.assertThat(values1.allValuesContains("val5")).isFalse();
 
         Set<String> allValues2 = new HashSet<>();
-        allValues2.add("val1");
-        allValues2.add("val2");
         Values<String> values2 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues2);
-        Assertions.assertThat(values2.allValuesContains("val1")).isTrue();
-        Assertions.assertThat(values2.allValuesContains("val2")).isTrue();
+        Assertions.assertThat(values2.allValuesContains("val1")).isFalse();
+        Assertions.assertThat(values2.allValuesContains("val2")).isFalse();
         Assertions.assertThat(values2.allValuesContains("val3")).isFalse();
         Assertions.assertThat(values2.allValuesContains("val4")).isFalse();
         Assertions.assertThat(values2.allValuesContains("val5")).isFalse();
 
         Set<String> allValues3 = new HashSet<>();
-        allValues3.add("val1");
-        allValues3.add("val2");
-        allValues3.add("val3");
-        allValues3.add("val4");
+        allValues3.add(null);
         Values<String> values3 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues3);
-        Assertions.assertThat(values3.allValuesContains("val1")).isTrue();
-        Assertions.assertThat(values3.allValuesContains("val2")).isTrue();
-        Assertions.assertThat(values3.allValuesContains("val3")).isTrue();
-        Assertions.assertThat(values3.allValuesContains("val4")).isTrue();
+        Assertions.assertThat(values3.allValuesContains("val1")).isFalse();
+        Assertions.assertThat(values3.allValuesContains("val2")).isFalse();
+        Assertions.assertThat(values3.allValuesContains("val3")).isFalse();
+        Assertions.assertThat(values3.allValuesContains("val4")).isFalse();
         Assertions.assertThat(values3.allValuesContains("val5")).isFalse();
+
+        Set<String> allValues4 = new HashSet<>();
+        allValues4.add("val1");
+        allValues4.add("val2");
+        Values<String> values4 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues4);
+        Assertions.assertThat(values4.allValuesContains("val1")).isTrue();
+        Assertions.assertThat(values4.allValuesContains("val2")).isTrue();
+        Assertions.assertThat(values4.allValuesContains("val3")).isFalse();
+        Assertions.assertThat(values4.allValuesContains("val4")).isFalse();
+        Assertions.assertThat(values4.allValuesContains("val5")).isFalse();
+
+        Set<String> allValues5 = new HashSet<>();
+        allValues5.add(null);
+        allValues5.add("val1");
+        allValues5.add("val2");
+        Values<String> values5 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues5);
+        Assertions.assertThat(values5.allValuesContains("val1")).isTrue();
+        Assertions.assertThat(values5.allValuesContains("val2")).isTrue();
+        Assertions.assertThat(values5.allValuesContains("val3")).isFalse();
+        Assertions.assertThat(values5.allValuesContains("val4")).isFalse();
+        Assertions.assertThat(values5.allValuesContains("val5")).isFalse();
+
+        Set<String> allValues6 = new HashSet<>();
+        allValues6.add("val1");
+        allValues6.add("val2");
+        allValues6.add("val3");
+        allValues6.add("val4");
+        Values<String> values6 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues6);
+        Assertions.assertThat(values6.allValuesContains("val1")).isTrue();
+        Assertions.assertThat(values6.allValuesContains("val2")).isTrue();
+        Assertions.assertThat(values6.allValuesContains("val3")).isTrue();
+        Assertions.assertThat(values6.allValuesContains("val4")).isTrue();
+        Assertions.assertThat(values6.allValuesContains("val5")).isFalse();
+
+        Set<String> allValues7 = new HashSet<>();
+        allValues7.add(null);
+        allValues7.add("val1");
+        allValues7.add("val2");
+        allValues7.add("val3");
+        allValues7.add("val4");
+        Values<String> values7 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues7);
+        Assertions.assertThat(values7.allValuesContains("val1")).isTrue();
+        Assertions.assertThat(values7.allValuesContains("val2")).isTrue();
+        Assertions.assertThat(values7.allValuesContains("val3")).isTrue();
+        Assertions.assertThat(values7.allValuesContains("val4")).isTrue();
+        Assertions.assertThat(values7.allValuesContains("val5")).isFalse();
     }
 
     /**
