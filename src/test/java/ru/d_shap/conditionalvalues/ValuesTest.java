@@ -52,7 +52,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets1 = new HashSet<>();
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
-        Values<String> values1 = new Values<>(valueSets1, new HashSet<String>());
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.isEmpty()).isTrue();
 
         valueSetBuilder.addCondition("cond1", "val1");
@@ -64,7 +64,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
-        Values<String> values2 = new Values<>(valueSets2, new HashSet<String>());
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.isEmpty()).isFalse();
 
         valueSetBuilder.addCondition("cond1", "val1");
@@ -77,7 +77,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet31);
         valueSets3.add(valueSet32);
-        Values<String> values3 = new Values<>(valueSets3, new HashSet<String>());
+        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.isEmpty()).isFalse();
     }
 
@@ -93,7 +93,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets1 = new HashSet<>();
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
-        Values<String> values1 = new Values<>(valueSets1, new HashSet<String>());
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.contains("val1")).isFalse();
         Assertions.assertThat(values1.contains("val2")).isFalse();
         Assertions.assertThat(values1.contains("val3")).isFalse();
@@ -109,7 +109,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
-        Values<String> values2 = new Values<>(valueSets2, new HashSet<String>());
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.contains("val1")).isTrue();
         Assertions.assertThat(values2.contains("val2")).isTrue();
         Assertions.assertThat(values2.contains("val3")).isFalse();
@@ -126,7 +126,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet31);
         valueSets3.add(valueSet32);
-        Values<String> values3 = new Values<>(valueSets3, new HashSet<String>());
+        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.contains("val1")).isTrue();
         Assertions.assertThat(values3.contains("val2")).isTrue();
         Assertions.assertThat(values3.contains("val3")).isTrue();
@@ -142,7 +142,7 @@ public final class ValuesTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         Set<String> allValues1 = new HashSet<>();
-        Values<String> values1 = new Values<>(new HashSet<ValueSet<String>>(), allValues1);
+        Values<String> values1 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues1);
         Assertions.assertThat(values1.allValuesContains("val1")).isFalse();
         Assertions.assertThat(values1.allValuesContains("val2")).isFalse();
         Assertions.assertThat(values1.allValuesContains("val3")).isFalse();
@@ -152,7 +152,7 @@ public final class ValuesTest {
         Set<String> allValues2 = new HashSet<>();
         allValues2.add("val1");
         allValues2.add("val2");
-        Values<String> values2 = new Values<>(new HashSet<ValueSet<String>>(), allValues2);
+        Values<String> values2 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues2);
         Assertions.assertThat(values2.allValuesContains("val1")).isTrue();
         Assertions.assertThat(values2.allValuesContains("val2")).isTrue();
         Assertions.assertThat(values2.allValuesContains("val3")).isFalse();
@@ -164,7 +164,7 @@ public final class ValuesTest {
         allValues3.add("val2");
         allValues3.add("val3");
         allValues3.add("val4");
-        Values<String> values3 = new Values<>(new HashSet<ValueSet<String>>(), allValues3);
+        Values<String> values3 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues3);
         Assertions.assertThat(values3.allValuesContains("val1")).isTrue();
         Assertions.assertThat(values3.allValuesContains("val2")).isTrue();
         Assertions.assertThat(values3.allValuesContains("val3")).isTrue();
@@ -184,7 +184,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets1 = new HashSet<>();
         valueSets1.add(valueSet11);
         valueSets1.add(valueSet12);
-        Values<String> values1 = new Values<>(valueSets1, new HashSet<String>());
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.getValues()).isNotNull();
         Assertions.assertThat(values1.getValues()).containsExactly();
 
@@ -194,7 +194,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
-        Values<String> values2 = new Values<>(valueSets2, new HashSet<String>());
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.getValues()).isNotNull();
         Assertions.assertThat(values2.getValues()).containsExactly("val1", "val2");
 
@@ -205,7 +205,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet31);
         valueSets3.add(valueSet32);
-        Values<String> values3 = new Values<>(valueSets3, new HashSet<String>());
+        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.getValues()).isNotNull();
         Assertions.assertThat(values3.getValues()).containsExactly("val1", "val2", "val3", "val4");
 
@@ -218,7 +218,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets4 = new HashSet<>();
         valueSets4.add(valueSet41);
         valueSets4.add(valueSet42);
-        Values<String> values4 = new Values<>(valueSets4, new HashSet<String>());
+        Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
         Assertions.assertThat(values4.getValues()).isNotNull();
         Assertions.assertThat(values4.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
     }
@@ -237,7 +237,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getValues()).hasSize(4);
         values.getValues().add("value");
     }
@@ -254,7 +254,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getValues()).hasSize(0);
         values.getValues().add("value");
     }
@@ -267,14 +267,14 @@ public final class ValuesTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         Set<String> allValues1 = new HashSet<>();
-        Values<String> values1 = new Values<>(new HashSet<ValueSet<String>>(), allValues1);
+        Values<String> values1 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues1);
         Assertions.assertThat(values1.getAllValues()).isNotNull();
         Assertions.assertThat(values1.getAllValues()).containsExactly();
 
         Set<String> allValues2 = new HashSet<>();
         allValues2.add("val1");
         allValues2.add("val2");
-        Values<String> values2 = new Values<>(new HashSet<ValueSet<String>>(), allValues2);
+        Values<String> values2 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues2);
         Assertions.assertThat(values2.getAllValues()).isNotNull();
         Assertions.assertThat(values2.getAllValues()).containsExactly("val1", "val2");
 
@@ -283,7 +283,7 @@ public final class ValuesTest {
         allValues3.add("val2");
         allValues3.add("val3");
         allValues3.add("val4");
-        Values<String> values3 = new Values<>(new HashSet<ValueSet<String>>(), allValues3);
+        Values<String> values3 = new Values<>(null, new HashSet<ValueSet<String>>(), allValues3);
         Assertions.assertThat(values3.getAllValues()).isNotNull();
         Assertions.assertThat(values3.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
     }
@@ -298,7 +298,7 @@ public final class ValuesTest {
         Set<String> allValues = new HashSet<>();
         allValues.add("val1");
         allValues.add("val2");
-        Values<String> values = new Values<>(new HashSet<ValueSet<String>>(), allValues);
+        Values<String> values = new Values<>(null, new HashSet<ValueSet<String>>(), allValues);
         Assertions.assertThat(values.getAllValues()).hasSize(2);
         values.getAllValues().add("value");
     }
@@ -311,7 +311,7 @@ public final class ValuesTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         Set<String> allValues = new HashSet<>();
-        Values<String> values = new Values<>(new HashSet<ValueSet<String>>(), allValues);
+        Values<String> values = new Values<>(null, new HashSet<ValueSet<String>>(), allValues);
         Assertions.assertThat(values.getAllValues()).hasSize(0);
         values.getAllValues().add("value");
     }
@@ -326,7 +326,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets1 = new HashSet<>();
         valueSets1.add(valueSet1);
-        Values<String> values1 = new Values<>(valueSets1, new HashSet<String>());
+        Values<String> values1 = new Values<>(null, valueSets1, new HashSet<String>());
         Assertions.assertThat(values1.getIds()).isNotNull();
         Assertions.assertThat(values1.getIds()).containsExactly((String) null);
 
@@ -335,7 +335,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets2 = new HashSet<>();
         valueSets2.add(valueSet21);
         valueSets2.add(valueSet22);
-        Values<String> values2 = new Values<>(valueSets2, new HashSet<String>());
+        Values<String> values2 = new Values<>(null, valueSets2, new HashSet<String>());
         Assertions.assertThat(values2.getIds()).isNotNull();
         Assertions.assertThat(values2.getIds()).containsExactly((String) null);
 
@@ -343,7 +343,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets3 = new HashSet<>();
         valueSets3.add(valueSet3);
-        Values<String> values3 = new Values<>(valueSets3, new HashSet<String>());
+        Values<String> values3 = new Values<>(null, valueSets3, new HashSet<String>());
         Assertions.assertThat(values3.getIds()).isNotNull();
         Assertions.assertThat(values3.getIds()).containsExactly("id");
 
@@ -354,7 +354,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets4 = new HashSet<>();
         valueSets4.add(valueSet41);
         valueSets4.add(valueSet42);
-        Values<String> values4 = new Values<>(valueSets4, new HashSet<String>());
+        Values<String> values4 = new Values<>(null, valueSets4, new HashSet<String>());
         Assertions.assertThat(values4.getIds()).isNotNull();
         Assertions.assertThat(values4.getIds()).containsExactly("id1", "id2");
 
@@ -364,7 +364,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets5 = new HashSet<>();
         valueSets5.add(valueSet51);
         valueSets5.add(valueSet52);
-        Values<String> values5 = new Values<>(valueSets5, new HashSet<String>());
+        Values<String> values5 = new Values<>(null, valueSets5, new HashSet<String>());
         Assertions.assertThat(values5.getIds()).isNotNull();
         Assertions.assertThat(values5.getIds()).containsExactly("id", null);
 
@@ -385,7 +385,7 @@ public final class ValuesTest {
         valueSets6.add(valueSet64);
         valueSets6.add(valueSet65);
         valueSets6.add(valueSet66);
-        Values<String> values6 = new Values<>(valueSets6, new HashSet<String>());
+        Values<String> values6 = new Values<>(null, valueSets6, new HashSet<String>());
         Assertions.assertThat(values6.getIds()).isNotNull();
         Assertions.assertThat(values6.getIds()).containsExactly("id1", "id2", "id3", null);
     }
@@ -407,7 +407,7 @@ public final class ValuesTest {
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
         valueSets.add(valueSet3);
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getIds()).hasSize(3);
         values.getIds().add("id");
     }
@@ -418,7 +418,7 @@ public final class ValuesTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getIdsUnmodifiableEmptyFailTest() {
         Set<ValueSet<String>> valueSets = new HashSet<>();
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getIds()).hasSize(0);
         values.getIds().add("id");
     }
@@ -442,7 +442,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
 
         ActionImpl action = new ActionImpl();
         values.performAction(action);
@@ -469,7 +469,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
         valueSets.add(valueSet2);
-        Values<String> values = new Values<>(valueSets, new HashSet<String>());
+        Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
 
         values.performAction(null);
     }
@@ -484,28 +484,28 @@ public final class ValuesTest {
         ValueSet<String> valueSet11 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets11 = new HashSet<>();
         valueSets11.add(valueSet11);
-        Values<String> values11 = new Values<>(valueSets11, new HashSet<String>());
+        Values<String> values11 = new Values<>(null, valueSets11, new HashSet<String>());
         Assertions.assertThat(values11).hasToString("[{}]");
 
         valueSetBuilder.setId("");
         ValueSet<String> valueSet12 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets12 = new HashSet<>();
         valueSets12.add(valueSet12);
-        Values<String> values12 = new Values<>(valueSets12, new HashSet<String>());
+        Values<String> values12 = new Values<>(null, valueSets12, new HashSet<String>());
         Assertions.assertThat(values12).hasToString("[={}]");
 
         valueSetBuilder.setId("id");
         ValueSet<String> valueSet13 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets13 = new HashSet<>();
         valueSets13.add(valueSet13);
-        Values<String> values13 = new Values<>(valueSets13, new HashSet<String>());
+        Values<String> values13 = new Values<>(null, valueSets13, new HashSet<String>());
         Assertions.assertThat(values13).hasToString("[id={}]");
 
         valueSetBuilder.addCondition("cond", "val");
         ValueSet<String> valueSet21 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets21 = new HashSet<>();
         valueSets21.add(valueSet21);
-        Values<String> values21 = new Values<>(valueSets21, new HashSet<String>());
+        Values<String> values21 = new Values<>(null, valueSets21, new HashSet<String>());
         Assertions.assertThat(values21).hasToString("[{cond=[val]}]");
 
         valueSetBuilder.setId("");
@@ -513,7 +513,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet22 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets22 = new HashSet<>();
         valueSets22.add(valueSet22);
-        Values<String> values22 = new Values<>(valueSets22, new HashSet<String>());
+        Values<String> values22 = new Values<>(null, valueSets22, new HashSet<String>());
         Assertions.assertThat(values22).hasToString("[={cond=[val]}]");
 
         valueSetBuilder.setId("id");
@@ -521,7 +521,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet23 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets23 = new HashSet<>();
         valueSets23.add(valueSet23);
-        Values<String> values23 = new Values<>(valueSets23, new HashSet<String>());
+        Values<String> values23 = new Values<>(null, valueSets23, new HashSet<String>());
         Assertions.assertThat(values23).hasToString("[id={cond=[val]}]");
 
         valueSetBuilder.addCondition("cond1", "val11");
@@ -534,7 +534,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets31 = new HashSet<>();
         valueSets31.add(valueSet311);
         valueSets31.add(valueSet312);
-        Values<String> values31 = new Values<>(valueSets31, new HashSet<String>());
+        Values<String> values31 = new Values<>(null, valueSets31, new HashSet<String>());
         Assertions.assertThat(values31).toToString().startsWith("[{");
         Assertions.assertThat(values31).toStringContains("cond1=[val1");
         Assertions.assertThat(values31).toStringContains("cond2=[val2]");
@@ -552,7 +552,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets32 = new HashSet<>();
         valueSets32.add(valueSet321);
         valueSets32.add(valueSet322);
-        Values<String> values32 = new Values<>(valueSets32, new HashSet<String>());
+        Values<String> values32 = new Values<>(null, valueSets32, new HashSet<String>());
         Assertions.assertThat(values32).toToString().startsWith("[={");
         Assertions.assertThat(values32).toStringContains("cond1=[val1");
         Assertions.assertThat(values32).toStringContains("cond2=[val2]");
@@ -570,7 +570,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets33 = new HashSet<>();
         valueSets33.add(valueSet331);
         valueSets33.add(valueSet332);
-        Values<String> values33 = new Values<>(valueSets33, new HashSet<String>());
+        Values<String> values33 = new Values<>(null, valueSets33, new HashSet<String>());
         Assertions.assertThat(values33).toToString().startsWith("[id");
         Assertions.assertThat(values33).toStringContains("cond1=[val1");
         Assertions.assertThat(values33).toStringContains("cond2=[val2]");
