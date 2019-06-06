@@ -20,7 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -1812,7 +1812,7 @@ public final class ConditionalValuesTest {
 
         ActionImpl() {
             super();
-            _values = new HashSet<>();
+            _values = new LinkedHashSet<>();
         }
 
         @Override
