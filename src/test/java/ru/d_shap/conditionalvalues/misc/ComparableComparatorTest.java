@@ -46,7 +46,29 @@ public final class ComparableComparatorTest {
      */
     @Test
     public void compareTest() {
-        // TODO
+        ComparableComparator<String> comparator1 = new ComparableComparator<>();
+        ComparableComparator<String> comparator2 = new ComparableComparator<>(true);
+        ComparableComparator<String> comparator3 = new ComparableComparator<>(false);
+
+        Assertions.assertThat(comparator1.compare(null, null)).isEqualTo(0);
+        Assertions.assertThat(comparator2.compare(null, null)).isEqualTo(0);
+        Assertions.assertThat(comparator3.compare(null, null)).isEqualTo(0);
+
+        Assertions.assertThat(comparator1.compare(null, "a")).isEqualTo(1);
+        Assertions.assertThat(comparator2.compare(null, "a")).isEqualTo(-1);
+        Assertions.assertThat(comparator3.compare(null, "a")).isEqualTo(1);
+
+        Assertions.assertThat(comparator1.compare("a", null)).isEqualTo(-1);
+        Assertions.assertThat(comparator2.compare("a", null)).isEqualTo(1);
+        Assertions.assertThat(comparator3.compare("a", null)).isEqualTo(-1);
+
+        Assertions.assertThat(comparator1.compare("a", "b")).isLessThan(0);
+        Assertions.assertThat(comparator2.compare("a", "b")).isLessThan(0);
+        Assertions.assertThat(comparator3.compare("a", "b")).isLessThan(0);
+
+        Assertions.assertThat(comparator1.compare("b", "a")).isGreaterThan(0);
+        Assertions.assertThat(comparator2.compare("b", "a")).isGreaterThan(0);
+        Assertions.assertThat(comparator3.compare("b", "a")).isGreaterThan(0);
     }
 
     /**
