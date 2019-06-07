@@ -22,6 +22,8 @@ package ru.d_shap.conditionalvalues;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
 
 /**
  * Tests for {@link ConditionalValuesBuilder}.
@@ -56,7 +58,29 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void setPredicateTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setPredicate(new EqualsPredicate());
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("value1");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1");
+
+        conditionalValuesBuilder.setPredicate(new EqualsIgnoreCasePredicate());
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("value1");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1", "value2");
     }
 
     /**
