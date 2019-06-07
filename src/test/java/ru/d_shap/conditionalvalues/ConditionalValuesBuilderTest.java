@@ -83,6 +83,17 @@ public final class ConditionalValuesBuilderTest {
         ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond1", "val").build()).getValues()).containsExactly("value1");
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly("value2");
+
+        conditionalValuesBuilder.setPredicate(new PredicateImpl());
+        valueSetBuilder.addCondition("a", "a");
+        valueSetBuilder.addValue("value1");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("b", "c");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues3 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("a", "a").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("b", "c").build()).getValues()).containsExactly();
     }
 
     /**
@@ -155,6 +166,24 @@ public final class ConditionalValuesBuilderTest {
     @Test
     public void buildClearTest() {
         // TODO
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class PredicateImpl implements Predicate {
+
+        PredicateImpl() {
+            super();
+        }
+
+        @Override
+        public boolean evaluate(final String conditionName, final String conditionValue, final String value) {
+            return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
+        }
+
     }
 
 }
