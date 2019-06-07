@@ -831,27 +831,27 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSet23).hasToString("id={}");
 
         Map<String, Set<String>> conditions31 = new HashMap<>();
-        Set<String> condition21 = new HashSet<>();
-        condition21.add("val1");
-        conditions31.put("cond1", condition21);
+        Set<String> condition31 = new HashSet<>();
+        condition31.add("val1");
+        conditions31.put("cond1", condition31);
         Set<String> values31 = new HashSet<>();
         values31.add("val1");
         ValueSet<String> valueSet31 = new ValueSet<>(null, conditions31, values31);
         Assertions.assertThat(valueSet31).hasToString("{cond1=[val1]}");
 
         Map<String, Set<String>> conditions32 = new HashMap<>();
-        Set<String> condition22 = new HashSet<>();
-        condition22.add("val1");
-        conditions32.put("cond1", condition22);
+        Set<String> condition32 = new HashSet<>();
+        condition32.add("val1");
+        conditions32.put("cond1", condition32);
         Set<String> values32 = new HashSet<>();
         values32.add("val1");
         ValueSet<String> valueSet32 = new ValueSet<>("", conditions32, values32);
         Assertions.assertThat(valueSet32).hasToString("={cond1=[val1]}");
 
         Map<String, Set<String>> conditions33 = new HashMap<>();
-        Set<String> condition23 = new HashSet<>();
-        condition23.add("val1");
-        conditions33.put("cond1", condition23);
+        Set<String> condition33 = new HashSet<>();
+        condition33.add("val1");
+        conditions33.put("cond1", condition33);
         Set<String> values33 = new HashSet<>();
         values33.add("val1");
         ValueSet<String> valueSet33 = new ValueSet<>("id", conditions33, values33);
