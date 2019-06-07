@@ -800,101 +800,146 @@ public final class ValueSetTest {
      */
     @Test
     public void toStringTest() {
-        Map<String, Set<String>> conditions11 = new HashMap<>();
+        Map<String, Set<String>> conditions11 = null;
         Set<String> values11 = new HashSet<>();
         ValueSet<String> valueSet11 = new ValueSet<>(null, conditions11, values11);
         Assertions.assertThat(valueSet11).hasToString("{}");
 
-        Map<String, Set<String>> conditions12 = new HashMap<>();
+        Map<String, Set<String>> conditions12 = null;
         Set<String> values12 = new HashSet<>();
         ValueSet<String> valueSet12 = new ValueSet<>("", conditions12, values12);
         Assertions.assertThat(valueSet12).hasToString("={}");
 
-        Map<String, Set<String>> conditions13 = new HashMap<>();
+        Map<String, Set<String>> conditions13 = null;
         Set<String> values13 = new HashSet<>();
         ValueSet<String> valueSet13 = new ValueSet<>("id", conditions13, values13);
         Assertions.assertThat(valueSet13).hasToString("id={}");
 
         Map<String, Set<String>> conditions21 = new HashMap<>();
-        Set<String> condition21 = new HashSet<>();
-        condition21.add("val1");
-        conditions21.put("cond1", condition21);
         Set<String> values21 = new HashSet<>();
-        values21.add("val1");
         ValueSet<String> valueSet21 = new ValueSet<>(null, conditions21, values21);
-        Assertions.assertThat(valueSet21).hasToString("{cond1=[val1]}");
+        Assertions.assertThat(valueSet21).hasToString("{}");
 
         Map<String, Set<String>> conditions22 = new HashMap<>();
-        Set<String> condition22 = new HashSet<>();
-        condition22.add("val1");
-        conditions22.put("cond1", condition22);
         Set<String> values22 = new HashSet<>();
-        values22.add("val1");
         ValueSet<String> valueSet22 = new ValueSet<>("", conditions22, values22);
-        Assertions.assertThat(valueSet22).hasToString("={cond1=[val1]}");
+        Assertions.assertThat(valueSet22).hasToString("={}");
 
         Map<String, Set<String>> conditions23 = new HashMap<>();
-        Set<String> condition23 = new HashSet<>();
-        condition23.add("val1");
-        conditions23.put("cond1", condition23);
         Set<String> values23 = new HashSet<>();
-        values23.add("val1");
         ValueSet<String> valueSet23 = new ValueSet<>("id", conditions23, values23);
-        Assertions.assertThat(valueSet23).hasToString("id={cond1=[val1]}");
+        Assertions.assertThat(valueSet23).hasToString("id={}");
 
         Map<String, Set<String>> conditions31 = new HashMap<>();
-        Set<String> condition311 = new HashSet<>();
-        condition311.add("val11");
-        condition311.add("val12");
-        conditions31.put("cond1", condition311);
-        Set<String> condition312 = new HashSet<>();
-        condition312.add("val2");
-        conditions31.put("cond2", condition312);
+        Set<String> condition21 = new HashSet<>();
+        condition21.add("val1");
+        conditions31.put("cond1", condition21);
         Set<String> values31 = new HashSet<>();
         values31.add("val1");
-        values31.add("val2");
-        values31.add("val3");
         ValueSet<String> valueSet31 = new ValueSet<>(null, conditions31, values31);
-        Assertions.assertThat(valueSet31).toToString().startsWith("{");
-        Assertions.assertThat(valueSet31).toStringContains("cond1=[val1");
-        Assertions.assertThat(valueSet31).toStringContains("cond2=[val2]");
-        Assertions.assertThat(valueSet31).toToString().doesNotContain("val3");
+        Assertions.assertThat(valueSet31).hasToString("{cond1=[val1]}");
 
         Map<String, Set<String>> conditions32 = new HashMap<>();
-        Set<String> condition321 = new HashSet<>();
-        condition321.add("val11");
-        condition321.add("val12");
-        conditions32.put("cond1", condition321);
-        Set<String> condition322 = new HashSet<>();
-        condition322.add("val2");
-        conditions32.put("cond2", condition322);
+        Set<String> condition22 = new HashSet<>();
+        condition22.add("val1");
+        conditions32.put("cond1", condition22);
         Set<String> values32 = new HashSet<>();
         values32.add("val1");
-        values32.add("val2");
-        values32.add("val3");
         ValueSet<String> valueSet32 = new ValueSet<>("", conditions32, values32);
-        Assertions.assertThat(valueSet32).toToString().startsWith("={");
-        Assertions.assertThat(valueSet32).toStringContains("cond1=[val1");
-        Assertions.assertThat(valueSet32).toStringContains("cond2=[val2]");
-        Assertions.assertThat(valueSet32).toToString().doesNotContain("val3");
+        Assertions.assertThat(valueSet32).hasToString("={cond1=[val1]}");
 
         Map<String, Set<String>> conditions33 = new HashMap<>();
-        Set<String> condition331 = new HashSet<>();
-        condition331.add("val11");
-        condition331.add("val12");
-        conditions33.put("cond1", condition331);
-        Set<String> condition332 = new HashSet<>();
-        condition332.add("val2");
-        conditions33.put("cond2", condition332);
+        Set<String> condition23 = new HashSet<>();
+        condition23.add("val1");
+        conditions33.put("cond1", condition23);
         Set<String> values33 = new HashSet<>();
         values33.add("val1");
-        values33.add("val2");
-        values33.add("val3");
         ValueSet<String> valueSet33 = new ValueSet<>("id", conditions33, values33);
-        Assertions.assertThat(valueSet33).toToString().startsWith("id={");
-        Assertions.assertThat(valueSet33).toStringContains("cond1=[val1");
-        Assertions.assertThat(valueSet33).toStringContains("cond2=[val2]");
-        Assertions.assertThat(valueSet33).toToString().doesNotContain("val3");
+        Assertions.assertThat(valueSet33).hasToString("id={cond1=[val1]}");
+
+        Map<String, Set<String>> conditions41 = new HashMap<>();
+        Set<String> condition41 = new HashSet<>();
+        condition41.add(null);
+        condition41.add("val1");
+        conditions41.put("cond1", condition41);
+        Set<String> values41 = new HashSet<>();
+        values41.add("val1");
+        ValueSet<String> valueSet41 = new ValueSet<>(null, conditions41, values41);
+        Assertions.assertThat(valueSet41).hasToString("{cond1=[val1]}");
+
+        Map<String, Set<String>> conditions42 = new HashMap<>();
+        Set<String> condition42 = new HashSet<>();
+        condition42.add(null);
+        condition42.add("val1");
+        conditions42.put("cond1", condition42);
+        Set<String> values42 = new HashSet<>();
+        values42.add("val1");
+        ValueSet<String> valueSet42 = new ValueSet<>("", conditions42, values42);
+        Assertions.assertThat(valueSet42).hasToString("={cond1=[val1]}");
+
+        Map<String, Set<String>> conditions43 = new HashMap<>();
+        Set<String> condition43 = new HashSet<>();
+        condition43.add(null);
+        condition43.add("val1");
+        conditions43.put("cond1", condition43);
+        Set<String> values43 = new HashSet<>();
+        values43.add("val1");
+        ValueSet<String> valueSet43 = new ValueSet<>("id", conditions43, values43);
+        Assertions.assertThat(valueSet43).hasToString("id={cond1=[val1]}");
+
+        Map<String, Set<String>> conditions51 = new HashMap<>();
+        Set<String> condition511 = new HashSet<>();
+        condition511.add("val11");
+        condition511.add("val12");
+        conditions51.put("cond1", condition511);
+        Set<String> condition512 = new HashSet<>();
+        condition512.add("val2");
+        conditions51.put("cond2", condition512);
+        Set<String> values51 = new HashSet<>();
+        values51.add("val1");
+        values51.add("val2");
+        values51.add("val3");
+        ValueSet<String> valueSet51 = new ValueSet<>(null, conditions51, values51);
+        Assertions.assertThat(valueSet51).toToString().startsWith("{");
+        Assertions.assertThat(valueSet51).toStringContains("cond1=[val1");
+        Assertions.assertThat(valueSet51).toStringContains("cond2=[val2]");
+        Assertions.assertThat(valueSet51).toToString().doesNotContain("val3");
+
+        Map<String, Set<String>> conditions52 = new HashMap<>();
+        Set<String> condition521 = new HashSet<>();
+        condition521.add("val11");
+        condition521.add("val12");
+        conditions52.put("cond1", condition521);
+        Set<String> condition522 = new HashSet<>();
+        condition522.add("val2");
+        conditions52.put("cond2", condition522);
+        Set<String> values52 = new HashSet<>();
+        values52.add("val1");
+        values52.add("val2");
+        values52.add("val3");
+        ValueSet<String> valueSet52 = new ValueSet<>("", conditions52, values52);
+        Assertions.assertThat(valueSet52).toToString().startsWith("={");
+        Assertions.assertThat(valueSet52).toStringContains("cond1=[val1");
+        Assertions.assertThat(valueSet52).toStringContains("cond2=[val2]");
+        Assertions.assertThat(valueSet52).toToString().doesNotContain("val3");
+
+        Map<String, Set<String>> conditions53 = new HashMap<>();
+        Set<String> condition531 = new HashSet<>();
+        condition531.add("val11");
+        condition531.add("val12");
+        conditions53.put("cond1", condition531);
+        Set<String> condition532 = new HashSet<>();
+        condition532.add("val2");
+        conditions53.put("cond2", condition532);
+        Set<String> values53 = new HashSet<>();
+        values53.add("val1");
+        values53.add("val2");
+        values53.add("val3");
+        ValueSet<String> valueSet53 = new ValueSet<>("id", conditions53, values53);
+        Assertions.assertThat(valueSet53).toToString().startsWith("id={");
+        Assertions.assertThat(valueSet53).toStringContains("cond1=[val1");
+        Assertions.assertThat(valueSet53).toStringContains("cond2=[val2]");
+        Assertions.assertThat(valueSet53).toToString().doesNotContain("val3");
     }
 
 }
