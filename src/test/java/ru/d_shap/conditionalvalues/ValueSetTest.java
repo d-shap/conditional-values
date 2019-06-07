@@ -571,7 +571,7 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSet5.isMoreSpecificValueSet(valueSet6)).isFalse();
         Assertions.assertThat(valueSet5.isMoreSpecificValueSet(valueSet7)).isFalse();
 
-        Assertions.assertThat(valueSet6.isMoreSpecificValueSet(null)).isTrue();
+        Assertions.assertThat(valueSet6.isMoreSpecificValueSet(null)).isFalse();
         Assertions.assertThat(valueSet6.isMoreSpecificValueSet(valueSet1)).isTrue();
         Assertions.assertThat(valueSet6.isMoreSpecificValueSet(valueSet2)).isTrue();
         Assertions.assertThat(valueSet6.isMoreSpecificValueSet(valueSet3)).isFalse();
@@ -579,7 +579,7 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSet6.isMoreSpecificValueSet(valueSet5)).isTrue();
         Assertions.assertThat(valueSet6.isMoreSpecificValueSet(valueSet7)).isFalse();
 
-        Assertions.assertThat(valueSet7.isMoreSpecificValueSet(null)).isTrue();
+        Assertions.assertThat(valueSet7.isMoreSpecificValueSet(null)).isFalse();
         Assertions.assertThat(valueSet7.isMoreSpecificValueSet(valueSet1)).isTrue();
         Assertions.assertThat(valueSet7.isMoreSpecificValueSet(valueSet2)).isTrue();
         Assertions.assertThat(valueSet7.isMoreSpecificValueSet(valueSet3)).isFalse();
