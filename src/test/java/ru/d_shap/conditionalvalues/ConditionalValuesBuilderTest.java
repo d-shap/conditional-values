@@ -63,24 +63,26 @@ public final class ConditionalValuesBuilderTest {
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         conditionalValuesBuilder.setPredicate(new EqualsPredicate());
-        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addCondition("cond2", "vAl");
         valueSetBuilder.addValue("value2");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
         ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
-        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "val").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly();
 
         conditionalValuesBuilder.setPredicate(new EqualsIgnoreCasePredicate());
-        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addCondition("cond2", "vAl");
         valueSetBuilder.addValue("value2");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
         ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
-        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1", "value2");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond1", "val").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly("value2");
     }
 
     /**
