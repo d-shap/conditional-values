@@ -21,6 +21,8 @@ package ru.d_shap.conditionalvalues;
 
 import org.junit.Test;
 
+import ru.d_shap.assertions.Assertions;
+
 /**
  * Tests for {@link ConditionalValuesBuilder}.
  *
@@ -40,7 +42,13 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void newInstanceTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder1 = ConditionalValuesBuilder.newInstance();
+        ConditionalValuesBuilder<String> conditionalValuesBuilder2 = ConditionalValuesBuilder.newInstance();
+
+        Assertions.assertThat(conditionalValuesBuilder1).isNotNull();
+        Assertions.assertThat(conditionalValuesBuilder2).isNotNull();
+        Assertions.assertThat(conditionalValuesBuilder1).isNotSameAs(conditionalValuesBuilder2);
+        Assertions.assertThat(conditionalValuesBuilder2).isNotSameAs(conditionalValuesBuilder1);
     }
 
     /**
