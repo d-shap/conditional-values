@@ -738,21 +738,36 @@ public final class ValueSetTest {
      */
     @Test
     public void getValuesTest() {
-        Set<String> values1 = new HashSet<>();
+        Set<String> values1 = null;
         ValueSet<String> valueSet1 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values1);
         Assertions.assertThat(valueSet1.getValues()).containsExactly();
 
         Set<String> values2 = new HashSet<>();
-        values2.add("val");
         ValueSet<String> valueSet2 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values2);
-        Assertions.assertThat(valueSet2.getValues()).containsExactly("val");
+        Assertions.assertThat(valueSet2.getValues()).containsExactly();
 
         Set<String> values3 = new HashSet<>();
-        values3.add("val1");
-        values3.add("val2");
-        values3.add("val3");
+        values3.add(null);
         ValueSet<String> valueSet3 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values3);
-        Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3");
+        Assertions.assertThat(valueSet3.getValues()).containsExactly();
+
+        Set<String> values4 = new HashSet<>();
+        values4.add("val");
+        ValueSet<String> valueSet4 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values4);
+        Assertions.assertThat(valueSet4.getValues()).containsExactly("val");
+
+        Set<String> values5 = new HashSet<>();
+        values5.add(null);
+        values5.add("val");
+        ValueSet<String> valueSet5 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values5);
+        Assertions.assertThat(valueSet5.getValues()).containsExactly("val");
+
+        Set<String> values6 = new HashSet<>();
+        values6.add("val1");
+        values6.add("val2");
+        values6.add("val3");
+        ValueSet<String> valueSet6 = new ValueSet<>(null, new HashMap<String, Set<String>>(), values6);
+        Assertions.assertThat(valueSet6.getValues()).containsExactly("val1", "val2", "val3");
     }
 
     /**
