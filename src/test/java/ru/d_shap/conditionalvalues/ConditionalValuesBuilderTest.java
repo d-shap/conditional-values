@@ -19,6 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import org.junit.Test;
+
 /**
  * Tests for {@link ConditionalValuesBuilder}.
  *
@@ -31,6 +33,94 @@ public final class ConditionalValuesBuilderTest {
      */
     public ConditionalValuesBuilderTest() {
         super();
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void newInstanceTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setPredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setEqualsPredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setEqualsIgnoreCasePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setComparatorTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setNaturalOrderComparatorTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setReverseOrderComparatorTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void addValueSetTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void clearTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void buildTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void buildClearTest() {
+        // TODO
     }
 
 }
