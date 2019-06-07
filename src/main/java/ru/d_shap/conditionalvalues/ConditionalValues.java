@@ -65,7 +65,7 @@ public final class ConditionalValues<T> {
         if (predicate == null) {
             return new EqualsPredicate();
         } else {
-            return _predicate;
+            return predicate;
         }
     }
 
