@@ -683,7 +683,56 @@ public final class ConditionalValuesTest {
      */
     @Test
     public void getAllValuesTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("val1");
+        valueSetBuilder.addValue("val3");
+        valueSetBuilder.addValue("val5");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("val2");
+        valueSetBuilder.addValue("val4");
+        valueSetBuilder.addValue("val6");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, null);
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly();
+
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("val1", "val3", "val5");
+
+        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet2));
+        Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly("val2", "val4", "val6");
+
+        ConditionalValues<String> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues4.getAllValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValuesUnmodifiableFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addValue("val");
+        ValueSet<String> valueSet = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, createValueSets(valueSet));
+        Assertions.assertThat(conditionalValues.getAllValues()).hasSize(1);
+
+        conditionalValues.getAllValues().add("value");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValuesUnmodifiableEmptyFailTest() {
+        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null);
+        Assertions.assertThat(conditionalValues.getAllValues()).hasSize(0);
+
+        conditionalValues.getAllValues().add("value");
     }
 
     /**
