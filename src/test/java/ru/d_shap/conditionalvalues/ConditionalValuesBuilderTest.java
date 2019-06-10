@@ -354,7 +354,48 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void buildTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setEqualsIgnoreCasePredicate();
+        conditionalValuesBuilder.setNaturalOrderComparator();
+        valueSetBuilder.addCondition("cond1", "vAl1");
+        valueSetBuilder.addValue("value11");
+        valueSetBuilder.addValue("value12");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactlyInOrder("value11", "value12");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactlyInOrder("value11", "value12");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond3", "val3").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond4", "val4").build()).getValues()).containsExactlyInOrder();
+
+        conditionalValuesBuilder.setEqualsIgnoreCasePredicate();
+        conditionalValuesBuilder.setNaturalOrderComparator();
+        valueSetBuilder.addCondition("cond2", "vAl2");
+        valueSetBuilder.addValue("value21");
+        valueSetBuilder.addValue("value22");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactlyInOrder("value21", "value22");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactlyInOrder("value21", "value22");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond3", "val3").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond4", "val4").build()).getValues()).containsExactlyInOrder();
+
+        conditionalValuesBuilder.setEqualsIgnoreCasePredicate();
+        conditionalValuesBuilder.setNaturalOrderComparator();
+        valueSetBuilder.addCondition("cond3", "vAl3");
+        valueSetBuilder.addValue("value31");
+        valueSetBuilder.addValue("value32");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues3 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues3.getAllValues()).containsExactlyInOrder("value31", "value32");
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond3", "val3").build()).getValues()).containsExactlyInOrder("value31", "value32");
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond4", "val4").build()).getValues()).containsExactlyInOrder();
     }
 
     /**
