@@ -45,8 +45,10 @@ public final class ActionExceptionWrapperTest {
     @Test
     public void getCauseTest() {
         Assertions.assertThat(new ActionExceptionWrapper(null)).toCause().isNull();
+
         Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException("message"))).hasCause(IllegalArgumentException.class);
         Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException("message"))).hasCauseMessage("message");
+
         Assertions.assertThat(new ActionExceptionWrapper(new IOException("message"))).hasCause(IOException.class);
         Assertions.assertThat(new ActionExceptionWrapper(new IOException("message"))).hasCauseMessage("message");
     }
