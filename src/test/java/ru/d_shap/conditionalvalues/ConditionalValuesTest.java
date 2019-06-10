@@ -62,16 +62,12 @@ public final class ConditionalValuesTest {
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("val1", "val2");
 
-        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<String> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("val1", "val2");
     }
 
     /**
@@ -94,16 +90,12 @@ public final class ConditionalValuesTest {
         ValueSet<Boolean> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Boolean> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(true, false);
 
-        ConditionalValues<Boolean> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Boolean> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Boolean> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Boolean> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(true, false);
     }
 
     /**
@@ -116,33 +108,29 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val21");
         valueSetBuilder.addCondition("cond2", "val22");
-        valueSetBuilder.addValue('a');
+        valueSetBuilder.addValue('1');
         ValueSet<Character> valueSet1 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
         valueSetBuilder.addCondition("cond4", "val41");
         valueSetBuilder.addCondition("cond4", "val42");
-        valueSetBuilder.addValue('b');
+        valueSetBuilder.addValue('2');
         ValueSet<Character> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Character> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly('1', '2');
 
-        ConditionalValues<Character> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Character> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Character> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Character> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly('1', '2');
     }
 
     /**
      * {@link ConditionalValues} class test.
      */
     @Test
-    public void createConditionalValuesIntegerTest() {
+    public void createConditionalValuesIntTest() {
         ValueSetBuilder<Integer> valueSetBuilder = ValueSetBuilder.newInstance();
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
@@ -158,16 +146,12 @@ public final class ConditionalValuesTest {
         ValueSet<Integer> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Integer> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1, 2);
 
-        ConditionalValues<Integer> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Integer> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Integer> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Integer> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(1, 2);
     }
 
     /**
@@ -190,16 +174,12 @@ public final class ConditionalValuesTest {
         ValueSet<Long> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Long> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1L, 2L);
 
-        ConditionalValues<Long> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Long> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Long> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Long> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(1L, 2L);
     }
 
     /**
@@ -222,16 +202,12 @@ public final class ConditionalValuesTest {
         ValueSet<Float> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Float> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1.0f, 2.0f);
 
-        ConditionalValues<Float> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Float> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Float> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Float> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(1.0f, 2.0f);
     }
 
     /**
@@ -254,16 +230,12 @@ public final class ConditionalValuesTest {
         ValueSet<Double> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Double> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1.0, 2.0);
 
-        ConditionalValues<Double> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<Double> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<Double> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<Double> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(1.0, 2.0);
     }
 
     /**
@@ -286,16 +258,10 @@ public final class ConditionalValuesTest {
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<StringBuilder> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues1).isNotNull();
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
 
-        ConditionalValues<StringBuilder> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
-
-        ConditionalValues<StringBuilder> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
-        Assertions.assertThat(conditionalValues3).isNotNull();
-
-        ConditionalValues<StringBuilder> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues4).isNotNull();
+        ConditionalValues<StringBuilder> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2, null, null, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
     }
 
     /**
@@ -304,16 +270,16 @@ public final class ConditionalValuesTest {
     @Test
     public void createNullConditionalValuesTest() {
         ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, null);
-        Assertions.assertThat(conditionalValues1).isNotNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly();
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly();
 
         ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets((ValueSet<String>) null));
-        Assertions.assertThat(conditionalValues2).isNotNull();
         Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly();
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly();
 
         ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets((ValueSet<String>) null, null));
-        Assertions.assertThat(conditionalValues3).isNotNull();
         Assertions.assertThat(conditionalValues3.getAllConditionNames()).containsExactly();
+        Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly();
     }
 
     /**
