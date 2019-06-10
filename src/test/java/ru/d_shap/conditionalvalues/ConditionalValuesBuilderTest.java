@@ -19,9 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.misc.ComparableComparator;
 import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
 import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
 
@@ -145,7 +149,51 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void setComparatorTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setComparator(new ComparableComparator<String>());
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("a");
+        valueSetBuilder.addValue("bbb");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("cc");
+        valueSetBuilder.addValue("dddd");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("a", "bbb", "cc", "dddd");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactly("a", "bbb");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactly("cc", "dddd");
+
+        conditionalValuesBuilder.setComparator(Collections.reverseOrder(new ComparableComparator<String>()));
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("a");
+        valueSetBuilder.addValue("bbb");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("cc");
+        valueSetBuilder.addValue("dddd");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("dddd", "cc", "bbb", "a");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactly("bbb", "a");
+        Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactly("dddd", "cc");
+
+        conditionalValuesBuilder.setComparator(new ComparatorImpl());
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addValue("a");
+        valueSetBuilder.addValue("bbb");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValue("cc");
+        valueSetBuilder.addValue("dddd");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues3 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly("a", "cc", "bbb", "dddd");
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactly("a", "bbb");
+        Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactly("cc", "dddd");
     }
 
     /**
@@ -210,6 +258,38 @@ public final class ConditionalValuesBuilderTest {
         @Override
         public boolean evaluate(final String conditionName, final String conditionValue, final String value) {
             return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
+        }
+
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class ComparatorImpl implements Comparator<String> {
+
+        ComparatorImpl() {
+            super();
+        }
+
+        @Override
+        public int compare(final String str1, final String str2) {
+            if (str1 == null) {
+                if (str2 == null) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            } else {
+                if (str2 == null) {
+                    return 1;
+                } else {
+                    int lng1 = str1.length();
+                    int lng2 = str2.length();
+                    return lng1 - lng2;
+                }
+            }
         }
 
     }
