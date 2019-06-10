@@ -1604,6 +1604,8 @@ public final class ConditionalValuesTest {
     @Test
     public void lookupValueSetsWithActionTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
         valueSetBuilder.addCondition("cond1", "val11");
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val21");
@@ -1618,32 +1620,24 @@ public final class ConditionalValuesTest {
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
 
-        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
-
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
-        ConditionSet conditionSet1 = conditionSetBuilder.build();
         ActionImpl action1 = new ActionImpl();
-        conditionalValues.lookup(conditionSet1, action1);
-        Assertions.assertThat(action1._values).isNotNull();
+        conditionalValues.lookup(conditionSetBuilder.build(), action1);
         Assertions.assertThat(action1._values).containsExactly("proc_val1");
 
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ConditionSet conditionSet2 = conditionSetBuilder.build();
         ActionImpl action2 = new ActionImpl();
-        conditionalValues.lookup(conditionSet2, action2);
-        Assertions.assertThat(action2._values).isNotNull();
+        conditionalValues.lookup(conditionSetBuilder.build(), action2);
         Assertions.assertThat(action2._values).containsExactly("proc_val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ConditionSet conditionSet3 = conditionSetBuilder.build();
         ActionImpl action3 = new ActionImpl();
-        conditionalValues.lookup(conditionSet3, action3);
-        Assertions.assertThat(action3._values).isNotNull();
+        conditionalValues.lookup(conditionSetBuilder.build(), action3);
         Assertions.assertThat(action3._values).containsExactly("proc_val1", "proc_val2");
     }
 
@@ -1653,24 +1647,33 @@ public final class ConditionalValuesTest {
     @Test
     public void toStringTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
         valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val1");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.setId("id2");
+        valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValue("val2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addCondition("cond4", "val4");
+        valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
-        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, valueSet3));
-        Assertions.assertThat(conditionalValues).toStringContains("cond1=[val1]");
-        Assertions.assertThat(conditionalValues).toStringContains("cond2=[val2]");
-        Assertions.assertThat(conditionalValues).toStringContains("cond3=[val3]");
-        Assertions.assertThat(conditionalValues).toStringContains("cond4=[val4]");
+
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, null);
+        Assertions.assertThat(conditionalValues1).hasToString("[]");
+
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1));
+        Assertions.assertThat(conditionalValues2).hasToString("[{cond1=[val1]}]");
+
+        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet2));
+        Assertions.assertThat(conditionalValues3).hasToString("[id2={cond2=[val2]}]");
+
+        ConditionalValues<String> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, valueSet3));
+        Assertions.assertThat(conditionalValues4).toStringContains("cond1=[val1]");
+        Assertions.assertThat(conditionalValues4).toStringContains("cond2=[val2]");
+        Assertions.assertThat(conditionalValues4).toStringContains("cond3=[val3]");
     }
 
     @SafeVarargs
