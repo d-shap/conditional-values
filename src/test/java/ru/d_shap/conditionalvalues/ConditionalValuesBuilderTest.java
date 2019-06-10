@@ -396,6 +396,13 @@ public final class ConditionalValuesBuilderTest {
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactlyInOrder();
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond3", "val3").build()).getValues()).containsExactlyInOrder("value31", "value32");
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond4", "val4").build()).getValues()).containsExactlyInOrder();
+
+        ConditionalValues<String> conditionalValues4 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues4.getAllValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond3", "val3").build()).getValues()).containsExactlyInOrder();
+        Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond4", "val4").build()).getValues()).containsExactlyInOrder();
     }
 
     /**
