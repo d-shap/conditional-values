@@ -110,6 +110,38 @@ public final class ConditionalValuesTest {
      * {@link ConditionalValues} class test.
      */
     @Test
+    public void createConditionalValuesCharTest() {
+        ValueSetBuilder<Character> valueSetBuilder = ValueSetBuilder.newInstance();
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
+        valueSetBuilder.addValue('a');
+        ValueSet<Character> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
+        valueSetBuilder.addValue('b');
+        ValueSet<Character> valueSet2 = valueSetBuilder.build();
+
+        ConditionalValues<Character> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1).isNotNull();
+
+        ConditionalValues<Character> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2, null));
+        Assertions.assertThat(conditionalValues2).isNotNull();
+
+        ConditionalValues<Character> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, null, valueSet2));
+        Assertions.assertThat(conditionalValues3).isNotNull();
+
+        ConditionalValues<Character> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(null, valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues4).isNotNull();
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
     public void createConditionalValuesIntegerTest() {
         ValueSetBuilder<Integer> valueSetBuilder = ValueSetBuilder.newInstance();
         valueSetBuilder.addCondition("cond1", "val11");
