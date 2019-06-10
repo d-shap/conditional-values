@@ -615,8 +615,6 @@ public final class ConditionalValuesTest {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void getAllConditionValuesUnmodifiableEmptyFailTest() {
-        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
-
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null);
         Assertions.assertThat(conditionalValues.getAllConditionValues("cond")).hasSize(0);
 
@@ -640,14 +638,44 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond4", "val42");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
-        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, createValueSets(valueSet1));
-        Assertions.assertThat(conditionalValues1.getAllValueSetUniqueConditions()).hasSize(4);
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, null);
+        Assertions.assertThat(conditionalValues1.getAllValueSetUniqueConditions()).hasSize(0);
 
-        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet2));
-        Assertions.assertThat(conditionalValues2.getAllValueSetUniqueConditions()).hasSize(2);
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(null, null, createValueSets(valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllValueSetUniqueConditions()).hasSize(4);
 
-        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
-        Assertions.assertThat(conditionalValues3.getAllValueSetUniqueConditions()).hasSize(6);
+        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(null, null, createValueSets(valueSet2));
+        Assertions.assertThat(conditionalValues3.getAllValueSetUniqueConditions()).hasSize(2);
+
+        ConditionalValues<String> conditionalValues4 = new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues4.getAllValueSetUniqueConditions()).hasSize(6);
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValueSetUniqueConditionsUnmodifiableFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        ValueSet<String> valueSet = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, createValueSets(valueSet));
+        Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(1);
+
+        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition());
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getAllValueSetUniqueConditionsUnmodifiableEmptyFailTest() {
+        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null);
+        Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(0);
+
+        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition());
     }
 
     /**
