@@ -46,7 +46,7 @@ public final class ActionableActionTest {
     }
 
     /**
-     * {@link ActionableActionTest} class test.
+     * {@link ActionableAction} class test.
      */
     @Test
     public void performTest() {
@@ -67,7 +67,7 @@ public final class ActionableActionTest {
     }
 
     /**
-     * {@link ActionableActionTest} class test.
+     * {@link ActionableAction} class test.
      */
     @Test
     public void lookupTest() {
