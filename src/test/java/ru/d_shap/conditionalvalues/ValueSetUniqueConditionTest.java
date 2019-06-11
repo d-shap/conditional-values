@@ -138,6 +138,14 @@ public final class ValueSetUniqueConditionTest {
      * {@link ValueSetUniqueCondition} class test.
      */
     @Test
+    public void isSameConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test
     public void equalsToSelfTest() {
         ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
         Assertions.assertThat(valueSetUniqueCondition1).isEqualTo(valueSetUniqueCondition1);
