@@ -435,7 +435,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     @SafeVarargs
-    public final ValueSetBuilder<T> addValue(final T... values) {
+    public final ValueSetBuilder<T> addValues(final T... values) {
         if (values != null) {
             for (T value : values) {
                 addValue(value);
@@ -481,7 +481,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     @SafeVarargs
-    public final ValueSetBuilder<T> removeValue(final T... values) {
+    public final ValueSetBuilder<T> removeValues(final T... values) {
         if (values != null) {
             for (T value : values) {
                 removeValue(value);
