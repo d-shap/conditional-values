@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * <p>
- * Classes simplify conditional logic, getting rid of <b>if</b>-statements in the code.
+ * Conditional values simplify conditional logic and get rid of <b>if</b>-statements in the code.
  * </p>
  * <p>
  * The main purpose is to find the best result from many predefined conditions.
