@@ -41,6 +41,33 @@ public final class EqualsPredicateTest {
      * {@link EqualsPredicate} class test.
      */
     @Test
+    public void isSameValueTest() {
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, null, null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, "value", null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, null, "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().isSameValue(null, "vaLUe", "ValUE")).isFalse();
+
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", null, null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", "value", null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", null, "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("", "vaLUe", "ValUE")).isFalse();
+
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", null, null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", "value", null)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", null, "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().isSameValue("condition", "vaLUe", "ValUE")).isFalse();
+    }
+
+    /**
+     * {@link EqualsPredicate} class test.
+     */
+    @Test
     public void evaluateTest() {
         Assertions.assertThat(new EqualsPredicate().evaluate(null, null, null)).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate(null, "value", null)).isFalse();

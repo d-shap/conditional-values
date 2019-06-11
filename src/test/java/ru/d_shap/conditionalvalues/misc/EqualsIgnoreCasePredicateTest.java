@@ -41,6 +41,33 @@ public final class EqualsIgnoreCasePredicateTest {
      * {@link EqualsIgnoreCasePredicate} class test.
      */
     @Test
+    public void isSameValueTest() {
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, "value", null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, null, "value")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue(null, "vaLUe", "ValUE")).isTrue();
+
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", "value", null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", null, "value")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("", "vaLUe", "ValUE")).isTrue();
+
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", "value", null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", null, "value")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", "value1", "value2")).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().isSameValue("condition", "vaLUe", "ValUE")).isTrue();
+    }
+
+    /**
+     * {@link EqualsIgnoreCasePredicate} class test.
+     */
+    @Test
     public void evaluateTest() {
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, null, null)).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, "value", null)).isFalse();
