@@ -37,6 +37,11 @@ public final class EqualsPredicate implements Predicate {
     }
 
     @Override
+    public boolean isSameValue(final String conditionName, final String value1, final String value2) {
+        return value1 != null && value1.equals(value2);
+    }
+
+    @Override
     public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
         return conditionValue != null && conditionValue.equals(checkValue);
     }
