@@ -562,50 +562,50 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        valueSetBuilder.addCondition("type", "type1");
+        valueSetBuilder.addCondition("type", "contract");
         valueSetBuilder.addCondition("isViewer", true);
-        valueSetBuilder.addValue("field1");
+        valueSetBuilder.addValue("title");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("type", "type1");
+        valueSetBuilder.addCondition("type", "contract");
         valueSetBuilder.addCondition("isEditor", true);
-        valueSetBuilder.addValue("field2");
+        valueSetBuilder.addValue("subject");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("type", "type1");
-        valueSetBuilder.addCondition("state", 1);
+        valueSetBuilder.addCondition("type", "contract");
+        valueSetBuilder.addCondition("state", "draft");
         valueSetBuilder.addCondition("isViewer", true);
-        valueSetBuilder.addValue("field3");
+        valueSetBuilder.addValue("due date");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
         ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 
-        conditionSetBuilder.addCondition("type", "type1");
-        conditionSetBuilder.addCondition("state", 1);
+        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition("state", "draft");
         conditionSetBuilder.addCondition("isViewer", true);
         Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values1.getValues()).containsExactly("field3");
+        Assertions.assertThat(values1.getValues()).containsExactly("due date");
 
-        conditionSetBuilder.addCondition("type", "type1");
-        conditionSetBuilder.addCondition("state", 2);
+        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition("state", "approval");
         conditionSetBuilder.addCondition("isViewer", true);
         Values<String> values2 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values2.getValues()).containsExactly("field1");
+        Assertions.assertThat(values2.getValues()).containsExactly("title");
 
-        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("type", "contract");
         conditionSetBuilder.addCondition("isViewer", true);
         conditionSetBuilder.addCondition("isEditor", true);
         Values<String> values3 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values3.getValues()).containsExactly("field1", "field2");
+        Assertions.assertThat(values3.getValues()).containsExactly("title", "subject");
 
-        conditionSetBuilder.addCondition("type", "type1");
-        conditionSetBuilder.addCondition("state", 1);
+        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition("state", "draft");
         conditionSetBuilder.addCondition("isViewer", true);
         conditionSetBuilder.addCondition("isEditor", true);
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values4.getValues()).containsExactly("field2", "field3");
+        Assertions.assertThat(values4.getValues()).containsExactly("subject", "due date");
 
-        conditionSetBuilder.addCondition("type", "type1");
+        conditionSetBuilder.addCondition("type", "contract");
         conditionSetBuilder.addCondition("isViewer", true);
         Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values5.getValues()).containsExactly("field1");
+        Assertions.assertThat(values5.getValues()).containsExactly("title");
 
         conditionSetBuilder.addCondition("isViewer", true);
         conditionSetBuilder.addCondition("isEditor", true);
