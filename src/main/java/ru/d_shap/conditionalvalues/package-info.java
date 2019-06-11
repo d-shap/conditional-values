@@ -25,19 +25,16 @@
  * The main purpose is to find the best result from many predefined conditions.
  * </p>
  * <p>
- * For example, we should edit form fields based on some conditions.
- * </p>
- * <p>
- * This conditions could be:
+ * For example, we should edit form fields based on some conditions. This conditions could be:
  * </p>
  * <ul>
- * <li>form type with many different values (type1, type2, type3, etc.)</li>
- * <li>form state with many different values (1, 2, 3, etc.)</li>
+ * <li>form type with many different values (contract, order, incoming document, etc.)</li>
+ * <li>form state with many different values (draft, approval, active, etc.)</li>
  * <li>user role (viewer, editor, administrator, etc.)</li>
  * <li>some other conditions</li>
  * </ul>
  * <p>
- * And based on this conditions there are different editable fields (field1, field2, field3, etc.).
+ * And based on this conditions there are different editable fields (title, subject, due date, etc.).
  * </p>
  * <p>
  * First we create a {@link ru.d_shap.conditionalvalues.ValueSet} object for each distinct condition
@@ -47,24 +44,24 @@
  * ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
  * ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
  *
- * valueSetBuilder.addCondition("type", "type1");
- * valueSetBuilder.addCondition("state", 1);
+ * valueSetBuilder.addCondition("type", "contract");
+ * valueSetBuilder.addCondition("state", "draft");
  * valueSetBuilder.addCondition("role", "viewer");
- * valueSetBuilder.addValue("field1", "field2");
+ * valueSetBuilder.addValue("title", "subject");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
- * valueSetBuilder.addCondition("type", "type1");
- * valueSetBuilder.addCondition("state", 2)
- *                .addCondition("state", 3);
+ * valueSetBuilder.addCondition("type", "contract");
+ * valueSetBuilder.addCondition("state", "approval")
+ *                .addCondition("state", "active");
  * valueSetBuilder.addCondition("role", "viewer");
- * valueSetBuilder.addValue("field2", "field3");
+ * valueSetBuilder.addValue("subject", "due date");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
- * valueSetBuilder.addCondition("type", "type1");
- * valueSetBuilder.addCondition("state", 2)
- *                .addCondition("state", 3);
+ * valueSetBuilder.addCondition("type", "contract");
+ * valueSetBuilder.addCondition("state", "approval")
+ *                .addCondition("state", "active");
  * valueSetBuilder.addCondition("role", "editor");
- * valueSetBuilder.addValue("field1", "field3");
+ * valueSetBuilder.addValue("title", "due date");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
@@ -75,14 +72,13 @@
  * </p>
  * <p>
  * In runtime now we can define editable fields based on current condition (current form type, current form state,
- * current user role, etc).
- * To perform this we create a {@link ru.d_shap.conditionalvalues.ConditionSet} object:
+ * current user role, etc). To perform this we create a {@link ru.d_shap.conditionalvalues.ConditionSet} object:
  * </p>
  * <pre>{@code
  * ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
  *
  * conditionSetBuilder.addCondition("type", "type1");
- * conditionSetBuilder.addCondition("state", 2);
+ * conditionSetBuilder.addCondition("state", "approval");
  * conditionSetBuilder.addCondition("role", "editor");
  *
  * ConditionSet conditionSet = conditionSetBuilder.build();
