@@ -610,7 +610,6 @@ public final class ConditionalValuesBuilderTest {
         conditionSetBuilder.addCondition("isViewer", true);
         conditionSetBuilder.addCondition("isEditor", true);
         Values<String> values6 = conditionalValues.lookup(conditionSetBuilder.build());
-        Assertions.assertThat(values6).isNotNull();
         Assertions.assertThat(values6.getValues()).containsExactly();
     }
 
