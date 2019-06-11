@@ -56,31 +56,6 @@ public final class ValueSetUniqueCondition {
         return _conditions;
     }
 
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (!(object instanceof ValueSetUniqueCondition)) {
-            return false;
-        }
-        ValueSetUniqueCondition other = (ValueSetUniqueCondition) object;
-        Set<String> conditionKeys = _conditions.keySet();
-        Set<String> otherConditionKeys = other._conditions.keySet();
-        if (!conditionKeys.containsAll(otherConditionKeys)) {
-            return false;
-        }
-        for (Map.Entry<String, String> entry : _conditions.entrySet()) {
-            String conditionKey = entry.getKey();
-            String conditionValue = entry.getValue();
-            String otherConditionValue = other._conditions.get(conditionKey);
-            if (!conditionValue.equals(otherConditionValue)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     boolean isSameCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final Predicate predicate) {
         if (this == valueSetUniqueCondition) {
             return true;
@@ -102,16 +77,6 @@ public final class ValueSetUniqueCondition {
             }
         }
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        for (Map.Entry<String, String> entry : _conditions.entrySet()) {
-            result = result * 31 + entry.getKey().hashCode();
-            result = result * 31 + entry.getValue().hashCode();
-        }
-        return result;
     }
 
     @Override
