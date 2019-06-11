@@ -81,16 +81,7 @@ public final class ValueSetUniqueCondition {
         return true;
     }
 
-    /**
-     * Check if this object has the same combination of conditions, as the specified one according
-     * to the specified {@link ru.d_shap.conditionalvalues.Predicate} object.
-     *
-     * @param valueSetUniqueCondition the specified {@link ru.d_shap.conditionalvalues.ValueSetUniqueCondition} object.
-     * @param predicate               the specified {@link ru.d_shap.conditionalvalues.Predicate} object.
-     *
-     * @return true, if this object has the same combination of conditions, as the specified one
-     */
-    public boolean isSameCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final Predicate predicate) {
+    boolean isSameCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final Predicate predicate) {
         if (this == valueSetUniqueCondition) {
             return true;
         }
