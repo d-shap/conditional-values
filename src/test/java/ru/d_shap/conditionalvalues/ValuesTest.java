@@ -88,7 +88,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet51 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet52 = valueSetBuilder.build();
@@ -100,7 +100,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
@@ -113,10 +113,10 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet71 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
+        valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet72 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets7 = new HashSet<>();
         valueSets7.add(valueSet71);
@@ -175,7 +175,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet51 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet52 = valueSetBuilder.build();
@@ -191,7 +191,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
@@ -208,10 +208,10 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet71 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
+        valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet72 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets7 = new HashSet<>();
         valueSets7.add(valueSet71);
@@ -337,7 +337,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet51 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet52 = valueSetBuilder.build();
@@ -349,7 +349,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet61 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
@@ -362,10 +362,10 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet71 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
+        valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet72 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets7 = new HashSet<>();
         valueSets7.add(valueSet71);
@@ -375,10 +375,10 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet81 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValue("val3", "val4");
+        valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet82 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets8 = new HashSet<>();
         valueSets8.add(valueSet81);
@@ -394,9 +394,9 @@ public final class ValuesTest {
     public void getValuesUnmodifiableFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2");
+        valueSetBuilder.addValues("val1", "val2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
-        valueSetBuilder.addValue("val3", "val4");
+        valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Set<ValueSet<String>> valueSets = new HashSet<>();
         valueSets.add(valueSet1);
@@ -629,7 +629,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val4", "val2");
+        valueSetBuilder.addValues("val1", "val4", "val2");
         ValueSet<String> valueSet11 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val6");
@@ -645,7 +645,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val4", "val2");
+        valueSetBuilder.addValues("val1", "val4", "val2");
         ValueSet<String> valueSet21 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val6");
@@ -662,7 +662,7 @@ public final class ValuesTest {
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValue("val1", "val4", "val2");
+        valueSetBuilder.addValues("val1", "val4", "val2");
         ValueSet<String> valueSet31 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValue("val6");
