@@ -81,6 +81,38 @@ public final class ValueSetUniqueCondition {
         return true;
     }
 
+    /**
+     * Check if this object has the same combination of conditions, as the specified one according
+     * to the specified {@link ru.d_shap.conditionalvalues.Predicate} object.
+     *
+     * @param valueSetUniqueCondition the specified {@link ru.d_shap.conditionalvalues.ValueSetUniqueCondition} object.
+     * @param predicate               the specified {@link ru.d_shap.conditionalvalues.Predicate} object.
+     *
+     * @return true, if this object has the same combination of conditions, as the specified one
+     */
+    public boolean isSameCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final Predicate predicate) {
+        if (this == valueSetUniqueCondition) {
+            return true;
+        }
+        if (predicate == null) {
+            return false;
+        }
+        Set<String> conditionKeys = _conditions.keySet();
+        Set<String> otherConditionKeys = valueSetUniqueCondition._conditions.keySet();
+        if (!conditionKeys.containsAll(otherConditionKeys)) {
+            return false;
+        }
+        for (Map.Entry<String, String> entry : _conditions.entrySet()) {
+            String conditionKey = entry.getKey();
+            String conditionValue = entry.getValue();
+            String otherConditionValue = valueSetUniqueCondition._conditions.get(conditionKey);
+            if (!predicate.isSameValue(conditionKey, conditionValue, otherConditionValue)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
         int result = 1;
