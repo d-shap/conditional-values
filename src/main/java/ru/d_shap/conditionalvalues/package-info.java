@@ -77,7 +77,7 @@
  * <pre>{@code
  * ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
  *
- * conditionSetBuilder.addCondition("type", "type1");
+ * conditionSetBuilder.addCondition("type", "contract");
  * conditionSetBuilder.addCondition("state", "approval");
  * conditionSetBuilder.addCondition("role", "editor");
  *
@@ -111,45 +111,45 @@
  * <b>Value Set 1</b>
  * </p>
  * <ul>
- * <li>type: <b>type1</b></li>
+ * <li>type: <b>contract</b></li>
  * <li>isViewer: <b>true</b></li>
  * </ul>
  * <p>
  * <b>Value Set 2</b>
  * </p>
  * <ul>
- * <li>type: <b>type1</b></li>
+ * <li>type: <b>contract</b></li>
  * <li>isEditor: <b>true</b></li>
  * </ul>
  * <p>
  * <b>Value Set 3</b>
  * </p>
  * <ul>
- * <li>type: <b>type1</b></li>
- * <li>state: <b>1</b></li>
+ * <li>type: <b>contract</b></li>
+ * <li>state: <b>draft</b></li>
  * <li>isViewer: <b>true</b></li>
  * </ul>
  * <p>
- * Then if we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isViewer = <b>true</b>),
+ * Then if we have runtime conditions (type = <b>contract</b>, state = <b>draft</b>, isViewer = <b>true</b>),
  * then the best matching value set is <b>Value Set 3</b> (the only one matching value set).
  * </p>
  * <p>
- * If we have runtime conditions (type = <b>type1</b>, state = <b>2</b>, isViewer = <b>true</b>),
+ * If we have runtime conditions (type = <b>contract</b>, state = <b>approval</b>, isViewer = <b>true</b>),
  * then the best matching value set is <b>Value Set 1</b> (the only one matching value set).
  * </p>
  * <p>
- * If we have runtime conditions (type = <b>type1</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
+ * If we have runtime conditions (type = <b>contract</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
  * then the best matching value sets are <b>Value Set 1</b> and <b>Value Set 2</b>
  * ({@link ru.d_shap.conditionalvalues.Values} object contains values from both
  * {@link ru.d_shap.conditionalvalues.ValueSet} objects).
  * </p>
  * <p>
- * If we have runtime conditions (type = <b>type1</b>, state = <b>1</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
+ * If we have runtime conditions (type = <b>contract</b>, state = <b>draft</b>, isViewer = <b>true</b>, isEditor = <b>true</b>),
  * then the best matching value sets are <b>Value Set 2</b> and <b>Value Set 3</b> (<b>Value Set 1</b> also matches,
  * but <b>Value Set 3</b> is more specific then <b>Value Set 1</b>).
  * </p>
  * <p>
- * If we have runtime conditions (type = <b>type1</b>, isViewer = <b>true</b>),
+ * If we have runtime conditions (type = <b>contract</b>, isViewer = <b>true</b>),
  * then the best matching value set is <b>Value Set 1</b> (the only one matching value set).
  * </p>
  * <p>
@@ -161,7 +161,7 @@
  * </p>
  * <p>
  * Form in the example above could be only in one state at any given moment of time. So the condition
- * with the name <b>state</b> and values <b>1</b>, <b>2</b>, <b>3</b> is good enough.
+ * with the name <b>state</b> and values <b>draft</b>, <b>approval</b>, <b>active</b> is good enough.
  * </p>
  * <p>
  * If the user in the examample above could have only one role, then condition with the name <b>role</b>
