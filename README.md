@@ -1,5 +1,5 @@
 # Conditional values
-Conditional values simplify conditional logic and get rid of if-statements in the code.
+Conditional values simplify conditional logic and get rid of **if**-statements in the code.
 
 The main purpose is to find the best result from many predefined conditions.
 
@@ -13,47 +13,45 @@ This conditions could be:
 
 And based on this conditions there are different editable fields (field1, field2, field3, etc.).
 
-First we create a `ValueSet` object for each distinct condition:
+First we create a `ValueSet` object for each distinct condition and store this objects in a single `ConditionalValues` object:
 ```
-ValueSetBuilder<String> valueSetBuilder = ConditionalValues.createValueSetBuilder();
+ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
 valueSetBuilder.addCondition("type", "type1");
 valueSetBuilder.addCondition("state", 1);
 valueSetBuilder.addCondition("role", "viewer");
 valueSetBuilder.addValue("field1", "field2");
-ValueSet<String> type1Viewer1ValueSet = valueSetBuilder.build();
+conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
 valueSetBuilder.addCondition("type", "type1");
 valueSetBuilder.addCondition("state", 2)
                .addCondition("state", 3);
 valueSetBuilder.addCondition("role", "viewer");
 valueSetBuilder.addValue("field2", "field3");
-ValueSet<String> type1Viewer23ValueSet = valueSetBuilder.build();
+conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
 valueSetBuilder.addCondition("type", "type1");
 valueSetBuilder.addCondition("state", 2)
                .addCondition("state", 3);
 valueSetBuilder.addCondition("role", "editor");
 valueSetBuilder.addValue("field1", "field3");
-ValueSet<String> type1Editor23ValueSet = valueSetBuilder.build();
+conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
+ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 ```
 
-Then we store this conditions in a single `ConditionalValues` object:
-```
-ConditionalValues<String> conditionalValues = ConditionalValues.createConditionalValues(type1Viewer1ValueSet,
-                                                                                        type1Viewer23ValueSet,
-                                                                                        type1Editor23ValueSet);
-```
-
-This `ConditionalValues` object could be created in static initializer.
+This `ConditionalValues` object could be created during design-time, for example in the class static initializer.
 
 In runtime now we can define editable fields based on current condition (current form type, current form state, current user role, etc).
 To perform this we create a `ConditionSet` object:
 ```
-ConditionSetBuilder conditionSetBuilder = ConditionalValues.createConditionSetBuilder();
+ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
 conditionSetBuilder.addCondition("type", "type1");
 conditionSetBuilder.addCondition("state", 2);
 conditionSetBuilder.addCondition("role", "editor");
+
 ConditionSet conditionSet = conditionSetBuilder.build();
 ```
 
@@ -113,7 +111,7 @@ Then if the user has several roles, then this user could edit form fields availa
 Conditional values:
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: conditional-values
-* **&lt;version&gt;**: 1.1
+* **&lt;version&gt;**: 1.2
 
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
