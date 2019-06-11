@@ -47,21 +47,21 @@
  * valueSetBuilder.addCondition("type", "contract");
  * valueSetBuilder.addCondition("state", "draft");
  * valueSetBuilder.addCondition("role", "viewer");
- * valueSetBuilder.addValue("title", "subject");
+ * valueSetBuilder.addValues("title", "subject");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * valueSetBuilder.addCondition("type", "contract");
  * valueSetBuilder.addCondition("state", "approval")
  *                .addCondition("state", "active");
  * valueSetBuilder.addCondition("role", "viewer");
- * valueSetBuilder.addValue("subject", "due date");
+ * valueSetBuilder.addValues("subject", "due date");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * valueSetBuilder.addCondition("type", "contract");
  * valueSetBuilder.addCondition("state", "approval")
  *                .addCondition("state", "active");
  * valueSetBuilder.addCondition("role", "editor");
- * valueSetBuilder.addValue("title", "due date");
+ * valueSetBuilder.addValues("title", "due date");
  * conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
  *
  * ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
