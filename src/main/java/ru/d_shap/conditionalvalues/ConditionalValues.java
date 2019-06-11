@@ -22,8 +22,8 @@ package ru.d_shap.conditionalvalues;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -82,22 +82,34 @@ public final class ConditionalValues<T> {
     }
 
     private Set<ValueSetUniqueCondition> createAllValueSetUniqueConditions() {
-        Map<ValueSetUniqueCondition, Set<T>> map = new HashMap<>();
+        Map<ValueSetUniqueCondition, Set<T>> uniqueMap = new IdentityHashMap<>();
         Set<ValueSetUniqueCondition> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
             List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
             Set<T> values = valueSet.getValues();
             for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                Set<T> oldValues = map.get(valueSetUniqueCondition);
+                Set<T> oldValues = getOldValues(uniqueMap, valueSetUniqueCondition);
                 if (oldValues == null) {
-                    map.put(valueSetUniqueCondition, values);
+                    uniqueMap.put(valueSetUniqueCondition, values);
                     result.add(valueSetUniqueCondition);
-                } else if (!oldValues.containsAll(values) || !values.containsAll(oldValues)) {
-                    throw new DuplicateValueSetException(valueSet);
+                } else {
+                    if (!oldValues.containsAll(values) || !values.containsAll(oldValues)) {
+                        throw new DuplicateValueSetException(valueSet);
+                    }
                 }
             }
         }
         return Collections.unmodifiableSet(result);
+    }
+
+    private Set<T> getOldValues(final Map<ValueSetUniqueCondition, Set<T>> uniqueMap, final ValueSetUniqueCondition valueSetUniqueCondition) {
+        for (Map.Entry<ValueSetUniqueCondition, Set<T>> uniqueMapEntry : uniqueMap.entrySet()) {
+            ValueSetUniqueCondition uniqueMapKey = uniqueMapEntry.getKey();
+            if (uniqueMapKey.isSameCondition(valueSetUniqueCondition, _predicate)) {
+                return uniqueMapEntry.getValue();
+            }
+        }
+        return null;
     }
 
     private Set<T> createAllValues() {
