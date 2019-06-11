@@ -786,7 +786,7 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
-    public void addValueSingleTest() {
+    public void addValueTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         valueSetBuilder.addValue("val1");
@@ -795,7 +795,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1).isNotNull();
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val1", "val2", "val3");
 
-        valueSetBuilder.addValue((String) null);
+        valueSetBuilder.addValue(null);
         Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(0);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
@@ -803,7 +803,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.addValue("val1");
         Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(1);
-        valueSetBuilder.addValue((String) null);
+        valueSetBuilder.addValue(null);
         Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(1);
         valueSetBuilder.addValue("val2").addValue("val3");
         Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(3);
@@ -816,29 +816,29 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
-    public void addValueArrayTest() {
+    public void addValuesArrayTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2");
-        valueSetBuilder.addValue("val3", "val4").addValue("val5", "val6");
+        valueSetBuilder.addValues("val1", "val2");
+        valueSetBuilder.addValues("val3", "val4").addValues("val5", "val6");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1).isNotNull();
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
 
-        valueSetBuilder.addValue((String[]) null);
+        valueSetBuilder.addValues((String[]) null);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getValues()).containsExactly();
 
-        valueSetBuilder.addValue("val1", "val2");
-        valueSetBuilder.addValue((String[]) null);
-        valueSetBuilder.addValue("val3", "val4").addValue("val5", "val6");
+        valueSetBuilder.addValues("val1", "val2");
+        valueSetBuilder.addValues((String[]) null);
+        valueSetBuilder.addValues("val3", "val4").addValues("val5", "val6");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
 
-        valueSetBuilder.addValue("val1", null);
-        valueSetBuilder.addValue(null, "val2").addValue(null, null);
+        valueSetBuilder.addValues("val1", null);
+        valueSetBuilder.addValues(null, "val2").addValues(null, null);
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         Assertions.assertThat(valueSet4).isNotNull();
         Assertions.assertThat(valueSet4.getValues()).containsExactly("val1", "val2");
@@ -851,8 +851,8 @@ public final class ValueSetBuilderTest {
     public void addValuesValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2");
-        valueSetBuilder.addValue("val3", "val4").addValue("val5", "val6");
+        valueSetBuilder.addValues("val1", "val2");
+        valueSetBuilder.addValues("val3", "val4").addValues("val5", "val6");
         ValueSet<String> addTemplate = valueSetBuilder.build();
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
@@ -861,24 +861,24 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.addValue("val3", "val5", "val7");
+        valueSetBuilder.addValues("val3", "val5", "val7");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6", "val7");
 
-        valueSetBuilder.addValue("val3", "val5", "val7");
+        valueSetBuilder.addValues("val3", "val5", "val7");
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6", "val7");
 
-        valueSetBuilder = valueSetBuilder.addValues(null);
+        valueSetBuilder = valueSetBuilder.addValues((ValueSet<String>) null);
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         Assertions.assertThat(valueSet4).isNotNull();
         Assertions.assertThat(valueSet4.getValues()).containsExactly();
 
-        valueSetBuilder = valueSetBuilder.addValues(null);
-        valueSetBuilder.addValue("val3", "val5", "val7");
+        valueSetBuilder = valueSetBuilder.addValues((ValueSet<String>) null);
+        valueSetBuilder.addValues("val3", "val5", "val7");
         ValueSet<String> valueSet5 = valueSetBuilder.build();
         Assertions.assertThat(valueSet5).isNotNull();
         Assertions.assertThat(valueSet5.getValues()).containsExactly("val3", "val5", "val7");
@@ -888,10 +888,10 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
-    public void removeValueSingleTest() {
+    public void removeValueTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2", "val3", "val4", "val5", "val6");
+        valueSetBuilder.addValues("val1", "val2", "val3", "val4", "val5", "val6");
         ValueSet<String> addTemplate = valueSetBuilder.build();
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
@@ -902,14 +902,14 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val1", "val3", "val5");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.removeValue((String) null);
+        valueSetBuilder.removeValue(null);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
         valueSetBuilder.removeValue("val2");
-        valueSetBuilder.removeValue((String) null);
+        valueSetBuilder.removeValue(null);
         valueSetBuilder.removeValue("val4").removeValue("val6");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
@@ -920,36 +920,36 @@ public final class ValueSetBuilderTest {
      * {@link ValueSetBuilder} class test.
      */
     @Test
-    public void removeValueArrayTest() {
+    public void removeValuesArrayTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2", "val3", "val4", "val5", "val6");
+        valueSetBuilder.addValues("val1", "val2", "val3", "val4", "val5", "val6");
         ValueSet<String> addTemplate = valueSetBuilder.build();
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.removeValue("val1", "val2");
-        valueSetBuilder.removeValue("val2", "val3").removeValue("val3", "val4");
+        valueSetBuilder.removeValues("val1", "val2");
+        valueSetBuilder.removeValues("val2", "val3").removeValues("val3", "val4");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1).isNotNull();
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val5", "val6");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.removeValue((String[]) null);
+        valueSetBuilder.removeValue(null);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2).isNotNull();
         Assertions.assertThat(valueSet2.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.removeValue("val1", "val2");
-        valueSetBuilder.removeValue((String[]) null);
-        valueSetBuilder.removeValue("val2", "val3").removeValue("val3", "val4");
+        valueSetBuilder.removeValues("val1", "val2");
+        valueSetBuilder.removeValues((String[]) null);
+        valueSetBuilder.removeValues("val2", "val3").removeValues("val3", "val4");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getValues()).containsExactly("val5", "val6");
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder.removeValue("val1", null);
-        valueSetBuilder.removeValue(null, "val2").removeValue(null, null);
+        valueSetBuilder.removeValues("val1", null);
+        valueSetBuilder.removeValues(null, "val2").removeValues(null, null);
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         Assertions.assertThat(valueSet4).isNotNull();
         Assertions.assertThat(valueSet4.getValues()).containsExactly("val3", "val4", "val5", "val6");
@@ -962,10 +962,10 @@ public final class ValueSetBuilderTest {
     public void removeValuesValueSetTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addValue("val1", "val2", "val3", "val4", "val5", "val6");
+        valueSetBuilder.addValues("val1", "val2", "val3", "val4", "val5", "val6");
         ValueSet<String> addTemplate = valueSetBuilder.build();
 
-        valueSetBuilder.addValue("val4", "val5", "val6");
+        valueSetBuilder.addValues("val4", "val5", "val6");
         ValueSet<String> removeTemplate = valueSetBuilder.build();
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
@@ -981,7 +981,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet2.getValues()).containsExactly();
 
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
-        valueSetBuilder = valueSetBuilder.removeValues(null);
+        valueSetBuilder = valueSetBuilder.removeValues((ValueSet<String>) null);
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3).isNotNull();
         Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
