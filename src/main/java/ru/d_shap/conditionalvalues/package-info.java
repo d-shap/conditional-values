@@ -158,16 +158,10 @@
  * </p>
  * <p>
  * To select conditions the following should be considered.
- * </p>
- * <p>
  * Form in the example above could be only in one state at any given moment of time. So the condition
  * with the name <b>state</b> and values <b>draft</b>, <b>approval</b>, <b>active</b> is good enough.
- * </p>
- * <p>
  * If the user in the examample above could have only one role, then condition with the name <b>role</b>
  * and values <b>viewer</b>, <b>editor</b>, <b>administrator</b> is also good enough.
- * </p>
- * <p>
  * But if the user can have several roles simultaneously, then this condition would not work. In this
  * case several conditions should be used: condition with the name <b>isViewer</b> and values
  * <b>true</b> and <b>false</b>, condition with the name <b>isEditor</b> and values <b>true</b> and
