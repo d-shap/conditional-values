@@ -4,38 +4,37 @@ Conditional values simplify conditional logic and get rid of **if**-statements i
 The main purpose is to find the best result from many predefined conditions.
 
 For example, we should edit form fields based on some conditions.
-
 This conditions could be:
-* form type with many different values (type1, type2, type3, etc.)
-* form state with many different values (1, 2, 3, etc.)
+* form type with many different values (contract, order, incoming document, etc.)
+* form state with many different values (draft, approval, active, etc.)
 * user role (viewer, editor, administrator, etc.)
 * some other conditions
 
-And based on this conditions there are different editable fields (field1, field2, field3, etc.).
+And based on this conditions there are different editable fields (title, subject, due date, etc.).
 
 First we create a `ValueSet` object for each distinct condition and store this objects in a single `ConditionalValues` object:
 ```
 ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
 ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-valueSetBuilder.addCondition("type", "type1");
-valueSetBuilder.addCondition("state", 1);
+valueSetBuilder.addCondition("type", "contract");
+valueSetBuilder.addCondition("state", "draft");
 valueSetBuilder.addCondition("role", "viewer");
-valueSetBuilder.addValue("field1", "field2");
+valueSetBuilder.addValues("title", "subject");
 conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-valueSetBuilder.addCondition("type", "type1");
-valueSetBuilder.addCondition("state", 2)
-               .addCondition("state", 3);
+valueSetBuilder.addCondition("type", "contract");
+valueSetBuilder.addCondition("state", "approval")
+               .addCondition("state", "active");
 valueSetBuilder.addCondition("role", "viewer");
-valueSetBuilder.addValue("field2", "field3");
+valueSetBuilder.addValues("subject", "due date");
 conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-valueSetBuilder.addCondition("type", "type1");
-valueSetBuilder.addCondition("state", 2)
-               .addCondition("state", 3);
+valueSetBuilder.addCondition("type", "contract");
+valueSetBuilder.addCondition("state", "approval")
+               .addCondition("state", "active");
 valueSetBuilder.addCondition("role", "editor");
-valueSetBuilder.addValue("field1", "field3");
+valueSetBuilder.addValues("title", "due date");
 conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
 ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
@@ -48,8 +47,8 @@ To perform this we create a `ConditionSet` object:
 ```
 ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-conditionSetBuilder.addCondition("type", "type1");
-conditionSetBuilder.addCondition("state", 2);
+conditionSetBuilder.addCondition("type", "contract");
+conditionSetBuilder.addCondition("state", "approval");
 conditionSetBuilder.addCondition("role", "editor");
 
 ConditionSet conditionSet = conditionSetBuilder.build();
@@ -73,36 +72,34 @@ Then values of remaining `ValueSet` objects are joined and returned as a lookup 
 For example, there are predefined conditions:
 
 **Value Set 1**
-* type: **type1**
+* type: **contract**
 * isViewer: **true**
 
 **Value Set 2**
-* type: **type1**
+* type: **contract**
 * isEditor: **true**
 
 **Value Set 3**
-* type: **type1**
-* state: **1**
+* type: **contract**
+* state: **draft**
 * isViewer: **true**
 
-Then if we have runtime conditions (type = **type1**, state = **1**, isViewer = **true**), then the best matching value set is **Value Set 3** (the only one matching value set).
+Then if we have runtime conditions (type = **contract**, state = **draft**, isViewer = **true**), then the best matching value set is **Value Set 3** (the only one matching value set).
 
-If we have runtime conditions (type = **type1**, state = **2**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
+If we have runtime conditions (type = **contract**, state = **approval**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
 
-If we have runtime conditions (type = **type1**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 1** and **Value Set 2** (`Values` object contains values from both `ValueSet` objects).
+If we have runtime conditions (type = **contract**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 1** and **Value Set 2** (`Values` object contains values from both `ValueSet` objects).
 
-If we have runtime conditions (type = **type1**, state = **1**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 2** and **Value Set 3** (**Value Set 1** also matches, but **Value Set 3** is more specific then **Value Set 1**).
+If we have runtime conditions (type = **contract**, state = **draft**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 2** and **Value Set 3** (**Value Set 1** also matches, but **Value Set 3** is more specific then **Value Set 1**).
 
-If we have runtime conditions (type = **type1**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
+If we have runtime conditions (type = **contract**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
 
 If we have runtime conditions (isViewer = **true**, isEditor = **true**), then there are no matching value sets (`Values` object is empty).
 
 To select conditions the following should be considered.
-
-Form in the example above could be only in one state at any given moment of time. So the condition with the name **state** and values **1**, **2**, **3** is good enough.
-
+Form in the example above could be only in one state at any given moment of time.
+So the condition with the name **state** and values **draft**, **approval**, **active** is good enough.
 If the user in the examample above could have only one role, then condition with the name **role** and values **viewer**, **editor**, **administrator** is also good enough.
-
 But if the user can have several roles simultaneously, then this condition would not work.
 In this case several conditions should be used: condition with the name **isViewer** and values **true** and **false**, condition with the name **isEditor** and values **true** and **false**, condition with the name **isAdministrator** and values **true** and **false**.
 Then if the user has several roles, then this user could edit form fields available for each role.
