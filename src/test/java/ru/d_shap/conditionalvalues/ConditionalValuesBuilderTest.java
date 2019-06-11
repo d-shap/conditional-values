@@ -645,6 +645,11 @@ public final class ConditionalValuesBuilderTest {
         }
 
         @Override
+        public boolean isSameValue(final String conditionName, final String value1, final String value2) {
+            return conditionName != null && conditionName.equals(value1) && conditionName.equals(value2);
+        }
+
+        @Override
         public boolean evaluate(final String conditionName, final String conditionValue, final String value) {
             return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
         }
