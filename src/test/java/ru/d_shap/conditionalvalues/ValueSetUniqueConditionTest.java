@@ -101,11 +101,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition101.isSameCondition(valueSetUniqueCondition201, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition101.isSameCondition(valueSetUniqueCondition201, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition101.isSameCondition(valueSetUniqueCondition201, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition101.isSameCondition(valueSetUniqueCondition201, new PredicateImpl())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(valueSetUniqueCondition201, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(valueSetUniqueCondition101, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(valueSetUniqueCondition101, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(valueSetUniqueCondition101, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition201.isSameCondition(valueSetUniqueCondition101, new PredicateImpl())).isTrue();
 
         ValueSetUniqueCondition valueSetUniqueCondition102 = new ValueSetUniqueCondition(valueSetUniqueCondition101, "name1", "value1");
         ValueSetUniqueCondition valueSetUniqueCondition202 = new ValueSetUniqueCondition(valueSetUniqueCondition201, "name1", "value1");
@@ -114,11 +116,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition102.isSameCondition(valueSetUniqueCondition202, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition102.isSameCondition(valueSetUniqueCondition202, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition102.isSameCondition(valueSetUniqueCondition202, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition102.isSameCondition(valueSetUniqueCondition202, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(valueSetUniqueCondition202, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(valueSetUniqueCondition102, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(valueSetUniqueCondition102, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(valueSetUniqueCondition102, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition202.isSameCondition(valueSetUniqueCondition102, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition103 = new ValueSetUniqueCondition(valueSetUniqueCondition101, "name1", "value1");
         ValueSetUniqueCondition valueSetUniqueCondition203 = new ValueSetUniqueCondition(valueSetUniqueCondition201, "name1", "vaLUe1");
@@ -127,11 +131,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition103.isSameCondition(valueSetUniqueCondition203, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition103.isSameCondition(valueSetUniqueCondition203, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition103.isSameCondition(valueSetUniqueCondition203, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition103.isSameCondition(valueSetUniqueCondition203, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(valueSetUniqueCondition203, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(valueSetUniqueCondition103, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(valueSetUniqueCondition103, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(valueSetUniqueCondition103, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition203.isSameCondition(valueSetUniqueCondition103, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition104 = new ValueSetUniqueCondition(valueSetUniqueCondition102, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition204 = new ValueSetUniqueCondition(valueSetUniqueCondition202, "name2", "value2");
@@ -140,11 +146,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition104.isSameCondition(valueSetUniqueCondition204, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition104.isSameCondition(valueSetUniqueCondition204, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition104.isSameCondition(valueSetUniqueCondition204, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition104.isSameCondition(valueSetUniqueCondition204, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(valueSetUniqueCondition204, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(valueSetUniqueCondition104, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(valueSetUniqueCondition104, new EqualsPredicate())).isTrue();
         Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(valueSetUniqueCondition104, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition204.isSameCondition(valueSetUniqueCondition104, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition105 = new ValueSetUniqueCondition(valueSetUniqueCondition103, "name2", "VAluE2");
         ValueSetUniqueCondition valueSetUniqueCondition205 = new ValueSetUniqueCondition(valueSetUniqueCondition203, "name2", "value2");
@@ -153,11 +161,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition105.isSameCondition(valueSetUniqueCondition205, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition105.isSameCondition(valueSetUniqueCondition205, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition105.isSameCondition(valueSetUniqueCondition205, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition105.isSameCondition(valueSetUniqueCondition205, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(valueSetUniqueCondition205, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(valueSetUniqueCondition105, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(valueSetUniqueCondition105, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(valueSetUniqueCondition105, new EqualsIgnoreCasePredicate())).isTrue();
+        Assertions.assertThat(valueSetUniqueCondition205.isSameCondition(valueSetUniqueCondition105, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition106 = new ValueSetUniqueCondition(valueSetUniqueCondition102, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition206 = new ValueSetUniqueCondition(valueSetUniqueCondition202, "name2", "value3");
@@ -166,11 +176,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition106.isSameCondition(valueSetUniqueCondition206, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition106.isSameCondition(valueSetUniqueCondition206, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition106.isSameCondition(valueSetUniqueCondition206, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition106.isSameCondition(valueSetUniqueCondition206, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(valueSetUniqueCondition206, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(valueSetUniqueCondition106, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(valueSetUniqueCondition106, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(valueSetUniqueCondition106, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition206.isSameCondition(valueSetUniqueCondition106, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition107 = new ValueSetUniqueCondition(valueSetUniqueCondition103, "name2", "VAluE2");
         ValueSetUniqueCondition valueSetUniqueCondition207 = new ValueSetUniqueCondition(valueSetUniqueCondition203, "name2", "value3");
@@ -179,11 +191,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition107.isSameCondition(valueSetUniqueCondition207, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition107.isSameCondition(valueSetUniqueCondition207, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition107.isSameCondition(valueSetUniqueCondition207, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition107.isSameCondition(valueSetUniqueCondition207, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(valueSetUniqueCondition207, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(valueSetUniqueCondition107, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(valueSetUniqueCondition107, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(valueSetUniqueCondition107, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition207.isSameCondition(valueSetUniqueCondition107, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition1081 = new ValueSetUniqueCondition(valueSetUniqueCondition102, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition1082 = new ValueSetUniqueCondition(valueSetUniqueCondition1081, "name3", "value3");
@@ -193,11 +207,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition1082.isSameCondition(valueSetUniqueCondition208, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition1082.isSameCondition(valueSetUniqueCondition208, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition1082.isSameCondition(valueSetUniqueCondition208, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition1082.isSameCondition(valueSetUniqueCondition208, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(valueSetUniqueCondition208, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(valueSetUniqueCondition1082, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(valueSetUniqueCondition1082, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(valueSetUniqueCondition1082, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition208.isSameCondition(valueSetUniqueCondition1082, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition1091 = new ValueSetUniqueCondition(valueSetUniqueCondition103, "name2", "VAluE2");
         ValueSetUniqueCondition valueSetUniqueCondition1092 = new ValueSetUniqueCondition(valueSetUniqueCondition1091, "name3", "VAluE3");
@@ -207,11 +223,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition1092.isSameCondition(valueSetUniqueCondition209, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition1092.isSameCondition(valueSetUniqueCondition209, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition1092.isSameCondition(valueSetUniqueCondition209, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition1092.isSameCondition(valueSetUniqueCondition209, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(valueSetUniqueCondition209, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(valueSetUniqueCondition1092, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(valueSetUniqueCondition1092, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(valueSetUniqueCondition1092, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition209.isSameCondition(valueSetUniqueCondition1092, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition110 = new ValueSetUniqueCondition(valueSetUniqueCondition102, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition2101 = new ValueSetUniqueCondition(valueSetUniqueCondition202, "name2", "value2");
@@ -221,11 +239,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition110.isSameCondition(valueSetUniqueCondition2102, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition110.isSameCondition(valueSetUniqueCondition2102, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition110.isSameCondition(valueSetUniqueCondition2102, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition110.isSameCondition(valueSetUniqueCondition2102, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(valueSetUniqueCondition2102, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(valueSetUniqueCondition110, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(valueSetUniqueCondition110, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(valueSetUniqueCondition110, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition2102.isSameCondition(valueSetUniqueCondition110, new PredicateImpl())).isFalse();
 
         ValueSetUniqueCondition valueSetUniqueCondition111 = new ValueSetUniqueCondition(valueSetUniqueCondition103, "name2", "VAluE2");
         ValueSetUniqueCondition valueSetUniqueCondition2111 = new ValueSetUniqueCondition(valueSetUniqueCondition203, "name2", "value2");
@@ -235,11 +255,13 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition111.isSameCondition(valueSetUniqueCondition2112, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition111.isSameCondition(valueSetUniqueCondition2112, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition111.isSameCondition(valueSetUniqueCondition2112, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition111.isSameCondition(valueSetUniqueCondition2112, new PredicateImpl())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(null, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(valueSetUniqueCondition2112, null)).isTrue();
         Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(valueSetUniqueCondition111, null)).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(valueSetUniqueCondition111, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(valueSetUniqueCondition111, new EqualsIgnoreCasePredicate())).isFalse();
+        Assertions.assertThat(valueSetUniqueCondition2112.isSameCondition(valueSetUniqueCondition111, new PredicateImpl())).isFalse();
     }
 
     /**
@@ -261,6 +283,29 @@ public final class ValueSetUniqueConditionTest {
         Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name1=value1");
         Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name2=value2");
         Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name3=value3");
+    }
+
+    /**
+     * Test class.
+     *
+     * @author Dmitry Shapovalov
+     */
+    private static final class PredicateImpl implements Predicate {
+
+        PredicateImpl() {
+            super();
+        }
+
+        @Override
+        public boolean isSameValue(final String conditionName, final String value1, final String value2) {
+            return conditionName != null && conditionName.equals(value1) && conditionName.equals(value2);
+        }
+
+        @Override
+        public boolean evaluate(final String conditionName, final String conditionValue, final String value) {
+            return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
+        }
+
     }
 
 }
