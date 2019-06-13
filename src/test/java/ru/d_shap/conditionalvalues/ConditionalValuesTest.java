@@ -358,6 +358,58 @@ public final class ConditionalValuesTest {
     /**
      * {@link ConditionalValues} class test.
      */
+    @Test
+    public void duplicateValueSetEqualsPredicateTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "VaL");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(new EqualsPredicate(), null, createValueSets(valueSet1, valueSet2, valueSet3, valueSet1));
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("val1", "val2", "val3");
+
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(new EqualsPredicate(), null, createValueSets(valueSet1, valueSet3, valueSet2, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("val1", "val2", "val3");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
+    public void duplicateValueSetEqualsIgnoreCasePredicateTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond", "val1");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "vAl2");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "VaL3");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, createValueSets(valueSet1, valueSet2, valueSet3, valueSet1));
+        Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("val1", "val2", "val3");
+
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, createValueSets(valueSet1, valueSet3, valueSet2, valueSet1));
+        Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("val1", "val2", "val3");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
     @Test(expected = DuplicateValueSetException.class)
     public void duplicateValueSetAllConditionsFailTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
@@ -430,6 +482,46 @@ public final class ConditionalValuesTest {
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
         new ConditionalValues<>(null, null, createValueSets(valueSet1, valueSet2));
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetEqualsPredicateFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+
+        new ConditionalValues<>(new EqualsPredicate(), null, createValueSets(valueSet1, valueSet2, valueSet3, valueSet1));
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test(expected = DuplicateValueSetException.class)
+    public void duplicateValueSetEqualsIgnoreCasePredicateFailTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "vAl");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "VaL");
+        valueSetBuilder.addValue("val3");
+        ValueSet<String> valueSet3 = valueSetBuilder.build();
+
+        new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, createValueSets(valueSet1, valueSet2, valueSet3, valueSet1));
     }
 
     /**
