@@ -57,6 +57,9 @@ public final class ValueSetUniqueCondition {
     }
 
     boolean isSameCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final Predicate predicate) {
+        if (valueSetUniqueCondition == null) {
+            return false;
+        }
         if (this == valueSetUniqueCondition) {
             return true;
         }
