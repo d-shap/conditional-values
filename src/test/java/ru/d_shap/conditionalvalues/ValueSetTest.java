@@ -91,7 +91,6 @@ public final class ValueSetTest {
 
         Map<String, Set<String>> conditions05 = new HashMap<>();
         Set<String> condition05 = new HashSet<>();
-        condition05.clear();
         conditions05.put("cond", condition05);
         ValueSet<String> valueSet05 = new ValueSet<>(null, conditions05, new HashSet<String>());
         Assertions.assertThat(valueSet05.getAllConditionNames()).containsExactly();
@@ -620,7 +619,6 @@ public final class ValueSetTest {
 
         Map<String, Set<String>> conditions05 = new HashMap<>();
         Set<String> condition05 = new HashSet<>();
-        condition05.clear();
         conditions05.put("cond", condition05);
         ValueSet<String> valueSet05 = new ValueSet<>(null, conditions05, new HashSet<String>());
         List<ValueSetUniqueCondition> valueSetUniqueConditions05 = valueSet05.getValueSetUniqueConditions();
