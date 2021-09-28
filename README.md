@@ -4,13 +4,13 @@ Conditional values simplify conditional logic and get rid of **if**-statements i
 The main purpose is to find the best result from many predefined conditions.
 
 For example, we should edit form fields based on some conditions.
-This conditions could be:
-* form type with many different values (contract, order, incoming document, etc.)
-* form state with many different values (draft, approval, active, etc.)
+These conditions could be:
+* form type with many values (contract, order, incoming document, etc.)
+* form state with many values (draft, approval, active, etc.)
 * user role (viewer, editor, administrator, etc.)
 * some other conditions
 
-And based on this conditions there are different editable fields (title, subject, due date, etc.).
+And based on these conditions there are different editable fields (title, subject, due date, etc.).
 
 First we create a `ValueSet` object for each distinct condition and store this objects in a single `ConditionalValues` object:
 ```
@@ -65,7 +65,7 @@ The lookup algorithm for the best matching `ValueSet` objects is the following.
 First, all matching `ValueSet` objects are defined.
 A `ValueSet` object matches if all the object's conditions match a `ConditionSet` object.
 Then less specific `ValueSet` objects are removed.
-The `ValueSet` object is less specific than another one if another object has all of the conditions this object has, and some more additional conditions.
+The `ValueSet` object is less specific than another one if another object has all the conditions this object has, and some more additional conditions.
 And, according to the previous step, both objects match a `ConditionSet` object.
 Then values of remaining `ValueSet` objects are joined and returned as a lookup result.
 
@@ -90,7 +90,7 @@ If we have runtime conditions (type = **contract**, state = **approval**, isView
 
 If we have runtime conditions (type = **contract**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 1** and **Value Set 2** (`Values` object contains values from both `ValueSet` objects).
 
-If we have runtime conditions (type = **contract**, state = **draft**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 2** and **Value Set 3** (**Value Set 1** also matches, but **Value Set 3** is more specific then **Value Set 1**).
+If we have runtime conditions (type = **contract**, state = **draft**, isViewer = **true**, isEditor = **true**), then the best matching value sets are **Value Set 2** and **Value Set 3** (**Value Set 1** also matches, but **Value Set 3** is more specific than **Value Set 1**).
 
 If we have runtime conditions (type = **contract**, isViewer = **true**), then the best matching value set is **Value Set 1** (the only one matching value set).
 
@@ -104,7 +104,7 @@ But if the user can have several roles simultaneously, then this condition would
 In this case several conditions should be used: condition with the name **isViewer** and values **true** and **false**, condition with the name **isEditor** and values **true** and **false**, condition with the name **isAdministrator** and values **true** and **false**.
 Then if the user has several roles, then this user could edit form fields available for each role.
 
-# Latest release
+# The latest release
 Conditional values:
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: conditional-values
