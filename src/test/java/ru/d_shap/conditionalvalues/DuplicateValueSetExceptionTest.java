@@ -102,9 +102,9 @@ public final class DuplicateValueSetExceptionTest {
         Set<String> values31 = new HashSet<>();
         ValueSet<String> valueSet31 = new ValueSet<>(null, conditions31, values31);
         DuplicateValueSetException exception31 = new DuplicateValueSetException(valueSet31);
-        Assertions.assertThat(exception31).toMessage().startsWith("Duplicate value set: {");
-        Assertions.assertThat(exception31).toMessage().contains("cond1=[val1]");
-        Assertions.assertThat(exception31).toMessage().contains("cond2=[val2]");
+        Assertions.assertThat(exception31).messageContains("Duplicate value set: {");
+        Assertions.assertThat(exception31).messageContains("cond1=[val1]");
+        Assertions.assertThat(exception31).messageContains("cond2=[val2]");
 
         Map<String, Set<String>> conditions32 = new HashMap<>();
         Set<String> condition321 = new HashSet<>();
@@ -116,9 +116,9 @@ public final class DuplicateValueSetExceptionTest {
         Set<String> values32 = new HashSet<>();
         ValueSet<String> valueSet32 = new ValueSet<>("", conditions32, values32);
         DuplicateValueSetException exception32 = new DuplicateValueSetException(valueSet32);
-        Assertions.assertThat(exception32).toMessage().startsWith("Duplicate value set: ={");
-        Assertions.assertThat(exception32).toMessage().contains("cond1=[val1]");
-        Assertions.assertThat(exception32).toMessage().contains("cond2=[val2]");
+        Assertions.assertThat(exception32).messageContains("Duplicate value set: ={");
+        Assertions.assertThat(exception32).messageContains("cond1=[val1]");
+        Assertions.assertThat(exception32).messageContains("cond2=[val2]");
 
         Map<String, Set<String>> conditions33 = new HashMap<>();
         Set<String> conditions331 = new HashSet<>();
@@ -130,9 +130,9 @@ public final class DuplicateValueSetExceptionTest {
         Set<String> values33 = new HashSet<>();
         ValueSet<String> valueSet33 = new ValueSet<>("id", conditions33, values33);
         DuplicateValueSetException exception33 = new DuplicateValueSetException(valueSet33);
-        Assertions.assertThat(exception33).toMessage().startsWith("Duplicate value set: id={");
-        Assertions.assertThat(exception33).toMessage().contains("cond1=[val1]");
-        Assertions.assertThat(exception33).toMessage().contains("cond2=[val2]");
+        Assertions.assertThat(exception33).messageContains("Duplicate value set: id={");
+        Assertions.assertThat(exception33).messageContains("cond1=[val1]");
+        Assertions.assertThat(exception33).messageContains("cond2=[val2]");
     }
 
 }

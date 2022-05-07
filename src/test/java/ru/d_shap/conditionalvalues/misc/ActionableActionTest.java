@@ -50,20 +50,18 @@ public final class ActionableActionTest {
      */
     @Test
     public void performTest() {
-        Set<String> set1 = new HashSet<>();
         new ActionableAction<ActionableImpl>().perform(null);
-        Assertions.assertThat(set1).containsExactly();
+
+        Set<String> set1 = new HashSet<>();
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set1, "val"));
+        Assertions.assertThat(set1).containsExactly("proc_val");
 
         Set<String> set2 = new HashSet<>();
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val"));
-        Assertions.assertThat(set2).containsExactly("proc_val");
-
-        Set<String> set3 = new HashSet<>();
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val1"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val2"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val3"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set3, "val4"));
-        Assertions.assertThat(set3).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4");
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val1"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val2"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val3"));
+        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val4"));
+        Assertions.assertThat(set2).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4");
     }
 
     /**
