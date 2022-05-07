@@ -130,7 +130,7 @@ public final class ConditionalValuesBuilder<T> {
      */
     @SuppressWarnings("unchecked")
     public ConditionalValuesBuilder<T> setNaturalOrderComparator() {
-        _comparator = (Comparator<T>) new ComparableComparator<>();
+        _comparator = (Comparator<T>) new ComparableComparator<>(false);
         return this;
     }
 
@@ -143,7 +143,7 @@ public final class ConditionalValuesBuilder<T> {
      */
     @SuppressWarnings("unchecked")
     public ConditionalValuesBuilder<T> setReverseOrderComparator() {
-        _comparator = (Comparator<T>) Collections.reverseOrder(new ComparableComparator<>());
+        _comparator = (Comparator<T>) Collections.reverseOrder(new ComparableComparator<>(true));
         return this;
     }
 
