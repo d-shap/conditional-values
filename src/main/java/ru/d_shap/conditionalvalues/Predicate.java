@@ -28,21 +28,8 @@ package ru.d_shap.conditionalvalues;
 public interface Predicate {
 
     /**
-     * Check if the values from different {@link ru.d_shap.conditionalvalues.ValueSet} objects are the same.
-     * This method is used for duplicate check.
-     *
-     * @param conditionName condition name for both {@link ru.d_shap.conditionalvalues.ValueSet} objects.
-     * @param value1        value from the first {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     * @param value2        value from the second {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     *
-     * @return true, if values are the same.
-     */
-    boolean isSameValue(String conditionName, String value1, String value2);
-
-    /**
      * Evaluate the predicate for the specified values from the {@link ru.d_shap.conditionalvalues.ValueSet}
      * object and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * This method is used for lookup.
      *
      * @param conditionName  condition name from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      * @param conditionValue condition value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.

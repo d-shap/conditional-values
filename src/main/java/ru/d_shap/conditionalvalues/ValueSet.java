@@ -19,12 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -173,30 +171,6 @@ public final class ValueSet<T> {
             }
         }
         return matchCount == valueSet._conditions.size() && matchCount < _conditions.size();
-    }
-
-    List<ValueSetUniqueCondition> getValueSetUniqueConditions() {
-        if (_conditions.isEmpty()) {
-            return Collections.emptyList();
-        } else {
-            List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
-            currentUniqueConditions.add(new ValueSetUniqueCondition());
-            for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
-                currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
-            }
-            return Collections.unmodifiableList(currentUniqueConditions);
-        }
-    }
-
-    private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
-        List<ValueSetUniqueCondition> newUniqueConditions = new ArrayList<>();
-        for (ValueSetUniqueCondition currentUniqueCondition : currentUniqueConditions) {
-            for (String conditionValue : conditionValues) {
-                ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(currentUniqueCondition, conditionName, conditionValue);
-                newUniqueConditions.add(newUniqueCondition);
-            }
-        }
-        return newUniqueConditions;
     }
 
     Set<T> getValues() {

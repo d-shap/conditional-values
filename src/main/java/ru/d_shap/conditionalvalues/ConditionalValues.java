@@ -23,10 +23,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
@@ -48,8 +46,6 @@ public final class ConditionalValues<T> {
 
     private final List<ValueSet<T>> _valueSets;
 
-    private final Set<ValueSetUniqueCondition> _allValueSetUniqueConditions;
-
     private final Set<T> _allValues;
 
     ConditionalValues(final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
@@ -57,7 +53,6 @@ public final class ConditionalValues<T> {
         _predicate = createPredicate(predicate);
         _comparator = comparator;
         _valueSets = createValueSets(valueSets);
-        _allValueSetUniqueConditions = createAllValueSetUniqueConditions();
         _allValues = createAllValues();
     }
 
@@ -79,37 +74,6 @@ public final class ConditionalValues<T> {
             }
         }
         return Collections.unmodifiableList(result);
-    }
-
-    private Set<ValueSetUniqueCondition> createAllValueSetUniqueConditions() {
-        Map<ValueSetUniqueCondition, Set<T>> uniqueMap = new IdentityHashMap<>();
-        Set<ValueSetUniqueCondition> result = new HashSet<>();
-        for (ValueSet<T> valueSet : _valueSets) {
-            List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
-            Set<T> values = valueSet.getValues();
-            for (ValueSetUniqueCondition valueSetUniqueCondition : valueSetUniqueConditions) {
-                Set<T> oldValues = getOldValues(uniqueMap, valueSetUniqueCondition);
-                if (oldValues == null) {
-                    uniqueMap.put(valueSetUniqueCondition, values);
-                    result.add(valueSetUniqueCondition);
-                } else {
-                    if (!oldValues.containsAll(values) || !values.containsAll(oldValues)) {
-                        throw new DuplicateValueSetException(valueSet);
-                    }
-                }
-            }
-        }
-        return Collections.unmodifiableSet(result);
-    }
-
-    private Set<T> getOldValues(final Map<ValueSetUniqueCondition, Set<T>> uniqueMap, final ValueSetUniqueCondition valueSetUniqueCondition) {
-        for (Map.Entry<ValueSetUniqueCondition, Set<T>> uniqueMapEntry : uniqueMap.entrySet()) {
-            ValueSetUniqueCondition uniqueMapKey = uniqueMapEntry.getKey();
-            if (uniqueMapKey.isSameCondition(valueSetUniqueCondition, _predicate)) {
-                return uniqueMapEntry.getValue();
-            }
-        }
-        return null;
     }
 
     private Set<T> createAllValues() {
@@ -147,15 +111,6 @@ public final class ConditionalValues<T> {
             result.addAll(allConditionValues);
         }
         return Collections.unmodifiableSet(result);
-    }
-
-    /**
-     * Get all single unique combinations of conditions, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
-     *
-     * @return all unique combinations of conditions.
-     */
-    public Set<ValueSetUniqueCondition> getAllValueSetUniqueConditions() {
-        return _allValueSetUniqueConditions;
     }
 
     /**
