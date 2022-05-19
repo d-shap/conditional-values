@@ -174,9 +174,7 @@ public final class Values<T> {
     public void performAction(final Action<T> action) {
         if (action != null) {
             for (T value : _values) {
-                if (value != null) {
-                    action.perform(value);
-                }
+                action.perform(value);
             }
         }
     }
