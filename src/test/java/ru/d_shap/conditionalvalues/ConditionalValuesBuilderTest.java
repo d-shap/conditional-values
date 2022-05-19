@@ -29,8 +29,8 @@ import org.junit.Test;
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.util.ReflectionHelper;
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
-import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
-import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
  * Tests for {@link ConditionalValuesBuilder}.
@@ -673,11 +673,6 @@ public final class ConditionalValuesBuilderTest {
 
         PredicateImpl() {
             super();
-        }
-
-        @Override
-        public boolean isSameValue(final String conditionName, final String value1, final String value2) {
-            return conditionName != null && conditionName.equals(value1) && conditionName.equals(value2);
         }
 
         @Override
