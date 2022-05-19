@@ -34,7 +34,7 @@ import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
  * matching {@link ru.d_shap.conditionalvalues.ValueSet} objects based on the specified
  * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */

@@ -29,7 +29,7 @@ import java.util.Set;
 /**
  * Class represents a distinct condition with a corresponding values for this condition.
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */

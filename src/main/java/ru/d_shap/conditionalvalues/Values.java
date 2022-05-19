@@ -35,7 +35,7 @@ import java.util.TreeSet;
  * one {@link ru.d_shap.conditionalvalues.ValueSet} object.
  * </p>
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */

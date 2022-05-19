@@ -40,7 +40,7 @@ import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
  * Builder instance is NOT thread-safe.
  * </p>
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */
@@ -62,7 +62,7 @@ public final class ConditionalValuesBuilder<T> {
     /**
      * Create new builder instance.
      *
-     * @param <T> generic value type.
+     * @param <T> generic type for the value.
      *
      * @return created builder instance.
      */

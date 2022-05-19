@@ -22,7 +22,7 @@ package ru.d_shap.conditionalvalues;
 /**
  * Action to perform for each value in the {@link ru.d_shap.conditionalvalues.Values} object.
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */

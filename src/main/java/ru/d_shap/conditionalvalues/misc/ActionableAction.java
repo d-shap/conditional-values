@@ -27,7 +27,7 @@ import ru.d_shap.conditionalvalues.Actionable;
  * Values in the {@link ru.d_shap.conditionalvalues.Values} object should implement the
  * {@link ru.d_shap.conditionalvalues.Actionable} interface.
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */

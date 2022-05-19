@@ -25,7 +25,7 @@ import java.util.Comparator;
 /**
  * Comparator for the comparable values (natural order).
  *
- * @param <T> generic value type.
+ * @param <T> generic type for the value.
  *
  * @author Dmitry Shapovalov
  */
