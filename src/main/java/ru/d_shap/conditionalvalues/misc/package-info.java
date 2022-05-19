@@ -18,6 +18,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Miscellaneous helper classes.
+ * Package contains miscellaneous helper classes.
  */
 package ru.d_shap.conditionalvalues.misc;
