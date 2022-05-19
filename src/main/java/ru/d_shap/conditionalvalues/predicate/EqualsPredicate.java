@@ -17,28 +17,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-package ru.d_shap.conditionalvalues.misc;
+package ru.d_shap.conditionalvalues.predicate;
 
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
  * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
- * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class EqualsIgnoreCasePredicate implements Predicate {
+public final class EqualsPredicate implements Predicate {
 
     /**
      * Create new object.
      */
-    public EqualsIgnoreCasePredicate() {
+    public EqualsPredicate() {
         super();
     }
 
     @Override
     public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-        return conditionValue != null && conditionValue.equalsIgnoreCase(checkValue);
+        return conditionValue != null && conditionValue.equals(checkValue);
     }
 
 }

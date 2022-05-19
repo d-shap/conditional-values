@@ -25,8 +25,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
-import ru.d_shap.conditionalvalues.misc.EqualsIgnoreCasePredicate;
-import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
  * <p>

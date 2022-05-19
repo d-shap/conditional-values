@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import ru.d_shap.conditionalvalues.misc.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
  * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best
