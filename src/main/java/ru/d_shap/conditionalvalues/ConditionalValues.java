@@ -105,7 +105,8 @@ public final class ConditionalValues<T> {
     public Set<String> getAllConditionNames() {
         Set<String> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            result.addAll(valueSet.getAllConditionNames());
+            Set<String> conditionNames = valueSet.getAllConditionNames();
+            result.addAll(conditionNames);
         }
         return Collections.unmodifiableSet(result);
     }
