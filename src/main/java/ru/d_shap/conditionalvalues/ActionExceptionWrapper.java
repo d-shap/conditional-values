@@ -20,8 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 /**
- * Wrapper for exceptions, that can occur when an action is performed. The original exception can be
- * obtained by the invoker later.
+ * Wrapper for exceptions, that can occur when an action is performed.
  *
  * @author Dmitry Shapovalov
  */
