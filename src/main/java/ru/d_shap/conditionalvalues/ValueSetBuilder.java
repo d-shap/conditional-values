@@ -88,9 +88,9 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Set the ID of the set.
+     * Set the ID of the value set.
      *
-     * @param id the ID of the set.
+     * @param id the ID of the value set.
      *
      * @return current object for the method chaining.
      */
