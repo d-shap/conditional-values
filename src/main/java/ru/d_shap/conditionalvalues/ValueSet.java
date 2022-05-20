@@ -45,7 +45,14 @@ public final class ValueSet<T> {
 
     private final Set<T> _values;
 
-    ValueSet(final String id, final Map<String, Set<String>> conditions, final Set<T> values) {
+    /**
+     * Create new object.
+     *
+     * @param id         the ID of the value set.
+     * @param conditions the conditions of the value set.
+     * @param values     the values of the value set.
+     */
+    public ValueSet(final String id, final Map<String, Set<String>> conditions, final Set<T> values) {
         super();
         _id = id;
         _conditions = createConditions(conditions);
