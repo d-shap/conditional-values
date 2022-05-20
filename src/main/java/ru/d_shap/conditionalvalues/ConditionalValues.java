@@ -91,7 +91,8 @@ public final class ConditionalValues<T> {
     private Set<T> createAllValues() {
         Set<T> result = Values.createSet(_comparator);
         for (ValueSet<T> valueSet : _valueSets) {
-            result.addAll(valueSet.getValues());
+            Set<T> values = valueSet.getValues();
+            result.addAll(values);
         }
         return Collections.unmodifiableSet(result);
     }
