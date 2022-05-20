@@ -50,7 +50,14 @@ public final class ConditionalValues<T> {
 
     private final Set<T> _allValues;
 
-    ConditionalValues(final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
+    /**
+     * Create new object.
+     *
+     * @param predicate  the predicate.
+     * @param comparator the comparator to sort all values.
+     * @param valueSets  the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     */
+    public ConditionalValues(final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
         _predicate = createPredicate(predicate);
         _comparator = comparator;
