@@ -46,6 +46,8 @@ public final class ConditionalValues<T> {
 
     private final List<ValueSet<T>> _valueSets;
 
+    private final List<ValueSetUniqueCondition> _allValueSetUniqueConditions;
+
     private final Set<T> _allValues;
 
     ConditionalValues(final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
@@ -53,6 +55,7 @@ public final class ConditionalValues<T> {
         _predicate = createPredicate(predicate);
         _comparator = comparator;
         _valueSets = createValueSets(valueSets);
+        _allValueSetUniqueConditions = createAllValueSetUniqueConditions();
         _allValues = createAllValues();
     }
 
@@ -72,6 +75,15 @@ public final class ConditionalValues<T> {
                     result.add(valueSet);
                 }
             }
+        }
+        return Collections.unmodifiableList(result);
+    }
+
+    private List<ValueSetUniqueCondition> createAllValueSetUniqueConditions() {
+        List<ValueSetUniqueCondition> result = new ArrayList<>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
+            result.addAll(valueSetUniqueConditions);
         }
         return Collections.unmodifiableList(result);
     }
@@ -111,6 +123,15 @@ public final class ConditionalValues<T> {
             result.addAll(allConditionValues);
         }
         return Collections.unmodifiableSet(result);
+    }
+
+    /**
+     * Get all single unique combinations of conditions, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     *
+     * @return all unique combinations of conditions.
+     */
+    public List<ValueSetUniqueCondition> getAllValueSetUniqueConditions() {
+        return _allValueSetUniqueConditions;
     }
 
     /**
