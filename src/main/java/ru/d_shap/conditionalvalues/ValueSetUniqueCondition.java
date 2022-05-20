@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Class represents a single unique combination of conditions in the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Class represents a unique combination of single conditions in the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */

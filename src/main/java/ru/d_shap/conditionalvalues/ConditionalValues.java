@@ -128,9 +128,9 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Get all single unique combinations of conditions, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     * Get all unique combinations of single conditions, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @return all unique combinations of conditions.
+     * @return all unique combinations of single conditions.
      */
     public List<ValueSetUniqueCondition> getAllValueSetUniqueConditions() {
         return _allValueSetUniqueConditions;
