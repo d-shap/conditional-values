@@ -65,18 +65,10 @@ public final class ValueSet<T> {
         if (conditions != null) {
             for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
                 String key = entry.getKey();
-                Set<String> value = entry.getValue();
-                if (key != null) {
-                    result.put(key, createConditionValues(value));
+                Set<String> values = createConditionValues(entry.getValue());
+                if (key != null && !values.isEmpty()) {
+                    result.put(key, values);
                 }
-            }
-        }
-        Iterator<Map.Entry<String, Set<String>>> iterator = result.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Set<String>> entry = iterator.next();
-            Set<String> value = entry.getValue();
-            if (value.isEmpty()) {
-                iterator.remove();
             }
         }
         return Collections.unmodifiableMap(result);
