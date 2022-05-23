@@ -716,7 +716,7 @@ public final class ValueSetTest {
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions).hasSize(6);
-        valueSetUniqueConditions.add(new ValueSetUniqueCondition());
+        valueSetUniqueConditions.add(new ValueSetUniqueCondition(""));
     }
 
     /**
@@ -728,7 +728,7 @@ public final class ValueSetTest {
         ValueSet<String> valueSet = new ValueSet<>(null, conditions, new HashSet<String>());
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions).hasSize(0);
-        valueSetUniqueConditions.add(new ValueSetUniqueCondition());
+        valueSetUniqueConditions.add(new ValueSetUniqueCondition(""));
     }
 
     /**
