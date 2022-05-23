@@ -43,8 +43,41 @@ public final class ValueSetUniqueConditionTest {
      * {@link ValueSetUniqueCondition} class test.
      */
     @Test
-    public void createNewObjectTest() {
-        ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition();
+    public void getIdTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition(null);
+        Assertions.assertThat(valueSetUniqueCondition11.getId()).isNull();
+
+        ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition12.getId()).isNull();
+
+        ValueSetUniqueCondition valueSetUniqueCondition13 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition13.getId()).isNull();
+
+        ValueSetUniqueCondition valueSetUniqueCondition21 = new ValueSetUniqueCondition("");
+        Assertions.assertThat(valueSetUniqueCondition21.getId()).isEqualTo("");
+
+        ValueSetUniqueCondition valueSetUniqueCondition22 = new ValueSetUniqueCondition(valueSetUniqueCondition21, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition22.getId()).isEqualTo("");
+
+        ValueSetUniqueCondition valueSetUniqueCondition23 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition23.getId()).isEqualTo("");
+
+        ValueSetUniqueCondition valueSetUniqueCondition31 = new ValueSetUniqueCondition("id");
+        Assertions.assertThat(valueSetUniqueCondition31.getId()).isEqualTo("id");
+
+        ValueSetUniqueCondition valueSetUniqueCondition32 = new ValueSetUniqueCondition(valueSetUniqueCondition31, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition32.getId()).isEqualTo("id");
+
+        ValueSetUniqueCondition valueSetUniqueCondition33 = new ValueSetUniqueCondition(valueSetUniqueCondition32, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition33.getId()).isEqualTo("id");
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test
+    public void getConditionsTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition(null);
         Map<String, String> conditions01 = valueSetUniqueCondition01.getConditions();
         Assertions.assertThat(conditions01).hasSize(0);
 
@@ -106,20 +139,42 @@ public final class ValueSetUniqueConditionTest {
      */
     @Test
     public void toStringTest() {
-        ValueSetUniqueCondition valueSetUniqueCondition1 = new ValueSetUniqueCondition();
-        Assertions.assertThat(valueSetUniqueCondition1).hasToString("{}");
+        ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition(null);
+        Assertions.assertThat(valueSetUniqueCondition11).hasToString("{}");
 
-        ValueSetUniqueCondition valueSetUniqueCondition2 = new ValueSetUniqueCondition(valueSetUniqueCondition1, "name1", "value1");
-        Assertions.assertThat(valueSetUniqueCondition2).hasToString("{name1=value1}");
+        ValueSetUniqueCondition valueSetUniqueCondition12 = new ValueSetUniqueCondition(valueSetUniqueCondition11, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition12).hasToString("{name1=value1}");
 
-        ValueSetUniqueCondition valueSetUniqueCondition3 = new ValueSetUniqueCondition(valueSetUniqueCondition2, "name2", "value2");
-        Assertions.assertThat(valueSetUniqueCondition3).toStringContains("name1=value1");
-        Assertions.assertThat(valueSetUniqueCondition3).toStringContains("name2=value2");
+        ValueSetUniqueCondition valueSetUniqueCondition13 = new ValueSetUniqueCondition(valueSetUniqueCondition12, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition13).toStringContains("name1=value1");
+        Assertions.assertThat(valueSetUniqueCondition13).toStringContains("name2=value2");
 
-        ValueSetUniqueCondition valueSetUniqueCondition4 = new ValueSetUniqueCondition(valueSetUniqueCondition3, "name3", "value3");
-        Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name1=value1");
-        Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name2=value2");
-        Assertions.assertThat(valueSetUniqueCondition4).toStringContains("name3=value3");
+        ValueSetUniqueCondition valueSetUniqueCondition14 = new ValueSetUniqueCondition(valueSetUniqueCondition13, "name3", "value3");
+        Assertions.assertThat(valueSetUniqueCondition14).toStringContains("name1=value1");
+        Assertions.assertThat(valueSetUniqueCondition14).toStringContains("name2=value2");
+        Assertions.assertThat(valueSetUniqueCondition14).toStringContains("name3=value3");
+
+        ValueSetUniqueCondition valueSetUniqueCondition21 = new ValueSetUniqueCondition("");
+        Assertions.assertThat(valueSetUniqueCondition21).hasToString("={}");
+
+        ValueSetUniqueCondition valueSetUniqueCondition22 = new ValueSetUniqueCondition(valueSetUniqueCondition21, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition22).hasToString("={name1=value1}");
+
+        ValueSetUniqueCondition valueSetUniqueCondition23 = new ValueSetUniqueCondition(valueSetUniqueCondition22, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition23).toStringContains("={");
+        Assertions.assertThat(valueSetUniqueCondition23).toStringContains("name1=value1");
+        Assertions.assertThat(valueSetUniqueCondition23).toStringContains("name2=value2");
+
+        ValueSetUniqueCondition valueSetUniqueCondition31 = new ValueSetUniqueCondition("id");
+        Assertions.assertThat(valueSetUniqueCondition31).hasToString("id={}");
+
+        ValueSetUniqueCondition valueSetUniqueCondition32 = new ValueSetUniqueCondition(valueSetUniqueCondition31, "name1", "value1");
+        Assertions.assertThat(valueSetUniqueCondition32).hasToString("id={name1=value1}");
+
+        ValueSetUniqueCondition valueSetUniqueCondition33 = new ValueSetUniqueCondition(valueSetUniqueCondition32, "name2", "value2");
+        Assertions.assertThat(valueSetUniqueCondition33).toStringContains("id={");
+        Assertions.assertThat(valueSetUniqueCondition33).toStringContains("name1=value1");
+        Assertions.assertThat(valueSetUniqueCondition33).toStringContains("name2=value2");
     }
 
 }
