@@ -744,7 +744,7 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, createValueSets(valueSet));
         Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(1);
 
-        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition());
+        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition(null));
     }
 
     /**
@@ -755,7 +755,7 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null);
         Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(0);
 
-        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition());
+        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition(null));
     }
 
     /**
