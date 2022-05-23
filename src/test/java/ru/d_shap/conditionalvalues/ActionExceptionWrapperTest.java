@@ -43,14 +43,28 @@ public final class ActionExceptionWrapperTest {
      * {@link ActionExceptionWrapper} class test.
      */
     @Test
+    public void getMessageTest() {
+        Assertions.assertThat(new ActionExceptionWrapper(null)).messageIsNull();
+
+        Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException())).messageIsNull();
+        Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException("message"))).hasMessage("message");
+
+        Assertions.assertThat(new ActionExceptionWrapper(new IOException())).messageIsNull();
+        Assertions.assertThat(new ActionExceptionWrapper(new IOException("io message"))).hasMessage("io message");
+    }
+
+    /**
+     * {@link ActionExceptionWrapper} class test.
+     */
+    @Test
     public void getCauseTest() {
         Assertions.assertThat(new ActionExceptionWrapper(null)).causeIsNull();
 
         Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException("message"))).hasCause(IllegalArgumentException.class);
         Assertions.assertThat(new ActionExceptionWrapper(new IllegalArgumentException("message"))).hasCauseMessage("message");
 
-        Assertions.assertThat(new ActionExceptionWrapper(new IOException("message"))).hasCause(IOException.class);
-        Assertions.assertThat(new ActionExceptionWrapper(new IOException("message"))).hasCauseMessage("message");
+        Assertions.assertThat(new ActionExceptionWrapper(new IOException("io message"))).hasCause(IOException.class);
+        Assertions.assertThat(new ActionExceptionWrapper(new IOException("io message"))).hasCauseMessage("io message");
     }
 
 }
