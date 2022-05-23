@@ -40,6 +40,15 @@ public class ConditionalValuesException extends RuntimeException {
     /**
      * Create a new object.
      *
+     * @param cause the original exception.
+     */
+    protected ConditionalValuesException(final Throwable cause) {
+        super(getThrowableMessage(cause), cause);
+    }
+
+    /**
+     * Create a new object.
+     *
      * @param message exception message.
      * @param cause   the original exception.
      */
@@ -47,14 +56,7 @@ public class ConditionalValuesException extends RuntimeException {
         super(message, cause);
     }
 
-    /**
-     * Get the message of the throwable.
-     *
-     * @param throwable the throwable.
-     *
-     * @return the message of the throwable.
-     */
-    protected static String getThrowableMessage(final Throwable throwable) {
+    private static String getThrowableMessage(final Throwable throwable) {
         if (throwable == null) {
             return null;
         } else {
