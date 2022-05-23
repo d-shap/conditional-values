@@ -41,7 +41,11 @@ public final class ValueSetUniqueCondition {
         super();
         Map<String, String> map = new TreeMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
-            map.put(conditionName, conditionValue);
+            if (map.containsKey(conditionName)) {
+                throw new DuplicateConditionNameException(conditionName);
+            } else {
+                map.put(conditionName, conditionValue);
+            }
         }
         _conditions = Collections.unmodifiableMap(map);
     }
