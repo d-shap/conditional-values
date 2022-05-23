@@ -24,7 +24,7 @@ package ru.d_shap.conditionalvalues;
  *
  * @author Dmitry Shapovalov
  */
-public final class ActionExceptionWrapper extends RuntimeException {
+public final class ActionExceptionWrapper extends ConditionalValuesException {
 
     private static final long serialVersionUID = 1L;
 
