@@ -24,7 +24,7 @@ package ru.d_shap.conditionalvalues;
  *
  * @author Dmitry Shapovalov
  */
-public final class DuplicateConditionName extends ConditionalValuesException {
+public final class DuplicateConditionNameException extends ConditionalValuesException {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public final class DuplicateConditionName extends ConditionalValuesException {
      *
      * @param conditionName the condition name.
      */
-    public DuplicateConditionName(final String conditionName) {
+    public DuplicateConditionNameException(final String conditionName) {
         super("Duplicate condition name: " + conditionName);
     }
 
