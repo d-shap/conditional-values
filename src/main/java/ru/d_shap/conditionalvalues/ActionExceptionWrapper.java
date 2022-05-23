@@ -20,7 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 /**
- * Wrapper for exceptions, that can occur when an action is performed.
+ * Wrapper for all exceptions, that can occur when an action is performed.
  *
  * @author Dmitry Shapovalov
  */
