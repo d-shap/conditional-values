@@ -43,18 +43,18 @@ public final class Values<T> {
 
     private final Set<ValueSet<T>> _valueSets;
 
+    private final Set<String> _ids;
+
     private final Set<T> _values;
 
     private final Set<T> _allValues;
 
-    private final Set<String> _ids;
-
     Values(final Comparator<T> comparator, final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
         super();
         _valueSets = createValueSets(valueSets);
+        _ids = createIds();
         _values = createValues(comparator);
         _allValues = createAllValues(comparator, allValues);
-        _ids = createIds();
     }
 
     private Set<ValueSet<T>> createValueSets(final Set<ValueSet<T>> valueSets) {
@@ -64,6 +64,17 @@ public final class Values<T> {
                 if (valueSet != null) {
                     result.add(valueSet);
                 }
+            }
+        }
+        return Collections.unmodifiableSet(result);
+    }
+
+    private Set<String> createIds() {
+        Set<String> result = new TreeSet<>();
+        for (ValueSet<T> valueSet : _valueSets) {
+            String id = valueSet.getId();
+            if (id != null) {
+                result.add(id);
             }
         }
         return Collections.unmodifiableSet(result);
@@ -89,23 +100,21 @@ public final class Values<T> {
         return Collections.unmodifiableSet(result);
     }
 
-    private Set<String> createIds() {
-        Set<String> result = new TreeSet<>();
-        for (ValueSet<T> valueSet : _valueSets) {
-            String id = valueSet.getId();
-            if (id != null) {
-                result.add(id);
-            }
-        }
-        return Collections.unmodifiableSet(result);
-    }
-
     static <T> Set<T> createSet(final Comparator<T> comparator) {
         if (comparator == null) {
             return new HashSet<>();
         } else {
             return new TreeSet<>(comparator);
         }
+    }
+
+    /**
+     * Get the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects, used to create this object.
+     *
+     * @return the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     */
+    public Set<String> getIds() {
+        return _ids;
     }
 
     /**
@@ -155,15 +164,6 @@ public final class Values<T> {
      */
     public Set<T> getAllValues() {
         return _allValues;
-    }
-
-    /**
-     * Get the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects, used to create this object.
-     *
-     * @return the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
-     */
-    public Set<String> getIds() {
-        return _ids;
     }
 
     /**
