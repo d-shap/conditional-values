@@ -179,7 +179,7 @@ public final class ValueSet<T> {
             return Collections.emptyList();
         } else {
             List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
-            currentUniqueConditions.add(new ValueSetUniqueCondition());
+            currentUniqueConditions.add(new ValueSetUniqueCondition(_id));
             for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
                 currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
             }

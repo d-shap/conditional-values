@@ -30,15 +30,19 @@ import java.util.TreeMap;
  */
 public final class ValueSetUniqueCondition {
 
+    private final String _id;
+
     private final Map<String, String> _conditions;
 
-    ValueSetUniqueCondition() {
+    ValueSetUniqueCondition(final String id) {
         super();
+        _id = id;
         _conditions = Collections.unmodifiableMap(new TreeMap<String, String>());
     }
 
     ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
         super();
+        _id = valueSetUniqueCondition._id;
         Map<String, String> map = new TreeMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
             if (map.containsKey(conditionName)) {
@@ -48,6 +52,15 @@ public final class ValueSetUniqueCondition {
             }
         }
         _conditions = Collections.unmodifiableMap(map);
+    }
+
+    /**
+     * Get the ID of the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     *
+     * @return the ID of the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     */
+    public String getId() {
+        return _id;
     }
 
     /**
@@ -61,7 +74,11 @@ public final class ValueSetUniqueCondition {
 
     @Override
     public String toString() {
-        return _conditions.toString();
+        String conditions = _conditions.toString();
+        if (_id != null) {
+            conditions = _id + "=" + conditions;
+        }
+        return conditions;
     }
 
 }
