@@ -137,6 +137,36 @@ public final class ValueSetUniqueConditionTest {
     /**
      * {@link ValueSetUniqueCondition} class test.
      */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getConditionsUnmodifiableFailTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition("id");
+        ValueSetUniqueCondition valueSetUniqueCondition02 = new ValueSetUniqueCondition(valueSetUniqueCondition01, "name1", "value1");
+        ValueSetUniqueCondition valueSetUniqueCondition03 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name2", "value2");
+        ValueSetUniqueCondition valueSetUniqueCondition04 = new ValueSetUniqueCondition(valueSetUniqueCondition03, "name3", "value3");
+        Map<String, String> conditions04 = valueSetUniqueCondition04.getConditions();
+        Assertions.assertThat(conditions04).hasSize(3);
+        Assertions.assertThat(conditions04).containsEntry("name1", "value1");
+        Assertions.assertThat(conditions04).containsEntry("name2", "value2");
+        Assertions.assertThat(conditions04).containsEntry("name3", "value3");
+
+        valueSetUniqueCondition04.getConditions().put("name4", "value3");
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
+    @Test(expected = UnsupportedOperationException.class)
+    public void getConditionsUnmodifiableEmptyFailTest() {
+        ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition("id");
+        Map<String, String> conditions01 = valueSetUniqueCondition01.getConditions();
+        Assertions.assertThat(conditions01).hasSize(0);
+
+        valueSetUniqueCondition01.getConditions().put("name4", "value3");
+    }
+
+    /**
+     * {@link ValueSetUniqueCondition} class test.
+     */
     @Test
     public void toStringTest() {
         ValueSetUniqueCondition valueSetUniqueCondition11 = new ValueSetUniqueCondition(null);
