@@ -60,8 +60,14 @@ public final class ActionExceptionTest {
     public void getCauseTest() {
         Assertions.assertThat(new ActionException(null)).causeIsNull();
 
+        Assertions.assertThat(new ActionException(new IllegalArgumentException())).hasCause(IllegalArgumentException.class);
+        Assertions.assertThat(new ActionException(new IllegalArgumentException())).causeMessageIsNull();
+
         Assertions.assertThat(new ActionException(new IllegalArgumentException("message"))).hasCause(IllegalArgumentException.class);
         Assertions.assertThat(new ActionException(new IllegalArgumentException("message"))).hasCauseMessage("message");
+
+        Assertions.assertThat(new ActionException(new IOException())).hasCause(IOException.class);
+        Assertions.assertThat(new ActionException(new IOException())).causeMessageIsNull();
 
         Assertions.assertThat(new ActionException(new IOException("io message"))).hasCause(IOException.class);
         Assertions.assertThat(new ActionException(new IOException("io message"))).hasCauseMessage("io message");
