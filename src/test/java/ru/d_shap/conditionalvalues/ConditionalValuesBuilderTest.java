@@ -52,10 +52,11 @@ public final class ConditionalValuesBuilderTest {
     @Test
     public void newInstanceTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder1 = ConditionalValuesBuilder.newInstance();
-        ConditionalValuesBuilder<String> conditionalValuesBuilder2 = ConditionalValuesBuilder.newInstance();
-
         Assertions.assertThat(conditionalValuesBuilder1).isNotNull();
+
+        ConditionalValuesBuilder<String> conditionalValuesBuilder2 = ConditionalValuesBuilder.newInstance();
         Assertions.assertThat(conditionalValuesBuilder2).isNotNull();
+
         Assertions.assertThat(conditionalValuesBuilder1).isNotSameAs(conditionalValuesBuilder2);
         Assertions.assertThat(conditionalValuesBuilder2).isNotSameAs(conditionalValuesBuilder1);
     }
@@ -314,7 +315,7 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void naturalOrderComparatorWithNullsTest() {
+    public void setNaturalOrderComparatorWithNullsTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         conditionalValuesBuilder.setNaturalOrderComparator();
         Comparator<String> comparator = (Comparator<String>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_comparator");
@@ -370,7 +371,7 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     @SuppressWarnings("unchecked")
-    public void reverseOrderComparatorWithNullsTest() {
+    public void setReverseOrderComparatorWithNullsTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         conditionalValuesBuilder.setReverseOrderComparator();
         Comparator<String> comparator = (Comparator<String>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_comparator");
@@ -416,6 +417,17 @@ public final class ConditionalValuesBuilderTest {
         ConditionalValues<String> conditionalValues3 = conditionalValuesBuilder.build();
         Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly("value1", "value2");
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1", "value2");
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("value1");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("value3");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues4 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues4.getAllValues()).containsExactly("value1", "value2", "value3");
+        Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1", "value2", "value3");
     }
 
     /**
