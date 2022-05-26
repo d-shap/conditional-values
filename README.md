@@ -108,7 +108,7 @@ Then if the user has several roles, then this user could edit form fields availa
 Conditional values:
 * **&lt;groupId&gt;**: ru.d-shap
 * **&lt;artifactId&gt;**: conditional-values
-* **&lt;version&gt;**: 1.2
+* **&lt;version&gt;**: 1.3
 
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
