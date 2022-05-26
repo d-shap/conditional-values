@@ -56,7 +56,10 @@ public final class ConditionalValuesExceptionTest {
         Assertions.assertThat(new ConditionalValuesException("", null)).hasMessage("");
         Assertions.assertThat(new ConditionalValuesException("message", null)).hasMessage("message");
         Assertions.assertThat(new ConditionalValuesException(null, new IOException())).messageIsNull();
+        Assertions.assertThat(new ConditionalValuesException("", new IOException())).hasMessage("");
+        Assertions.assertThat(new ConditionalValuesException("message", new IOException())).hasMessage("message");
         Assertions.assertThat(new ConditionalValuesException(null, new IOException("io message"))).messageIsNull();
+        Assertions.assertThat(new ConditionalValuesException("", new IOException("io message"))).hasMessage("");
         Assertions.assertThat(new ConditionalValuesException("message", new IOException("io message"))).hasMessage("message");
     }
 
@@ -80,8 +83,14 @@ public final class ConditionalValuesExceptionTest {
         Assertions.assertThat(new ConditionalValuesException("message", null)).causeIsNull();
         Assertions.assertThat(new ConditionalValuesException(null, new IOException())).hasCause(IOException.class);
         Assertions.assertThat(new ConditionalValuesException(null, new IOException())).causeMessageIsNull();
+        Assertions.assertThat(new ConditionalValuesException("", new IOException())).hasCause(IOException.class);
+        Assertions.assertThat(new ConditionalValuesException("", new IOException())).causeMessageIsNull();
+        Assertions.assertThat(new ConditionalValuesException("message", new IOException())).hasCause(IOException.class);
+        Assertions.assertThat(new ConditionalValuesException("message", new IOException())).causeMessageIsNull();
         Assertions.assertThat(new ConditionalValuesException(null, new IOException("io message"))).hasCause(IOException.class);
         Assertions.assertThat(new ConditionalValuesException(null, new IOException("io message"))).hasCauseMessage("io message");
+        Assertions.assertThat(new ConditionalValuesException("", new IOException("io message"))).hasCause(IOException.class);
+        Assertions.assertThat(new ConditionalValuesException("", new IOException("io message"))).hasCauseMessage("io message");
         Assertions.assertThat(new ConditionalValuesException("message", new IOException("io message"))).hasCause(IOException.class);
         Assertions.assertThat(new ConditionalValuesException("message", new IOException("io message"))).hasCauseMessage("io message");
     }
