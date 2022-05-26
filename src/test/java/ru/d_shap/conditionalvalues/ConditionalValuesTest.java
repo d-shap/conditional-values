@@ -259,20 +259,24 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addCondition("cond1", "val12");
         valueSetBuilder.addCondition("cond2", "val21");
         valueSetBuilder.addCondition("cond2", "val22");
-        valueSetBuilder.addValue(new StringBuilder());
+        StringBuilder stringBuilder1 = new StringBuilder();
+        valueSetBuilder.addValue(stringBuilder1);
         ValueSet<StringBuilder> valueSet1 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val31");
         valueSetBuilder.addCondition("cond3", "val32");
         valueSetBuilder.addCondition("cond4", "val41");
         valueSetBuilder.addCondition("cond4", "val42");
-        valueSetBuilder.addValue(new StringBuilder());
+        StringBuilder stringBuilder2 = new StringBuilder();
+        valueSetBuilder.addValue(stringBuilder2);
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<StringBuilder> conditionalValues1 = new ConditionalValues<>(null, null, DataHelper.createArrayList(valueSet1, valueSet2));
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(stringBuilder1, stringBuilder2);
 
         ConditionalValues<StringBuilder> conditionalValues2 = new ConditionalValues<>(null, null, DataHelper.createArrayList(valueSet1, null, valueSet2, null, null, valueSet1));
         Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
+        Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly(stringBuilder1, stringBuilder2);
     }
 
     /**
