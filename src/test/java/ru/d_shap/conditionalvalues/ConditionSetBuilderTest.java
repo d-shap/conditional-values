@@ -44,10 +44,11 @@ public final class ConditionSetBuilderTest {
     @Test
     public void newInstanceTest() {
         ConditionSetBuilder conditionSetBuilder1 = ConditionSetBuilder.newInstance();
-        ConditionSetBuilder conditionSetBuilder2 = ConditionSetBuilder.newInstance();
-
         Assertions.assertThat(conditionSetBuilder1).isNotNull();
+
+        ConditionSetBuilder conditionSetBuilder2 = ConditionSetBuilder.newInstance();
         Assertions.assertThat(conditionSetBuilder2).isNotNull();
+
         Assertions.assertThat(conditionSetBuilder1).isNotSameAs(conditionSetBuilder2);
         Assertions.assertThat(conditionSetBuilder2).isNotSameAs(conditionSetBuilder1);
     }

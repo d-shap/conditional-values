@@ -44,10 +44,11 @@ public final class ValueSetBuilderTest {
     @Test
     public void newInstanceTest() {
         ValueSetBuilder<String> valueSetBuilder1 = ValueSetBuilder.newInstance();
-        ValueSetBuilder<String> valueSetBuilder2 = ValueSetBuilder.newInstance();
-
         Assertions.assertThat(valueSetBuilder1).isNotNull();
+
+        ValueSetBuilder<String> valueSetBuilder2 = ValueSetBuilder.newInstance();
         Assertions.assertThat(valueSetBuilder2).isNotNull();
+
         Assertions.assertThat(valueSetBuilder1).isNotSameAs(valueSetBuilder2);
         Assertions.assertThat(valueSetBuilder2).isNotSameAs(valueSetBuilder1);
     }
