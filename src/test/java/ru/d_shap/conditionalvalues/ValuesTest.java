@@ -403,6 +403,7 @@ public final class ValuesTest {
         valueSets.add(valueSet2);
         Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getValues()).hasSize(4);
+
         values.getValues().add("value");
     }
 
@@ -420,6 +421,7 @@ public final class ValuesTest {
         valueSets.add(valueSet2);
         Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getValues()).hasSize(0);
+
         values.getValues().add("value");
     }
 
@@ -495,6 +497,7 @@ public final class ValuesTest {
         allValues.add("val2");
         Values<String> values = new Values<>(null, new HashSet<ValueSet<String>>(), allValues);
         Assertions.assertThat(values.getAllValues()).hasSize(2);
+
         values.getAllValues().add("value");
     }
 
@@ -508,6 +511,7 @@ public final class ValuesTest {
         Set<String> allValues = new HashSet<>();
         Values<String> values = new Values<>(null, new HashSet<ValueSet<String>>(), allValues);
         Assertions.assertThat(values.getAllValues()).hasSize(0);
+
         values.getAllValues().add("value");
     }
 
@@ -606,6 +610,7 @@ public final class ValuesTest {
         valueSets.add(valueSet3);
         Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getIds()).hasSize(3);
+
         values.getIds().add("id");
     }
 
@@ -617,6 +622,7 @@ public final class ValuesTest {
         Set<ValueSet<String>> valueSets = new HashSet<>();
         Values<String> values = new Values<>(null, valueSets, new HashSet<String>());
         Assertions.assertThat(values.getIds()).hasSize(0);
+
         values.getIds().add("id");
     }
 
