@@ -65,7 +65,7 @@ public final class ValueSetBuilder<T> {
 
     private String _id;
 
-    private final Map<String, Set<String>> _conditions;
+    private final Map<String, Set<Object>> _conditions;
 
     private final Set<T> _values;
 
@@ -121,7 +121,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final boolean value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -134,7 +134,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final char value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -147,7 +147,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final int value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -160,7 +160,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final long value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -173,7 +173,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final float value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -186,7 +186,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final double value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -199,9 +199,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> addCondition(final String name, final Object value) {
-        if (value != null) {
-            doAddCondition(name, value.toString());
-        }
+        doAddCondition(name, value);
         return this;
     }
 
@@ -216,8 +214,8 @@ public final class ValueSetBuilder<T> {
         if (valueSet != null) {
             Set<String> conditionNames = valueSet.getAllConditionNames();
             for (String conditionName : conditionNames) {
-                Set<String> conditionValues = valueSet.getAllConditionValues(conditionName);
-                for (String conditionValue : conditionValues) {
+                Set<Object> conditionValues = valueSet.getAllConditionValues(conditionName);
+                for (Object conditionValue : conditionValues) {
                     doAddCondition(conditionName, conditionValue);
                 }
             }
@@ -225,9 +223,9 @@ public final class ValueSetBuilder<T> {
         return this;
     }
 
-    private void doAddCondition(final String name, final String value) {
+    private void doAddCondition(final String name, final Object value) {
         if (name != null && value != null) {
-            Set<String> conditionValues = _conditions.get(name);
+            Set<Object> conditionValues = _conditions.get(name);
             if (conditionValues == null) {
                 conditionValues = new HashSet<>();
                 _conditions.put(name, conditionValues);
@@ -258,7 +256,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final boolean value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -271,7 +269,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final char value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -284,7 +282,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final int value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -297,7 +295,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final long value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -310,7 +308,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final float value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -323,7 +321,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final double value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -336,9 +334,7 @@ public final class ValueSetBuilder<T> {
      * @return current object for the method chaining.
      */
     public ValueSetBuilder<T> removeCondition(final String name, final Object value) {
-        if (value != null) {
-            doRemoveCondition(name, value.toString());
-        }
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -384,8 +380,8 @@ public final class ValueSetBuilder<T> {
         if (valueSet != null) {
             Set<String> conditionNames = valueSet.getAllConditionNames();
             for (String conditionName : conditionNames) {
-                Set<String> conditionValues = valueSet.getAllConditionValues(conditionName);
-                for (String conditionValue : conditionValues) {
+                Set<Object> conditionValues = valueSet.getAllConditionValues(conditionName);
+                for (Object conditionValue : conditionValues) {
                     doRemoveCondition(conditionName, conditionValue);
                 }
             }
@@ -393,8 +389,8 @@ public final class ValueSetBuilder<T> {
         return this;
     }
 
-    private void doRemoveCondition(final String name, final String value) {
-        Set<String> conditionValues = _conditions.get(name);
+    private void doRemoveCondition(final String name, final Object value) {
+        Set<Object> conditionValues = _conditions.get(name);
         if (conditionValues != null) {
             conditionValues.remove(value);
             if (conditionValues.isEmpty()) {
