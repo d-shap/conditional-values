@@ -37,8 +37,12 @@ public final class EqualsPredicate implements Predicate {
     }
 
     @Override
-    public boolean evaluate(final String conditionName, final String conditionValue, final String checkValue) {
-        return conditionValue != null && conditionValue.equals(checkValue);
+    public boolean evaluate(final String conditionName, final Object conditionValue, final Object value) {
+        if (conditionValue == null) {
+            return value == null;
+        } else {
+            return conditionValue.equals(value);
+        }
     }
 
 }
