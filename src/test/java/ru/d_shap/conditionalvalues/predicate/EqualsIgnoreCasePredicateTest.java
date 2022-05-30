@@ -42,21 +42,21 @@ public final class EqualsIgnoreCasePredicateTest {
      */
     @Test
     public void evaluateTest() {
-        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, null, null)).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, "value", null)).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, null, "value")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, "value", "value")).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate(null, "vaLUe", "ValUE")).isTrue();
 
-        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", null, null)).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", "value", null)).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", null, "value")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", "value", "value")).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("", "vaLUe", "ValUE")).isTrue();
 
-        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", null, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", null, null)).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "value", null)).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", null, "value")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "value1", "value2")).isFalse();
