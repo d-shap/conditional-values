@@ -78,50 +78,50 @@ public final class ValueSetUniqueConditionTest {
     @Test
     public void getConditionsTest() {
         ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition(null);
-        Map<String, String> conditions01 = valueSetUniqueCondition01.getConditions();
+        Map<String, Object> conditions01 = valueSetUniqueCondition01.getConditions();
         Assertions.assertThat(conditions01).hasSize(0);
 
         ValueSetUniqueCondition valueSetUniqueCondition02 = new ValueSetUniqueCondition(valueSetUniqueCondition01, "name1", "value1");
-        Map<String, String> conditions02 = valueSetUniqueCondition02.getConditions();
+        Map<String, Object> conditions02 = valueSetUniqueCondition02.getConditions();
         Assertions.assertThat(conditions02).hasSize(1);
         Assertions.assertThat(conditions02).containsEntry("name1", "value1");
 
         ValueSetUniqueCondition valueSetUniqueCondition03 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name2", "value2");
-        Map<String, String> conditions03 = valueSetUniqueCondition03.getConditions();
+        Map<String, Object> conditions03 = valueSetUniqueCondition03.getConditions();
         Assertions.assertThat(conditions03).hasSize(2);
         Assertions.assertThat(conditions03).containsEntry("name1", "value1");
         Assertions.assertThat(conditions03).containsEntry("name2", "value2");
 
         ValueSetUniqueCondition valueSetUniqueCondition04 = new ValueSetUniqueCondition(valueSetUniqueCondition03, "name3", "value3");
-        Map<String, String> conditions04 = valueSetUniqueCondition04.getConditions();
+        Map<String, Object> conditions04 = valueSetUniqueCondition04.getConditions();
         Assertions.assertThat(conditions04).hasSize(3);
         Assertions.assertThat(conditions04).containsEntry("name1", "value1");
         Assertions.assertThat(conditions04).containsEntry("name2", "value2");
         Assertions.assertThat(conditions04).containsEntry("name3", "value3");
 
         ValueSetUniqueCondition valueSetUniqueCondition05 = new ValueSetUniqueCondition(valueSetUniqueCondition02, null, null);
-        Map<String, String> conditions08 = valueSetUniqueCondition05.getConditions();
+        Map<String, Object> conditions08 = valueSetUniqueCondition05.getConditions();
         Assertions.assertThat(conditions08).hasSize(1);
         Assertions.assertThat(conditions08).containsEntry("name1", "value1");
 
         ValueSetUniqueCondition valueSetUniqueCondition06 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name4", null);
-        Map<String, String> conditions06 = valueSetUniqueCondition06.getConditions();
+        Map<String, Object> conditions06 = valueSetUniqueCondition06.getConditions();
         Assertions.assertThat(conditions06).hasSize(1);
         Assertions.assertThat(conditions06).containsEntry("name1", "value1");
 
         ValueSetUniqueCondition valueSetUniqueCondition07 = new ValueSetUniqueCondition(valueSetUniqueCondition02, null, "value4");
-        Map<String, String> conditions07 = valueSetUniqueCondition07.getConditions();
+        Map<String, Object> conditions07 = valueSetUniqueCondition07.getConditions();
         Assertions.assertThat(conditions07).hasSize(1);
         Assertions.assertThat(conditions07).containsEntry("name1", "value1");
 
         ValueSetUniqueCondition valueSetUniqueCondition08 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name4", "value4");
-        Map<String, String> conditions05 = valueSetUniqueCondition08.getConditions();
+        Map<String, Object> conditions05 = valueSetUniqueCondition08.getConditions();
         Assertions.assertThat(conditions05).hasSize(2);
         Assertions.assertThat(conditions05).containsEntry("name1", "value1");
         Assertions.assertThat(conditions05).containsEntry("name4", "value4");
 
         ValueSetUniqueCondition valueSetUniqueCondition09 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name5", "value1");
-        Map<String, String> conditions09 = valueSetUniqueCondition09.getConditions();
+        Map<String, Object> conditions09 = valueSetUniqueCondition09.getConditions();
         Assertions.assertThat(conditions09).hasSize(2);
         Assertions.assertThat(conditions09).containsEntry("name1", "value1");
         Assertions.assertThat(conditions09).containsEntry("name5", "value1");
@@ -143,7 +143,7 @@ public final class ValueSetUniqueConditionTest {
         ValueSetUniqueCondition valueSetUniqueCondition02 = new ValueSetUniqueCondition(valueSetUniqueCondition01, "name1", "value1");
         ValueSetUniqueCondition valueSetUniqueCondition03 = new ValueSetUniqueCondition(valueSetUniqueCondition02, "name2", "value2");
         ValueSetUniqueCondition valueSetUniqueCondition04 = new ValueSetUniqueCondition(valueSetUniqueCondition03, "name3", "value3");
-        Map<String, String> conditions04 = valueSetUniqueCondition04.getConditions();
+        Map<String, Object> conditions04 = valueSetUniqueCondition04.getConditions();
         Assertions.assertThat(conditions04).hasSize(3);
         Assertions.assertThat(conditions04).containsEntry("name1", "value1");
         Assertions.assertThat(conditions04).containsEntry("name2", "value2");
@@ -158,7 +158,7 @@ public final class ValueSetUniqueConditionTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getConditionsUnmodifiableEmptyFailTest() {
         ValueSetUniqueCondition valueSetUniqueCondition01 = new ValueSetUniqueCondition("id");
-        Map<String, String> conditions01 = valueSetUniqueCondition01.getConditions();
+        Map<String, Object> conditions01 = valueSetUniqueCondition01.getConditions();
         Assertions.assertThat(conditions01).hasSize(0);
 
         valueSetUniqueCondition01.getConditions().put("name4", "value3");

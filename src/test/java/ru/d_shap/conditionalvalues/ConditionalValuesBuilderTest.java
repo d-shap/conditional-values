@@ -628,7 +628,7 @@ public final class ConditionalValuesBuilderTest {
         }
 
         @Override
-        public boolean evaluate(final String conditionName, final String conditionValue, final String value) {
+        public boolean evaluate(final String conditionName, final Object conditionValue, final Object value) {
             return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
         }
 
