@@ -39,7 +39,7 @@ import java.util.Map;
  */
 public final class ConditionSetBuilder {
 
-    private final Map<String, String> _conditions;
+    private final Map<String, Object> _conditions;
 
     private ConditionSetBuilder() {
         super();
@@ -77,7 +77,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final boolean value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -90,7 +90,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final char value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -103,7 +103,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final int value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -116,7 +116,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final long value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -129,7 +129,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final float value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -142,7 +142,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final double value) {
-        doAddCondition(name, String.valueOf(value));
+        doAddCondition(name, value);
         return this;
     }
 
@@ -155,9 +155,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder addCondition(final String name, final Object value) {
-        if (value != null) {
-            doAddCondition(name, value.toString());
-        }
+        doAddCondition(name, value);
         return this;
     }
 
@@ -174,14 +172,14 @@ public final class ConditionSetBuilder {
             Iterator<String> conditionNameIterator = conditionSet.nameIterator();
             while (conditionNameIterator.hasNext()) {
                 String conditionName = conditionNameIterator.next();
-                String conditionValue = conditionSet.getValue(conditionName);
+                Object conditionValue = conditionSet.getValue(conditionName);
                 doAddCondition(conditionName, conditionValue);
             }
         }
         return this;
     }
 
-    private void doAddCondition(final String name, final String value) {
+    private void doAddCondition(final String name, final Object value) {
         if (name != null && value != null) {
             _conditions.put(name, value);
         }
@@ -209,7 +207,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final boolean value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -222,7 +220,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final char value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -235,7 +233,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final int value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -248,7 +246,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final long value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -261,7 +259,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final float value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -274,7 +272,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final double value) {
-        doRemoveCondition(name, String.valueOf(value));
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -287,9 +285,7 @@ public final class ConditionSetBuilder {
      * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeCondition(final String name, final Object value) {
-        if (value != null) {
-            doRemoveCondition(name, value.toString());
-        }
+        doRemoveCondition(name, value);
         return this;
     }
 
@@ -337,15 +333,15 @@ public final class ConditionSetBuilder {
             Iterator<String> conditionNameIterator = conditionSet.nameIterator();
             while (conditionNameIterator.hasNext()) {
                 String conditionName = conditionNameIterator.next();
-                String conditionValue = conditionSet.getValue(conditionName);
+                Object conditionValue = conditionSet.getValue(conditionName);
                 doRemoveCondition(conditionName, conditionValue);
             }
         }
         return this;
     }
 
-    private void doRemoveCondition(final String name, final String value) {
-        String oldValue = _conditions.get(name);
+    private void doRemoveCondition(final String name, final Object value) {
+        Object oldValue = _conditions.get(name);
         if (oldValue != null && oldValue.equals(value)) {
             _conditions.remove(name);
         }
