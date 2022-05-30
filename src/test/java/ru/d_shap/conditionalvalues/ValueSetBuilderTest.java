@@ -109,8 +109,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", false).addCondition("cond2", true);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("true", "false");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("true", "false");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(true, false);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(true, false);
 
         valueSetBuilder.addCondition(null, true);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -130,8 +130,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", '3').addCondition("cond2", '4');
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly('1', '2');
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly('3', '4');
 
         valueSetBuilder.addCondition(null, '1');
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -151,8 +151,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", 3).addCondition("cond2", 4);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1, 2);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3, 4);
 
         valueSetBuilder.addCondition(null, 0);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -172,8 +172,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", 3L).addCondition("cond2", 4L);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1L, 2L);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3L, 4L);
 
         valueSetBuilder.addCondition(null, 0L);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -193,8 +193,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", 3.0f).addCondition("cond2", 4.0f);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1.0", "2.0");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3.0", "4.0");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1.0f, 2.0f);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3.0f, 4.0f);
 
         valueSetBuilder.addCondition(null, 0.0f);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -214,8 +214,8 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.addCondition("cond2", 3.0).addCondition("cond2", 4.0);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1.0", "2.0");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3.0", "4.0");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1.0, 2.0);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3.0, 4.0);
 
         valueSetBuilder.addCondition(null, 0.0);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
@@ -230,15 +230,21 @@ public final class ValueSetBuilderTest {
     public void addConditionObjectTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addCondition("cond1", new StringBuilder().append("val1"));
-        valueSetBuilder.addCondition("cond1", new StringBuilder().append("val2"));
-        valueSetBuilder.addCondition("cond2", new StringBuilder().append("val3")).addCondition("cond2", new StringBuilder().append("val4"));
+        StringBuilder val = new StringBuilder().append("val");
+        StringBuilder val1 = new StringBuilder().append("val1");
+        StringBuilder val2 = new StringBuilder().append("val2");
+        StringBuilder val3 = new StringBuilder().append("val3");
+        StringBuilder val4 = new StringBuilder().append("val4");
+
+        valueSetBuilder.addCondition("cond1", val1);
+        valueSetBuilder.addCondition("cond1", val2);
+        valueSetBuilder.addCondition("cond2", val3).addCondition("cond2", val4);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val1", "val2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("val3", "val4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(val1, val2);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(val3, val4);
 
-        valueSetBuilder.addCondition(null, new StringBuilder().append("val"));
+        valueSetBuilder.addCondition(null, val);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly();
@@ -367,15 +373,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("false");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("true");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(false);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(true);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, true);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("true", "false");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("true", "false");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(true, false);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(true, false);
     }
 
     /**
@@ -398,15 +404,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly('1', '2');
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly('3', '4');
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, '1');
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("1", "2", "3", "4");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("1", "2", "3", "4");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly('1', '2', '3', '4');
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly('1', '2', '3', '4');
     }
 
     /**
@@ -429,15 +435,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1, 2);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3, 4);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, 0);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("1", "2", "3", "4");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("1", "2", "3", "4");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(1, 2, 3, 4);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(1, 2, 3, 4);
     }
 
     /**
@@ -460,15 +466,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1", "2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3", "4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1L, 2L);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3L, 4L);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, 0L);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("1", "2", "3", "4");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("1", "2", "3", "4");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(1L, 2L, 3L, 4L);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(1L, 2L, 3L, 4L);
     }
 
     /**
@@ -491,15 +497,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1.0", "2.0");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3.0", "4.0");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1.0f, 2.0f);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3.0f, 4.0f);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, 0.0f);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("1.0", "2.0", "3.0", "4.0");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("1.0", "2.0", "3.0", "4.0");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(1.0f, 2.0f, 3.0f, 4.0f);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(1.0f, 2.0f, 3.0f, 4.0f);
     }
 
     /**
@@ -522,15 +528,15 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("1.0", "2.0");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("3.0", "4.0");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(1.0, 2.0);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(3.0, 4.0);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, 0.0);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("1.0", "2.0", "3.0", "4.0");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("1.0", "2.0", "3.0", "4.0");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(1.0, 2.0, 3.0, 4.0);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(1.0, 2.0, 3.0, 4.0);
     }
 
     /**
@@ -540,42 +546,48 @@ public final class ValueSetBuilderTest {
     public void removeConditionObjectTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.addCondition("cond1", new StringBuilder().append("val1")).addCondition("cond1", new StringBuilder().append("val2")).addCondition("cond1", new StringBuilder().append("val3")).addCondition("cond1", new StringBuilder().append("val4"));
-        valueSetBuilder.addCondition("cond2", new StringBuilder().append("val1")).addCondition("cond2", new StringBuilder().append("val2")).addCondition("cond2", new StringBuilder().append("val3")).addCondition("cond2", new StringBuilder().append("val4"));
+        StringBuilder val = new StringBuilder().append("val");
+        StringBuilder val1 = new StringBuilder().append("val1");
+        StringBuilder val2 = new StringBuilder().append("val2");
+        StringBuilder val3 = new StringBuilder().append("val3");
+        StringBuilder val4 = new StringBuilder().append("val4");
+
+        valueSetBuilder.addCondition("cond1", val1).addCondition("cond1", val2).addCondition("cond1", val3).addCondition("cond1", val4);
+        valueSetBuilder.addCondition("cond2", val1).addCondition("cond2", val2).addCondition("cond2", val3).addCondition("cond2", val4);
         ValueSet<String> addTemplate = valueSetBuilder.build();
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
-        valueSetBuilder.addCondition("cond3", new StringBuilder().append("val1")).addCondition("cond3", new StringBuilder().append("val2"));
+        valueSetBuilder.addCondition("cond3", val1).addCondition("cond3", val2);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(3);
-        valueSetBuilder.removeCondition("cond1", new StringBuilder().append("val3")).removeCondition("cond1", new StringBuilder().append("val4"));
-        valueSetBuilder.removeCondition("cond2", new StringBuilder().append("val1")).removeCondition("cond2", new StringBuilder().append("val2"));
-        valueSetBuilder.removeCondition("cond3", new StringBuilder().append("val1")).removeCondition("cond3", new StringBuilder().append("val2"));
+        valueSetBuilder.removeCondition("cond1", val3).removeCondition("cond1", val4);
+        valueSetBuilder.removeCondition("cond2", val1).removeCondition("cond2", val2);
+        valueSetBuilder.removeCondition("cond3", val1).removeCondition("cond3", val2);
         Assertions.assertThat(valueSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         Assertions.assertThat(valueSet1.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly("val1", "val2");
-        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly("val3", "val4");
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond1")).containsExactly(val1, val2);
+        Assertions.assertThat(valueSet1.getAllConditionValues("cond2")).containsExactly(val3, val4);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
-        valueSetBuilder.removeCondition(null, new StringBuilder().append("val"));
+        valueSetBuilder.removeCondition(null, val);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly("val1", "val2", "val3", "val4");
-        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly("val1", "val2", "val3", "val4");
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond1")).containsExactly(val1, val2, val3, val4);
+        Assertions.assertThat(valueSet2.getAllConditionValues("cond2")).containsExactly(val1, val2, val3, val4);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition("cond", (Object) null);
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly("val1", "val2", "val3", "val4");
-        Assertions.assertThat(valueSet3.getAllConditionValues("cond2")).containsExactly("val1", "val2", "val3", "val4");
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond1")).containsExactly(val1, val2, val3, val4);
+        Assertions.assertThat(valueSet3.getAllConditionValues("cond2")).containsExactly(val1, val2, val3, val4);
 
         valueSetBuilder = valueSetBuilder.addConditions(addTemplate);
         valueSetBuilder.removeCondition(null, (Object) null);
         ValueSet<String> valueSet4 = valueSetBuilder.build();
         Assertions.assertThat(valueSet4.getAllConditionNames()).containsExactly("cond1", "cond2");
-        Assertions.assertThat(valueSet4.getAllConditionValues("cond1")).containsExactly("val1", "val2", "val3", "val4");
-        Assertions.assertThat(valueSet4.getAllConditionValues("cond2")).containsExactly("val1", "val2", "val3", "val4");
+        Assertions.assertThat(valueSet4.getAllConditionValues("cond1")).containsExactly(val1, val2, val3, val4);
+        Assertions.assertThat(valueSet4.getAllConditionValues("cond2")).containsExactly(val1, val2, val3, val4);
     }
 
     /**
