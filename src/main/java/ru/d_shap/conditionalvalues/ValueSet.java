@@ -39,7 +39,7 @@ public final class ValueSet<T> {
 
     private final String _id;
 
-    private final Map<String, Set<String>> _conditions;
+    private final Map<String, Set<Object>> _conditions;
 
     private final Set<String> _conditionNames;
 
@@ -52,7 +52,7 @@ public final class ValueSet<T> {
      * @param conditions the conditions of the value set.
      * @param values     the values of the value set.
      */
-    public ValueSet(final String id, final Map<String, Set<String>> conditions, final Set<T> values) {
+    public ValueSet(final String id, final Map<String, Set<Object>> conditions, final Set<T> values) {
         super();
         _id = id;
         _conditions = createConditions(conditions);
@@ -60,12 +60,12 @@ public final class ValueSet<T> {
         _values = createValues(values);
     }
 
-    private Map<String, Set<String>> createConditions(final Map<String, Set<String>> conditions) {
-        Map<String, Set<String>> result = new HashMap<>();
+    private Map<String, Set<Object>> createConditions(final Map<String, Set<Object>> conditions) {
+        Map<String, Set<Object>> result = new HashMap<>();
         if (conditions != null) {
-            for (Map.Entry<String, Set<String>> entry : conditions.entrySet()) {
+            for (Map.Entry<String, Set<Object>> entry : conditions.entrySet()) {
                 String key = entry.getKey();
-                Set<String> values = createConditionValues(entry.getValue());
+                Set<Object> values = createConditionValues(entry.getValue());
                 if (key != null && !values.isEmpty()) {
                     result.put(key, values);
                 }
@@ -74,10 +74,10 @@ public final class ValueSet<T> {
         return Collections.unmodifiableMap(result);
     }
 
-    private Set<String> createConditionValues(final Set<String> values) {
-        Set<String> result = new HashSet<>();
+    private Set<Object> createConditionValues(final Set<Object> values) {
+        Set<Object> result = new HashSet<>();
         if (values != null) {
-            for (String value : values) {
+            for (Object value : values) {
                 if (value != null) {
                     result.add(value);
                 }
@@ -128,8 +128,8 @@ public final class ValueSet<T> {
      *
      * @return all condition values for the specified condition name.
      */
-    public Set<String> getAllConditionValues(final String conditionName) {
-        Set<String> values = _conditions.get(conditionName);
+    public Set<Object> getAllConditionValues(final String conditionName) {
+        Set<Object> values = _conditions.get(conditionName);
         if (values == null) {
             return Collections.emptySet();
         } else {
@@ -145,11 +145,11 @@ public final class ValueSet<T> {
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
-            String conditionValue = conditionSet.getValue(conditionName);
-            Set<String> checkValues = _conditions.get(conditionName);
-            if (checkValues != null) {
-                for (String checkValue : checkValues) {
-                    if (predicate.evaluate(conditionName, conditionValue, checkValue)) {
+            Object conditionValue = conditionSet.getValue(conditionName);
+            Set<Object> values = _conditions.get(conditionName);
+            if (values != null) {
+                for (Object value : values) {
+                    if (predicate.evaluate(conditionName, conditionValue, value)) {
                         matchCount++;
                         break;
                     }
@@ -180,17 +180,17 @@ public final class ValueSet<T> {
         } else {
             List<ValueSetUniqueCondition> currentUniqueConditions = new ArrayList<>();
             currentUniqueConditions.add(new ValueSetUniqueCondition(_id));
-            for (Map.Entry<String, Set<String>> entry : _conditions.entrySet()) {
+            for (Map.Entry<String, Set<Object>> entry : _conditions.entrySet()) {
                 currentUniqueConditions = addConditionValuesToCurrentUniqueConditions(currentUniqueConditions, entry.getKey(), entry.getValue());
             }
             return Collections.unmodifiableList(currentUniqueConditions);
         }
     }
 
-    private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<String> conditionValues) {
+    private List<ValueSetUniqueCondition> addConditionValuesToCurrentUniqueConditions(final List<ValueSetUniqueCondition> currentUniqueConditions, final String conditionName, final Set<Object> conditionValues) {
         List<ValueSetUniqueCondition> newUniqueConditions = new ArrayList<>();
         for (ValueSetUniqueCondition currentUniqueCondition : currentUniqueConditions) {
-            for (String conditionValue : conditionValues) {
+            for (Object conditionValue : conditionValues) {
                 ValueSetUniqueCondition newUniqueCondition = new ValueSetUniqueCondition(currentUniqueCondition, conditionName, conditionValue);
                 newUniqueConditions.add(newUniqueCondition);
             }
