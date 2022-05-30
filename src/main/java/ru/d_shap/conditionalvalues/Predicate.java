@@ -37,6 +37,6 @@ public interface Predicate {
      *
      * @return true, if the values match.
      */
-    boolean evaluate(String conditionName, String conditionValue, String value);
+    boolean evaluate(String conditionName, Object conditionValue, Object value);
 
 }
