@@ -32,18 +32,18 @@ public final class ValueSetUniqueCondition {
 
     private final String _id;
 
-    private final Map<String, String> _conditions;
+    private final Map<String, Object> _conditions;
 
     ValueSetUniqueCondition(final String id) {
         super();
         _id = id;
-        _conditions = Collections.unmodifiableMap(new TreeMap<String, String>());
+        _conditions = Collections.unmodifiableMap(new TreeMap<String, Object>());
     }
 
-    ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final String conditionValue) {
+    ValueSetUniqueCondition(final ValueSetUniqueCondition valueSetUniqueCondition, final String conditionName, final Object conditionValue) {
         super();
         _id = valueSetUniqueCondition._id;
-        Map<String, String> map = new TreeMap<>(valueSetUniqueCondition._conditions);
+        Map<String, Object> map = new TreeMap<>(valueSetUniqueCondition._conditions);
         if (conditionName != null && conditionValue != null) {
             if (map.containsKey(conditionName)) {
                 throw new DuplicateConditionNameException(conditionName);
@@ -68,7 +68,7 @@ public final class ValueSetUniqueCondition {
      *
      * @return Combination of conditions
      */
-    public Map<String, String> getConditions() {
+    public Map<String, Object> getConditions() {
         return _conditions;
     }
 
