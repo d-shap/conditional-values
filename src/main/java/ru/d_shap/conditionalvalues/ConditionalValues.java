@@ -113,10 +113,10 @@ public final class ConditionalValues<T> {
      *
      * @return all condition values for the specified condition name.
      */
-    public Set<String> getAllConditionValues(final String conditionName) {
-        Set<String> result = new HashSet<>();
+    public Set<Object> getAllConditionValues(final String conditionName) {
+        Set<Object> result = new HashSet<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            Set<String> allConditionValues = valueSet.getAllConditionValues(conditionName);
+            Set<Object> allConditionValues = valueSet.getAllConditionValues(conditionName);
             result.addAll(allConditionValues);
         }
         return Collections.unmodifiableSet(result);
