@@ -33,7 +33,7 @@ import java.util.Set;
  */
 public final class ConditionSet {
 
-    private final Map<String, String> _conditions;
+    private final Map<String, Object> _conditions;
 
     private final Set<String> _conditionNames;
 
@@ -42,18 +42,18 @@ public final class ConditionSet {
      *
      * @param conditions conditions, used for lookup.
      */
-    public ConditionSet(final Map<String, String> conditions) {
+    public ConditionSet(final Map<String, Object> conditions) {
         super();
         _conditions = createConditions(conditions);
         _conditionNames = createConditionNames();
     }
 
-    private Map<String, String> createConditions(final Map<String, String> conditions) {
-        Map<String, String> result = new HashMap<>();
+    private Map<String, Object> createConditions(final Map<String, Object> conditions) {
+        Map<String, Object> result = new HashMap<>();
         if (conditions != null) {
-            for (Map.Entry<String, String> entry : conditions.entrySet()) {
+            for (Map.Entry<String, Object> entry : conditions.entrySet()) {
                 String key = entry.getKey();
-                String value = entry.getValue();
+                Object value = entry.getValue();
                 if (key != null && value != null) {
                     result.put(key, value);
                 }
@@ -71,7 +71,7 @@ public final class ConditionSet {
         return _conditionNames.iterator();
     }
 
-    String getValue(final String name) {
+    Object getValue(final String name) {
         return _conditions.get(name);
     }
 
