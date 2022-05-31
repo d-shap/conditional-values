@@ -31,9 +31,9 @@ public interface Predicate {
      * Evaluate the predicate for the specified values from the {@link ru.d_shap.conditionalvalues.ValueSet}
      * object and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param conditionName     condition name.
-     * @param conditionSetValue value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param valueSetValue     value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param conditionName     the name of condition.
+     * @param conditionSetValue the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param valueSetValue     the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return true, if the values match.
      */
