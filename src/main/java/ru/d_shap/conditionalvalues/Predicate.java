@@ -31,12 +31,12 @@ public interface Predicate {
      * Evaluate the predicate for the specified values from the {@link ru.d_shap.conditionalvalues.ValueSet}
      * object and the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param conditionName  condition name from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param conditionValue condition value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param value          value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param conditionName     condition name from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param conditionSetValue condition value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param valueSetValue     value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return true, if the values match.
      */
-    boolean evaluate(String conditionName, Object conditionValue, Object value);
+    boolean evaluate(String conditionName, Object conditionSetValue, Object valueSetValue);
 
 }
