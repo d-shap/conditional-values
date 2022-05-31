@@ -38,10 +38,36 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final Object conditionSetValue, final Object valueSetValue) {
-        if (conditionSetValue == null) {
-            return valueSetValue == null;
+        if (valueSetValue == null) {
+            return conditionSetValue == null;
         } else {
-            return ((String) conditionSetValue).equalsIgnoreCase((String) valueSetValue);
+            String conditionSetValueStr = getConditionSetValue(conditionName, conditionSetValue);
+            String valueSetValueStr = getValueSetValue(conditionName, valueSetValue);
+            return valueSetValueStr.equalsIgnoreCase(conditionSetValueStr);
+        }
+    }
+
+    private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
+        if (conditionSetValue instanceof CharSequence) {
+            if (conditionSetValue instanceof String) {
+                return (String) conditionSetValue;
+            } else {
+                return ((CharSequence) conditionSetValue).toString();
+            }
+        } else {
+            throw new WrongConditionSetValueException(conditionName, conditionSetValue, CharSequence.class);
+        }
+    }
+
+    private static String getValueSetValue(final String conditionName, final Object valueSetValue) {
+        if (valueSetValue instanceof CharSequence) {
+            if (valueSetValue instanceof String) {
+                return (String) valueSetValue;
+            } else {
+                return ((CharSequence) valueSetValue).toString();
+            }
+        } else {
+            throw new WrongValueSetValueException(conditionName, valueSetValue, CharSequence.class);
         }
     }
 
