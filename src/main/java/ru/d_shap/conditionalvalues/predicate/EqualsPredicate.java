@@ -38,10 +38,10 @@ public final class EqualsPredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final Object conditionSetValue, final Object valueSetValue) {
-        if (conditionSetValue == null) {
-            return valueSetValue == null;
+        if (valueSetValue == null) {
+            return conditionSetValue == null;
         } else {
-            return conditionSetValue.equals(valueSetValue);
+            return valueSetValue.equals(conditionSetValue);
         }
     }
 
