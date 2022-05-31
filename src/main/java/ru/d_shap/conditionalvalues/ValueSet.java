@@ -145,11 +145,11 @@ public final class ValueSet<T> {
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
-            Object conditionValue = conditionSet.getValue(conditionName);
-            Set<Object> values = _conditions.get(conditionName);
-            if (values != null) {
-                for (Object value : values) {
-                    if (predicate.evaluate(conditionName, conditionValue, value)) {
+            Object conditionSetValue = conditionSet.getValue(conditionName);
+            Set<Object> valueSetValues = _conditions.get(conditionName);
+            if (valueSetValues != null) {
+                for (Object valueSetValue : valueSetValues) {
+                    if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
                         matchCount++;
                         break;
                     }
