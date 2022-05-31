@@ -20,8 +20,7 @@
 package ru.d_shap.conditionalvalues.predicate;
 
 /**
- * Exception is thrown when the value from the {@link ru.d_shap.conditionalvalues.ConditionSet}
- * object is wrong.
+ * Exception is thrown when the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object is wrong.
  *
  * @author Dmitry Shapovalov
  */
