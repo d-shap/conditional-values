@@ -60,7 +60,9 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
     }
 
     private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
-        if (conditionSetValue instanceof CharSequence) {
+        if (conditionSetValue == null) {
+            return null;
+        } else if (conditionSetValue instanceof CharSequence) {
             if (conditionSetValue instanceof String) {
                 return (String) conditionSetValue;
             } else {
