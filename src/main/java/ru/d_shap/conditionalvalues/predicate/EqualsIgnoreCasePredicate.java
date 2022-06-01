@@ -41,21 +41,9 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         if (valueSetValue == null) {
             return conditionSetValue == null;
         } else {
-            String conditionSetValueStr = getConditionSetValue(conditionName, conditionSetValue);
-            String valueSetValueStr = getValueSetValue(conditionName, valueSetValue);
-            return valueSetValueStr.equalsIgnoreCase(conditionSetValueStr);
-        }
-    }
-
-    private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
-        if (conditionSetValue instanceof CharSequence) {
-            if (conditionSetValue instanceof String) {
-                return (String) conditionSetValue;
-            } else {
-                return ((CharSequence) conditionSetValue).toString();
-            }
-        } else {
-            throw new WrongConditionSetValueException(conditionName, conditionSetValue, CharSequence.class);
+            String valueSetValueObj = getValueSetValue(conditionName, valueSetValue);
+            String conditionSetValueObj = getConditionSetValue(conditionName, conditionSetValue);
+            return valueSetValueObj.equalsIgnoreCase(conditionSetValueObj);
         }
     }
 
@@ -68,6 +56,18 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
             }
         } else {
             throw new WrongValueSetValueException(conditionName, valueSetValue, CharSequence.class);
+        }
+    }
+
+    private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
+        if (conditionSetValue instanceof CharSequence) {
+            if (conditionSetValue instanceof String) {
+                return (String) conditionSetValue;
+            } else {
+                return ((CharSequence) conditionSetValue).toString();
+            }
+        } else {
+            throw new WrongConditionSetValueException(conditionName, conditionSetValue, CharSequence.class);
         }
     }
 
