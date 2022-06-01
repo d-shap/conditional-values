@@ -45,7 +45,7 @@ public final class PatternPredicate implements Predicate {
         } else {
             Pattern valueSetValueObj = getValueSetValue(conditionName, valueSetValue);
             String conditionSetValueObj = getConditionSetValue(conditionName, conditionSetValue);
-            return valueSetValueObj.matcher(conditionSetValueObj).matches();
+            return conditionSetValueObj != null && valueSetValueObj.matcher(conditionSetValueObj).matches();
         }
     }
 
