@@ -24,8 +24,8 @@ import java.util.regex.Pattern;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
- * matches to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * matches to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
