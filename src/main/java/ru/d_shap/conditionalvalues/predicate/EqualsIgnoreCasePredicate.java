@@ -41,7 +41,9 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         if (valueSetValue == null) {
             return conditionSetValue == null;
         } else {
-            if (valueSetValue.equals(conditionSetValue)) {
+            if (conditionSetValue == null) {
+                return false;
+            } else if (valueSetValue.equals(conditionSetValue)) {
                 return true;
             } else {
                 String valueSetValueStr = getValueSetValueAsString(conditionName, valueSetValue);
