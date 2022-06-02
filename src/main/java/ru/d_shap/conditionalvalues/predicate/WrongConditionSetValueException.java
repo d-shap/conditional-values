@@ -36,19 +36,11 @@ public final class WrongConditionSetValueException extends EvaluationException {
      * @param expectedClass     the expected class for the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      */
     public WrongConditionSetValueException(final String conditionName, final Object conditionSetValue, final Class<?> expectedClass) {
-        super(getMessage(conditionName, getConditionSetValueClass(conditionSetValue), expectedClass));
+        super(getMessage(conditionName, getClassName(conditionSetValue), getClassName(expectedClass)));
     }
 
-    private static String getMessage(final String conditionName, final Class<?> conditionSetValueClass, final Class<?> expectedClass) {
-        return "Condition with name " + conditionName + " has a wrong class, expected " + expectedClass + ", but was " + conditionSetValueClass;
-    }
-
-    private static Class<?> getConditionSetValueClass(final Object conditionSetValue) {
-        if (conditionSetValue == null) {
-            return null;
-        } else {
-            return conditionSetValue.getClass();
-        }
+    private static String getMessage(final String conditionName, final String actualClassName, final String expectedClassName) {
+        return "Condition with name " + conditionName + " has a wrong class, expected " + expectedClassName + ", but was " + actualClassName;
     }
 
 }

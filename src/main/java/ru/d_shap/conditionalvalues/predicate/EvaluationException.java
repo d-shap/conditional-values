@@ -58,4 +58,34 @@ public class EvaluationException extends ConditionalValuesException {
         super(message, cause);
     }
 
+    /**
+     * Get the name of the specified class.
+     *
+     * @param clazz the specified class.
+     *
+     * @return the name of the specified class.
+     */
+    protected static String getClassName(final Class<?> clazz) {
+        if (clazz == null) {
+            return null;
+        } else {
+            return clazz.getName();
+        }
+    }
+
+    /**
+     * Get the name of the specified object's class.
+     *
+     * @param object the specified object.
+     *
+     * @return the name of the specified object's class.
+     */
+    protected static String getClassName(final Object object) {
+        if (object == null) {
+            return null;
+        } else {
+            return object.getClass().getName();
+        }
+    }
+
 }
