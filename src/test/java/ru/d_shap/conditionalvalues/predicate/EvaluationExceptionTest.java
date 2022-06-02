@@ -20,6 +20,8 @@
 package ru.d_shap.conditionalvalues.predicate;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -93,6 +95,26 @@ public final class EvaluationExceptionTest {
         Assertions.assertThat(new EvaluationException("", new IOException("io message"))).hasCauseMessage("io message");
         Assertions.assertThat(new EvaluationException("message", new IOException("io message"))).hasCause(IOException.class);
         Assertions.assertThat(new EvaluationException("message", new IOException("io message"))).hasCauseMessage("io message");
+    }
+
+    /**
+     * {@link EvaluationException} class test.
+     */
+    @Test
+    public void getClassNameForClassTest() {
+        Assertions.assertThat(EvaluationException.getClassName(null)).isNull();
+        Assertions.assertThat(EvaluationException.getClassName(String.class)).isEqualTo("java.lang.String");
+        Assertions.assertThat(EvaluationException.getClassName(List.class)).isEqualTo("java.util.List");
+    }
+
+    /**
+     * {@link EvaluationException} class test.
+     */
+    @Test
+    public void getClassNameForObjectTest() {
+        Assertions.assertThat(EvaluationException.getClassName((Object) null)).isNull();
+        Assertions.assertThat(EvaluationException.getClassName("value")).isEqualTo("java.lang.String");
+        Assertions.assertThat(EvaluationException.getClassName(new ArrayList<>())).isEqualTo("java.util.ArrayList");
     }
 
 }
