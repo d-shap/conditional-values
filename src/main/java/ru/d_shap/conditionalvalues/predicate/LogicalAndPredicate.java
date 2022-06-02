@@ -28,29 +28,29 @@ import ru.d_shap.conditionalvalues.Predicate;
  */
 public class LogicalAndPredicate implements Predicate {
 
-    private final Predicate _predicate1;
-
-    private final Predicate _predicate2;
+    private final Predicate[] _predicates;
 
     /**
      * Create new object.
      *
-     * @param predicate1 the predicate to join with the logical operation.
-     * @param predicate2 the predicate to join with the logical operation.
+     * @param first the first predicate to join with the logical operation.
+     * @param next  the next predicated to join with the logical operation.
      */
-    public LogicalAndPredicate(final Predicate predicate1, final Predicate predicate2) {
+    public LogicalAndPredicate(final Predicate first, final Predicate... next) {
         super();
-        _predicate1 = predicate1;
-        _predicate2 = predicate2;
+        _predicates = new Predicate[next.length + 1];
+        _predicates[0] = first;
+        System.arraycopy(next, 0, _predicates, 1, next.length);
     }
 
     @Override
     public boolean evaluate(final String conditionName, final Object conditionSetValue, final Object valueSetValue) {
-        boolean value = _predicate1.evaluate(conditionName, conditionSetValue, valueSetValue);
-        if (!value) {
-            return false;
+        for (Predicate predicate : _predicates) {
+            if (!predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
+                return false;
+            }
         }
-        return _predicate2.evaluate(conditionName, conditionSetValue, valueSetValue);
+        return true;
     }
 
 }
