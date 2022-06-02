@@ -41,13 +41,17 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         if (valueSetValue == null) {
             return conditionSetValue == null;
         } else {
-            String valueSetValueObj = getValueSetValue(conditionName, valueSetValue);
-            String conditionSetValueObj = getConditionSetValue(conditionName, conditionSetValue);
-            return valueSetValueObj.equalsIgnoreCase(conditionSetValueObj);
+            if (valueSetValue.equals(conditionSetValue)) {
+                return true;
+            } else {
+                String valueSetValueStr = getValueSetValueAsString(conditionName, valueSetValue);
+                String conditionSetValueStr = getConditionSetValueAsString(conditionName, conditionSetValue);
+                return valueSetValueStr.equalsIgnoreCase(conditionSetValueStr);
+            }
         }
     }
 
-    private static String getValueSetValue(final String conditionName, final Object valueSetValue) {
+    private static String getValueSetValueAsString(final String conditionName, final Object valueSetValue) {
         if (valueSetValue instanceof String) {
             return (String) valueSetValue;
         } else {
@@ -55,7 +59,7 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         }
     }
 
-    private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
+    private static String getConditionSetValueAsString(final String conditionName, final Object conditionSetValue) {
         if (conditionSetValue == null) {
             return null;
         } else if (conditionSetValue instanceof String) {
