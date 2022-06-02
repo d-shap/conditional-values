@@ -24,7 +24,7 @@ package ru.d_shap.conditionalvalues.predicate;
  *
  * @author Dmitry Shapovalov
  */
-public interface ValueSetValueFunction {
+public interface ValueSetFunction {
 
     /**
      * Apply the function to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
