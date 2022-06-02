@@ -43,8 +43,8 @@ public final class WrongConditionSetValueExceptionTest {
     @Test
     public void getMessageTest() {
         Assertions.assertThat(new WrongConditionSetValueException(null, null, null)).hasMessage("Condition with name null has a wrong class, expected null, but was null");
-        Assertions.assertThat(new WrongConditionSetValueException("condition", "value", StringBuilder.class)).hasMessage("Condition with name condition has a wrong class, expected class java.lang.StringBuilder, but was class java.lang.String");
-        Assertions.assertThat(new WrongConditionSetValueException("cnd", 11, Double.class)).hasMessage("Condition with name cnd has a wrong class, expected class java.lang.Double, but was class java.lang.Integer");
+        Assertions.assertThat(new WrongConditionSetValueException("condition", "value", StringBuilder.class)).hasMessage("Condition with name condition has a wrong class, expected java.lang.StringBuilder, but was java.lang.String");
+        Assertions.assertThat(new WrongConditionSetValueException("cnd", 11, Double.class)).hasMessage("Condition with name cnd has a wrong class, expected java.lang.Double, but was java.lang.Integer");
     }
 
     /**
