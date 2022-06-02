@@ -42,8 +42,7 @@ public final class LogicalNotPredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final Object conditionSetValue, final Object valueSetValue) {
-        boolean value = _predicate.evaluate(conditionName, conditionSetValue, valueSetValue);
-        return !value;
+        return !_predicate.evaluate(conditionName, conditionSetValue, valueSetValue);
     }
 
 }
