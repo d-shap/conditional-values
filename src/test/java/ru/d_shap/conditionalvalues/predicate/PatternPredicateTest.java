@@ -86,6 +86,13 @@ public final class PatternPredicateTest {
         } catch (WrongValueSetValueException ex) {
             Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.util.regex.Pattern, but was java.lang.Integer");
         }
+
+        try {
+            new PatternPredicate().evaluate("c", new StringBuilder("value"), Pattern.compile("value"));
+            Assertions.fail("PatternPredicate test fail");
+        } catch (WrongConditionSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
     }
 
 }

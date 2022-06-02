@@ -82,19 +82,19 @@ public final class EqualsIgnoreCasePredicateTest {
 
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", "value", "value")).isTrue();
         try {
-            new EqualsIgnoreCasePredicate().evaluate("c", new StringBuffer("value"), "value");
+            new EqualsIgnoreCasePredicate().evaluate("c", new StringBuilder("value"), "value");
             Assertions.fail("EqualsIgnoreCasePredicate test fail");
         } catch (WrongConditionSetValueException ex) {
-            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuffer");
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
         }
         try {
-            new EqualsIgnoreCasePredicate().evaluate("c", "value", new StringBuffer("value"));
+            new EqualsIgnoreCasePredicate().evaluate("c", "value", new StringBuilder("value"));
             Assertions.fail("EqualsIgnoreCasePredicate test fail");
         } catch (WrongValueSetValueException ex) {
-            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuffer");
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
         }
 
-        Object obj1 = new StringBuffer("value");
+        Object obj1 = new StringBuilder("value");
         Object obj2 = new Object();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", obj1, obj1)).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", obj2, obj2)).isTrue();
@@ -108,7 +108,7 @@ public final class EqualsIgnoreCasePredicateTest {
             new EqualsIgnoreCasePredicate().evaluate("c", obj2, obj1);
             Assertions.fail("EqualsIgnoreCasePredicate test fail");
         } catch (WrongValueSetValueException ex) {
-            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuffer");
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
         }
     }
 
