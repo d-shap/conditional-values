@@ -48,12 +48,8 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
     }
 
     private static String getValueSetValue(final String conditionName, final Object valueSetValue) {
-        if (valueSetValue instanceof CharSequence) {
-            if (valueSetValue instanceof String) {
-                return (String) valueSetValue;
-            } else {
-                return ((CharSequence) valueSetValue).toString();
-            }
+        if (valueSetValue instanceof String) {
+            return (String) valueSetValue;
         } else {
             throw new WrongValueSetValueException(conditionName, valueSetValue, CharSequence.class);
         }
@@ -62,12 +58,8 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
     private static String getConditionSetValue(final String conditionName, final Object conditionSetValue) {
         if (conditionSetValue == null) {
             return null;
-        } else if (conditionSetValue instanceof CharSequence) {
-            if (conditionSetValue instanceof String) {
-                return (String) conditionSetValue;
-            } else {
-                return ((CharSequence) conditionSetValue).toString();
-            }
+        } else if (conditionSetValue instanceof String) {
+            return (String) conditionSetValue;
         } else {
             throw new WrongConditionSetValueException(conditionName, conditionSetValue, CharSequence.class);
         }
