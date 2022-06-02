@@ -26,7 +26,7 @@ import ru.d_shap.conditionalvalues.Predicate;
  *
  * @author Dmitry Shapovalov
  */
-public class ValueSetFunctionPredicate implements Predicate {
+public final class ValueSetFunctionPredicate implements Predicate {
 
     private final ValueSetFunction _valueSetFunction;
 
