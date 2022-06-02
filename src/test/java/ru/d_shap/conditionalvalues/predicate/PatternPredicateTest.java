@@ -19,7 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues.predicate;
 
+import java.util.regex.Pattern;
+
 import org.junit.Test;
+
+import ru.d_shap.assertions.Assertions;
 
 /**
  * Tests for {@link PatternPredicate}.
@@ -40,7 +44,48 @@ public final class PatternPredicateTest {
      */
     @Test
     public void evaluateTest() {
-        // TODO
+        Assertions.assertThat(new PatternPredicate().evaluate(null, null, null)).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate(null, "value", null)).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate(null, null, Pattern.compile("value"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate(null, "value1", Pattern.compile("value2"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate(null, "value", Pattern.compile("value"))).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate(null, "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+
+        Assertions.assertThat(new PatternPredicate().evaluate("", null, null)).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate("", "value", null)).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("", null, Pattern.compile("value"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("", "value1", Pattern.compile("value2"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("", "value", Pattern.compile("value"))).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate("", "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", null, null)).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", "value", null)).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", null, Pattern.compile("value"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", "value1", Pattern.compile("value2"))).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", "value", Pattern.compile("value"))).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate("condition", "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+
+        Assertions.assertThat(new PatternPredicate().evaluate("c", null, null)).isTrue();
+        Assertions.assertThat(new PatternPredicate().evaluate("c", 5, null)).isFalse();
+        Assertions.assertThat(new PatternPredicate().evaluate("c", null, 5)).isFalse();
+        try {
+            new PatternPredicate().evaluate("c", 5, 5);
+            Assertions.fail("PatternPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.util.regex.Pattern, but was java.lang.Integer");
+        }
+        try {
+            new PatternPredicate().evaluate("c", 5, 6);
+            Assertions.fail("PatternPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.util.regex.Pattern, but was java.lang.Integer");
+        }
+        try {
+            new PatternPredicate().evaluate("c", 6, 5);
+            Assertions.fail("PatternPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.util.regex.Pattern, but was java.lang.Integer");
+        }
     }
 
 }
