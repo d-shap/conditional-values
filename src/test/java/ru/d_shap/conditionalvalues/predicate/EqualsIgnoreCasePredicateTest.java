@@ -63,6 +63,23 @@ public final class EqualsIgnoreCasePredicateTest {
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "value", "value")).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "vaLUe", "ValUE")).isTrue();
 
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", null, null)).isTrue();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", 5, null)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", null, 5)).isFalse();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", 5, 5)).isTrue();
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", 5, 6);
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.Integer");
+        }
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", 6, 5);
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.Integer");
+        }
+
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", "value", "value")).isTrue();
         try {
             new EqualsIgnoreCasePredicate().evaluate("c", new StringBuffer("value"), "value");
@@ -72,6 +89,23 @@ public final class EqualsIgnoreCasePredicateTest {
         }
         try {
             new EqualsIgnoreCasePredicate().evaluate("c", "value", new StringBuffer("value"));
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.StringBuffer");
+        }
+
+        Object obj1 = new StringBuffer("value");
+        Object obj2 = new Object();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", obj1, obj1)).isTrue();
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", obj2, obj2)).isTrue();
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", obj1, obj2);
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.Object");
+        }
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", obj2, obj1);
             Assertions.fail("EqualsIgnoreCasePredicate test fail");
         } catch (WrongValueSetValueException ex) {
             Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.StringBuffer");
