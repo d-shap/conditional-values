@@ -51,7 +51,7 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         if (valueSetValue instanceof String) {
             return (String) valueSetValue;
         } else {
-            throw new WrongValueSetValueException(conditionName, valueSetValue, CharSequence.class);
+            throw new WrongValueSetValueException(conditionName, valueSetValue, String.class);
         }
     }
 
@@ -61,7 +61,7 @@ public final class EqualsIgnoreCasePredicate implements Predicate {
         } else if (conditionSetValue instanceof String) {
             return (String) conditionSetValue;
         } else {
-            throw new WrongConditionSetValueException(conditionName, conditionSetValue, CharSequence.class);
+            throw new WrongConditionSetValueException(conditionName, conditionSetValue, String.class);
         }
     }
 
