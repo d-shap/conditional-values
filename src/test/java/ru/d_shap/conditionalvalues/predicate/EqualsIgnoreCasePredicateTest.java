@@ -62,6 +62,20 @@ public final class EqualsIgnoreCasePredicateTest {
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "value", "value")).isTrue();
         Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("condition", "vaLUe", "ValUE")).isTrue();
+
+        Assertions.assertThat(new EqualsIgnoreCasePredicate().evaluate("c", "value", "value")).isTrue();
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", new StringBuffer("value"), "value");
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongConditionSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.StringBuffer");
+        }
+        try {
+            new EqualsIgnoreCasePredicate().evaluate("c", "value", new StringBuffer("value"));
+            Assertions.fail("EqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected class java.lang.String, but was class java.lang.StringBuffer");
+        }
     }
 
 }
