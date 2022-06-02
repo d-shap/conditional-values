@@ -26,7 +26,7 @@ import ru.d_shap.conditionalvalues.Predicate;
  *
  * @author Dmitry Shapovalov
  */
-public class LogicalXorPredicate implements Predicate {
+public final class LogicalXorPredicate implements Predicate {
 
     private final Predicate _first;
 

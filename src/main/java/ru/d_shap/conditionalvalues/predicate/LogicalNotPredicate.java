@@ -26,7 +26,7 @@ import ru.d_shap.conditionalvalues.Predicate;
  *
  * @author Dmitry Shapovalov
  */
-public class LogicalNotPredicate implements Predicate {
+public final class LogicalNotPredicate implements Predicate {
 
     private final Predicate _predicate;
 
