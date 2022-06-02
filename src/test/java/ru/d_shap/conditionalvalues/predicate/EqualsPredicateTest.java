@@ -74,8 +74,12 @@ public final class EqualsPredicateTest {
         Assertions.assertThat(new EqualsPredicate().evaluate("c", "value", new StringBuffer("value"))).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", new StringBuffer("value"), new StringBuffer("value"))).isFalse();
 
-        Object obj = new Object();
-        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj, obj)).isTrue();
+        Object obj1 = new StringBuffer("value");
+        Object obj2 = new Object();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj1, obj1)).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj2, obj2)).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj1, obj2)).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj2, obj1)).isFalse();
     }
 
 }
