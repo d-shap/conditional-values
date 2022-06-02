@@ -62,9 +62,7 @@ public final class PatternPredicate implements Predicate {
     }
 
     private static String getConditionSetValueAsString(final String conditionName, final Object conditionSetValue) {
-        if (conditionSetValue == null) {
-            return null;
-        } else if (conditionSetValue instanceof String) {
+        if (conditionSetValue instanceof String) {
             return (String) conditionSetValue;
         } else {
             throw new WrongConditionSetValueException(conditionName, conditionSetValue, String.class);
