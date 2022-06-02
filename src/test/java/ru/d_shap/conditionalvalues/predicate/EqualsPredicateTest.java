@@ -73,6 +73,9 @@ public final class EqualsPredicateTest {
         Assertions.assertThat(new EqualsPredicate().evaluate("c", new StringBuffer("value"), "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", "value", new StringBuffer("value"))).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", new StringBuffer("value"), new StringBuffer("value"))).isFalse();
+
+        Object obj = new Object();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", obj, obj)).isTrue();
     }
 
 }
