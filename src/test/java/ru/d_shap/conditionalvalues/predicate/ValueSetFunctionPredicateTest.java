@@ -70,4 +70,12 @@ public final class ValueSetFunctionPredicateTest {
         Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, 1, "value")).isFalse();
     }
 
+    /**
+     * {@link ValueSetFunctionPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

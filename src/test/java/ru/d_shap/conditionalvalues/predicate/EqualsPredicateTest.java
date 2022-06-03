@@ -83,4 +83,12 @@ public final class EqualsPredicateTest {
         Assertions.assertThat(new EqualsPredicate().evaluate("c", obj2, obj1)).isFalse();
     }
 
+    /**
+     * {@link EqualsPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

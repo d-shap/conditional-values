@@ -138,4 +138,12 @@ public final class LogicalOrPredicateTest {
         Assertions.assertThat(predicate4.evaluate("c", 29, new Tuple(10, 20, 15, 9))).isTrue();
     }
 
+    /**
+     * {@link LogicalOrPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

@@ -112,4 +112,12 @@ public final class EqualsIgnoreCasePredicateTest {
         }
     }
 
+    /**
+     * {@link EqualsIgnoreCasePredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

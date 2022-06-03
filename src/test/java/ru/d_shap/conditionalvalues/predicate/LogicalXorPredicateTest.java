@@ -156,4 +156,12 @@ public final class LogicalXorPredicateTest {
         Assertions.assertThat(predicate4.evaluate("c", 29, new Tuple(10, 20, 15, 9))).isFalse();
     }
 
+    /**
+     * {@link LogicalXorPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

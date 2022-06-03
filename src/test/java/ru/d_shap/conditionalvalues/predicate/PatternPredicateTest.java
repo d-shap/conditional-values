@@ -95,4 +95,12 @@ public final class PatternPredicateTest {
         }
     }
 
+    /**
+     * {@link PatternPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }

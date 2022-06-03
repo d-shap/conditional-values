@@ -83,4 +83,12 @@ public final class LogicalNotPredicateTest {
         Assertions.assertThat(new LogicalNotPredicate(new EqualsPredicate()).evaluate("c", obj2, obj1)).isTrue();
     }
 
+    /**
+     * {@link LogicalNotPredicate} class test.
+     */
+    @Test
+    public void lookupTest() {
+        // TODO
+    }
+
 }
