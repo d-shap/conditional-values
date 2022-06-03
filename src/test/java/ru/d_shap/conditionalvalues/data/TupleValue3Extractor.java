@@ -37,7 +37,11 @@ public final class TupleValue3Extractor implements ValueSetFunction {
 
     @Override
     public Object apply(final Object valueSetValue) {
-        return ((Tuple) valueSetValue).getValue3();
+        if (valueSetValue instanceof Tuple) {
+            return ((Tuple) valueSetValue).getValue3();
+        } else {
+            return null;
+        }
     }
 
 }
