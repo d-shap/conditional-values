@@ -21,6 +21,11 @@ package ru.d_shap.conditionalvalues.predicate;
 
 import org.junit.Test;
 
+import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.data.Tuple;
+import ru.d_shap.conditionalvalues.data.TupleValue1Extractor;
+import ru.d_shap.conditionalvalues.data.TupleValue2Extractor;
+
 /**
  * Tests for {@link ValueSetFunctionPredicate}.
  *
@@ -40,7 +45,26 @@ public final class ValueSetFunctionPredicateTest {
      */
     @Test
     public void evaluateTest() {
-        // TODO
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, null, null)).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, 1, null)).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, null, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, 1, new Tuple(1, 2))).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, 2, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate()).evaluate(null, 2, new Tuple(1, 2))).isTrue();
+
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("", null, null)).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("", 1, null)).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("", null, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("", 1, new Tuple(1, 2))).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("", 2, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate()).evaluate("", 2, new Tuple(1, 2))).isTrue();
+
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", null, null)).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", 1, null)).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", null, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", 1, new Tuple(1, 2))).isTrue();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", 2, new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate()).evaluate("condition", 2, new Tuple(1, 2))).isTrue();
     }
 
 }
