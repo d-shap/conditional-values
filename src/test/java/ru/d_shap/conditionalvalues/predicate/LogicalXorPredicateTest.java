@@ -22,6 +22,12 @@ package ru.d_shap.conditionalvalues.predicate;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.Predicate;
+import ru.d_shap.conditionalvalues.data.IsGreaterThenPredicate;
+import ru.d_shap.conditionalvalues.data.IsLessThenPredicate;
+import ru.d_shap.conditionalvalues.data.Tuple;
+import ru.d_shap.conditionalvalues.data.TupleValue1Extractor;
+import ru.d_shap.conditionalvalues.data.TupleValue2Extractor;
 
 /**
  * Tests for {@link LogicalXorPredicate}.
@@ -80,6 +86,28 @@ public final class LogicalXorPredicateTest {
         Assertions.assertThat(new LogicalXorPredicate(new EqualsPredicate(), new LogicalNotPredicate(new EqualsPredicate())).evaluate("condition", "value1", "value2")).isTrue();
         Assertions.assertThat(new LogicalXorPredicate(new EqualsPredicate(), new LogicalNotPredicate(new EqualsPredicate())).evaluate("condition", "value", "value")).isTrue();
         Assertions.assertThat(new LogicalXorPredicate(new EqualsPredicate(), new LogicalNotPredicate(new EqualsPredicate())).evaluate("condition", "vaLUe", "ValUE")).isTrue();
+
+        Predicate predicate1 = new LogicalXorPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()));
+        Assertions.assertThat(predicate1.evaluate("c", 1, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate1.evaluate("c", 9, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate1.evaluate("c", 10, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate1.evaluate("c", 11, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate1.evaluate("c", 15, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate1.evaluate("c", 19, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate1.evaluate("c", 20, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate1.evaluate("c", 21, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate1.evaluate("c", 29, new Tuple(10, 20))).isTrue();
+
+        Predicate predicate2 = new LogicalXorPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new LogicalNotPredicate(new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsGreaterThenPredicate())));
+        Assertions.assertThat(predicate2.evaluate("c", 1, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate2.evaluate("c", 9, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate2.evaluate("c", 10, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate2.evaluate("c", 11, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate2.evaluate("c", 15, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate2.evaluate("c", 19, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate2.evaluate("c", 20, new Tuple(10, 20))).isFalse();
+        Assertions.assertThat(predicate2.evaluate("c", 21, new Tuple(10, 20))).isTrue();
+        Assertions.assertThat(predicate2.evaluate("c", 29, new Tuple(10, 20))).isTrue();
     }
 
 }
