@@ -29,7 +29,7 @@ import ru.d_shap.conditionalvalues.predicate.WrongValueSetValueException;
  *
  * @author Dmitry Shapovalov
  */
-public class IsLessThenPredicate implements Predicate {
+public final class IsLessThenPredicate implements Predicate {
 
     /**
      * Create new object.
