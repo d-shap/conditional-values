@@ -65,6 +65,9 @@ public final class ValueSetFunctionPredicateTest {
         Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", 1, new Tuple(1, 2))).isTrue();
         Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate("condition", 2, new Tuple(1, 2))).isFalse();
         Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate()).evaluate("condition", 2, new Tuple(1, 2))).isTrue();
+
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, "value", new Tuple(1, 2))).isFalse();
+        Assertions.assertThat(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()).evaluate(null, 1, "value")).isFalse();
     }
 
 }
