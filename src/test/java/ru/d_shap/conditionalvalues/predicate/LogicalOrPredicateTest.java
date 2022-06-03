@@ -29,6 +29,7 @@ import ru.d_shap.conditionalvalues.data.Tuple;
 import ru.d_shap.conditionalvalues.data.TupleValue1Extractor;
 import ru.d_shap.conditionalvalues.data.TupleValue2Extractor;
 import ru.d_shap.conditionalvalues.data.TupleValue3Extractor;
+import ru.d_shap.conditionalvalues.data.TupleValue4Extractor;
 
 /**
  * Tests for {@link LogicalOrPredicate}.
@@ -124,6 +125,17 @@ public final class LogicalOrPredicateTest {
         Assertions.assertThat(predicate33.evaluate("c", 20, new Tuple(10, 20, 15))).isFalse();
         Assertions.assertThat(predicate33.evaluate("c", 21, new Tuple(10, 20, 15))).isTrue();
         Assertions.assertThat(predicate33.evaluate("c", 29, new Tuple(10, 20, 15))).isTrue();
+
+        Predicate predicate4 = new LogicalOrPredicate(new ValueSetFunctionPredicate(new TupleValue3Extractor(), new EqualsPredicate()), new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsLessThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue4Extractor(), new LogicalNotPredicate(new EqualsPredicate())));
+        Assertions.assertThat(predicate4.evaluate("c", 1, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 9, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 10, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 11, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 15, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 19, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 20, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 21, new Tuple(10, 20, 15, 9))).isTrue();
+        Assertions.assertThat(predicate4.evaluate("c", 29, new Tuple(10, 20, 15, 9))).isTrue();
     }
 
 }
