@@ -54,7 +54,7 @@ public final class IsLessThenPredicate implements Predicate {
     }
 
     private static int getConditionSetValueAsInt(final String conditionName, final Object conditionSetValue) {
-        if (conditionSetValue instanceof String) {
+        if (conditionSetValue instanceof Integer) {
             return (Integer) conditionSetValue;
         } else {
             throw new WrongConditionSetValueException(conditionName, conditionSetValue, Integer.class);
