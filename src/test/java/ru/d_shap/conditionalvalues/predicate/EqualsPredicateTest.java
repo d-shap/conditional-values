@@ -47,21 +47,33 @@ public final class EqualsPredicateTest {
         Assertions.assertThat(new EqualsPredicate().evaluate(null, null, "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate(null, "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate(null, "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate(null, "xxvaluexx", "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate(null, "alu", "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate(null, "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate(null, "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate(null, "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new EqualsPredicate().evaluate("", null, null)).isTrue();
         Assertions.assertThat(new EqualsPredicate().evaluate("", "value", null)).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("", null, "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("", "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate("", "xxvaluexx", "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("", "alu", "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("", "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("", "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("", "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", null, null)).isTrue();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "value", null)).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", null, "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "value1", "value2")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "value", "value")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate("condition", "xxvaluexx", "value")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("condition", "alu", "value")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new EqualsPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", 5, null)).isFalse();

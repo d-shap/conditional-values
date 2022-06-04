@@ -21,6 +21,8 @@ package ru.d_shap.conditionalvalues.predicate;
 
 import org.junit.Test;
 
+import ru.d_shap.assertions.Assertions;
+
 /**
  * Tests for {@link StringContainsPredicate}.
  *
@@ -40,7 +42,107 @@ public final class StringContainsPredicateTest {
      */
     @Test
     public void evaluateTest() {
-        // TODO
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, null, null)).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "value", null)).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, null, "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "value1", "value2")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "value", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "alu", "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate(null, "aLU", "ValUE")).isFalse();
+
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", null, null)).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "value", null)).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", null, "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "value1", "value2")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "value", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "alu", "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("", "aLU", "ValUE")).isFalse();
+
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", null, null)).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "value", null)).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", null, "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "value1", "value2")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "value", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "alu", "value")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "vaLUe", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
+
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", null, null)).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", 5, null)).isFalse();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", null, 5)).isFalse();
+        try {
+            new StringContainsPredicate().evaluate("c", 5, 5);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Integer");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", 5, 6);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Integer");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", 6, 5);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Integer");
+        }
+
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", "value", "value")).isTrue();
+        try {
+            new StringContainsPredicate().evaluate("c", new StringBuilder("value"), "value");
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongConditionSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", "value", new StringBuilder("value"));
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", new StringBuilder("value"), new StringBuilder("value"));
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
+
+        Object obj1 = new StringBuilder("value");
+        Object obj2 = new Object();
+        try {
+            new StringContainsPredicate().evaluate("c", obj1, obj1);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", obj2, obj2);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Object");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", obj1, obj2);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Object");
+        }
+        try {
+            new StringContainsPredicate().evaluate("c", obj2, obj1);
+            Assertions.fail("StringContainsPredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
     }
 
     /**
