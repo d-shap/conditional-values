@@ -23,16 +23,16 @@ import ru.d_shap.conditionalvalues.Predicate;
 
 /**
  * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * is part of the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * is case-insensitive part of the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class StringContainsPredicate implements Predicate {
+public final class StringContainsIgnoreCasePredicate implements Predicate {
 
     /**
      * Create new object.
      */
-    public StringContainsPredicate() {
+    public StringContainsIgnoreCasePredicate() {
         super();
     }
 
@@ -46,7 +46,7 @@ public final class StringContainsPredicate implements Predicate {
             } else {
                 String valueSetValueStr = getValueSetValueAsString(conditionName, valueSetValue);
                 String conditionSetValueStr = getConditionSetValueAsString(conditionName, conditionSetValue);
-                return valueSetValueStr.contains(conditionSetValueStr);
+                return containsIgnoreCase(valueSetValueStr, conditionSetValueStr);
             }
         }
     }
@@ -65,6 +65,19 @@ public final class StringContainsPredicate implements Predicate {
         } else {
             throw new WrongConditionSetValueException(conditionName, conditionSetValue, String.class);
         }
+    }
+
+    private static boolean containsIgnoreCase(final String str, final String searchStr) {
+        int searchStrLength = searchStr.length();
+        if (searchStrLength == 0) {
+            return true;
+        }
+        for (int i = str.length() - searchStrLength; i >= 0; i--) {
+            if (str.regionMatches(true, i, searchStr, 0, searchStrLength)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
