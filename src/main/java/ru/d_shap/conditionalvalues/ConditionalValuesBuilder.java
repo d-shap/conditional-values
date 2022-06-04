@@ -25,8 +25,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
-import ru.d_shap.conditionalvalues.predicate.EqualsIgnoreCasePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * <p>
@@ -105,7 +105,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return current object for the method chaining.
      */
     public ConditionalValuesBuilder<T> setEqualsIgnoreCasePredicate() {
-        _predicate = new EqualsIgnoreCasePredicate();
+        _predicate = new StringEqualsIgnoreCasePredicate();
         return this;
     }
 
