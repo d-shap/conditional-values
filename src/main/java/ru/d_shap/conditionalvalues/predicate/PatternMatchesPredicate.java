@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the whole value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
  * matches to the pattern from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
