@@ -46,7 +46,7 @@ public final class StringContainsPredicate implements Predicate {
             } else {
                 String valueSetValueStr = getValueSetValueAsString(conditionName, valueSetValue);
                 String conditionSetValueStr = getConditionSetValueAsString(conditionName, conditionSetValue);
-                return valueSetValueStr.contains(conditionSetValueStr);
+                return conditionSetValueStr.contains(valueSetValueStr);
             }
         }
     }

@@ -46,7 +46,7 @@ public final class StringContainsIgnoreCasePredicate implements Predicate {
             } else {
                 String valueSetValueStr = getValueSetValueAsString(conditionName, valueSetValue);
                 String conditionSetValueStr = getConditionSetValueAsString(conditionName, conditionSetValue);
-                return containsIgnoreCase(valueSetValueStr, conditionSetValueStr);
+                return containsIgnoreCase(conditionSetValueStr, valueSetValueStr);
             }
         }
     }
