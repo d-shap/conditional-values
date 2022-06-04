@@ -24,17 +24,17 @@ import java.util.regex.Pattern;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the whole value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * Predicate to check if the part of the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
  * matches to the pattern from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class PatternMatchesPredicate implements Predicate {
+public final class PatternFindPredicate implements Predicate {
 
     /**
      * Create new object.
      */
-    public PatternMatchesPredicate() {
+    public PatternFindPredicate() {
         super();
     }
 
@@ -48,7 +48,7 @@ public final class PatternMatchesPredicate implements Predicate {
             } else {
                 Pattern valueSetValuePtn = getValueSetValueAsPattern(conditionName, valueSetValue);
                 String conditionSetValueStr = getConditionSetValueAsString(conditionName, conditionSetValue);
-                return valueSetValuePtn.matcher(conditionSetValueStr).matches();
+                return valueSetValuePtn.matcher(conditionSetValueStr).find();
             }
         }
     }
