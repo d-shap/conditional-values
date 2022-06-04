@@ -48,9 +48,13 @@ public final class StringContainsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "value1", "value2")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "value", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "valuexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "xxvalue", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "alu", "value")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "vaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "xxvaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "vaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "xxvaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate(null, "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", null, null)).isTrue();
@@ -59,9 +63,13 @@ public final class StringContainsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "value1", "value2")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "value", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "valuexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "xxvalue", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "alu", "value")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "vaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "xxvaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "vaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "xxvaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("", "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", null, null)).isTrue();
@@ -70,9 +78,13 @@ public final class StringContainsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "value1", "value2")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "value", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "xxvaluexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "valuexx", "value")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "xxvalue", "value")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "alu", "value")).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "vaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "vaLUexx", "ValUE")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "xxvaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", null, null)).isTrue();
