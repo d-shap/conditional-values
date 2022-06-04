@@ -39,7 +39,7 @@ public final class LogicalXorPredicate implements Predicate {
      *
      * @param first  the first predicate to join with the logical operation.
      * @param second the second predicate to join with the logical operation.
-     * @param next   the next predicated to join with the logical operation.
+     * @param next   the next predicates to join with the logical operation.
      */
     public LogicalXorPredicate(final Predicate first, final Predicate second, final Predicate... next) {
         super();

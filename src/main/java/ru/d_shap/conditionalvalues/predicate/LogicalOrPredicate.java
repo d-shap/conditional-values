@@ -34,7 +34,7 @@ public final class LogicalOrPredicate implements Predicate {
      * Create new object.
      *
      * @param first the first predicate to join with the logical operation.
-     * @param next  the next predicated to join with the logical operation.
+     * @param next  the next predicates to join with the logical operation.
      */
     public LogicalOrPredicate(final Predicate first, final Predicate... next) {
         super();
