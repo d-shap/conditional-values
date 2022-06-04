@@ -23,7 +23,7 @@ import ru.d_shap.conditionalvalues.Predicate;
 
 /**
  * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * is case-insensitive part of the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * case-insensitively contains the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object as it's part.
  *
  * @author Dmitry Shapovalov
  */
