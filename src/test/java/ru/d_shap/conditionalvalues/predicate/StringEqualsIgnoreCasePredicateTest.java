@@ -66,7 +66,12 @@ public final class StringEqualsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", null, 5)).isFalse();
-        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", 5, 5)).isTrue();
+        try {
+            new StringEqualsIgnoreCasePredicate().evaluate("c", 5, 5);
+            Assertions.fail("StringEqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Integer");
+        }
         try {
             new StringEqualsIgnoreCasePredicate().evaluate("c", 5, 6);
             Assertions.fail("StringEqualsIgnoreCasePredicate test fail");
@@ -96,8 +101,18 @@ public final class StringEqualsIgnoreCasePredicateTest {
 
         Object obj1 = new StringBuilder("value");
         Object obj2 = new Object();
-        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", obj1, obj1)).isTrue();
-        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", obj2, obj2)).isTrue();
+        try {
+            new StringEqualsIgnoreCasePredicate().evaluate("c", obj1, obj1);
+            Assertions.fail("StringEqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.StringBuilder");
+        }
+        try {
+            new StringEqualsIgnoreCasePredicate().evaluate("c", obj2, obj2);
+            Assertions.fail("StringEqualsIgnoreCasePredicate test fail");
+        } catch (WrongValueSetValueException ex) {
+            Assertions.assertThat(ex).hasMessage("Condition with name c has a wrong class, expected java.lang.String, but was java.lang.Object");
+        }
         try {
             new StringEqualsIgnoreCasePredicate().evaluate("c", obj1, obj2);
             Assertions.fail("StringEqualsIgnoreCasePredicate test fail");
