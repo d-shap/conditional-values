@@ -52,6 +52,8 @@ public final class PatternMatchesPredicateTest {
         Assertions.assertThat(new PatternMatchesPredicate().evaluate(null, "xxvaluexx", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate(null, "alu", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate(null, "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate(null, "xxvaLUexx", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate(null, "aLU", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
 
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("", null, null)).isTrue();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "value", null)).isFalse();
@@ -61,6 +63,8 @@ public final class PatternMatchesPredicateTest {
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "xxvaluexx", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "alu", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "xxvaLUexx", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("", "aLU", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
 
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", null, null)).isTrue();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "value", null)).isFalse();
@@ -70,6 +74,8 @@ public final class PatternMatchesPredicateTest {
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "xxvaluexx", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "alu", Pattern.compile("value"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "vaLUe", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "xxvaLUexx", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "aLU", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
 
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", 5, null)).isFalse();
