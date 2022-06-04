@@ -75,6 +75,10 @@ public final class StringContainsPredicateTest {
         Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isFalse();
         Assertions.assertThat(new StringContainsPredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", "", "")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", "value", "")).isTrue();
+        Assertions.assertThat(new StringContainsPredicate().evaluate("c", "", "value")).isFalse();
+
         Assertions.assertThat(new StringContainsPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new StringContainsPredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new StringContainsPredicate().evaluate("c", null, 5)).isFalse();

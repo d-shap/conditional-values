@@ -87,6 +87,10 @@ public final class StringContainsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "xxvaLUe", "ValUE")).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", "", "")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", "value", "")).isTrue();
+        Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", "", "value")).isFalse();
+
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new StringContainsIgnoreCasePredicate().evaluate("c", null, 5)).isFalse();

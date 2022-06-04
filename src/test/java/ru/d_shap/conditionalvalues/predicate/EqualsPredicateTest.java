@@ -75,6 +75,10 @@ public final class EqualsPredicateTest {
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", "", "")).isTrue();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", "value", "")).isFalse();
+        Assertions.assertThat(new EqualsPredicate().evaluate("c", "", "value")).isFalse();
+
         Assertions.assertThat(new EqualsPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new EqualsPredicate().evaluate("c", null, 5)).isFalse();

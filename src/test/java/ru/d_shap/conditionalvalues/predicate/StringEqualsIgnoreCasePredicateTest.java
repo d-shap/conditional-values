@@ -75,6 +75,10 @@ public final class StringEqualsIgnoreCasePredicateTest {
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("condition", "xxvaLUexx", "ValUE")).isFalse();
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("condition", "aLU", "ValUE")).isFalse();
 
+        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", "", "")).isTrue();
+        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", "value", "")).isFalse();
+        Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", "", "value")).isFalse();
+
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new StringEqualsIgnoreCasePredicate().evaluate("c", null, 5)).isFalse();
