@@ -28,8 +28,8 @@ import org.junit.Test;
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
-import ru.d_shap.conditionalvalues.predicate.EqualsIgnoreCasePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * Tests for {@link ConditionalValues}.
@@ -409,11 +409,11 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val3");
         ValueSet<String> valueSet3 = valueSetBuilder.build();
 
-        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2, valueSet3, valueSet1));
+        ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(new StringEqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2, valueSet3, valueSet1));
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("val1", "val2", "val3");
 
-        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet3, valueSet2, valueSet1));
+        ConditionalValues<String> conditionalValues2 = new ConditionalValues<>(new StringEqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet3, valueSet2, valueSet1));
         Assertions.assertThat(conditionalValues2.getAllConditionNames()).containsExactly("cond");
         Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("val1", "val2", "val3");
 
@@ -427,7 +427,7 @@ public final class ConditionalValuesTest {
         valueSetBuilder.addValue("val6");
         ValueSet<String> valueSet6 = valueSetBuilder.build();
 
-        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2, valueSet3, valueSet4, valueSet5, valueSet6, valueSet1, valueSet3));
+        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(new StringEqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2, valueSet3, valueSet4, valueSet5, valueSet6, valueSet1, valueSet3));
         Assertions.assertThat(conditionalValues3.getAllConditionNames()).containsExactly("cond");
         Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6");
     }
@@ -544,7 +544,7 @@ public final class ConditionalValuesTest {
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val2").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "vAl2").build()).getValues()).containsExactly("val2");
 
-        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(new EqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2));
+        ConditionalValues<String> conditionalValues3 = new ConditionalValues<>(new StringEqualsIgnoreCasePredicate(), null, DataHelper.createArrayList(valueSet1, valueSet2));
         Assertions.assertThat(conditionalValues3.getAllValues()).containsExactly("val1", "val2");
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond1", "val1").build()).getValues()).containsExactly("val1");
         Assertions.assertThat(conditionalValues3.lookup(conditionSetBuilder.addCondition("cond1", "vAl1").build()).getValues()).containsExactly("val1");

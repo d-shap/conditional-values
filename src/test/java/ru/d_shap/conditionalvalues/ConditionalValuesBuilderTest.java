@@ -29,8 +29,8 @@ import org.junit.Test;
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.util.ReflectionHelper;
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
-import ru.d_shap.conditionalvalues.predicate.EqualsIgnoreCasePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * Tests for {@link ConditionalValuesBuilder}.
@@ -83,7 +83,7 @@ public final class ConditionalValuesBuilderTest {
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "vAl").build()).getValues()).containsExactly("value2");
 
-        conditionalValuesBuilder = conditionalValuesBuilder.setPredicate(new EqualsIgnoreCasePredicate());
+        conditionalValuesBuilder = conditionalValuesBuilder.setPredicate(new StringEqualsIgnoreCasePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
