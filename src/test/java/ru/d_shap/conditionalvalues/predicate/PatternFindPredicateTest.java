@@ -77,6 +77,10 @@ public final class PatternFindPredicateTest {
         Assertions.assertThat(new PatternFindPredicate().evaluate("condition", "xxvaLUexx", Pattern.compile("[vV]a[lL]U[eE]"))).isTrue();
         Assertions.assertThat(new PatternFindPredicate().evaluate("condition", "aLU", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
 
+        Assertions.assertThat(new PatternFindPredicate().evaluate("c", "", Pattern.compile(""))).isTrue();
+        Assertions.assertThat(new PatternFindPredicate().evaluate("c", "value", Pattern.compile(""))).isTrue();
+        Assertions.assertThat(new PatternFindPredicate().evaluate("c", "", Pattern.compile("value"))).isFalse();
+
         Assertions.assertThat(new PatternFindPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new PatternFindPredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new PatternFindPredicate().evaluate("c", null, 5)).isFalse();

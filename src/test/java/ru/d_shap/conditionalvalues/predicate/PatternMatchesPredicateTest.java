@@ -77,6 +77,10 @@ public final class PatternMatchesPredicateTest {
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "xxvaLUexx", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("condition", "aLU", Pattern.compile("[vV]a[lL]U[eE]"))).isFalse();
 
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", "", Pattern.compile(""))).isTrue();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", "value", Pattern.compile(""))).isFalse();
+        Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", "", Pattern.compile("value"))).isFalse();
+
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", null, null)).isTrue();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", 5, null)).isFalse();
         Assertions.assertThat(new PatternMatchesPredicate().evaluate("c", null, 5)).isFalse();
