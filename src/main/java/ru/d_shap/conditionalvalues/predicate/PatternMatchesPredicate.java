@@ -29,12 +29,12 @@ import ru.d_shap.conditionalvalues.Predicate;
  *
  * @author Dmitry Shapovalov
  */
-public final class PatternPredicate implements Predicate {
+public final class PatternMatchesPredicate implements Predicate {
 
     /**
      * Create new object.
      */
-    public PatternPredicate() {
+    public PatternMatchesPredicate() {
         super();
     }
 
