@@ -22,17 +22,17 @@ package ru.d_shap.conditionalvalues.predicate;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * is case-insensitively equal to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * is case-insensitively equal to the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class EqualsIgnoreCasePredicate implements Predicate {
+public final class StringEqualsIgnoreCasePredicate implements Predicate {
 
     /**
      * Create new object.
      */
-    public EqualsIgnoreCasePredicate() {
+    public StringEqualsIgnoreCasePredicate() {
         super();
     }
 
