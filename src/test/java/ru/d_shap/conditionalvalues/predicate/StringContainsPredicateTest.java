@@ -22,6 +22,11 @@ package ru.d_shap.conditionalvalues.predicate;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.ConditionSetBuilder;
+import ru.d_shap.conditionalvalues.ConditionalValues;
+import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.ValueSetBuilder;
+import ru.d_shap.conditionalvalues.Values;
 
 /**
  * Tests for {@link StringContainsPredicate}.
@@ -154,7 +159,44 @@ public final class StringContainsPredicateTest {
      */
     @Test
     public void lookupTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setPredicate(new StringContainsPredicate());
+        valueSetBuilder.addCondition("cond", "value1");
+        valueSetBuilder.addCondition("cond", "value2");
+        valueSetBuilder.addCondition("cond", "value3");
+        valueSetBuilder.addValue("first 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", "value4");
+        valueSetBuilder.addCondition("cond", "value5");
+        valueSetBuilder.addCondition("cond", "value6");
+        valueSetBuilder.addValue("next 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", "value7");
+        valueSetBuilder.addCondition("cond", "value8");
+        valueSetBuilder.addCondition("cond", "value9");
+        valueSetBuilder.addValue("last 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
+        ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
+
+        conditionSetBuilder.addCondition("cond", "some value2");
+        Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values1.getValues()).containsExactly("first 3 values");
+
+        conditionSetBuilder.addCondition("cond", "value4 is the best");
+        Values<String> values2 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values2.getValues()).containsExactly("next 3 values");
+
+        conditionSetBuilder.addCondition("cond", "value6 value7");
+        Values<String> values3 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values3.getValues()).containsExactly("next 3 values", "last 3 values");
+
+        conditionSetBuilder.addCondition("cond", "Am I a value8, right?");
+        Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values4.getValues()).containsExactly("last 3 values");
     }
 
 }
