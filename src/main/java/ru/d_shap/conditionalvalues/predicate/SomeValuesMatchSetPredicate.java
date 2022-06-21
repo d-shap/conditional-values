@@ -24,6 +24,12 @@ import java.util.Set;
 import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.SetPredicate;
 
+/**
+ * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * matches the specified number of values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ *
+ * @author Dmitry Shapovalov
+ */
 public final class SomeValuesMatchSetPredicate implements SetPredicate {
 
     private final int _matchCount;
