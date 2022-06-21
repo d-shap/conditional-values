@@ -138,6 +138,10 @@ public final class LogicalNotPredicateTest {
         conditionSetBuilder.addCondition("cond", 98);
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("first 3 values", "next 3 values");
+
+        conditionSetBuilder.addCondition("cond", 5);
+        Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values5.getValues()).containsExactly("first 3 values", "next 3 values", "last 3 values");
     }
 
 }

@@ -161,6 +161,10 @@ public final class PatternMatchesPredicateTest {
         conditionSetBuilder.addCondition("cond", "eeefdfsfff");
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("first 3 values", "next 3 values", "last 3 values");
+
+        conditionSetBuilder.addCondition("cond", "xxx");
+        Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values5.getValues()).containsExactly();
     }
 
 }

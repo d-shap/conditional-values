@@ -187,6 +187,10 @@ public final class LogicalOrPredicateTest {
         conditionSetBuilder.addCondition("cond", 89);
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("last 3 values");
+
+        conditionSetBuilder.addCondition("cond", 5);
+        Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values5.getValues()).containsExactly();
     }
 
 }

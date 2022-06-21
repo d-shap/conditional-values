@@ -199,6 +199,10 @@ public final class StringEqualsIgnoreCasePredicateTest {
         conditionSetBuilder.addCondition("cond", "valUE8");
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("last 3 values");
+
+        conditionSetBuilder.addCondition("cond", "xxx");
+        Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values5.getValues()).containsExactly();
     }
 
 }

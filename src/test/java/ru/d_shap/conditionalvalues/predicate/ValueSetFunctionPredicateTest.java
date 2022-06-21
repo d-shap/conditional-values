@@ -120,6 +120,10 @@ public final class ValueSetFunctionPredicateTest {
         conditionSetBuilder.addCondition("cond", 8);
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("last 3 values");
+
+        conditionSetBuilder.addCondition("cond", 10);
+        Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values5.getValues()).containsExactly();
     }
 
 }
