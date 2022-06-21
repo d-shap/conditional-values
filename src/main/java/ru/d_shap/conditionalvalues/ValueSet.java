@@ -149,7 +149,6 @@ public final class ValueSet<T> {
             Set<Object> valueSetValues = _conditions.get(conditionName);
             if (valueSetValues != null && setPredicate.evaluate(conditionName, predicate, conditionSetValue, valueSetValues)) {
                 matchCount++;
-                break;
             }
         }
         return matchCount == _conditions.size();
