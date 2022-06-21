@@ -144,7 +144,7 @@ public final class PatternFindPredicateTest {
 
         ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 
-        conditionSetBuilder.addCondition("cond", "cc ab sdfdsf");
+        conditionSetBuilder.addCondition("cond", "cc ab sxfxsf");
         Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values1.getValues()).containsExactly("first 3 values");
 
