@@ -22,6 +22,7 @@ package ru.d_shap.conditionalvalues;
 /**
  * Predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
  * in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+ * Predicate matches the single value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
