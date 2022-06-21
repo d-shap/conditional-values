@@ -137,7 +137,7 @@ public final class ValueSet<T> {
         }
     }
 
-    boolean isMatchConditions(final ConditionSet conditionSet, final Predicate predicate) {
+    boolean isMatchConditions(final ConditionSet conditionSet, final SetPredicate setPredicate, final Predicate predicate) {
         if (conditionSet == null || predicate == null) {
             return false;
         }
@@ -147,13 +147,9 @@ public final class ValueSet<T> {
             String conditionName = conditionNameIterator.next();
             Object conditionSetValue = conditionSet.getValue(conditionName);
             Set<Object> valueSetValues = _conditions.get(conditionName);
-            if (valueSetValues != null) {
-                for (Object valueSetValue : valueSetValues) {
-                    if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
-                        matchCount++;
-                        break;
-                    }
-                }
+            if (valueSetValues != null && setPredicate.evaluate(conditionName, predicate, conditionSetValue, valueSetValues)) {
+                matchCount++;
+                break;
             }
         }
         return matchCount == _conditions.size();

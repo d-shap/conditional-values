@@ -46,6 +46,8 @@ import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
  */
 public final class ConditionalValuesBuilder<T> {
 
+    private SetPredicate _setPredicate;
+
     private Predicate _predicate;
 
     private Comparator<T> _comparator;
@@ -54,6 +56,7 @@ public final class ConditionalValuesBuilder<T> {
 
     private ConditionalValuesBuilder() {
         super();
+        _setPredicate = null;
         _predicate = null;
         _comparator = null;
         _valueSets = new ArrayList<>();
@@ -68,6 +71,19 @@ public final class ConditionalValuesBuilder<T> {
      */
     public static <T> ConditionalValuesBuilder<T> newInstance() {
         return new ConditionalValuesBuilder<>();
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @param setPredicate the set predicate.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setSetPredicate(final SetPredicate setPredicate) {
+        _setPredicate = setPredicate;
+        return this;
     }
 
     /**
@@ -165,6 +181,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return current object for the method chaining.
      */
     public ConditionalValuesBuilder<T> clear() {
+        _setPredicate = null;
         _predicate = null;
         _comparator = null;
         _valueSets.clear();
@@ -188,7 +205,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object, populated with values, added to this builder.
      */
     public ConditionalValues<T> build(final boolean clear) {
-        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_predicate, _comparator, _valueSets);
+        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_setPredicate, _predicate, _comparator, _valueSets);
         if (clear) {
             clear();
         }
