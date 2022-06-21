@@ -22,6 +22,16 @@ package ru.d_shap.conditionalvalues.predicate;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.ConditionSetBuilder;
+import ru.d_shap.conditionalvalues.ConditionalValues;
+import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.ValueSetBuilder;
+import ru.d_shap.conditionalvalues.Values;
+import ru.d_shap.conditionalvalues.data.IsGreaterThenPredicate;
+import ru.d_shap.conditionalvalues.data.IsLessThenPredicate;
+import ru.d_shap.conditionalvalues.data.Tuple;
+import ru.d_shap.conditionalvalues.data.TupleValue1Extractor;
+import ru.d_shap.conditionalvalues.data.TupleValue2Extractor;
 
 /**
  * Tests for {@link LogicalNotPredicate}.
@@ -88,7 +98,44 @@ public final class LogicalNotPredicateTest {
      */
     @Test
     public void lookupTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setPredicate(new LogicalNotPredicate(new LogicalAndPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()))));
+        valueSetBuilder.addCondition("cond", new Tuple(10, 39));
+        valueSetBuilder.addCondition("cond", new Tuple(20, 39));
+        valueSetBuilder.addCondition("cond", new Tuple(30, 39));
+        valueSetBuilder.addValue("first 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", new Tuple(40, 69));
+        valueSetBuilder.addCondition("cond", new Tuple(50, 69));
+        valueSetBuilder.addCondition("cond", new Tuple(60, 69));
+        valueSetBuilder.addValue("next 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", new Tuple(70, 99));
+        valueSetBuilder.addCondition("cond", new Tuple(80, 99));
+        valueSetBuilder.addCondition("cond", new Tuple(90, 99));
+        valueSetBuilder.addValue("last 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
+        ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
+
+        conditionSetBuilder.addCondition("cond", 37);
+        Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values1.getValues()).containsExactly("next 3 values", "last 3 values");
+
+        conditionSetBuilder.addCondition("cond", 45);
+        Values<String> values2 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values2.getValues()).containsExactly("first 3 values", "next 3 values", "last 3 values");
+
+        conditionSetBuilder.addCondition("cond", 63);
+        Values<String> values3 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values3.getValues()).containsExactly("first 3 values", "last 3 values");
+
+        conditionSetBuilder.addCondition("cond", 98);
+        Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values4.getValues()).containsExactly("first 3 values", "next 3 values");
     }
 
 }
