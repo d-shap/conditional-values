@@ -22,7 +22,12 @@ package ru.d_shap.conditionalvalues.predicate;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.ConditionSetBuilder;
+import ru.d_shap.conditionalvalues.ConditionalValues;
+import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
 import ru.d_shap.conditionalvalues.Predicate;
+import ru.d_shap.conditionalvalues.ValueSetBuilder;
+import ru.d_shap.conditionalvalues.Values;
 import ru.d_shap.conditionalvalues.data.IsGreaterThenPredicate;
 import ru.d_shap.conditionalvalues.data.IsLessThenPredicate;
 import ru.d_shap.conditionalvalues.data.Tuple;
@@ -143,7 +148,44 @@ public final class LogicalOrPredicateTest {
      */
     @Test
     public void lookupTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setPredicate(new LogicalOrPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate())));
+        valueSetBuilder.addCondition("cond", new Tuple(10, 19));
+        valueSetBuilder.addCondition("cond", new Tuple(20, 29));
+        valueSetBuilder.addCondition("cond", new Tuple(30, 39));
+        valueSetBuilder.addValue("first 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", new Tuple(40, 49));
+        valueSetBuilder.addCondition("cond", new Tuple(50, 59));
+        valueSetBuilder.addCondition("cond", new Tuple(60, 69));
+        valueSetBuilder.addValue("next 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond", new Tuple(70, 79));
+        valueSetBuilder.addCondition("cond", new Tuple(80, 89));
+        valueSetBuilder.addCondition("cond", new Tuple(90, 99));
+        valueSetBuilder.addValue("last 3 values");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
+        ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
+
+        conditionSetBuilder.addCondition("cond", 20);
+        Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values1.getValues()).containsExactly("first 3 values");
+
+        conditionSetBuilder.addCondition("cond", 49);
+        Values<String> values2 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values2.getValues()).containsExactly("next 3 values");
+
+        conditionSetBuilder.addCondition("cond", 60);
+        Values<String> values3 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values3.getValues()).containsExactly("next 3 values");
+
+        conditionSetBuilder.addCondition("cond", 89);
+        Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values4.getValues()).containsExactly("last 3 values");
     }
 
 }
