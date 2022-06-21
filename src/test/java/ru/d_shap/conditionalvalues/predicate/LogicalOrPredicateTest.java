@@ -152,7 +152,8 @@ public final class LogicalOrPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new LogicalOrPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate())));
+        Predicate predicate = new LogicalOrPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new EqualsPredicate()));
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", new Tuple(10, 19));
         valueSetBuilder.addCondition("cond", new Tuple(20, 29));
         valueSetBuilder.addCondition("cond", new Tuple(30, 39));

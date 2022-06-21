@@ -25,6 +25,7 @@ import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
 import ru.d_shap.conditionalvalues.Values;
 
@@ -163,7 +164,8 @@ public final class StringContainsPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new StringContainsPredicate());
+        Predicate predicate = new StringContainsPredicate();
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", "value1");
         valueSetBuilder.addCondition("cond", "value2");
         valueSetBuilder.addCondition("cond", "value3");

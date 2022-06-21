@@ -25,6 +25,7 @@ import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
 import ru.d_shap.conditionalvalues.Values;
 import ru.d_shap.conditionalvalues.data.IsGreaterThenPredicate;
@@ -102,7 +103,8 @@ public final class LogicalNotPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new LogicalNotPredicate(new LogicalAndPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()))));
+        Predicate predicate = new LogicalNotPredicate(new LogicalAndPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate())));
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", new Tuple(10, 39));
         valueSetBuilder.addCondition("cond", new Tuple(20, 39));
         valueSetBuilder.addCondition("cond", new Tuple(30, 39));

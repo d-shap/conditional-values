@@ -25,6 +25,7 @@ import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
 import ru.d_shap.conditionalvalues.Values;
 import ru.d_shap.conditionalvalues.data.Tuple;
@@ -84,7 +85,8 @@ public final class ValueSetFunctionPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate()));
+        Predicate predicate = new ValueSetFunctionPredicate(new TupleValue1Extractor(), new EqualsPredicate());
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", new Tuple(1, 500));
         valueSetBuilder.addCondition("cond", new Tuple(2, 500));
         valueSetBuilder.addCondition("cond", new Tuple(3, 500));

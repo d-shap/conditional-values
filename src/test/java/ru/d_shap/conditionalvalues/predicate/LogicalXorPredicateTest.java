@@ -170,7 +170,8 @@ public final class LogicalXorPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new LogicalXorPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate())));
+        Predicate predicate = new LogicalXorPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new IsGreaterThenPredicate()), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()));
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", new Tuple(10, 39));
         valueSetBuilder.addCondition("cond", new Tuple(20, 39));
         valueSetBuilder.addCondition("cond", new Tuple(30, 39));

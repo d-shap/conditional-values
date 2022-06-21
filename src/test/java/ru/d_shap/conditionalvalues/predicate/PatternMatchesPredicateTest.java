@@ -27,6 +27,7 @@ import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
 import ru.d_shap.conditionalvalues.Values;
 
@@ -125,7 +126,8 @@ public final class PatternMatchesPredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new PatternMatchesPredicate());
+        Predicate predicate = new PatternMatchesPredicate();
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", Pattern.compile("a.*b"));
         valueSetBuilder.addCondition("cond", Pattern.compile("c.*d"));
         valueSetBuilder.addCondition("cond", Pattern.compile("e.*f"));

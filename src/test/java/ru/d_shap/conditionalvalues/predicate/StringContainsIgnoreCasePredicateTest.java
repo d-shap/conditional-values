@@ -25,6 +25,7 @@ import ru.d_shap.assertions.Assertions;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
 import ru.d_shap.conditionalvalues.Values;
 
@@ -175,7 +176,8 @@ public final class StringContainsIgnoreCasePredicateTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setPredicate(new StringContainsIgnoreCasePredicate());
+        Predicate predicate = new StringContainsIgnoreCasePredicate();
+        conditionalValuesBuilder.setPredicate(predicate);
         valueSetBuilder.addCondition("cond", "Value1");
         valueSetBuilder.addCondition("cond", "vAlue2");
         valueSetBuilder.addCondition("cond", "vaLue3");
