@@ -32,16 +32,20 @@ import ru.d_shap.conditionalvalues.SetPredicate;
  */
 public final class SomeValuesMatchSetPredicate implements SetPredicate {
 
-    private final int _matchCount;
+    private final int _matchCountMin;
+
+    private final int _matchCountMax;
 
     /**
      * Create new object.
      *
-     * @param matchCount the minimum number of matches.
+     * @param matchCountMin the minimum number of matches.
+     * @param matchCountMax the minimum number of matches.
      */
-    public SomeValuesMatchSetPredicate(final int matchCount) {
+    public SomeValuesMatchSetPredicate(final int matchCountMin, final int matchCountMax) {
         super();
-        _matchCount = matchCount;
+        _matchCountMin = matchCountMin;
+        _matchCountMax = matchCountMax;
     }
 
     @Override
@@ -51,13 +55,10 @@ public final class SomeValuesMatchSetPredicate implements SetPredicate {
             for (Object valueSetValue : valueSetValues) {
                 if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
                     matchCount++;
-                    if (matchCount == _matchCount) {
-                        return true;
-                    }
                 }
             }
         }
-        return false;
+        return matchCount > 0 && matchCount >= _matchCountMin && matchCount <= _matchCountMax;
     }
 
 }
