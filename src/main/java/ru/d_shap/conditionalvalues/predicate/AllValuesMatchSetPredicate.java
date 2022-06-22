@@ -42,10 +42,12 @@ public final class AllValuesMatchSetPredicate implements SetPredicate {
     @Override
     public boolean evaluate(final String conditionName, final Predicate predicate, final Object conditionSetValue, final Set<Object> valueSetValues) {
         boolean hasValues = false;
-        for (Object valueSetValue : valueSetValues) {
-            hasValues = true;
-            if (!predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
-                return false;
+        if (predicate != null && valueSetValues != null) {
+            for (Object valueSetValue : valueSetValues) {
+                hasValues = true;
+                if (!predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
+                    return false;
+                }
             }
         }
         return hasValues;
