@@ -47,11 +47,13 @@ public final class SomeValuesMatchSetPredicate implements SetPredicate {
     @Override
     public boolean evaluate(final String conditionName, final Predicate predicate, final Object conditionSetValue, final Set<Object> valueSetValues) {
         int matchCount = 0;
-        for (Object valueSetValue : valueSetValues) {
-            if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
-                matchCount++;
-                if (matchCount == _matchCount) {
-                    return true;
+        if (predicate != null && valueSetValues != null) {
+            for (Object valueSetValue : valueSetValues) {
+                if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
+                    matchCount++;
+                    if (matchCount == _matchCount) {
+                        return true;
+                    }
                 }
             }
         }
