@@ -21,6 +21,9 @@ package ru.d_shap.conditionalvalues.predicate;
 
 import org.junit.Test;
 
+import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.util.DataHelper;
+
 /**
  * Tests for {@link AnyValueMatchesSetPredicate}.
  *
@@ -40,7 +43,52 @@ public final class AnyValueMatchesSetPredicateTest {
      */
     @Test
     public void evaluateTest() {
-        // TODO
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, null, null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, null, "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, null, null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, null, "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, null, "value", DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, new StringContainsPredicate(), null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, new StringContainsPredicate(), "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, new StringContainsPredicate(), null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, new StringContainsPredicate(), "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate(null, new StringContainsPredicate(), "value", DataHelper.createHashSet((Object) "value"))).isTrue();
+
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", null, null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", null, "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", null, null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", null, "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", null, "value", DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "value", DataHelper.createHashSet((Object) "value"))).isTrue();
+
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", null, null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", null, "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", null, null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", null, "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", null, "value", DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", new StringContainsPredicate(), null, null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", new StringContainsPredicate(), "value", null)).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", new StringContainsPredicate(), null, DataHelper.createHashSet((Object) "value"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", new StringContainsPredicate(), "value1", DataHelper.createHashSet((Object) "value2"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("condition", new StringContainsPredicate(), "value", DataHelper.createHashSet((Object) "value"))).isTrue();
+
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xxxvaluexxx", DataHelper.createHashSet((Object) "value"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "valuexxx", DataHelper.createHashSet((Object) "value"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xxxvalue", DataHelper.createHashSet((Object) "value"))).isTrue();
+
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "val", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isFalse();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xval", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "yval", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "zval", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isTrue();
+
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new AnyValueMatchesSetPredicate().evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
     }
 
     /**
