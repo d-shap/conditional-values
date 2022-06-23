@@ -58,7 +58,7 @@ public final class SomeValuesMatchSetPredicate implements SetPredicate {
                 }
             }
         }
-        boolean minCountValid = _matchCountMin < 0 || matchCount >= _matchCountMin;
+        boolean minCountValid = matchCount >= _matchCountMin;
         boolean maxCountValid = _matchCountMax < 0 || matchCount <= _matchCountMax;
         return matchCount > 0 && minCountValid && maxCountValid;
     }
