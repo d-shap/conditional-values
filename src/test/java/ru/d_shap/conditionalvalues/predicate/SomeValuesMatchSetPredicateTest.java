@@ -230,26 +230,155 @@ public final class SomeValuesMatchSetPredicateTest {
         Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "yval", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isFalse();
         Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "zval", DataHelper.createHashSet((Object) "xval", "yval", "zval"))).isFalse();
 
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 5).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 5).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 5).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, -1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, -1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, -1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, -1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 0).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 0).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 0).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 0).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 2).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 2).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 2).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 2).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 3).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 3).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 3).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 3).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 4).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 4).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 4).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
         Assertions.assertThat(new SomeValuesMatchSetPredicate(-1, 5).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 5).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 5).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 5).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 5).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 5).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 5).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 5).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 5).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 5).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 5).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 5).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 5).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 5).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 5).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 5).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
-        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 5).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, -1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, -1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, -1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, -1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 0).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 0).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 0).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 0).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 2).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 2).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 2).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 2).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 3).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 3).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 3).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 3).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 4).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 4).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 4).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(0, 4).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, -1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, -1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, -1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, -1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 0).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 0).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 0).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 0).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 2).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 2).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 2).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 2).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 3).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 3).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 3).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 3).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 4).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 4).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 4).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(1, 4).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, -1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, -1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, -1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, -1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 0).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 0).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 0).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 0).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 2).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 2).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 2).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 2).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 3).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 3).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 3).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 3).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 4).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 4).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 4).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(2, 4).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, -1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, -1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, -1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, -1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 0).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 0).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 0).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 0).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 1).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 1).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 1).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 1).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 2).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 2).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 2).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 2).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 3).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 3).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 3).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 3).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "xx valx valy valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isTrue();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "xx valx xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "xx valy xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
+        Assertions.assertThat(new SomeValuesMatchSetPredicate(3, 4).evaluate("", new StringContainsPredicate(), "xx valz xxx", DataHelper.createHashSet((Object) "valx", "valy", "valz"))).isFalse();
     }
 
     /**
