@@ -28,7 +28,7 @@ import java.util.Set;
  *
  * @author Dmitry Shapovalov
  */
-public interface SetPredicate {
+public interface TuplePredicate {
 
     /**
      * Evaluate the predicate for the specified values from the {@link ru.d_shap.conditionalvalues.ValueSet}
