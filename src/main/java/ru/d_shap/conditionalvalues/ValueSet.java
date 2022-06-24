@@ -28,8 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
-
 /**
  * Class represents a distinct condition with a corresponding values for this condition.
  *
@@ -63,19 +61,11 @@ public final class ValueSet<T> {
     public ValueSet(final String id, final Predicate predicate, final Map<String, Predicate> predicates, final Map<String, Set<Object>> conditions, final Set<T> values) {
         super();
         _id = id;
-        _predicate = createPredicate(predicate);
+        _predicate = predicate;
         _predicates = createPredicates(predicates);
         _conditions = createConditions(conditions);
         _conditionNames = createConditionNames();
         _values = createValues(values);
-    }
-
-    private Predicate createPredicate(final Predicate predicate) {
-        if (predicate == null) {
-            return new EqualsPredicate();
-        } else {
-            return predicate;
-        }
     }
 
     private Map<String, Predicate> createPredicates(final Map<String, Predicate> predicates) {
@@ -180,7 +170,7 @@ public final class ValueSet<T> {
             Predicate conditionPredicate = getConditionPredicate(conditionName, predicates, predicate);
             Object conditionSetValue = conditionSet.getValue(conditionName);
             Set<Object> valueSetValues = _conditions.get(conditionName);
-            if (valueSetValues == null || conditionPredicate == null) {
+            if (conditionPredicate == null || valueSetValues == null) {
                 continue;
             }
             if (tuplePredicate.evaluate(conditionName, conditionPredicate, conditionSetValue, valueSetValues)) {
