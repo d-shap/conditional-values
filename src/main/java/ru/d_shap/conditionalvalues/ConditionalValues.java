@@ -22,9 +22,11 @@ package ru.d_shap.conditionalvalues;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
@@ -45,6 +47,8 @@ public final class ConditionalValues<T> {
 
     private final Predicate _predicate;
 
+    private final Map<String, Predicate> _predicates;
+
     private final Comparator<T> _comparator;
 
     private final List<ValueSet<T>> _valueSets;
@@ -55,14 +59,16 @@ public final class ConditionalValues<T> {
      * Create new object.
      *
      * @param tuplePredicate the tuple predicate.
-     * @param predicate      the predicate.
+     * @param predicate      the default predicate.
+     * @param predicates     the predicates for the conditions.
      * @param comparator     the comparator to sort all values.
      * @param valueSets      the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
-    public ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
+    public ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Map<String, Predicate> predicates, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
         _tuplePredicate = createTuplePredicate(tuplePredicate);
         _predicate = createPredicate(predicate);
+        _predicates = createPredicates(predicates);
         _comparator = comparator;
         _valueSets = createValueSets(valueSets);
         _allValues = createAllValues();
@@ -82,6 +88,20 @@ public final class ConditionalValues<T> {
         } else {
             return predicate;
         }
+    }
+
+    private Map<String, Predicate> createPredicates(final Map<String, Predicate> predicates) {
+        Map<String, Predicate> result = new HashMap<>();
+        if (predicates != null) {
+            for (Map.Entry<String, Predicate> entry : predicates.entrySet()) {
+                String key = entry.getKey();
+                Predicate predicate = entry.getValue();
+                if (key != null && predicate != null) {
+                    result.put(key, predicate);
+                }
+            }
+        }
+        return result;
     }
 
     private List<ValueSet<T>> createValueSets(final List<ValueSet<T>> valueSets) {
@@ -186,7 +206,7 @@ public final class ConditionalValues<T> {
         Set<ValueSet<T>> result = new HashSet<>();
         if (conditionSet != null) {
             for (ValueSet<T> valueSet : _valueSets) {
-                if (valueSet.isMatchConditions(conditionSet, _tuplePredicate, _predicate)) {
+                if (valueSet.isMatchConditions(conditionSet, _tuplePredicate, _predicates, _predicate)) {
                     result.add(valueSet);
                 }
             }
