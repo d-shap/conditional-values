@@ -56,7 +56,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -69,7 +70,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -82,7 +84,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -95,7 +98,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -108,7 +112,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -121,7 +126,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -134,7 +140,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -147,7 +154,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the set. An old value is replaced by the new one.
+     * Add contition to the condition set.
+     * An old value is replaced by the new one.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -160,8 +168,8 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the set.
-     * Old value are replaced by the new ones.
+     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the condition set.
+     * Old values are replaced by the new ones.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
@@ -186,7 +194,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -199,7 +207,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -212,7 +220,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -225,7 +233,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -238,7 +246,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -251,7 +259,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -264,7 +272,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -277,7 +285,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -290,7 +298,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the set.
+     * Remove contition from the condition set.
      *
      * @param name condition name.
      *
@@ -303,7 +311,7 @@ public final class ConditionSetBuilder {
 
     /**
      * Remove all conditions with the names obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the condition set.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
@@ -322,7 +330,7 @@ public final class ConditionSetBuilder {
 
     /**
      * Remove all conditions with the names and values obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the set.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the condition set.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
