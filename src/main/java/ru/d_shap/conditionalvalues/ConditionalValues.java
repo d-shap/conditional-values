@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesSetPredicate;
+import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
@@ -41,7 +41,7 @@ import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
  */
 public final class ConditionalValues<T> {
 
-    private final SetPredicate _setPredicate;
+    private final TuplePredicate _tuplePredicate;
 
     private final Predicate _predicate;
 
@@ -54,25 +54,25 @@ public final class ConditionalValues<T> {
     /**
      * Create new object.
      *
-     * @param setPredicate the set predicate.
-     * @param predicate    the predicate.
-     * @param comparator   the comparator to sort all values.
-     * @param valueSets    the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     * @param tuplePredicate the tuple predicate.
+     * @param predicate      the predicate.
+     * @param comparator     the comparator to sort all values.
+     * @param valueSets      the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
-    public ConditionalValues(final SetPredicate setPredicate, final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
+    public ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
-        _setPredicate = createSetPredicate(setPredicate);
+        _tuplePredicate = createTuplePredicate(tuplePredicate);
         _predicate = createPredicate(predicate);
         _comparator = comparator;
         _valueSets = createValueSets(valueSets);
         _allValues = createAllValues();
     }
 
-    private SetPredicate createSetPredicate(final SetPredicate setPredicate) {
-        if (setPredicate == null) {
-            return new AnyValueMatchesSetPredicate();
+    private TuplePredicate createTuplePredicate(final TuplePredicate tuplePredicate) {
+        if (tuplePredicate == null) {
+            return new AnyValueMatchesTuplePredicate();
         } else {
-            return setPredicate;
+            return tuplePredicate;
         }
     }
 
@@ -186,7 +186,7 @@ public final class ConditionalValues<T> {
         Set<ValueSet<T>> result = new HashSet<>();
         if (conditionSet != null) {
             for (ValueSet<T> valueSet : _valueSets) {
-                if (valueSet.isMatchConditions(conditionSet, _setPredicate, _predicate)) {
+                if (valueSet.isMatchConditions(conditionSet, _tuplePredicate, _predicate)) {
                     result.add(valueSet);
                 }
             }

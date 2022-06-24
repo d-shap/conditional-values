@@ -46,7 +46,7 @@ import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
  */
 public final class ConditionalValuesBuilder<T> {
 
-    private SetPredicate _setPredicate;
+    private TuplePredicate _tuplePredicate;
 
     private Predicate _predicate;
 
@@ -56,7 +56,7 @@ public final class ConditionalValuesBuilder<T> {
 
     private ConditionalValuesBuilder() {
         super();
-        _setPredicate = null;
+        _tuplePredicate = null;
         _predicate = null;
         _comparator = null;
         _valueSets = new ArrayList<>();
@@ -77,12 +77,12 @@ public final class ConditionalValuesBuilder<T> {
      * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
      * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param setPredicate the set predicate.
+     * @param tuplePredicate the tuple predicate.
      *
      * @return current object for the method chaining.
      */
-    public ConditionalValuesBuilder<T> setSetPredicate(final SetPredicate setPredicate) {
-        _setPredicate = setPredicate;
+    public ConditionalValuesBuilder<T> setTuplePredicate(final TuplePredicate tuplePredicate) {
+        _tuplePredicate = tuplePredicate;
         return this;
     }
 
@@ -181,7 +181,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return current object for the method chaining.
      */
     public ConditionalValuesBuilder<T> clear() {
-        _setPredicate = null;
+        _tuplePredicate = null;
         _predicate = null;
         _comparator = null;
         _valueSets.clear();
@@ -205,7 +205,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object, populated with values, added to this builder.
      */
     public ConditionalValues<T> build(final boolean clear) {
-        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_setPredicate, _predicate, _comparator, _valueSets);
+        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_tuplePredicate, _predicate, _comparator, _valueSets);
         if (clear) {
             clear();
         }
