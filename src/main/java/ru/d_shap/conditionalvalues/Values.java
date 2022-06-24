@@ -155,7 +155,7 @@ public final class Values<T> {
      *
      * @return true, if all values contain the specified value.
      */
-    public boolean allValuesContains(final T value) {
+    public boolean allValuesContain(final T value) {
         return _allValues.contains(value);
     }
 
@@ -192,13 +192,37 @@ public final class Values<T> {
      * Perform the specified action for each value in this object.
      *
      * @param action the specified action.
+     *
+     * @return current object for the method chaining.
      */
-    public void performAction(final Action<T> action) {
+    public Values<T> performAction(final Action<T> action) {
         if (action != null) {
             for (T value : _values) {
                 action.perform(value);
             }
         }
+        return this;
+    }
+
+    /**
+     * Perform the specified actions for each value in this object.
+     *
+     * @param actions the specified actions.
+     *
+     * @return current object for the method chaining.
+     */
+    @SafeVarargs
+    public final Values<T> performAction(final Action<T>... actions) {
+        if (actions != null) {
+            for (T value : _values) {
+                for (Action<T> action : actions) {
+                    if (action != null) {
+                        action.perform(value);
+                    }
+                }
+            }
+        }
+        return this;
     }
 
     @Override
