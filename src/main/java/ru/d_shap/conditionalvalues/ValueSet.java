@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+
 /**
  * Class represents a distinct condition with a corresponding values for this condition.
  *
@@ -39,6 +41,10 @@ public final class ValueSet<T> {
 
     private final String _id;
 
+    private final Predicate _predicate;
+
+    private final Map<String, Predicate> _predicates;
+
     private final Map<String, Set<Object>> _conditions;
 
     private final Set<String> _conditionNames;
@@ -49,15 +55,41 @@ public final class ValueSet<T> {
      * Create new object.
      *
      * @param id         the ID of the value set.
+     * @param predicate  the default predicate.
+     * @param predicates the predicates for the conditions.
      * @param conditions the conditions of the value set.
      * @param values     the values of the value set.
      */
-    public ValueSet(final String id, final Map<String, Set<Object>> conditions, final Set<T> values) {
+    public ValueSet(final String id, final Predicate predicate, final Map<String, Predicate> predicates, final Map<String, Set<Object>> conditions, final Set<T> values) {
         super();
         _id = id;
+        _predicate = createPredicate(predicate);
+        _predicates = createPredicates(predicates);
         _conditions = createConditions(conditions);
         _conditionNames = createConditionNames();
         _values = createValues(values);
+    }
+
+    private Predicate createPredicate(final Predicate predicate) {
+        if (predicate == null) {
+            return new EqualsPredicate();
+        } else {
+            return predicate;
+        }
+    }
+
+    private Map<String, Predicate> createPredicates(final Map<String, Predicate> predicates) {
+        Map<String, Predicate> result = new HashMap<>();
+        if (predicates != null) {
+            for (Map.Entry<String, Predicate> entry : predicates.entrySet()) {
+                String key = entry.getKey();
+                Predicate predicate = entry.getValue();
+                if (key != null && predicate != null) {
+                    result.put(key, predicate);
+                }
+            }
+        }
+        return result;
     }
 
     private Map<String, Set<Object>> createConditions(final Map<String, Set<Object>> conditions) {
@@ -137,21 +169,42 @@ public final class ValueSet<T> {
         }
     }
 
-    boolean isMatchConditions(final ConditionSet conditionSet, final TuplePredicate tuplePredicate, final Predicate predicate) {
-        if (conditionSet == null || predicate == null) {
+    boolean isMatchConditions(final ConditionSet conditionSet, final TuplePredicate tuplePredicate, final Map<String, Predicate> predicates, final Predicate predicate) {
+        if (conditionSet == null) {
             return false;
         }
         int matchCount = 0;
         Iterator<String> conditionNameIterator = conditionSet.nameIterator();
         while (conditionNameIterator.hasNext()) {
             String conditionName = conditionNameIterator.next();
+            Predicate conditionPredicate = getConditionPredicate(conditionName, predicates, predicate);
             Object conditionSetValue = conditionSet.getValue(conditionName);
             Set<Object> valueSetValues = _conditions.get(conditionName);
-            if (valueSetValues != null && tuplePredicate.evaluate(conditionName, predicate, conditionSetValue, valueSetValues)) {
+            if (valueSetValues == null || conditionPredicate == null) {
+                continue;
+            }
+            if (tuplePredicate.evaluate(conditionName, conditionPredicate, conditionSetValue, valueSetValues)) {
                 matchCount++;
             }
         }
         return matchCount == _conditions.size();
+    }
+
+    private Predicate getConditionPredicate(final String conditionName, final Map<String, Predicate> predicates, final Predicate predicate) {
+        Predicate valueSetPredicate = _predicates.get(conditionName);
+        if (valueSetPredicate != null) {
+            return valueSetPredicate;
+        }
+        if (predicates != null) {
+            Predicate conditionalValuesPredicate = predicates.get(conditionName);
+            if (conditionalValuesPredicate != null) {
+                return conditionalValuesPredicate;
+            }
+        }
+        if (_predicate != null) {
+            return _predicate;
+        }
+        return predicate;
     }
 
     boolean isMoreSpecificValueSet(final ValueSet<T> valueSet) {
