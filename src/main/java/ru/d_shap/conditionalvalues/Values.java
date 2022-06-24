@@ -138,6 +138,17 @@ public final class Values<T> {
     }
 
     /**
+     * Check if this object does not contain the specified value.
+     *
+     * @param value the specified value.
+     *
+     * @return true, if this object does not contain the specified value.
+     */
+    public boolean doesNotContain(final T value) {
+        return _allValues.contains(value) && !_values.contains(value);
+    }
+
+    /**
      * Check if all values contain the specified value.
      *
      * @param value the specified value.
