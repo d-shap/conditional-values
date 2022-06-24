@@ -65,6 +65,10 @@ public final class ValueSetBuilder<T> {
 
     private String _id;
 
+    private Predicate _predicate;
+
+    private final Map<String, Predicate> _predicates;
+
     private final Map<String, Set<Object>> _conditions;
 
     private final Set<T> _values;
@@ -72,6 +76,8 @@ public final class ValueSetBuilder<T> {
     private ValueSetBuilder() {
         super();
         _id = null;
+        _predicate = null;
+        _predicates = new HashMap<>();
         _conditions = new HashMap<>();
         _values = new HashSet<>();
     }
@@ -100,7 +106,46 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Set the default predicate of the value set.
+     *
+     * @param predicate the default predicate of the value set.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> setPredicate(final Predicate predicate) {
+        _predicate = predicate;
+        return this;
+    }
+
+    /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     * @param predicate     the predicate for the specified condition.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> setPredicate(final String conditionName, final Predicate predicate) {
+        if (conditionName != null && predicate != null) {
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
+     * Remove the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ValueSetBuilder<T> removePredicate(final String conditionName) {
+        _predicates.remove(conditionName);
+        return this;
+    }
+
+    /**
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -113,7 +158,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -126,7 +171,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -139,7 +184,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -152,7 +197,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -165,7 +210,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -178,7 +223,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -191,7 +236,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add condition to the set.
+     * Add condition to the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -204,7 +249,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the set.
+     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the value set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -235,7 +280,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -248,7 +293,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -261,7 +306,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -274,7 +319,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -287,7 +332,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -300,7 +345,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -313,7 +358,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -326,7 +371,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove condition from the set.
+     * Remove condition from the value set.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -339,7 +384,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove all conditions with the specified condition name from the set.
+     * Remove all conditions with the specified condition name from the value set.
      *
      * @param name the specified condition name.
      *
@@ -352,7 +397,7 @@ public final class ValueSetBuilder<T> {
 
     /**
      * Remove all conditions with the names obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the value set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -370,7 +415,7 @@ public final class ValueSetBuilder<T> {
 
     /**
      * Remove all conditions with the names and values obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
+     * {@link ru.d_shap.conditionalvalues.ValueSet} object from the value set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -410,7 +455,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add the value to the set.
+     * Add the value to the value set.
      *
      * @param value the value to add.
      *
@@ -424,7 +469,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add all values to the set.
+     * Add all values to the value set.
      *
      * @param values values to add.
      *
@@ -441,7 +486,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Add all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the set.
+     * Add all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object to the value set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -458,7 +503,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove the value from the set.
+     * Remove the value from the value set.
      *
      * @param value the value to remove.
      *
@@ -470,7 +515,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove all values from the set.
+     * Remove all values from the value set.
      *
      * @param values values to remove.
      *
@@ -487,7 +532,7 @@ public final class ValueSetBuilder<T> {
     }
 
     /**
-     * Remove all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object from the set.
+     * Remove all values of the specified {@link ru.d_shap.conditionalvalues.ValueSet} object from the value set.
      *
      * @param valueSet the specified {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -520,6 +565,8 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> clear() {
         _id = null;
+        _predicate = null;
+        _predicates.clear();
         clearConditions();
         clearValues();
         return this;
@@ -542,7 +589,7 @@ public final class ValueSetBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ValueSet} object, populated with conditions and values, added to this builder.
      */
     public ValueSet<T> build(final boolean clear) {
-        ValueSet<T> valueSet = new ValueSet<>(_id, _conditions, _values);
+        ValueSet<T> valueSet = new ValueSet<>(_id, _predicate, _predicates, _conditions, _values);
         _id = null;
         if (clear) {
             clear();
