@@ -22,7 +22,7 @@ package ru.d_shap.conditionalvalues.predicate;
 import java.util.Set;
 
 import ru.d_shap.conditionalvalues.Predicate;
-import ru.d_shap.conditionalvalues.SetPredicate;
+import ru.d_shap.conditionalvalues.TuplePredicate;
 
 /**
  * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
@@ -30,12 +30,12 @@ import ru.d_shap.conditionalvalues.SetPredicate;
  *
  * @author Dmitry Shapovalov
  */
-public final class AnyValueMatchesSetPredicate implements SetPredicate {
+public final class AnyValueMatchesTuplePredicate implements TuplePredicate {
 
     /**
      * Create new object.
      */
-    public AnyValueMatchesSetPredicate() {
+    public AnyValueMatchesTuplePredicate() {
         super();
     }
 

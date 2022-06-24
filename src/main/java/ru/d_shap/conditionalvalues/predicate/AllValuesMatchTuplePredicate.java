@@ -22,45 +22,35 @@ package ru.d_shap.conditionalvalues.predicate;
 import java.util.Set;
 
 import ru.d_shap.conditionalvalues.Predicate;
-import ru.d_shap.conditionalvalues.SetPredicate;
+import ru.d_shap.conditionalvalues.TuplePredicate;
 
 /**
  * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * matches the specified number of values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * matches all values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class SomeValuesMatchSetPredicate implements SetPredicate {
-
-    private final int _matchCountMin;
-
-    private final int _matchCountMax;
+public final class AllValuesMatchTuplePredicate implements TuplePredicate {
 
     /**
      * Create new object.
-     *
-     * @param matchCountMin the minimum number of matches.
-     * @param matchCountMax the minimum number of matches.
      */
-    public SomeValuesMatchSetPredicate(final int matchCountMin, final int matchCountMax) {
+    public AllValuesMatchTuplePredicate() {
         super();
-        _matchCountMin = matchCountMin;
-        _matchCountMax = matchCountMax;
     }
 
     @Override
     public boolean evaluate(final String conditionName, final Predicate predicate, final Object conditionSetValue, final Set<Object> valueSetValues) {
-        int matchCount = 0;
+        boolean hasValues = false;
         if (predicate != null && valueSetValues != null) {
             for (Object valueSetValue : valueSetValues) {
-                if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
-                    matchCount++;
+                hasValues = true;
+                if (!predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
+                    return false;
                 }
             }
         }
-        boolean minCountValid = matchCount >= _matchCountMin;
-        boolean maxCountValid = _matchCountMax < 0 || matchCount <= _matchCountMax;
-        return matchCount > 0 && minCountValid && maxCountValid;
+        return hasValues;
     }
 
 }

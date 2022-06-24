@@ -22,35 +22,45 @@ package ru.d_shap.conditionalvalues.predicate;
 import java.util.Set;
 
 import ru.d_shap.conditionalvalues.Predicate;
-import ru.d_shap.conditionalvalues.SetPredicate;
+import ru.d_shap.conditionalvalues.TuplePredicate;
 
 /**
  * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * matches all values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * matches the specified number of values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
-public final class AllValuesMatchSetPredicate implements SetPredicate {
+public final class SomeValuesMatchTuplePredicate implements TuplePredicate {
+
+    private final int _matchCountMin;
+
+    private final int _matchCountMax;
 
     /**
      * Create new object.
+     *
+     * @param matchCountMin the minimum number of matches.
+     * @param matchCountMax the minimum number of matches.
      */
-    public AllValuesMatchSetPredicate() {
+    public SomeValuesMatchTuplePredicate(final int matchCountMin, final int matchCountMax) {
         super();
+        _matchCountMin = matchCountMin;
+        _matchCountMax = matchCountMax;
     }
 
     @Override
     public boolean evaluate(final String conditionName, final Predicate predicate, final Object conditionSetValue, final Set<Object> valueSetValues) {
-        boolean hasValues = false;
+        int matchCount = 0;
         if (predicate != null && valueSetValues != null) {
             for (Object valueSetValue : valueSetValues) {
-                hasValues = true;
-                if (!predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
-                    return false;
+                if (predicate.evaluate(conditionName, conditionSetValue, valueSetValue)) {
+                    matchCount++;
                 }
             }
         }
-        return hasValues;
+        boolean minCountValid = matchCount >= _matchCountMin;
+        boolean maxCountValid = _matchCountMax < 0 || matchCount <= _matchCountMax;
+        return matchCount > 0 && minCountValid && maxCountValid;
     }
 
 }
