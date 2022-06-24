@@ -22,7 +22,9 @@ package ru.d_shap.conditionalvalues;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
@@ -50,6 +52,8 @@ public final class ConditionalValuesBuilder<T> {
 
     private Predicate _predicate;
 
+    private final Map<String, Predicate> _predicates;
+
     private Comparator<T> _comparator;
 
     private final List<ValueSet<T>> _valueSets;
@@ -58,6 +62,7 @@ public final class ConditionalValuesBuilder<T> {
         super();
         _tuplePredicate = null;
         _predicate = null;
+        _predicates = new HashMap<>();
         _comparator = null;
         _valueSets = new ArrayList<>();
     }
@@ -126,6 +131,33 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     * @param predicate     the predicate for the specified condition.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setPredicate(final String conditionName, final Predicate predicate) {
+        if (conditionName != null && predicate != null) {
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
+     * Remove the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> removePredicate(final String conditionName) {
+        _predicates.remove(conditionName);
+        return this;
+    }
+
+    /**
      * Set the comparator to sort all values in the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param comparator the comparator to sort all values.
@@ -183,6 +215,7 @@ public final class ConditionalValuesBuilder<T> {
     public ConditionalValuesBuilder<T> clear() {
         _tuplePredicate = null;
         _predicate = null;
+        _predicates.clear();
         _comparator = null;
         _valueSets.clear();
         return this;
@@ -205,7 +238,7 @@ public final class ConditionalValuesBuilder<T> {
      * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object, populated with values, added to this builder.
      */
     public ConditionalValues<T> build(final boolean clear) {
-        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_tuplePredicate, _predicate, _comparator, _valueSets);
+        ConditionalValues<T> conditionalValues = new ConditionalValues<>(_tuplePredicate, _predicate, _predicates, _comparator, _valueSets);
         if (clear) {
             clear();
         }
