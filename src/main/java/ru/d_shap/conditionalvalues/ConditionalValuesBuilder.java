@@ -27,7 +27,11 @@ import java.util.List;
 import java.util.Map;
 
 import ru.d_shap.conditionalvalues.misc.ComparableComparator;
+import ru.d_shap.conditionalvalues.predicate.AllValuesMatchTuplePredicate;
+import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringContainsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.predicate.StringContainsPredicate;
 import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
@@ -92,6 +96,30 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if any value matches the condition.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setAnyValueMatchesTuplePredicate() {
+        _tuplePredicate = new AnyValueMatchesTuplePredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if all values matche the condition.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setAllValuesMatchTuplePredicate() {
+        _tuplePredicate = new AllValuesMatchTuplePredicate();
+        return this;
+    }
+
+    /**
      * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
      * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
@@ -101,32 +129,6 @@ public final class ConditionalValuesBuilder<T> {
      */
     public ConditionalValuesBuilder<T> setPredicate(final Predicate predicate) {
         _predicate = predicate;
-        return this;
-    }
-
-    /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     *
-     * @return current object for the method chaining.
-     */
-    public ConditionalValuesBuilder<T> setEqualsPredicate() {
-        _predicate = new EqualsPredicate();
-        return this;
-    }
-
-    /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     *
-     * @return current object for the method chaining.
-     */
-    public ConditionalValuesBuilder<T> setEqualsIgnoreCasePredicate() {
-        _predicate = new StringEqualsIgnoreCasePredicate();
         return this;
     }
 
@@ -146,6 +148,118 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setEqualsPredicate() {
+        _predicate = new EqualsPredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setEqualsPredicate(final String conditionName) {
+        if (conditionName != null) {
+            Predicate predicate = new EqualsPredicate();
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringEqualsIgnoreCasePredicate() {
+        _predicate = new StringEqualsIgnoreCasePredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringEqualsIgnoreCasePredicate(final String conditionName) {
+        if (conditionName != null) {
+            Predicate predicate = new StringEqualsIgnoreCasePredicate();
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-sensitive part of the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringContainsPredicate() {
+        _predicate = new StringContainsPredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringContainsPredicate(final String conditionName) {
+        if (conditionName != null) {
+            Predicate predicate = new StringContainsPredicate();
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
+     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitive part of the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringContainsIgnoreCasePredicate() {
+        _predicate = new StringContainsIgnoreCasePredicate();
+        return this;
+    }
+
+    /**
+     * Set the predicate for the specified condition.
+     *
+     * @param conditionName the condition name.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> setStringContainsIgnoreCasePredicate(final String conditionName) {
+        if (conditionName != null) {
+            Predicate predicate = new StringContainsIgnoreCasePredicate();
+            _predicates.put(conditionName, predicate);
+        }
+        return this;
+    }
+
+    /**
      * Remove the predicate for the specified condition.
      *
      * @param conditionName the condition name.
@@ -154,6 +268,16 @@ public final class ConditionalValuesBuilder<T> {
      */
     public ConditionalValuesBuilder<T> removePredicate(final String conditionName) {
         _predicates.remove(conditionName);
+        return this;
+    }
+
+    /**
+     * Clear all predicates.
+     *
+     * @return current object for the method chaining.
+     */
+    public ConditionalValuesBuilder<T> clearPredicates() {
+        _predicates.clear();
         return this;
     }
 
@@ -208,6 +332,14 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
+     * @return
+     */
+    public ConditionalValuesBuilder<T> clearValueSets() {
+        _valueSets.clear();
+        return this;
+    }
+
+    /**
      * Clear this builder.
      *
      * @return current object for the method chaining.
@@ -215,9 +347,9 @@ public final class ConditionalValuesBuilder<T> {
     public ConditionalValuesBuilder<T> clear() {
         _tuplePredicate = null;
         _predicate = null;
-        _predicates.clear();
+        clearPredicates();
         _comparator = null;
-        _valueSets.clear();
+        clearValueSets();
         return this;
     }
 
