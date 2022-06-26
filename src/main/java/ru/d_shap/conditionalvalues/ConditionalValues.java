@@ -192,14 +192,34 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects, and perform the specified action for each value.
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects,
+     * and perform the specified action for each value.
      *
      * @param conditionSet conditions, used for lookup.
      * @param action       the specified action.
+     *
+     * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
-    public void lookup(final ConditionSet conditionSet, final Action<T> action) {
+    public Values<T> lookup(final ConditionSet conditionSet, final Action<T> action) {
         Values<T> values = lookup(conditionSet);
         values.performAction(action);
+        return values;
+    }
+
+    /**
+     * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects,
+     * and perform the specified actions for each value.
+     *
+     * @param conditionSet conditions, used for lookup.
+     * @param actions      the specified actions.
+     *
+     * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     */
+    @SafeVarargs
+    public final Values<T> lookup(final ConditionSet conditionSet, final Action<T>... actions) {
+        Values<T> values = lookup(conditionSet);
+        values.performAction(actions);
+        return values;
     }
 
     private Set<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
