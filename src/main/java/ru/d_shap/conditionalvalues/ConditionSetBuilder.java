@@ -188,8 +188,12 @@ public final class ConditionSetBuilder {
     }
 
     private void doAddCondition(final String name, final Object value) {
-        if (name != null && value != null) {
-            _conditions.put(name, value);
+        if (name != null) {
+            if (value == null) {
+                _conditions.remove(name);
+            } else {
+                _conditions.put(name, value);
+            }
         }
     }
 
