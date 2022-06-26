@@ -332,7 +332,9 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * @return
+     * Clear all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     *
+     * @return current object for the method chaining.
      */
     public ConditionalValuesBuilder<T> clearValueSets() {
         _valueSets.clear();
