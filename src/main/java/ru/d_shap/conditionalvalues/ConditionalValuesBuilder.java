@@ -141,8 +141,12 @@ public final class ConditionalValuesBuilder<T> {
      * @return current object for the method chaining.
      */
     public ConditionalValuesBuilder<T> setPredicate(final String conditionName, final Predicate predicate) {
-        if (conditionName != null && predicate != null) {
-            _predicates.put(conditionName, predicate);
+        if (conditionName != null) {
+            if (predicate == null) {
+                _predicates.remove(conditionName);
+            } else {
+                _predicates.put(conditionName, predicate);
+            }
         }
         return this;
     }
