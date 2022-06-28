@@ -55,8 +55,7 @@ public final class LogicalXorPredicate implements Predicate {
         boolean valueSecond = _second.evaluate(conditionName, conditionSetValue, valueSetValue);
         boolean result = valueFirst ^ valueSecond;
         for (Predicate predicate : _next) {
-            boolean value = predicate.evaluate(conditionName, conditionSetValue, valueSetValue);
-            result = result ^ value;
+            result ^= predicate.evaluate(conditionName, conditionSetValue, valueSetValue);
         }
         return result;
     }

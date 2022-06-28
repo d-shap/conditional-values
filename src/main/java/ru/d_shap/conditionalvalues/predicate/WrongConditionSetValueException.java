@@ -33,8 +33,8 @@ public final class WrongConditionSetValueException extends EvaluationException {
      * Create new object.
      *
      * @param conditionName     the name of condition.
-     * @param conditionSetValue the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * @param expectedClass     the expected class for the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param conditionSetValue the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * @param expectedClass     the expected class for the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      */
     public WrongConditionSetValueException(final String conditionName, final Object conditionSetValue, final Class<?> expectedClass) {
         super(getMessage(conditionName, getClassName(conditionSetValue), getClassName(expectedClass)));
