@@ -22,9 +22,10 @@ package ru.d_shap.conditionalvalues;
 import java.util.Set;
 
 /**
- * Predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
+ * Predicate interface to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
  * in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
- * Predicate matches all values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate is applied to the result of all evaluations, performed by the
+ * {@link ru.d_shap.conditionalvalues.Predicate} object.
  *
  * @author Dmitry Shapovalov
  */
