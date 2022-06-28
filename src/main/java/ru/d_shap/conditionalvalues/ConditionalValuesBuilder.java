@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ru.d_shap.conditionalvalues.misc.ComparableComparator;
+import ru.d_shap.conditionalvalues.misc.NaturalOrderComparator;
 import ru.d_shap.conditionalvalues.predicate.AllValuesMatchTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
@@ -306,7 +306,7 @@ public final class ConditionalValuesBuilder<T> {
      */
     @SuppressWarnings("unchecked")
     public ConditionalValuesBuilder<T> setNaturalOrderComparator() {
-        _comparator = (Comparator<T>) new ComparableComparator<>(false);
+        _comparator = (Comparator<T>) new NaturalOrderComparator<>(false);
         return this;
     }
 
@@ -319,7 +319,7 @@ public final class ConditionalValuesBuilder<T> {
      */
     @SuppressWarnings("unchecked")
     public ConditionalValuesBuilder<T> setReverseOrderComparator() {
-        _comparator = (Comparator<T>) Collections.reverseOrder(new ComparableComparator<>(true));
+        _comparator = (Comparator<T>) Collections.reverseOrder(new NaturalOrderComparator<>(true));
         return this;
     }
 

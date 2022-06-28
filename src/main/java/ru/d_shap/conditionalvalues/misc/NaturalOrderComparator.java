@@ -29,7 +29,7 @@ import java.util.Comparator;
  *
  * @author Dmitry Shapovalov
  */
-public final class ComparableComparator<T extends Comparable<T>> implements Comparator<T>, Serializable {
+public final class NaturalOrderComparator<T extends Comparable<T>> implements Comparator<T>, Serializable {
 
     private static final int POSITIVE = 1;
 
@@ -44,7 +44,7 @@ public final class ComparableComparator<T extends Comparable<T>> implements Comp
     /**
      * Create new object.
      */
-    public ComparableComparator() {
+    public NaturalOrderComparator() {
         this(false);
     }
 
@@ -53,7 +53,7 @@ public final class ComparableComparator<T extends Comparable<T>> implements Comp
      *
      * @param nullsFirst if true, then null values precede the other values.
      */
-    public ComparableComparator(final boolean nullsFirst) {
+    public NaturalOrderComparator(final boolean nullsFirst) {
         super();
         if (nullsFirst) {
             _comparable1Null = NEGATIVE;
