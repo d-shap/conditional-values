@@ -34,7 +34,7 @@ import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
  * Object holds {@link ru.d_shap.conditionalvalues.ValueSet} objects and performs lookup for the best
- * matching {@link ru.d_shap.conditionalvalues.ValueSet} objects based on the specified
+ * matching {@link ru.d_shap.conditionalvalues.ValueSet} objects based on the conditions in the
  * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @param <T> generic type for the value.
@@ -55,16 +55,7 @@ public final class ConditionalValues<T> {
 
     private final Set<T> _allValues;
 
-    /**
-     * Create new object.
-     *
-     * @param tuplePredicate the tuple predicate.
-     * @param predicate      the default predicate.
-     * @param predicates     the predicates for the conditions.
-     * @param comparator     the comparator to sort all values.
-     * @param valueSets      the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
-     */
-    public ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Map<String, Predicate> predicates, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
+    ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Map<String, Predicate> predicates, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
         _tuplePredicate = createTuplePredicate(tuplePredicate);
         _predicate = createPredicate(predicate);
@@ -140,7 +131,7 @@ public final class ConditionalValues<T> {
     }
 
     /**
-     * Get all condition values for the specified condition name, defined in all{@link ru.d_shap.conditionalvalues.ValueSet} objects.
+     * Get all condition values for the specified condition name, defined in all {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @param conditionName the specified condition name.
      *
@@ -181,7 +172,7 @@ public final class ConditionalValues<T> {
     /**
      * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @param conditionSet conditions, used for lookup.
+     * @param conditionSet lookup conditions.
      *
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
@@ -193,9 +184,9 @@ public final class ConditionalValues<T> {
 
     /**
      * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects,
-     * and perform the specified action for each value.
+     * and perform the specified action on each value.
      *
-     * @param conditionSet conditions, used for lookup.
+     * @param conditionSet lookup conditions.
      * @param action       the specified action.
      *
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
@@ -208,9 +199,9 @@ public final class ConditionalValues<T> {
 
     /**
      * Performs lookup for the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects,
-     * and perform the specified actions for each value.
+     * and perform the specified actions on each value.
      *
-     * @param conditionSet conditions, used for lookup.
+     * @param conditionSet lookup conditions.
      * @param actions      the specified actions.
      *
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
