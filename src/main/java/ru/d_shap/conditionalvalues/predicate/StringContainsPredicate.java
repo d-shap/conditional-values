@@ -22,8 +22,8 @@ package ru.d_shap.conditionalvalues.predicate;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * contains the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object as it's part.
+ * Predicate checks if the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * contains the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */

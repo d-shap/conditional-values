@@ -22,7 +22,8 @@ package ru.d_shap.conditionalvalues.predicate;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to apply the function to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate applies the function to the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object,
+ * and then applies the specified {@link ru.d_shap.conditionalvalues.Predicate} to the result.
  *
  * @author Dmitry Shapovalov
  */
@@ -35,8 +36,8 @@ public final class ValueSetFunctionPredicate implements Predicate {
     /**
      * Create new object.
      *
-     * @param valueSetFunction the function to apply to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
-     * @param predicate        the predicate to apply to the result of the function application.
+     * @param valueSetFunction the function to apply to the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param predicate        the {@link ru.d_shap.conditionalvalues.Predicate} to apply to the result.
      */
     public ValueSetFunctionPredicate(final ValueSetFunction valueSetFunction, final Predicate predicate) {
         super();

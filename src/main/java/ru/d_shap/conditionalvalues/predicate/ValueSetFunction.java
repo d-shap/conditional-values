@@ -20,18 +20,18 @@
 package ru.d_shap.conditionalvalues.predicate;
 
 /**
- * The function to apply to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * The function to apply to the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
 public interface ValueSetFunction {
 
     /**
-     * Apply the function to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * Apply the function to the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
-     * @param valueSetValue the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @param valueSetValue the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
-     * @return the result of the function application to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @return the result of the function application to the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      */
     Object apply(Object valueSetValue);
 

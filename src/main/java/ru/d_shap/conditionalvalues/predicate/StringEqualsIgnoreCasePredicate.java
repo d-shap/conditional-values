@@ -22,8 +22,8 @@ package ru.d_shap.conditionalvalues.predicate;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the string from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * is case-insensitively equal to the string from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate checks if the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+ * is case-insensitively equal to the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @author Dmitry Shapovalov
  */

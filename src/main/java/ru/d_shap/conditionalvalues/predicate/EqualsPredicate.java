@@ -22,8 +22,8 @@ package ru.d_shap.conditionalvalues.predicate;
 import ru.d_shap.conditionalvalues.Predicate;
 
 /**
- * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * is equal to the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate checks if the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+ * is equal to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
  *
  * @author Dmitry Shapovalov
  */
