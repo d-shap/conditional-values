@@ -31,35 +31,11 @@ import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * <p>
- * Builder class to create {@link ru.d_shap.conditionalvalues.ValueSet} objects.
+ * Builder to create {@link ru.d_shap.conditionalvalues.ValueSet} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
- * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ValueSet} object.
- * </p>
- * <p>
- * Conditions with different names are ANDed. Conditions with the same name are ORed.
- * </p>
- * <p>
- * For example:
- * </p>
- * <pre>{@code
- * ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
- * valueSetBuilder.addCondition("type", "someType");
- * valueSetBuilder.addCondition("state", 1)
- *                .addCondition("state", 2)
- *                .addCondition("state", 3);
- * ValueSet<String> valueSet = valueSetBuilder.build();
- * }</pre>
- * <p>
- * means (type = someType AND (state = 1 OR state = 2 OR state = 3)).
- * </p>
- * <p>
- * The value type should implement {@link java.lang.Object#equals(Object)} and {@link java.lang.Object#hashCode()}
- * methods or all values should be unique within the {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
- * </p>
- * <p>
- * Builder instance is NOT thread-safe.
+ * methods this object can be used to create another object.
  * </p>
  *
  * @param <T> generic type for the value.

@@ -25,14 +25,11 @@ import java.util.Map;
 
 /**
  * <p>
- * Builder class to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
+ * Builder to create {@link ru.d_shap.conditionalvalues.ConditionSet} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
- * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionSet} object.
- * </p>
- * <p>
- * Builder instance is NOT thread-safe.
+ * methods this object can be used to create another object.
  * </p>
  *
  * @author Dmitry Shapovalov

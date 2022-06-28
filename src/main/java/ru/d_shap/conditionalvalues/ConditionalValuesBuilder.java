@@ -36,14 +36,11 @@ import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * <p>
- * Builder class to create {@link ru.d_shap.conditionalvalues.ConditionalValues} objects.
+ * Builder to create {@link ru.d_shap.conditionalvalues.ConditionalValues} objects.
  * </p>
  * <p>
  * Objects of this class are reusable. After calling the {@link #build()} or {@link #build(boolean)}
- * methods this object can be used to create another {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
- * </p>
- * <p>
- * Builder instance is NOT thread-safe.
+ * methods this object can be used to create another object.
  * </p>
  *
  * @param <T> generic type for the value.
