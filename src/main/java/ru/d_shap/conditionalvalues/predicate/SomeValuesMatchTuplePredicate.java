@@ -25,8 +25,9 @@ import ru.d_shap.conditionalvalues.Predicate;
 import ru.d_shap.conditionalvalues.TuplePredicate;
 
 /**
- * Predicate to check if the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
- * matches the specified number of values from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Predicate checks if the specifien number of Objects from the {@link ru.d_shap.conditionalvalues.ValueSet}
+ * object matches to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+ * according to the {@link ru.d_shap.conditionalvalues.Predicate} object.
  *
  * @author Dmitry Shapovalov
  */
