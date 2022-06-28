@@ -23,8 +23,8 @@ import ru.d_shap.conditionalvalues.Action;
 import ru.d_shap.conditionalvalues.Actionable;
 
 /**
- * Action to perform for each value in the {@link ru.d_shap.conditionalvalues.Values} object.
- * Values in the {@link ru.d_shap.conditionalvalues.Values} object should implement the
+ * Action to perform on value in the {@link ru.d_shap.conditionalvalues.Values} object.
+ * Value in the {@link ru.d_shap.conditionalvalues.Values} object should implement the
  * {@link ru.d_shap.conditionalvalues.Actionable} interface.
  *
  * @param <T> generic type for the value.

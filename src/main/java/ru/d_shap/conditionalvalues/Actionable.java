@@ -20,7 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 /**
- * Action to perform by the value directly.
+ * Action to perform by the value in the {@link ru.d_shap.conditionalvalues.Values} object itself.
  *
  * @author Dmitry Shapovalov
  */

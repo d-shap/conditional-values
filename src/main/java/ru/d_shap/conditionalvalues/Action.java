@@ -20,7 +20,7 @@
 package ru.d_shap.conditionalvalues;
 
 /**
- * Action to perform for each value in the {@link ru.d_shap.conditionalvalues.Values} object.
+ * Action to perform on value in the {@link ru.d_shap.conditionalvalues.Values} object.
  *
  * @param <T> generic type for the value.
  *
