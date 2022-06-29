@@ -109,7 +109,7 @@ public final class Values<T> {
     }
 
     /**
-     * Get the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects, used to create this object.
+     * Get the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
      * @return the IDs of the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
@@ -118,31 +118,31 @@ public final class Values<T> {
     }
 
     /**
-     * Check if this object contains no value.
+     * Check if the result contains no values.
      *
-     * @return true, if this object contains no value.
+     * @return true, if the result contains no values.
      */
     public boolean isEmpty() {
         return _values.isEmpty();
     }
 
     /**
-     * Check if this object contains the specified value.
+     * Check if the result contains the specified value.
      *
      * @param value the specified value.
      *
-     * @return true, if this object contains the specified value.
+     * @return true, if the result contains the specified value.
      */
     public boolean contains(final T value) {
         return _values.contains(value);
     }
 
     /**
-     * Check if this object does not contain the specified value.
+     * Check if the result does not contain the specified value.
      *
      * @param value the specified value.
      *
-     * @return true, if this object does not contain the specified value.
+     * @return true, if the result does not contain the specified value.
      */
     public boolean doesNotContain(final T value) {
         return _allValues.contains(value) && !_values.contains(value);
@@ -171,9 +171,9 @@ public final class Values<T> {
     }
 
     /**
-     * Get values contained in this object.
+     * Get the result values.
      *
-     * @return all values.
+     * @return the result values.
      */
     public Set<T> getValues() {
         return _values;
@@ -189,7 +189,7 @@ public final class Values<T> {
     }
 
     /**
-     * Perform the specified action for each value in this object.
+     * Perform the specified action on each value.
      *
      * @param action the specified action.
      *
@@ -205,7 +205,7 @@ public final class Values<T> {
     }
 
     /**
-     * Perform the specified actions for each value in this object.
+     * Perform the specified actions on each value.
      *
      * @param actions the specified actions.
      *
