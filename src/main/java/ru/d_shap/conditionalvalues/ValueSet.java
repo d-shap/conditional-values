@@ -47,9 +47,9 @@ public final class ValueSet<T> {
 
     private final Set<String> _conditionNames;
 
-    private final Set<T> _values;
+    private final List<T> _values;
 
-    ValueSet(final String id, final Predicate predicate, final Map<String, Predicate> predicates, final Map<String, Set<Object>> conditions, final Set<T> values) {
+    ValueSet(final String id, final Predicate predicate, final Map<String, Predicate> predicates, final Map<String, Set<Object>> conditions, final List<T> values) {
         super();
         _id = id;
         _predicate = predicate;
@@ -104,8 +104,8 @@ public final class ValueSet<T> {
         return Collections.unmodifiableSet(result);
     }
 
-    private Set<T> createValues(final Set<T> values) {
-        Set<T> result = new HashSet<>();
+    private List<T> createValues(final List<T> values) {
+        List<T> result = new ArrayList<>();
         if (values != null) {
             for (T value : values) {
                 if (value != null) {
@@ -113,7 +113,7 @@ public final class ValueSet<T> {
                 }
             }
         }
-        return Collections.unmodifiableSet(result);
+        return Collections.unmodifiableList(result);
     }
 
     /**
@@ -227,7 +227,7 @@ public final class ValueSet<T> {
         return newUniqueConditions;
     }
 
-    Set<T> getValues() {
+    List<T> getValues() {
         return _values;
     }
 
