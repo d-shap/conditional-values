@@ -17,28 +17,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-package ru.d_shap.conditionalvalues;
+package ru.d_shap.conditionalvalues.usecase;
 
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.conditionalvalues.ConditionSetBuilder;
+import ru.d_shap.conditionalvalues.ConditionalValues;
+import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
+import ru.d_shap.conditionalvalues.ValueSetBuilder;
+import ru.d_shap.conditionalvalues.Values;
 
 /**
- * Readme examples implementation.
+ * Lookup example implementation.
  *
  * @author Dmitry Shapovalov
  */
-public class ReadmeTest {
+public final class AttributeListTest {
 
     /**
      * Test class constructor.
      */
-    public ReadmeTest() {
+    public AttributeListTest() {
         super();
     }
 
     /**
-     * Readme example.
+     * Lookup example.
      */
     @Test
     public void lookupTest() {
