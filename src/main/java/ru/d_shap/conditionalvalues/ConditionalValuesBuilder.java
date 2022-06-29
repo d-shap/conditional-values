@@ -282,7 +282,7 @@ public final class ConditionalValuesBuilder<T> {
     /**
      * Set the comparator to sort all values in the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      *
-     * @param comparator the comparator to sort all values.
+     * @param comparator the comparator.
      *
      * @return current object for the method chaining.
      */
@@ -294,7 +294,6 @@ public final class ConditionalValuesBuilder<T> {
     /**
      * Set the comparator to sort all values in the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      * Values are sorted in natural order.
-     * Values should implement the {@link java.lang.Comparable} interface.
      *
      * @return current object for the method chaining.
      */
@@ -307,7 +306,6 @@ public final class ConditionalValuesBuilder<T> {
     /**
      * Set the comparator to sort all values in the {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      * Values are sorted in the order reverse to the natural order.
-     * Values should implement the {@link java.lang.Comparable} interface.
      *
      * @return current object for the method chaining.
      */
@@ -318,7 +316,7 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Add the {@link ru.d_shap.conditionalvalues.ValueSet} object to this builder.
+     * Add the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @param valueSet the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
@@ -340,7 +338,7 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Clear this builder.
+     * Clear the builder.
      *
      * @return current object for the method chaining.
      */
@@ -354,9 +352,9 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ConditionalValues} object and clear this builder.
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionalValues} object and clear the builder.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object, populated with values, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      */
     public ConditionalValues<T> build() {
         return build(true);
@@ -365,9 +363,9 @@ public final class ConditionalValuesBuilder<T> {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      *
-     * @param clear true to clear this builder.
+     * @param clear true to clear the builder.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object, populated with values, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionalValues} object.
      */
     public ConditionalValues<T> build(final boolean clear) {
         ConditionalValues<T> conditionalValues = new ConditionalValues<>(_tuplePredicate, _predicate, _predicates, _comparator, _valueSets);
