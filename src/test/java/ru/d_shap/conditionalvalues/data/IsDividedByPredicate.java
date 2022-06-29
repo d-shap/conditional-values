@@ -29,7 +29,7 @@ import ru.d_shap.conditionalvalues.predicate.WrongValueSetValueException;
  *
  * @author Dmitry Shapovalov
  */
-public class IsDividedByPredicate implements Predicate {
+public final class IsDividedByPredicate implements Predicate {
 
     /**
      * Create new object.
