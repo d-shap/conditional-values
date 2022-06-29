@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Class represents a unique combination of single conditions in the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+ * Class represents a unique combination of conditions in the {@link ru.d_shap.conditionalvalues.ValueSet} object.
  *
  * @author Dmitry Shapovalov
  */
@@ -55,9 +55,9 @@ public final class ValueSetUniqueCondition {
     }
 
     /**
-     * Get the ID of the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * Get the ID.
      *
-     * @return the ID of the {@link ru.d_shap.conditionalvalues.ValueSet} object.
+     * @return the ID.
      */
     public String getId() {
         return _id;
@@ -66,7 +66,7 @@ public final class ValueSetUniqueCondition {
     /**
      * Get a combination of conditions.
      *
-     * @return Combination of conditions
+     * @return combination of conditions.
      */
     public Map<String, Object> getConditions() {
         return _conditions;
