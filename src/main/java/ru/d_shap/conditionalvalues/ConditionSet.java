@@ -37,12 +37,7 @@ public final class ConditionSet {
 
     private final Set<String> _conditionNames;
 
-    /**
-     * Create new object.
-     *
-     * @param conditions conditions, used for lookup.
-     */
-    public ConditionSet(final Map<String, Object> conditions) {
+    ConditionSet(final Map<String, Object> conditions) {
         super();
         _conditions = createConditions(conditions);
         _conditionNames = createConditionNames();
