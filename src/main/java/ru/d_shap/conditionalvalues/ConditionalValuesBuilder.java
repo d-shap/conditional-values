@@ -80,8 +80,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
+     * in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param tuplePredicate the tuple predicate.
      *
@@ -93,9 +93,9 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if any value matches the condition.
+     * Set the predicate to check if any Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * matches to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * according to the {@link ru.d_shap.conditionalvalues.Predicate} object.
      *
      * @return current object for the method chaining.
      */
@@ -105,9 +105,9 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if all values matche the condition.
+     * Set the predicate to check if all Objects from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * matches to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * according to the {@link ru.d_shap.conditionalvalues.Predicate} object.
      *
      * @return current object for the method chaining.
      */
@@ -117,8 +117,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
+     * in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param predicate the predicate.
      *
@@ -130,10 +130,11 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate for the specified condition.
+     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} object against the conditions
+     * in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionName the condition name.
-     * @param predicate     the predicate for the specified condition.
+     * @param predicate     the predicate.
      *
      * @return current object for the method chaining.
      */
@@ -149,10 +150,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-sensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to check if the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is equal to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @return current object for the method chaining.
      */
@@ -162,7 +161,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate for the specified condition.
+     * Set the predicate to check if the Object from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is equal to the Object from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionName the condition name.
      *
@@ -177,10 +177,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-insensitive equal to the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitively equal to the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @return current object for the method chaining.
      */
@@ -190,7 +188,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate for the specified condition.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object
+     * is case-insensitively equal to the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionName the condition name.
      *
@@ -205,10 +204,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-sensitive part of the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * contains the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return current object for the method chaining.
      */
@@ -218,7 +215,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate for the specified condition.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * contains the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @param conditionName the condition name.
      *
@@ -233,10 +231,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate to match the {@link ru.d_shap.conditionalvalues.ValueSet} objects against
-     * the conditions in the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
-     * Predicate checks if the value from the {@link ru.d_shap.conditionalvalues.ValueSet} object
-     * is case-insensitive part of the value from the {@link ru.d_shap.conditionalvalues.ConditionSet} object.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * case-insensitively contains the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @return current object for the method chaining.
      */
@@ -246,7 +242,8 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Set the predicate for the specified condition.
+     * Set the predicate to check if the String from the {@link ru.d_shap.conditionalvalues.ConditionSet} object
+     * case-insensitively contains the String from the {@link ru.d_shap.conditionalvalues.ValueSet} object.
      *
      * @param conditionName the condition name.
      *
@@ -261,7 +258,7 @@ public final class ConditionalValuesBuilder<T> {
     }
 
     /**
-     * Remove the predicate for the specified condition.
+     * Remove the predicate.
      *
      * @param conditionName the condition name.
      *
