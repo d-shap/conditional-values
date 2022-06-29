@@ -117,16 +117,16 @@ public final class ValueSet<T> {
     }
 
     /**
-     * Get the ID of this object.
+     * Get the ID.
      *
-     * @return the ID of this object.
+     * @return the ID.
      */
     public String getId() {
         return _id;
     }
 
     /**
-     * Get all condition names, defined in this object.
+     * Get all condition names.
      *
      * @return all condition names.
      */
@@ -135,7 +135,7 @@ public final class ValueSet<T> {
     }
 
     /**
-     * Get all condition values for the specified condition name, defined in this object.
+     * Get all condition values for the specified condition name.
      *
      * @param conditionName the specified condition name.
      *
