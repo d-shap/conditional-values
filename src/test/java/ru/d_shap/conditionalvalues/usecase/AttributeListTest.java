@@ -64,6 +64,7 @@ public final class AttributeListTest {
         valueSetBuilder.addCondition("isViewer", true);
         valueSetBuilder.addValue("due date");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
         ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 
         conditionSetBuilder.addCondition("type", "contract");

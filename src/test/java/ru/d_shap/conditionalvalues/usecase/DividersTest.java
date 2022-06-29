@@ -77,6 +77,7 @@ public final class DividersTest {
         valueSetBuilder.addCondition("div", 19);
         valueSetBuilder.addValue("Is divided by 19");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+
         ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 
         conditionSetBuilder.addCondition("div", 5);
