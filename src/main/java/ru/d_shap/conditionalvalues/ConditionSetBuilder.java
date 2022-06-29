@@ -46,15 +46,14 @@ public final class ConditionSetBuilder {
     /**
      * Create new builder instance.
      *
-     * @return created builder instance.
+     * @return new builder instance.
      */
     public static ConditionSetBuilder newInstance() {
         return new ConditionSetBuilder();
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -67,8 +66,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -81,8 +79,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -95,8 +92,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -109,8 +105,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -123,8 +118,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -137,8 +131,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -151,8 +144,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add contition to the condition set.
-     * An old value is replaced by the new one.
+     * Add the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -165,8 +157,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Add all conditions of the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object to the condition set.
-     * Old values are replaced by the new ones.
+     * Add all conditions from the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
@@ -195,7 +186,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -208,7 +199,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -221,7 +212,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -234,7 +225,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -247,7 +238,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -260,7 +251,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -273,7 +264,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -286,7 +277,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name  condition name.
      * @param value condition value.
@@ -299,7 +290,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Remove contition from the condition set.
+     * Remove the condition.
      *
      * @param name condition name.
      *
@@ -312,11 +303,11 @@ public final class ConditionSetBuilder {
 
     /**
      * Remove all conditions with the names obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the condition set.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @return urrent object for the method chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeConditionNames(final ConditionSet conditionSet) {
         if (conditionSet != null) {
@@ -331,11 +322,11 @@ public final class ConditionSetBuilder {
 
     /**
      * Remove all conditions with the names and values obtained from the specified
-     * {@link ru.d_shap.conditionalvalues.ConditionSet} object from the condition set.
+     * {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
      * @param conditionSet the specified {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @return urrent object for the method chaining.
+     * @return current object for the method chaining.
      */
     public ConditionSetBuilder removeConditionValues(final ConditionSet conditionSet) {
         if (conditionSet != null) {
@@ -357,7 +348,7 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Clear this builder.
+     * Clear the builder.
      *
      * @return current object for the method chaining.
      */
@@ -367,9 +358,9 @@ public final class ConditionSetBuilder {
     }
 
     /**
-     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear this builder.
+     * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object and clear the builder.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      */
     public ConditionSet build() {
         return build(true);
@@ -378,9 +369,9 @@ public final class ConditionSetBuilder {
     /**
      * Create new {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      *
-     * @param clear true to clear this builder.
+     * @param clear true to clear the builder.
      *
-     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object, populated with conditions, added to this builder.
+     * @return {@link ru.d_shap.conditionalvalues.ConditionSet} object.
      */
     public ConditionSet build(final boolean clear) {
         ConditionSet conditionSet = new ConditionSet(_conditions);
