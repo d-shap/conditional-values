@@ -73,7 +73,7 @@ public final class ConditionalValuesBuilder<T> {
      *
      * @param <T> generic type for the value.
      *
-     * @return created builder instance.
+     * @return new builder instance.
      */
     public static <T> ConditionalValuesBuilder<T> newInstance() {
         return new ConditionalValuesBuilder<>();
