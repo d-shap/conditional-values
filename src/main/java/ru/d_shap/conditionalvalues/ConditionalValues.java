@@ -113,6 +113,9 @@ public final class ConditionalValues<T> {
             List<T> values = valueSet.getValues();
             result.addAll(values);
         }
+        if (_comparator != null) {
+            Collections.sort(result, _comparator);
+        }
         return Collections.unmodifiableList(result);
     }
 
