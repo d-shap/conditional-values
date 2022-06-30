@@ -53,7 +53,7 @@ public final class ConditionalValues<T> {
 
     private final List<ValueSet<T>> _valueSets;
 
-    private final Set<T> _allValues;
+    private final List<T> _allValues;
 
     ConditionalValues(final TuplePredicate tuplePredicate, final Predicate predicate, final Map<String, Predicate> predicates, final Comparator<T> comparator, final List<ValueSet<T>> valueSets) {
         super();
@@ -107,13 +107,13 @@ public final class ConditionalValues<T> {
         return Collections.unmodifiableList(result);
     }
 
-    private Set<T> createAllValues() {
-        Set<T> result = Values.createSet(_comparator);
+    private List<T> createAllValues() {
+        List<T> result = new ArrayList<>();
         for (ValueSet<T> valueSet : _valueSets) {
-            Set<T> values = valueSet.getValues();
+            List<T> values = valueSet.getValues();
             result.addAll(values);
         }
-        return Collections.unmodifiableSet(result);
+        return Collections.unmodifiableList(result);
     }
 
     /**
@@ -165,7 +165,7 @@ public final class ConditionalValues<T> {
      *
      * @return all values.
      */
-    public Set<T> getAllValues() {
+    public List<T> getAllValues() {
         return _allValues;
     }
 
@@ -177,7 +177,7 @@ public final class ConditionalValues<T> {
      * @return the best matching {@link ru.d_shap.conditionalvalues.ValueSet} objects.
      */
     public Values<T> lookup(final ConditionSet conditionSet) {
-        Set<ValueSet<T>> valueSets = getMatchingValueSets(conditionSet);
+        List<ValueSet<T>> valueSets = getMatchingValueSets(conditionSet);
         removeLessSpecificValueSets(valueSets);
         return new Values<>(_comparator, valueSets, _allValues);
     }
@@ -213,8 +213,8 @@ public final class ConditionalValues<T> {
         return values;
     }
 
-    private Set<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
-        Set<ValueSet<T>> result = new HashSet<>();
+    private List<ValueSet<T>> getMatchingValueSets(final ConditionSet conditionSet) {
+        List<ValueSet<T>> result = new ArrayList<>();
         if (conditionSet != null) {
             for (ValueSet<T> valueSet : _valueSets) {
                 if (valueSet.isMatchConditions(conditionSet, _tuplePredicate, _predicates, _predicate)) {
@@ -225,7 +225,7 @@ public final class ConditionalValues<T> {
         return result;
     }
 
-    private void removeLessSpecificValueSets(final Set<ValueSet<T>> valueSets) {
+    private void removeLessSpecificValueSets(final List<ValueSet<T>> valueSets) {
         Iterator<ValueSet<T>> valueSetIterator = valueSets.iterator();
         while (valueSetIterator.hasNext()) {
             ValueSet<T> valueSet = valueSetIterator.next();
