@@ -263,43 +263,6 @@ public final class Values<T> {
         return this;
     }
 
-    /**
-     * Perform the specified action on each unique value.
-     *
-     * @param action the specified action.
-     *
-     * @return current object for the method chaining.
-     */
-    public Values<T> performUniqueAction(final Action<T> action) {
-        if (action != null) {
-            for (T value : _uniqueValues) {
-                action.perform(value);
-            }
-        }
-        return this;
-    }
-
-    /**
-     * Perform the specified actions on each unique value.
-     *
-     * @param actions the specified actions.
-     *
-     * @return current object for the method chaining.
-     */
-    @SafeVarargs
-    public final Values<T> performUniqueAction(final Action<T>... actions) {
-        if (actions != null) {
-            for (T value : _uniqueValues) {
-                for (Action<T> action : actions) {
-                    if (action != null) {
-                        action.perform(value);
-                    }
-                }
-            }
-        }
-        return this;
-    }
-
     @Override
     public String toString() {
         return _valueSets.toString();
