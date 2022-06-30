@@ -19,9 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -41,24 +43,33 @@ import java.util.TreeSet;
  */
 public final class Values<T> {
 
-    private final Set<ValueSet<T>> _valueSets;
+    private final Comparator<T> _comparator;
+
+    private final List<ValueSet<T>> _valueSets;
 
     private final Set<String> _ids;
 
-    private final Set<T> _values;
+    private final List<T> _values;
 
-    private final Set<T> _allValues;
+    private final Set<T> _uniqueValues;
 
-    Values(final Comparator<T> comparator, final Set<ValueSet<T>> valueSets, final Set<T> allValues) {
+    private final List<T> _allValues;
+
+    private final Set<T> _allUniqueValues;
+
+    Values(final Comparator<T> comparator, final List<ValueSet<T>> valueSets, final List<T> allValues) {
         super();
+        _comparator = comparator;
         _valueSets = createValueSets(valueSets);
         _ids = createIds();
-        _values = createValues(comparator);
-        _allValues = createAllValues(comparator, allValues);
+        _values = createValues();
+        _uniqueValues = createSet(_values);
+        _allValues = createAllValues(allValues);
+        _allUniqueValues = createSet(_allValues);
     }
 
-    private Set<ValueSet<T>> createValueSets(final Set<ValueSet<T>> valueSets) {
-        Set<ValueSet<T>> result = new HashSet<>();
+    private List<ValueSet<T>> createValueSets(final List<ValueSet<T>> valueSets) {
+        List<ValueSet<T>> result = new ArrayList<>();
         if (valueSets != null) {
             for (ValueSet<T> valueSet : valueSets) {
                 if (valueSet != null) {
@@ -66,7 +77,7 @@ public final class Values<T> {
                 }
             }
         }
-        return Collections.unmodifiableSet(result);
+        return Collections.unmodifiableList(result);
     }
 
     private Set<String> createIds() {
@@ -80,16 +91,19 @@ public final class Values<T> {
         return Collections.unmodifiableSet(result);
     }
 
-    private Set<T> createValues(final Comparator<T> comparator) {
-        Set<T> result = createSet(comparator);
+    private List<T> createValues() {
+        List<T> result = new ArrayList<>();
         for (ValueSet<T> valueSet : _valueSets) {
             result.addAll(valueSet.getValues());
         }
-        return Collections.unmodifiableSet(result);
+        if (_comparator != null) {
+            Collections.sort(result, _comparator);
+        }
+        return Collections.unmodifiableList(result);
     }
 
-    private Set<T> createAllValues(final Comparator<T> comparator, final Set<T> allValues) {
-        Set<T> result = createSet(comparator);
+    private List<T> createAllValues(final List<T> allValues) {
+        List<T> result = new ArrayList<>();
         if (allValues != null) {
             for (T value : allValues) {
                 if (value != null) {
@@ -97,15 +111,21 @@ public final class Values<T> {
                 }
             }
         }
-        return Collections.unmodifiableSet(result);
+        if (_comparator != null) {
+            Collections.sort(result, _comparator);
+        }
+        return Collections.unmodifiableList(result);
     }
 
-    static <T> Set<T> createSet(final Comparator<T> comparator) {
-        if (comparator == null) {
-            return new HashSet<>();
+    private Set<T> createSet(final List<T> values) {
+        Set<T> result;
+        if (_comparator == null) {
+            result = new HashSet<>();
         } else {
-            return new TreeSet<>(comparator);
+            result = new TreeSet<>(_comparator);
         }
+        result.addAll(values);
+        return result;
     }
 
     /**
@@ -134,7 +154,7 @@ public final class Values<T> {
      * @return true, if the result contains the specified value.
      */
     public boolean contains(final T value) {
-        return _values.contains(value);
+        return _uniqueValues.contains(value);
     }
 
     /**
@@ -145,7 +165,7 @@ public final class Values<T> {
      * @return true, if the result does not contain the specified value.
      */
     public boolean doesNotContain(final T value) {
-        return _allValues.contains(value) && !_values.contains(value);
+        return _allUniqueValues.contains(value) && !_uniqueValues.contains(value);
     }
 
     /**
@@ -156,7 +176,7 @@ public final class Values<T> {
      * @return true, if all values contain the specified value.
      */
     public boolean allValuesContain(final T value) {
-        return _allValues.contains(value);
+        return _allUniqueValues.contains(value);
     }
 
     /**
@@ -167,7 +187,7 @@ public final class Values<T> {
      * @return true, if all values does not contain the specified value.
      */
     public boolean allValuesDoesNotContain(final T value) {
-        return !_allValues.contains(value);
+        return !_allUniqueValues.contains(value);
     }
 
     /**
@@ -175,8 +195,17 @@ public final class Values<T> {
      *
      * @return the result values.
      */
-    public Set<T> getValues() {
+    public List<T> getValues() {
         return _values;
+    }
+
+    /**
+     * Get the unique result values.
+     *
+     * @return the unique result values.
+     */
+    public Set<T> getUniqueValues() {
+        return _uniqueValues;
     }
 
     /**
@@ -184,8 +213,17 @@ public final class Values<T> {
      *
      * @return all values.
      */
-    public Set<T> getAllValues() {
+    public List<T> getAllValues() {
         return _allValues;
+    }
+
+    /**
+     * Get all unique values.
+     *
+     * @return all unique values.
+     */
+    public Set<T> getAllUniqueValues() {
+        return _allUniqueValues;
     }
 
     /**
