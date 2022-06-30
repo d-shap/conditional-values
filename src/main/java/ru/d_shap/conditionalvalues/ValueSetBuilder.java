@@ -19,8 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,7 +54,7 @@ public final class ValueSetBuilder<T> {
 
     private final Map<String, Set<Object>> _conditions;
 
-    private final Set<T> _values;
+    private final List<T> _values;
 
     private ValueSetBuilder() {
         super();
@@ -60,7 +62,7 @@ public final class ValueSetBuilder<T> {
         _predicate = null;
         _predicates = new HashMap<>();
         _conditions = new HashMap<>();
-        _values = new HashSet<>();
+        _values = new ArrayList<>();
     }
 
     /**
@@ -599,7 +601,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> addValues(final ValueSet<T> valueSet) {
         if (valueSet != null) {
-            Set<T> values = valueSet.getValues();
+            List<T> values = valueSet.getValues();
             for (T value : values) {
                 addValue(value);
             }
@@ -645,7 +647,7 @@ public final class ValueSetBuilder<T> {
      */
     public ValueSetBuilder<T> removeValues(final ValueSet<T> valueSet) {
         if (valueSet != null) {
-            Set<T> values = valueSet.getValues();
+            List<T> values = valueSet.getValues();
             for (T value : values) {
                 removeValue(value);
             }
