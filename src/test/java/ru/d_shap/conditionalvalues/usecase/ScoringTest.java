@@ -44,6 +44,18 @@ import ru.d_shap.conditionalvalues.predicate.ValueSetFunctionPredicate;
  */
 public final class ScoringTest {
 
+    private static final String AGE = "age";
+
+    private static final String GENDER = "gender";
+
+    private static final String GENDER_MALE = "male";
+
+    private static final String GENDER_FEMALE = "female";
+
+    private static final String SALARY = "salary";
+
+    private static final String DEPENDENTS = "dependents";
+
     /**
      * Test class constructor.
      */
@@ -61,88 +73,104 @@ public final class ScoringTest {
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
         Predicate agePredicate = new LogicalAndPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new LogicalNotPredicate(new IsLessThenPredicate())), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()));
-        conditionalValuesBuilder.setPredicate("age", agePredicate);
+        conditionalValuesBuilder.setPredicate(AGE, agePredicate);
         Predicate genderPredicate = new EqualsPredicate();
-        conditionalValuesBuilder.setPredicate("gender", genderPredicate);
+        conditionalValuesBuilder.setPredicate(GENDER, genderPredicate);
         Predicate salaryPredicate = new LogicalAndPredicate(new ValueSetFunctionPredicate(new TupleValue1Extractor(), new LogicalNotPredicate(new IsLessThenPredicate())), new ValueSetFunctionPredicate(new TupleValue2Extractor(), new IsLessThenPredicate()));
-        conditionalValuesBuilder.setPredicate("salary", salaryPredicate);
+        conditionalValuesBuilder.setPredicate(SALARY, salaryPredicate);
         Predicate dependentsPredicate = new EqualsPredicate();
-        conditionalValuesBuilder.setPredicate("dependents", dependentsPredicate);
+        conditionalValuesBuilder.setPredicate(DEPENDENTS, dependentsPredicate);
 
-        valueSetBuilder.addCondition("age", new Tuple(0, 18));
+        valueSetBuilder.addCondition(AGE, new Tuple(0, 18));
         valueSetBuilder.addValue(0);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("age", new Tuple(18, 25));
+        valueSetBuilder.addCondition(AGE, new Tuple(18, 25));
         valueSetBuilder.addValue(5);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("age", new Tuple(25, 45));
+        valueSetBuilder.addCondition(AGE, new Tuple(25, 45));
         valueSetBuilder.addValue(9);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("age", new Tuple(45, 55));
+        valueSetBuilder.addCondition(AGE, new Tuple(45, 55));
         valueSetBuilder.addValue(4);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("age", new Tuple(55, 100));
+        valueSetBuilder.addCondition(AGE, new Tuple(55, 100));
         valueSetBuilder.addValue(0);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-        valueSetBuilder.addCondition("gender", "male");
+        valueSetBuilder.addCondition(GENDER, GENDER_MALE);
         valueSetBuilder.addValue(10);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("gender", "female");
+        valueSetBuilder.addCondition(GENDER, GENDER_FEMALE);
         valueSetBuilder.addValue(8);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-        valueSetBuilder.addCondition("salary", new Tuple(0, 20000));
+        valueSetBuilder.addCondition(SALARY, new Tuple(0, 20000));
         valueSetBuilder.addValue(0);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("salary", new Tuple(20000, 50000));
+        valueSetBuilder.addCondition(SALARY, new Tuple(20000, 50000));
         valueSetBuilder.addValue(10);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("salary", new Tuple(50000, 150000));
+        valueSetBuilder.addCondition(SALARY, new Tuple(50000, 150000));
         valueSetBuilder.addValue(20);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("salary", new Tuple(150000, 500000));
+        valueSetBuilder.addCondition(SALARY, new Tuple(150000, 500000));
         valueSetBuilder.addValue(50);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("salary", new Tuple(500000, 100000000));
+        valueSetBuilder.addCondition(SALARY, new Tuple(500000, 100000000));
         valueSetBuilder.addValue(150);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-        valueSetBuilder.addCondition("dependents", 0);
+        valueSetBuilder.addCondition(DEPENDENTS, 0);
         valueSetBuilder.addValue(10);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("dependents", 1);
+        valueSetBuilder.addCondition(DEPENDENTS, 1);
         valueSetBuilder.addValue(0);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("dependents", 2);
+        valueSetBuilder.addCondition(DEPENDENTS, 2);
         valueSetBuilder.addValue(-10);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("dependents", 3);
+        valueSetBuilder.addCondition(DEPENDENTS, 3);
         valueSetBuilder.addValue(-30);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-        valueSetBuilder.addCondition("age", new Tuple(20, 35));
-        valueSetBuilder.addCondition("gender", "female");
+        valueSetBuilder.addCondition(AGE, new Tuple(20, 35));
+        valueSetBuilder.addCondition(GENDER, GENDER_FEMALE);
         valueSetBuilder.addValue(-20);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
         ConditionalValues<Integer> conditionalValues = conditionalValuesBuilder.build();
 
-        conditionSetBuilder.addCondition("age", 30);
-        conditionSetBuilder.addCondition("gender", "male");
-        conditionSetBuilder.addCondition("salary", 280000);
-        conditionSetBuilder.addCondition("dependents", 0);
+        conditionSetBuilder.addCondition(AGE, 30);
+        conditionSetBuilder.addCondition(GENDER, GENDER_MALE);
+        conditionSetBuilder.addCondition(SALARY, 280000);
+        conditionSetBuilder.addCondition(DEPENDENTS, 0);
         SumAction sumAction1 = new SumAction();
         conditionalValues.lookup(conditionSetBuilder.build(), sumAction1);
         Assertions.assertThat(sumAction1.getSum()).isEqualTo(79);
 
-        conditionSetBuilder.addCondition("age", 30);
-        conditionSetBuilder.addCondition("gender", "female");
-        conditionSetBuilder.addCondition("salary", 180000);
-        conditionSetBuilder.addCondition("dependents", 1);
+        conditionSetBuilder.addCondition(AGE, 30);
+        conditionSetBuilder.addCondition(GENDER, GENDER_FEMALE);
+        conditionSetBuilder.addCondition(SALARY, 180000);
+        conditionSetBuilder.addCondition(DEPENDENTS, 1);
         SumAction sumAction2 = new SumAction();
         conditionalValues.lookup(conditionSetBuilder.build(), sumAction2);
         Assertions.assertThat(sumAction2.getSum()).isEqualTo(30);
+
+        conditionSetBuilder.addCondition(AGE, 18);
+        conditionSetBuilder.addCondition(GENDER, GENDER_MALE);
+        conditionSetBuilder.addCondition(SALARY, 22000);
+        conditionSetBuilder.addCondition(DEPENDENTS, 0);
+        SumAction sumAction3 = new SumAction();
+        conditionalValues.lookup(conditionSetBuilder.build(), sumAction3);
+        Assertions.assertThat(sumAction3.getSum()).isEqualTo(35);
+
+        conditionSetBuilder.addCondition(AGE, 77);
+        conditionSetBuilder.addCondition(GENDER, GENDER_MALE);
+        conditionSetBuilder.addCondition(SALARY, 45000);
+        conditionSetBuilder.addCondition(DEPENDENTS, 0);
+        SumAction sumAction4 = new SumAction();
+        conditionalValues.lookup(conditionSetBuilder.build(), sumAction4);
+        Assertions.assertThat(sumAction4.getSum()).isEqualTo(30);
     }
 
 }
