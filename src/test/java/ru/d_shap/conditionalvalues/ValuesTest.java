@@ -493,67 +493,89 @@ public final class ValuesTest {
     public void getValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        List<ValueSet<String>> valueSets1 = null;
-        Values<String> values1 = new Values<>(null, valueSets1, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values1.getValues()).containsExactly();
+        List<ValueSet<String>> valueSets01 = null;
+        Values<String> values01 = new Values<>(null, valueSets01, null);
+        Assertions.assertThat(values01.getValues()).containsExactly();
 
-        List<ValueSet<String>> valueSets2 = DataHelper.createArrayList();
-        Values<String> values2 = new Values<>(null, valueSets2, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values2.getValues()).containsExactly();
+        List<ValueSet<String>> valueSets02 = DataHelper.createArrayList();
+        Values<String> values02 = new Values<>(null, valueSets02, null);
+        Assertions.assertThat(values02.getValues()).containsExactly();
 
-        ValueSet<String> valueSet31 = valueSetBuilder.build();
-        ValueSet<String> valueSet32 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets3 = DataHelper.createArrayList(valueSet31, valueSet32);
-        Values<String> values3 = new Values<>(null, valueSets3, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values3.getValues()).containsExactly();
+        ValueSet<String> valueSet031 = valueSetBuilder.build();
+        ValueSet<String> valueSet032 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets03 = DataHelper.createArrayList(valueSet031, valueSet032);
+        Values<String> values03 = new Values<>(null, valueSets03, null);
+        Assertions.assertThat(values03.getValues()).containsExactly();
 
-        ValueSet<String> valueSet41 = valueSetBuilder.build();
-        ValueSet<String> valueSet42 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets4 = DataHelper.createArrayList(null, valueSet41, valueSet42);
-        Values<String> values4 = new Values<>(null, valueSets4, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values4.getValues()).containsExactly();
+        ValueSet<String> valueSet041 = valueSetBuilder.build();
+        ValueSet<String> valueSet042 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets04 = DataHelper.createArrayList(null, valueSet041, valueSet042);
+        Values<String> values04 = new Values<>(null, valueSets04, null);
+        Assertions.assertThat(values04.getValues()).containsExactly();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValues("val1", "val2");
-        ValueSet<String> valueSet51 = valueSetBuilder.build();
+        ValueSet<String> valueSet051 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        ValueSet<String> valueSet52 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets5 = DataHelper.createArrayList(valueSet51, valueSet52);
-        Values<String> values5 = new Values<>(null, valueSets5, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values5.getValues()).containsExactly("val1", "val2");
+        ValueSet<String> valueSet052 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets05 = DataHelper.createArrayList(valueSet051, valueSet052);
+        Values<String> values05 = new Values<>(null, valueSets05, null);
+        Assertions.assertThat(values05.getValues()).containsExactly("val1", "val2");
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValues("val1", "val2");
-        ValueSet<String> valueSet61 = valueSetBuilder.build();
+        ValueSet<String> valueSet061 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
-        ValueSet<String> valueSet62 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets6 = DataHelper.createArrayList(null, valueSet61, valueSet62);
-        Values<String> values6 = new Values<>(null, valueSets6, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values6.getValues()).containsExactly("val1", "val2");
+        ValueSet<String> valueSet062 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets06 = DataHelper.createArrayList(null, valueSet061, valueSet062);
+        Values<String> values06 = new Values<>(null, valueSets06, null);
+        Assertions.assertThat(values06.getValues()).containsExactly("val1", "val2");
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addCondition("cond2", "val2");
         valueSetBuilder.addValues("val1", "val2");
-        ValueSet<String> valueSet71 = valueSetBuilder.build();
-        valueSetBuilder.addCondition("cond3", "val3");
-        valueSetBuilder.addValues("val3", "val4");
-        ValueSet<String> valueSet72 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets7 = DataHelper.createArrayList(valueSet71, valueSet72);
-        Values<String> values7 = new Values<>(null, valueSets7, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values7.getValues()).containsExactly("val1", "val2", "val3", "val4");
-
-        valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addCondition("cond2", "val2");
-        valueSetBuilder.addValues("val1", "val2");
-        ValueSet<String> valueSet81 = valueSetBuilder.build();
+        ValueSet<String> valueSet071 = valueSetBuilder.build();
         valueSetBuilder.addCondition("cond3", "val3");
         valueSetBuilder.addValues("val3", "val4");
-        ValueSet<String> valueSet82 = valueSetBuilder.build();
-        List<ValueSet<String>> valueSets8 = DataHelper.createArrayList(valueSet81, valueSet82);
-        Values<String> values8 = new Values<>(new NaturalOrderComparator<String>(), valueSets8, DataHelper.<String>createArrayList());
-        Assertions.assertThat(values8.getValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+        ValueSet<String> valueSet072 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets07 = DataHelper.createArrayList(valueSet071, valueSet072);
+        Values<String> values07 = new Values<>(null, valueSets07, null);
+        Assertions.assertThat(values07.getValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet081 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val2", "val3");
+        ValueSet<String> valueSet082 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets08 = DataHelper.createArrayList(valueSet081, valueSet082);
+        Values<String> values08 = new Values<>(null, valueSets08, null);
+        Assertions.assertThat(values08.getValues()).containsExactly("val1", "val2", "val2", "val3");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet091 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val3", "val4");
+        ValueSet<String> valueSet092 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets09 = DataHelper.createArrayList(valueSet091, valueSet092);
+        Values<String> values09 = new Values<>(new NaturalOrderComparator<String>(), valueSets09, null);
+        Assertions.assertThat(values09.getValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet101 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val2", "val3");
+        ValueSet<String> valueSet102 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets10 = DataHelper.createArrayList(valueSet101, valueSet102);
+        Values<String> values10 = new Values<>(new NaturalOrderComparator<String>(), valueSets10, null);
+        Assertions.assertThat(values10.getValues()).containsExactlyInOrder("val1", "val2", "val2", "val3");
     }
 
     /**
@@ -568,7 +590,7 @@ public final class ValuesTest {
         valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = DataHelper.createArrayList(valueSet1, valueSet2);
-        Values<String> values = new Values<>(null, valueSets, DataHelper.<String>createArrayList());
+        Values<String> values = new Values<>(null, valueSets, null);
         Assertions.assertThat(values.getValues()).hasSize(4);
 
         values.getValues().add("value");
@@ -584,7 +606,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet1 = valueSetBuilder.build();
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets = DataHelper.createArrayList(valueSet1, valueSet2);
-        Values<String> values = new Values<>(null, valueSets, DataHelper.<String>createArrayList());
+        Values<String> values = new Values<>(null, valueSets, null);
         Assertions.assertThat(values.getValues()).hasSize(0);
 
         values.getValues().add("value");
@@ -595,7 +617,91 @@ public final class ValuesTest {
      */
     @Test
     public void getUniqueValuesTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<ValueSet<String>> valueSets01 = null;
+        Values<String> values01 = new Values<>(null, valueSets01, null);
+        Assertions.assertThat(values01.getUniqueValues()).containsExactly();
+
+        List<ValueSet<String>> valueSets02 = DataHelper.createArrayList();
+        Values<String> values02 = new Values<>(null, valueSets02, null);
+        Assertions.assertThat(values02.getUniqueValues()).containsExactly();
+
+        ValueSet<String> valueSet031 = valueSetBuilder.build();
+        ValueSet<String> valueSet032 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets03 = DataHelper.createArrayList(valueSet031, valueSet032);
+        Values<String> values03 = new Values<>(null, valueSets03, null);
+        Assertions.assertThat(values03.getUniqueValues()).containsExactly();
+
+        ValueSet<String> valueSet041 = valueSetBuilder.build();
+        ValueSet<String> valueSet042 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets04 = DataHelper.createArrayList(null, valueSet041, valueSet042);
+        Values<String> values04 = new Values<>(null, valueSets04, null);
+        Assertions.assertThat(values04.getUniqueValues()).containsExactly();
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet051 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        ValueSet<String> valueSet052 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets05 = DataHelper.createArrayList(valueSet051, valueSet052);
+        Values<String> values05 = new Values<>(null, valueSets05, null);
+        Assertions.assertThat(values05.getUniqueValues()).containsExactly("val1", "val2");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet061 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        ValueSet<String> valueSet062 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets06 = DataHelper.createArrayList(null, valueSet061, valueSet062);
+        Values<String> values06 = new Values<>(null, valueSets06, null);
+        Assertions.assertThat(values06.getUniqueValues()).containsExactly("val1", "val2");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet071 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val3", "val4");
+        ValueSet<String> valueSet072 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets07 = DataHelper.createArrayList(valueSet071, valueSet072);
+        Values<String> values07 = new Values<>(null, valueSets07, null);
+        Assertions.assertThat(values07.getUniqueValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet081 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val2", "val3");
+        ValueSet<String> valueSet082 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets08 = DataHelper.createArrayList(valueSet081, valueSet082);
+        Values<String> values08 = new Values<>(null, valueSets08, null);
+        Assertions.assertThat(values08.getUniqueValues()).containsExactly("val1", "val2", "val3");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet091 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val3", "val4");
+        ValueSet<String> valueSet092 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets09 = DataHelper.createArrayList(valueSet091, valueSet092);
+        Values<String> values09 = new Values<>(new NaturalOrderComparator<String>(), valueSets09, null);
+        Assertions.assertThat(values09.getUniqueValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+
+        valueSetBuilder.addCondition("cond1", "val1");
+        valueSetBuilder.addCondition("cond2", "val2");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet101 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val3");
+        valueSetBuilder.addValues("val2", "val3");
+        ValueSet<String> valueSet102 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets10 = DataHelper.createArrayList(valueSet101, valueSet102);
+        Values<String> values10 = new Values<>(new NaturalOrderComparator<String>(), valueSets10, null);
+        Assertions.assertThat(values10.getUniqueValues()).containsExactlyInOrder("val1", "val2", "val3");
     }
 
     /**
@@ -603,7 +709,17 @@ public final class ValuesTest {
      */
     @Test
     public void getUniqueValuesUnmodifiableFailTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addValues("val3", "val4");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets = DataHelper.createArrayList(valueSet1, valueSet2);
+        Values<String> values = new Values<>(null, valueSets, null);
+        Assertions.assertThat(values.getUniqueValues()).hasSize(4);
+
+        values.getUniqueValues().add("value");
     }
 
     /**
@@ -611,7 +727,15 @@ public final class ValuesTest {
      */
     @Test
     public void getUniqueValuesUnmodifiableEmptyFailTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets = DataHelper.createArrayList(valueSet1, valueSet2);
+        Values<String> values = new Values<>(null, valueSets, null);
+        Assertions.assertThat(values.getUniqueValues()).hasSize(0);
+
+        values.getUniqueValues().add("value");
     }
 
     /**
