@@ -35,6 +35,14 @@ import ru.d_shap.conditionalvalues.Values;
  */
 public final class AttributeListTest {
 
+    private static final String TYPE = "type";
+
+    private static final String TYPE_CONTRACT = "contract";
+
+    private static final String IS_VIEWER = "isViewer";
+
+    private static final String IS_EDITOR = "isEditor";
+
     /**
      * Test class constructor.
      */
@@ -51,54 +59,56 @@ public final class AttributeListTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        valueSetBuilder.addCondition("type", "contract");
-        valueSetBuilder.addCondition("isViewer", true);
+        valueSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
+        valueSetBuilder.addCondition(IS_VIEWER, true);
         valueSetBuilder.addValue("title");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("type", "contract");
-        valueSetBuilder.addCondition("isEditor", true);
+
+        valueSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
+        valueSetBuilder.addCondition(IS_EDITOR, true);
         valueSetBuilder.addValue("subject");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addCondition("type", "contract");
+
+        valueSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
         valueSetBuilder.addCondition("state", "draft");
-        valueSetBuilder.addCondition("isViewer", true);
+        valueSetBuilder.addCondition(IS_VIEWER, true);
         valueSetBuilder.addValue("due date");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
         ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
 
-        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
         conditionSetBuilder.addCondition("state", "draft");
-        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
         Values<String> values1 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values1.getValues()).containsExactly("due date");
 
-        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
         conditionSetBuilder.addCondition("state", "approval");
-        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
         Values<String> values2 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values2.getValues()).containsExactly("title");
 
-        conditionSetBuilder.addCondition("type", "contract");
-        conditionSetBuilder.addCondition("isViewer", true);
-        conditionSetBuilder.addCondition("isEditor", true);
+        conditionSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
+        conditionSetBuilder.addCondition(IS_EDITOR, true);
         Values<String> values3 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values3.getValues()).containsExactly("title", "subject");
 
-        conditionSetBuilder.addCondition("type", "contract");
+        conditionSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
         conditionSetBuilder.addCondition("state", "draft");
-        conditionSetBuilder.addCondition("isViewer", true);
-        conditionSetBuilder.addCondition("isEditor", true);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
+        conditionSetBuilder.addCondition(IS_EDITOR, true);
         Values<String> values4 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values4.getValues()).containsExactly("subject", "due date");
 
-        conditionSetBuilder.addCondition("type", "contract");
-        conditionSetBuilder.addCondition("isViewer", true);
+        conditionSetBuilder.addCondition(TYPE, TYPE_CONTRACT);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
         Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values5.getValues()).containsExactly("title");
 
-        conditionSetBuilder.addCondition("isViewer", true);
-        conditionSetBuilder.addCondition("isEditor", true);
+        conditionSetBuilder.addCondition(IS_VIEWER, true);
+        conditionSetBuilder.addCondition(IS_EDITOR, true);
         Values<String> values6 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values6.getValues()).containsExactly();
     }
