@@ -151,7 +151,7 @@ public final class ValueSet<T> {
     }
 
     boolean isMatchConditions(final ConditionSet conditionSet, final TuplePredicate tuplePredicate, final Map<String, Predicate> predicates, final Predicate predicate) {
-        if (conditionSet == null) {
+        if (conditionSet == null || tuplePredicate == null) {
             return false;
         }
         int matchCount = 0;
