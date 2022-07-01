@@ -133,7 +133,7 @@ public final class ScoringTest {
         valueSetBuilder.addValue(-30);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
 
-        valueSetBuilder.addCondition(AGE, new Tuple(20, 35));
+        valueSetBuilder.addCondition(AGE, new Tuple(26, 35));
         valueSetBuilder.addCondition(GENDER, GENDER_FEMALE);
         valueSetBuilder.addValue(-20);
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -171,6 +171,14 @@ public final class ScoringTest {
         SumAction sumAction4 = new SumAction();
         conditionalValues.lookup(conditionSetBuilder.build(), sumAction4);
         Assertions.assertThat(sumAction4.getSum()).isEqualTo(30);
+
+        conditionSetBuilder.addCondition(AGE, 25);
+        conditionSetBuilder.addCondition(GENDER, GENDER_FEMALE);
+        conditionSetBuilder.addCondition(SALARY, 450000);
+        conditionSetBuilder.addCondition(DEPENDENTS, 1);
+        SumAction sumAction5 = new SumAction();
+        conditionalValues.lookup(conditionSetBuilder.build(), sumAction5);
+        Assertions.assertThat(sumAction5.getSum()).isEqualTo(67);
     }
 
 }
