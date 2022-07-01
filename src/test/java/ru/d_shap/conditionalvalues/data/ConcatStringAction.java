@@ -50,6 +50,20 @@ public final class ConcatStringAction implements Action<String> {
         _suffix = suffix;
     }
 
+    /**
+     * Create new object.
+     *
+     * @param concatStringAction the action.
+     * @param prefix             the prefix to add.
+     * @param suffix             the suffix to add.
+     */
+    public ConcatStringAction(final ConcatStringAction concatStringAction, final String prefix, final int suffix) {
+        super();
+        _values = concatStringAction._values;
+        _prefix = prefix;
+        _suffix = suffix;
+    }
+
     @Override
     public void perform(final String value) {
         String newValue = value;
