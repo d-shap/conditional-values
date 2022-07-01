@@ -203,7 +203,7 @@ public final class ValuesTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         List<ValueSet<String>> valueSets1 = null;
-        Values<String> values1 = new Values<>(null, valueSets1, DataHelper.<String>createArrayList());
+        Values<String> values1 = new Values<>(null, valueSets1, null);
         Assertions.assertThat(values1.contains("val1")).isFalse();
         Assertions.assertThat(values1.contains("val2")).isFalse();
         Assertions.assertThat(values1.contains("val3")).isFalse();
@@ -211,7 +211,7 @@ public final class ValuesTest {
         Assertions.assertThat(values1.contains("val5")).isFalse();
 
         List<ValueSet<String>> valueSets2 = DataHelper.createArrayList();
-        Values<String> values2 = new Values<>(null, valueSets2, DataHelper.<String>createArrayList());
+        Values<String> values2 = new Values<>(null, valueSets2, null);
         Assertions.assertThat(values2.contains("val1")).isFalse();
         Assertions.assertThat(values2.contains("val2")).isFalse();
         Assertions.assertThat(values2.contains("val3")).isFalse();
@@ -221,7 +221,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet31 = valueSetBuilder.build();
         ValueSet<String> valueSet32 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets3 = DataHelper.createArrayList(valueSet31, valueSet32);
-        Values<String> values3 = new Values<>(null, valueSets3, DataHelper.<String>createArrayList());
+        Values<String> values3 = new Values<>(null, valueSets3, null);
         Assertions.assertThat(values3.contains("val1")).isFalse();
         Assertions.assertThat(values3.contains("val2")).isFalse();
         Assertions.assertThat(values3.contains("val3")).isFalse();
@@ -231,7 +231,7 @@ public final class ValuesTest {
         ValueSet<String> valueSet41 = valueSetBuilder.build();
         ValueSet<String> valueSet42 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets4 = DataHelper.createArrayList(null, valueSet41, valueSet42);
-        Values<String> values4 = new Values<>(null, valueSets4, DataHelper.<String>createArrayList());
+        Values<String> values4 = new Values<>(null, valueSets4, null);
         Assertions.assertThat(values4.contains("val1")).isFalse();
         Assertions.assertThat(values4.contains("val2")).isFalse();
         Assertions.assertThat(values4.contains("val3")).isFalse();
@@ -245,7 +245,7 @@ public final class ValuesTest {
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet52 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets5 = DataHelper.createArrayList(valueSet51, valueSet52);
-        Values<String> values5 = new Values<>(null, valueSets5, DataHelper.<String>createArrayList());
+        Values<String> values5 = new Values<>(null, valueSets5, null);
         Assertions.assertThat(values5.contains("val1")).isTrue();
         Assertions.assertThat(values5.contains("val2")).isTrue();
         Assertions.assertThat(values5.contains("val3")).isFalse();
@@ -259,7 +259,7 @@ public final class ValuesTest {
         valueSetBuilder.addCondition("cond3", "val3");
         ValueSet<String> valueSet62 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets6 = DataHelper.createArrayList(null, valueSet61, valueSet62);
-        Values<String> values6 = new Values<>(null, valueSets6, DataHelper.<String>createArrayList());
+        Values<String> values6 = new Values<>(null, valueSets6, null);
         Assertions.assertThat(values6.contains("val1")).isTrue();
         Assertions.assertThat(values6.contains("val2")).isTrue();
         Assertions.assertThat(values6.contains("val3")).isFalse();
@@ -274,7 +274,7 @@ public final class ValuesTest {
         valueSetBuilder.addValues("val3", "val4");
         ValueSet<String> valueSet72 = valueSetBuilder.build();
         List<ValueSet<String>> valueSets7 = DataHelper.createArrayList(valueSet71, valueSet72);
-        Values<String> values7 = new Values<>(null, valueSets7, DataHelper.<String>createArrayList());
+        Values<String> values7 = new Values<>(null, valueSets7, null);
         Assertions.assertThat(values7.contains("val1")).isTrue();
         Assertions.assertThat(values7.contains("val2")).isTrue();
         Assertions.assertThat(values7.contains("val3")).isTrue();
@@ -287,7 +287,75 @@ public final class ValuesTest {
      */
     @Test
     public void doesNotContainTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<ValueSet<String>> valueSets1 = null;
+        List<String> allValues1 = null;
+        Values<String> values1 = new Values<>(null, valueSets1, allValues1);
+        Assertions.assertThat(values1.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values1.doesNotContain("val2")).isFalse();
+        Assertions.assertThat(values1.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values1.doesNotContain("val4")).isFalse();
+        Assertions.assertThat(values1.doesNotContain("val5")).isFalse();
+
+        List<ValueSet<String>> valueSets2 = DataHelper.createArrayList();
+        List<String> allValues2 = DataHelper.createArrayList();
+        Values<String> values2 = new Values<>(null, valueSets2, allValues2);
+        Assertions.assertThat(values2.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values2.doesNotContain("val2")).isFalse();
+        Assertions.assertThat(values2.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values2.doesNotContain("val4")).isFalse();
+        Assertions.assertThat(values2.doesNotContain("val5")).isFalse();
+
+        List<ValueSet<String>> valueSets3 = DataHelper.createArrayList();
+        List<String> allValues3 = DataHelper.createArrayList("val2", "val4");
+        Values<String> values3 = new Values<>(null, valueSets3, allValues3);
+        Assertions.assertThat(values3.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values3.doesNotContain("val2")).isTrue();
+        Assertions.assertThat(values3.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values3.doesNotContain("val4")).isTrue();
+        Assertions.assertThat(values3.doesNotContain("val5")).isFalse();
+
+        ValueSet<String> valueSet41 = valueSetBuilder.build();
+        ValueSet<String> valueSet42 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets4 = DataHelper.createArrayList(valueSet41, valueSet42);
+        List<String> allValues4 = DataHelper.createArrayList("val2", "val4");
+        Values<String> values4 = new Values<>(null, valueSets4, allValues4);
+        Assertions.assertThat(values4.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values4.doesNotContain("val2")).isTrue();
+        Assertions.assertThat(values4.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values4.doesNotContain("val4")).isTrue();
+        Assertions.assertThat(values4.doesNotContain("val5")).isFalse();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet51 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValues("val3", "val5");
+        ValueSet<String> valueSet52 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets5 = DataHelper.createArrayList(valueSet51, valueSet52);
+        List<String> allValues5 = DataHelper.createArrayList("val2", "val4");
+        Values<String> values5 = new Values<>(null, valueSets5, allValues5);
+        Assertions.assertThat(values5.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values5.doesNotContain("val2")).isFalse();
+        Assertions.assertThat(values5.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values5.doesNotContain("val4")).isTrue();
+        Assertions.assertThat(values5.doesNotContain("val5")).isFalse();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValues("val1", "val2");
+        ValueSet<String> valueSet61 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValues("val3", "val4");
+        ValueSet<String> valueSet62 = valueSetBuilder.build();
+        List<ValueSet<String>> valueSets6 = DataHelper.createArrayList(valueSet61, valueSet62);
+        List<String> allValues6 = DataHelper.createArrayList("val1", "val2", "val3", "val4", "val5", "val6");
+        Values<String> values6 = new Values<>(null, valueSets6, allValues6);
+        Assertions.assertThat(values6.doesNotContain("val1")).isFalse();
+        Assertions.assertThat(values6.doesNotContain("val2")).isFalse();
+        Assertions.assertThat(values6.doesNotContain("val3")).isFalse();
+        Assertions.assertThat(values6.doesNotContain("val4")).isFalse();
+        Assertions.assertThat(values6.doesNotContain("val5")).isTrue();
     }
 
     /**
@@ -359,7 +427,63 @@ public final class ValuesTest {
      */
     @Test
     public void allValuesDoesNotContainTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<String> allValues1 = null;
+        Values<String> values1 = new Values<>(null, null, allValues1);
+        Assertions.assertThat(values1.allValuesDoesNotContain("val1")).isTrue();
+        Assertions.assertThat(values1.allValuesDoesNotContain("val2")).isTrue();
+        Assertions.assertThat(values1.allValuesDoesNotContain("val3")).isTrue();
+        Assertions.assertThat(values1.allValuesDoesNotContain("val4")).isTrue();
+        Assertions.assertThat(values1.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues2 = DataHelper.createArrayList();
+        Values<String> values2 = new Values<>(null, null, allValues2);
+        Assertions.assertThat(values2.allValuesDoesNotContain("val1")).isTrue();
+        Assertions.assertThat(values2.allValuesDoesNotContain("val2")).isTrue();
+        Assertions.assertThat(values2.allValuesDoesNotContain("val3")).isTrue();
+        Assertions.assertThat(values2.allValuesDoesNotContain("val4")).isTrue();
+        Assertions.assertThat(values2.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues3 = DataHelper.createArrayList((String) null);
+        Values<String> values3 = new Values<>(null, null, allValues3);
+        Assertions.assertThat(values3.allValuesDoesNotContain("val1")).isTrue();
+        Assertions.assertThat(values3.allValuesDoesNotContain("val2")).isTrue();
+        Assertions.assertThat(values3.allValuesDoesNotContain("val3")).isTrue();
+        Assertions.assertThat(values3.allValuesDoesNotContain("val4")).isTrue();
+        Assertions.assertThat(values3.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues4 = DataHelper.createArrayList("val1", "val2");
+        Values<String> values4 = new Values<>(null, null, allValues4);
+        Assertions.assertThat(values4.allValuesDoesNotContain("val1")).isFalse();
+        Assertions.assertThat(values4.allValuesDoesNotContain("val2")).isFalse();
+        Assertions.assertThat(values4.allValuesDoesNotContain("val3")).isTrue();
+        Assertions.assertThat(values4.allValuesDoesNotContain("val4")).isTrue();
+        Assertions.assertThat(values4.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues5 = DataHelper.createArrayList(null, "val1", "val2");
+        Values<String> values5 = new Values<>(null, null, allValues5);
+        Assertions.assertThat(values5.allValuesDoesNotContain("val1")).isFalse();
+        Assertions.assertThat(values5.allValuesDoesNotContain("val2")).isFalse();
+        Assertions.assertThat(values5.allValuesDoesNotContain("val3")).isTrue();
+        Assertions.assertThat(values5.allValuesDoesNotContain("val4")).isTrue();
+        Assertions.assertThat(values5.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues6 = DataHelper.createArrayList("val1", "val2", "val3", "val4");
+        Values<String> values6 = new Values<>(null, null, allValues6);
+        Assertions.assertThat(values6.allValuesDoesNotContain("val1")).isFalse();
+        Assertions.assertThat(values6.allValuesDoesNotContain("val2")).isFalse();
+        Assertions.assertThat(values6.allValuesDoesNotContain("val3")).isFalse();
+        Assertions.assertThat(values6.allValuesDoesNotContain("val4")).isFalse();
+        Assertions.assertThat(values6.allValuesDoesNotContain("val5")).isTrue();
+
+        List<String> allValues7 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
+        Values<String> values7 = new Values<>(null, null, allValues7);
+        Assertions.assertThat(values7.allValuesDoesNotContain("val1")).isFalse();
+        Assertions.assertThat(values7.allValuesDoesNotContain("val2")).isFalse();
+        Assertions.assertThat(values7.allValuesDoesNotContain("val3")).isFalse();
+        Assertions.assertThat(values7.allValuesDoesNotContain("val4")).isFalse();
+        Assertions.assertThat(values7.allValuesDoesNotContain("val5")).isTrue();
     }
 
     /**
