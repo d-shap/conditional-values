@@ -745,37 +745,45 @@ public final class ValuesTest {
     public void getAllValuesTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        List<String> allValues1 = null;
-        Values<String> values1 = new Values<>(null, null, allValues1);
-        Assertions.assertThat(values1.getAllValues()).containsExactly();
+        List<String> allValues01 = null;
+        Values<String> values01 = new Values<>(null, null, allValues01);
+        Assertions.assertThat(values01.getAllValues()).containsExactly();
 
-        List<String> allValues2 = DataHelper.createArrayList();
-        Values<String> values2 = new Values<>(null, null, allValues2);
-        Assertions.assertThat(values2.getAllValues()).containsExactly();
+        List<String> allValues02 = DataHelper.createArrayList();
+        Values<String> values02 = new Values<>(null, null, allValues02);
+        Assertions.assertThat(values02.getAllValues()).containsExactly();
 
-        List<String> allValues3 = DataHelper.createArrayList((String) null);
-        Values<String> values3 = new Values<>(null, null, allValues3);
-        Assertions.assertThat(values3.getAllValues()).containsExactly();
+        List<String> allValues03 = DataHelper.createArrayList((String) null);
+        Values<String> values03 = new Values<>(null, null, allValues03);
+        Assertions.assertThat(values03.getAllValues()).containsExactly();
 
-        List<String> allValues4 = DataHelper.createArrayList("val1", "val2");
-        Values<String> values4 = new Values<>(null, null, allValues4);
-        Assertions.assertThat(values4.getAllValues()).containsExactly("val1", "val2");
+        List<String> allValues04 = DataHelper.createArrayList("val1", "val2");
+        Values<String> values04 = new Values<>(null, null, allValues04);
+        Assertions.assertThat(values04.getAllValues()).containsExactly("val1", "val2");
 
-        List<String> allValues5 = DataHelper.createArrayList(null, "val1", "val2");
-        Values<String> values5 = new Values<>(null, null, allValues5);
-        Assertions.assertThat(values5.getAllValues()).containsExactly("val1", "val2");
+        List<String> allValues05 = DataHelper.createArrayList(null, "val1", "val2");
+        Values<String> values05 = new Values<>(null, null, allValues05);
+        Assertions.assertThat(values05.getAllValues()).containsExactly("val1", "val2");
 
-        List<String> allValues6 = DataHelper.createArrayList("val1", "val2", "val3", "val4");
-        Values<String> values6 = new Values<>(null, null, allValues6);
-        Assertions.assertThat(values6.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+        List<String> allValues06 = DataHelper.createArrayList("val1", "val2", "val3", "val4");
+        Values<String> values06 = new Values<>(null, null, allValues06);
+        Assertions.assertThat(values06.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
 
-        List<String> allValues7 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
-        Values<String> values7 = new Values<>(null, null, allValues7);
-        Assertions.assertThat(values7.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
+        List<String> allValues07 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
+        Values<String> values07 = new Values<>(null, null, allValues07);
+        Assertions.assertThat(values07.getAllValues()).containsExactly("val1", "val2", "val3", "val4");
 
-        List<String> allValues8 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
-        Values<String> values8 = new Values<>(new NaturalOrderComparator<String>(), null, allValues8);
-        Assertions.assertThat(values8.getAllValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+        List<String> allValues08 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
+        Values<String> values08 = new Values<>(null, null, allValues08);
+        Assertions.assertThat(values08.getAllValues()).containsExactly("val1", "val2", "val2", "val3");
+
+        List<String> allValues09 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
+        Values<String> values09 = new Values<>(new NaturalOrderComparator<String>(), null, allValues09);
+        Assertions.assertThat(values09.getAllValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+
+        List<String> allValues10 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
+        Values<String> values10 = new Values<>(new NaturalOrderComparator<String>(), null, allValues10);
+        Assertions.assertThat(values10.getAllValues()).containsExactlyInOrder("val1", "val2", "val2", "val3");
     }
 
     /**
@@ -811,7 +819,47 @@ public final class ValuesTest {
      */
     @Test
     public void getAllUniqueValuesTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<String> allValues01 = null;
+        Values<String> values01 = new Values<>(null, null, allValues01);
+        Assertions.assertThat(values01.getAllUniqueValues()).containsExactly();
+
+        List<String> allValues02 = DataHelper.createArrayList();
+        Values<String> values02 = new Values<>(null, null, allValues02);
+        Assertions.assertThat(values02.getAllUniqueValues()).containsExactly();
+
+        List<String> allValues03 = DataHelper.createArrayList((String) null);
+        Values<String> values03 = new Values<>(null, null, allValues03);
+        Assertions.assertThat(values03.getAllUniqueValues()).containsExactly();
+
+        List<String> allValues04 = DataHelper.createArrayList("val1", "val2");
+        Values<String> values04 = new Values<>(null, null, allValues04);
+        Assertions.assertThat(values04.getAllUniqueValues()).containsExactly("val1", "val2");
+
+        List<String> allValues05 = DataHelper.createArrayList(null, "val1", "val2");
+        Values<String> values05 = new Values<>(null, null, allValues05);
+        Assertions.assertThat(values05.getAllUniqueValues()).containsExactly("val1", "val2");
+
+        List<String> allValues06 = DataHelper.createArrayList("val1", "val2", "val3", "val4");
+        Values<String> values06 = new Values<>(null, null, allValues06);
+        Assertions.assertThat(values06.getAllUniqueValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        List<String> allValues07 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
+        Values<String> values07 = new Values<>(null, null, allValues07);
+        Assertions.assertThat(values07.getAllUniqueValues()).containsExactly("val1", "val2", "val3", "val4");
+
+        List<String> allValues08 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
+        Values<String> values08 = new Values<>(null, null, allValues08);
+        Assertions.assertThat(values08.getAllUniqueValues()).containsExactly("val1", "val2", "val3");
+
+        List<String> allValues09 = DataHelper.createArrayList(null, "val1", "val2", "val3", "val4");
+        Values<String> values09 = new Values<>(new NaturalOrderComparator<String>(), null, allValues09);
+        Assertions.assertThat(values09.getAllUniqueValues()).containsExactlyInOrder("val1", "val2", "val3", "val4");
+
+        List<String> allValues10 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
+        Values<String> values10 = new Values<>(new NaturalOrderComparator<String>(), null, allValues10);
+        Assertions.assertThat(values10.getAllUniqueValues()).containsExactlyInOrder("val1", "val2", "val3");
     }
 
     /**
@@ -819,7 +867,13 @@ public final class ValuesTest {
      */
     @Test
     public void getAllUniqueValuesUnmodifiableFailTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<String> allValues = DataHelper.createArrayList("val1", "val2");
+        Values<String> values = new Values<>(null, null, allValues);
+        Assertions.assertThat(values.getAllUniqueValues()).hasSize(2);
+
+        values.getAllUniqueValues().add("value");
     }
 
     /**
@@ -827,7 +881,13 @@ public final class ValuesTest {
      */
     @Test
     public void getAllUniqueValuesUnmodifiableEmptyFailTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        List<String> allValues = DataHelper.createArrayList();
+        Values<String> values = new Values<>(null, null, allValues);
+        Assertions.assertThat(values.getAllUniqueValues()).hasSize(0);
+
+        values.getAllUniqueValues().add("value");
     }
 
     /**
