@@ -99,6 +99,14 @@ public final class DividersTest {
         conditionSetBuilder.addCondition("div", 2235987);
         Values<String> values5 = conditionalValues.lookup(conditionSetBuilder.build());
         Assertions.assertThat(values5.getValues()).containsExactly("Is divided by 3", "Is divided by 13");
+
+        conditionSetBuilder.addCondition("div", 1021020);
+        Values<String> values6 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values6.getValues()).containsExactly("Is divided by 2", "Is divided by 3", "Is divided by 5", "Is divided by 7", "Is divided by 11", "Is divided by 13", "Is divided by 17");
+
+        conditionSetBuilder.addCondition("div", 510510);
+        Values<String> values7 = conditionalValues.lookup(conditionSetBuilder.build());
+        Assertions.assertThat(values7.getValues()).containsExactly("Is divided by 2", "Is divided by 3", "Is divided by 5", "Is divided by 7", "Is divided by 11", "Is divided by 13", "Is divided by 17");
     }
 
 }
