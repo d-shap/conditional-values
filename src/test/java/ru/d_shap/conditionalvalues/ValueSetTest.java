@@ -27,8 +27,10 @@ import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.util.DataHelper;
+import ru.d_shap.conditionalvalues.predicate.AllValuesMatchTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringContainsPredicate;
 import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
@@ -237,12 +239,10 @@ public final class ValueSetTest {
         conditions.put("cond2", condition2);
         ValueSet<String> valueSet = new ValueSet<>(null, null, null, conditions, null);
 
+        Assertions.assertThat(valueSet.isMatchConditions(null, null, null, null)).isFalse();
         Assertions.assertThat(valueSet.isMatchConditions(null, null, null, new EqualsPredicate())).isFalse();
-
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), null, null, new EqualsPredicate())).isFalse();
-
         Assertions.assertThat(valueSet.isMatchConditions(null, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
-
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
 
         Map<String, Object> conditions011 = DataHelper.createHashMap();
@@ -429,6 +429,26 @@ public final class ValueSetTest {
         conditions104.put("cond3", "VAL32");
         conditions104.put("cond4", "VAL42");
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions104), new AnyValueMatchesTuplePredicate(), null, new StringEqualsIgnoreCasePredicate())).isFalse();
+
+        Map<String, Object> conditions111 = DataHelper.createHashMap();
+        conditions111.put("cond1", "val11");
+        conditions111.put("cond2", "val21");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions111), new AnyValueMatchesTuplePredicate(), null, new StringContainsPredicate())).isTrue();
+
+        Map<String, Object> conditions112 = DataHelper.createHashMap();
+        conditions112.put("cond1", "val11");
+        conditions112.put("cond2", "val21");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions112), new AllValuesMatchTuplePredicate(), null, new StringContainsPredicate())).isFalse();
+
+        Map<String, Object> conditions113 = DataHelper.createHashMap();
+        conditions113.put("cond1", "val11 val12 val13");
+        conditions113.put("cond2", "val21 val22 val23");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions113), new AnyValueMatchesTuplePredicate(), null, new StringContainsPredicate())).isTrue();
+
+        Map<String, Object> conditions114 = DataHelper.createHashMap();
+        conditions114.put("cond1", "val11 val12 val13");
+        conditions114.put("cond2", "val21 val22 val23");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions114), new AllValuesMatchTuplePredicate(), null, new StringContainsPredicate())).isTrue();
     }
 
     /**
