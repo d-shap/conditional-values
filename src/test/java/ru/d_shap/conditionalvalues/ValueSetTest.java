@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -456,7 +457,84 @@ public final class ValueSetTest {
      */
     @Test
     public void isMatchConditionsConditionExternalPredicateTest() {
-        // TODO
+        Map<String, Set<Object>> conditions = DataHelper.createHashMap();
+        Set<Object> condition1 = DataHelper.createHashSet((Object) "val11", "val12", "val13");
+        conditions.put("cond1", condition1);
+        Set<Object> condition2 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
+        conditions.put("cond2", condition2);
+        ValueSet<String> valueSet = new ValueSet<>(null, null, null, conditions, null);
+
+        Map<String, Predicate> predicates01 = new HashMap<>();
+        predicates01.put("cond1", new StringContainsPredicate());
+        predicates01.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions01 = DataHelper.createHashMap();
+        conditions01.put("cond1", "xx_val11_yyy");
+        conditions01.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions01), new AnyValueMatchesTuplePredicate(), predicates01, null)).isTrue();
+
+        Map<String, Predicate> predicates02 = new HashMap<>();
+        predicates02.put("cond1", new StringContainsPredicate());
+        predicates02.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions02 = DataHelper.createHashMap();
+        conditions02.put("cond1", "xx_val11_yyy");
+        conditions02.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions02), new AnyValueMatchesTuplePredicate(), predicates02, new EqualsPredicate())).isTrue();
+
+        Map<String, Predicate> predicates03 = new HashMap<>();
+        predicates03.put("cond1", new StringContainsPredicate());
+        Map<String, Object> conditions03 = DataHelper.createHashMap();
+        conditions03.put("cond1", "xx_val11_yyy");
+        conditions03.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions03), new AnyValueMatchesTuplePredicate(), predicates03, new EqualsPredicate())).isFalse();
+
+        Map<String, Predicate> predicates04 = new HashMap<>();
+        predicates04.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions04 = DataHelper.createHashMap();
+        conditions04.put("cond1", "xx_val11_yyy");
+        conditions04.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions04), new AnyValueMatchesTuplePredicate(), predicates04, new EqualsPredicate())).isFalse();
+
+        Map<String, Predicate> predicates05 = new HashMap<>();
+        Map<String, Object> conditions05 = DataHelper.createHashMap();
+        conditions05.put("cond1", "xx_val11_yyy");
+        conditions05.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions05), new AnyValueMatchesTuplePredicate(), predicates05, new EqualsPredicate())).isFalse();
+
+        Map<String, Predicate> predicates06 = new HashMap<>();
+        predicates06.put("cond1", new StringContainsPredicate());
+        Map<String, Object> conditions06 = DataHelper.createHashMap();
+        conditions06.put("cond1", "xx_val11_yyy");
+        conditions06.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions06), new AnyValueMatchesTuplePredicate(), predicates06, new StringContainsPredicate())).isTrue();
+
+        Map<String, Predicate> predicates07 = new HashMap<>();
+        predicates07.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions07 = DataHelper.createHashMap();
+        conditions07.put("cond1", "xx_val11_yyy");
+        conditions07.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions07), new AnyValueMatchesTuplePredicate(), predicates07, new StringContainsPredicate())).isTrue();
+
+        Map<String, Predicate> predicates08 = new HashMap<>();
+        Map<String, Object> conditions08 = DataHelper.createHashMap();
+        conditions08.put("cond1", "xx_val11_yyy");
+        conditions08.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions08), new AnyValueMatchesTuplePredicate(), predicates08, new StringContainsPredicate())).isTrue();
+
+        Map<String, Predicate> predicates09 = new HashMap<>();
+        predicates09.put("cond1", new StringContainsPredicate());
+        predicates09.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions09 = DataHelper.createHashMap();
+        conditions09.put("cond1", "xx_val11_yyy");
+        conditions09.put("cond2", "xx_val21_yyy");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions09), new AllValuesMatchTuplePredicate(), predicates09, new EqualsPredicate())).isFalse();
+
+        Map<String, Predicate> predicates10 = new HashMap<>();
+        predicates10.put("cond1", new StringContainsPredicate());
+        predicates10.put("cond2", new StringContainsPredicate());
+        Map<String, Object> conditions10 = DataHelper.createHashMap();
+        conditions10.put("cond1", "xx_val11_yyy_val12 val13");
+        conditions10.put("cond2", "xx_val21_yyy_val22 val23");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions10), new AllValuesMatchTuplePredicate(), predicates10, new EqualsPredicate())).isTrue();
     }
 
     /**
