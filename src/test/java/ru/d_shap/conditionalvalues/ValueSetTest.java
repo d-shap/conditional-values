@@ -232,7 +232,7 @@ public final class ValueSetTest {
      * {@link ValueSet} class test.
      */
     @Test
-    public void isMatchConditionsDefaultExternalPredicateTest() {
+    public void isMatchConditionsEmptyTest() {
         Map<String, Set<Object>> conditions = DataHelper.createHashMap();
         Set<Object> condition1 = DataHelper.createHashSet((Object) "val11", "val12", "val13");
         conditions.put("cond1", condition1);
@@ -245,6 +245,19 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), null, null, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSet.isMatchConditions(null, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
+    public void isMatchConditionsDefaultExternalPredicateTest() {
+        Map<String, Set<Object>> conditions = DataHelper.createHashMap();
+        Set<Object> condition1 = DataHelper.createHashSet((Object) "val11", "val12", "val13");
+        conditions.put("cond1", condition1);
+        Set<Object> condition2 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
+        conditions.put("cond2", condition2);
+        ValueSet<String> valueSet = new ValueSet<>(null, null, null, conditions, null);
 
         Map<String, Object> conditions011 = DataHelper.createHashMap();
         conditions011.put("cond1", "val11");
