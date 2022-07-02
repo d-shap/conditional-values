@@ -229,7 +229,7 @@ public final class ValueSetTest {
      * {@link ValueSet} class test.
      */
     @Test
-    public void isMatchConditionsDefaultConditionalValuesPredicateTest() {
+    public void isMatchConditionsDefaultExternalPredicateTest() {
         Map<String, Set<Object>> conditions = DataHelper.createHashMap();
         Set<Object> condition1 = DataHelper.createHashSet((Object) "val11", "val12", "val13");
         conditions.put("cond1", condition1);
@@ -429,6 +429,30 @@ public final class ValueSetTest {
         conditions104.put("cond3", "VAL32");
         conditions104.put("cond4", "VAL42");
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions104), new AnyValueMatchesTuplePredicate(), null, new StringEqualsIgnoreCasePredicate())).isFalse();
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
+    public void isMatchConditionsConditionExternalPredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
+    public void isMatchConditionsDefaultPredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSet} class test.
+     */
+    @Test
+    public void isMatchConditionsConditionPredicateTest() {
+        // TODO
     }
 
     /**
