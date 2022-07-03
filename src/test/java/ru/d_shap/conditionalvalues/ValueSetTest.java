@@ -779,71 +779,55 @@ public final class ValueSetTest {
     @Test
     public void isMoreSpecificValueSetTest() {
         Map<String, Set<Object>> conditions1 = DataHelper.createHashMap();
-        Set<Object> condition11 = DataHelper.createHashSet();
-        condition11.add("val1");
+        Set<Object> condition11 = DataHelper.createHashSet((Object) "val1");
         conditions1.put("cond1", condition11);
-        Set<Object> condition12 = DataHelper.createHashSet();
-        condition12.add("val2");
+        Set<Object> condition12 = DataHelper.createHashSet((Object) "val2");
         conditions1.put("cond2", condition12);
         ValueSet<String> valueSet1 = new ValueSet<>(null, null, null, conditions1, null);
 
         Map<String, Set<Object>> conditions2 = DataHelper.createHashMap();
-        Set<Object> condition21 = DataHelper.createHashSet();
-        condition21.add("val1");
+        Set<Object> condition21 = DataHelper.createHashSet((Object) "val1");
         conditions2.put("cond1", condition21);
-        Set<Object> condition22 = DataHelper.createHashSet();
-        condition22.add("val2");
+        Set<Object> condition22 = DataHelper.createHashSet((Object) "val2");
         conditions2.put("cond2", condition22);
         ValueSet<String> valueSet2 = new ValueSet<>(null, null, null, conditions2, null);
 
         Map<String, Set<Object>> conditions3 = DataHelper.createHashMap();
-        Set<Object> condition31 = DataHelper.createHashSet();
-        condition31.add("val1");
+        Set<Object> condition31 = DataHelper.createHashSet((Object) "val1");
         conditions3.put("cond1", condition31);
-        Set<Object> condition32 = DataHelper.createHashSet();
-        condition32.add("val8");
+        Set<Object> condition32 = DataHelper.createHashSet((Object) "val8");
         conditions3.put("cond8", condition32);
         ValueSet<String> valueSet3 = new ValueSet<>(null, null, null, conditions3, null);
 
         Map<String, Set<Object>> conditions4 = DataHelper.createHashMap();
-        Set<Object> condition4 = DataHelper.createHashSet();
-        condition4.add("val1");
+        Set<Object> condition4 = DataHelper.createHashSet((Object) "val1");
         conditions4.put("cond1", condition4);
         ValueSet<String> valueSet4 = new ValueSet<>(null, null, null, conditions4, null);
 
         Map<String, Set<Object>> conditions5 = DataHelper.createHashMap();
-        Set<Object> condition5 = DataHelper.createHashSet();
-        condition5.add("val8");
+        Set<Object> condition5 = DataHelper.createHashSet((Object) "val8");
         conditions5.put("cond1", condition5);
         ValueSet<String> valueSet5 = new ValueSet<>(null, null, null, conditions5, null);
 
         Map<String, Set<Object>> conditions6 = DataHelper.createHashMap();
-        Set<Object> condition61 = DataHelper.createHashSet();
-        condition61.add("val1");
+        Set<Object> condition61 = DataHelper.createHashSet((Object) "val1");
         conditions6.put("cond1", condition61);
-        Set<Object> condition62 = DataHelper.createHashSet();
-        condition62.add("val2");
+        Set<Object> condition62 = DataHelper.createHashSet((Object) "val2");
         conditions6.put("cond2", condition62);
-        Set<Object> condition63 = DataHelper.createHashSet();
-        condition63.add("val3");
+        Set<Object> condition63 = DataHelper.createHashSet((Object) "val3");
         conditions6.put("cond3", condition63);
-        Set<Object> condition64 = DataHelper.createHashSet();
-        condition64.add("val4");
+        Set<Object> condition64 = DataHelper.createHashSet((Object) "val4");
         conditions6.put("cond4", condition64);
         ValueSet<String> valueSet6 = new ValueSet<>(null, null, null, conditions6, null);
 
         Map<String, Set<Object>> conditions7 = DataHelper.createHashMap();
-        Set<Object> condition71 = DataHelper.createHashSet();
-        condition71.add("val8");
+        Set<Object> condition71 = DataHelper.createHashSet((Object) "val8");
         conditions7.put("cond1", condition71);
-        Set<Object> condition72 = DataHelper.createHashSet();
-        condition72.add("val8");
+        Set<Object> condition72 = DataHelper.createHashSet((Object) "val8");
         conditions7.put("cond2", condition72);
-        Set<Object> condition73 = DataHelper.createHashSet();
-        condition73.add("val8");
+        Set<Object> condition73 = DataHelper.createHashSet((Object) "val8");
         conditions7.put("cond3", condition73);
-        Set<Object> condition74 = DataHelper.createHashSet();
-        condition74.add("val8");
+        Set<Object> condition74 = DataHelper.createHashSet((Object) "val8");
         conditions7.put("cond4", condition74);
         ValueSet<String> valueSet7 = new ValueSet<>(null, null, null, conditions7, null);
 
@@ -920,8 +904,7 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSetUniqueConditions02).hasSize(0);
 
         Map<String, Set<Object>> conditions03 = DataHelper.createHashMap();
-        Set<Object> condition03 = DataHelper.createHashSet();
-        condition03.add("val");
+        Set<Object> condition03 = DataHelper.createHashSet((Object) "val");
         conditions03.put(null, condition03);
         ValueSet<String> valueSet03 = new ValueSet<>(null, null, null, conditions03, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions03 = valueSet03.getValueSetUniqueConditions();
@@ -942,40 +925,32 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSetUniqueConditions05).hasSize(0);
 
         Map<String, Set<Object>> conditions06 = DataHelper.createHashMap();
-        Set<Object> condition06 = DataHelper.createHashSet();
-        condition06.add(null);
+        Set<Object> condition06 = DataHelper.createHashSet((Object) null);
         conditions06.put("cond", condition06);
         ValueSet<String> valueSet06 = new ValueSet<>(null, null, null, conditions06, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions06 = valueSet06.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions06).hasSize(0);
 
         Map<String, Set<Object>> conditions07 = DataHelper.createHashMap();
-        Set<Object> condition07 = DataHelper.createHashSet();
-        condition07.add("val");
+        Set<Object> condition07 = DataHelper.createHashSet((Object) "val");
         conditions07.put("cond", condition07);
         ValueSet<String> valueSet07 = new ValueSet<>(null, null, null, conditions07, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions07 = valueSet07.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions07).hasSize(1);
 
         Map<String, Set<Object>> conditions08 = DataHelper.createHashMap();
-        Set<Object> condition081 = DataHelper.createHashSet();
-        condition081.add("val1");
+        Set<Object> condition081 = DataHelper.createHashSet((Object) "val1");
         conditions08.put("cond1", condition081);
-        Set<Object> condition082 = DataHelper.createHashSet();
-        condition082.add("val2");
+        Set<Object> condition082 = DataHelper.createHashSet((Object) "val2");
         conditions08.put("cond2", condition082);
         ValueSet<String> valueSet08 = new ValueSet<>(null, null, null, conditions08, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions08 = valueSet08.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions08).hasSize(1);
 
         Map<String, Set<Object>> conditions09 = DataHelper.createHashMap();
-        Set<Object> condition091 = DataHelper.createHashSet();
-        condition091.add(null);
-        condition091.add("val1");
+        Set<Object> condition091 = DataHelper.createHashSet((Object) null, "val1");
         conditions09.put("cond1", condition091);
-        Set<Object> condition092 = DataHelper.createHashSet();
-        condition092.add(null);
-        condition092.add("val2");
+        Set<Object> condition092 = DataHelper.createHashSet((Object) null, "val2");
         conditions09.put("cond2", condition092);
         Set<Object> condition093 = null;
         conditions09.put("cond3", condition093);
@@ -984,31 +959,20 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSetUniqueConditions09).hasSize(1);
 
         Map<String, Set<Object>> conditions10 = DataHelper.createHashMap();
-        Set<Object> condition101 = DataHelper.createHashSet();
-        condition101.add("val11");
-        condition101.add("val12");
+        Set<Object> condition101 = DataHelper.createHashSet((Object) "val11", "val12");
         conditions10.put("cond1", condition101);
-        Set<Object> condition102 = DataHelper.createHashSet();
-        condition102.add("val21");
-        condition102.add("val22");
+        Set<Object> condition102 = DataHelper.createHashSet((Object) "val21", "val22");
         conditions10.put("cond2", condition102);
         ValueSet<String> valueSet10 = new ValueSet<>(null, null, null, conditions10, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions10 = valueSet10.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions10).hasSize(4);
 
         Map<String, Set<Object>> conditions11 = DataHelper.createHashMap();
-        Set<Object> condition111 = DataHelper.createHashSet();
-        condition111.add("val1");
-        condition111.add("val2");
+        Set<Object> condition111 = DataHelper.createHashSet((Object) "val1", "val2");
         conditions11.put("cond1", condition111);
-        Set<Object> condition112 = DataHelper.createHashSet();
-        condition112.add("val1");
-        condition112.add("val2");
+        Set<Object> condition112 = DataHelper.createHashSet((Object) "val1", "val2");
         conditions11.put("cond2", condition112);
-        Set<Object> condition113 = DataHelper.createHashSet();
-        condition113.add("val1");
-        condition113.add("val2");
-        condition113.add("val3");
+        Set<Object> condition113 = DataHelper.createHashSet((Object) "val1", "val2", "val3");
         conditions11.put("cond3", condition113);
         ValueSet<String> valueSet11 = new ValueSet<>(null, null, null, conditions11, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions11 = valueSet11.getValueSetUniqueConditions();
@@ -1021,14 +985,9 @@ public final class ValueSetTest {
     @Test(expected = UnsupportedOperationException.class)
     public void getValueSetUniqueConditionsUnmodifiableFailTest() {
         Map<String, Set<Object>> conditions = DataHelper.createHashMap();
-        Set<Object> condition1 = DataHelper.createHashSet();
-        condition1.add("val1");
-        condition1.add("val2");
+        Set<Object> condition1 = DataHelper.createHashSet((Object) "val1", "val2");
         conditions.put("cond1", condition1);
-        Set<Object> condition2 = DataHelper.createHashSet();
-        condition2.add("val1");
-        condition2.add("val2");
-        condition2.add("val3");
+        Set<Object> condition2 = DataHelper.createHashSet((Object) "val1", "val2", "val3");
         conditions.put("cond2", condition2);
         ValueSet<String> valueSet = new ValueSet<>(null, null, null, conditions, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions = valueSet.getValueSetUniqueConditions();
@@ -1063,26 +1022,19 @@ public final class ValueSetTest {
         ValueSet<String> valueSet2 = new ValueSet<>(null, null, null, null, values2);
         Assertions.assertThat(valueSet2.getValues()).containsExactly();
 
-        List<String> values3 = DataHelper.createArrayList();
-        values3.add(null);
+        List<String> values3 = DataHelper.createArrayList((String) null);
         ValueSet<String> valueSet3 = new ValueSet<>(null, null, null, null, values3);
         Assertions.assertThat(valueSet3.getValues()).containsExactly();
 
-        List<String> values4 = DataHelper.createArrayList();
-        values4.add("val");
+        List<String> values4 = DataHelper.createArrayList("val");
         ValueSet<String> valueSet4 = new ValueSet<>(null, null, null, null, values4);
         Assertions.assertThat(valueSet4.getValues()).containsExactly("val");
 
-        List<String> values5 = DataHelper.createArrayList();
-        values5.add(null);
-        values5.add("val");
+        List<String> values5 = DataHelper.createArrayList(null, "val");
         ValueSet<String> valueSet5 = new ValueSet<>(null, null, null, null, values5);
         Assertions.assertThat(valueSet5.getValues()).containsExactly("val");
 
-        List<String> values6 = DataHelper.createArrayList();
-        values6.add("val1");
-        values6.add("val2");
-        values6.add("val3");
+        List<String> values6 = DataHelper.createArrayList("val1", "val2", "val3");
         ValueSet<String> valueSet6 = new ValueSet<>(null, null, null, null, values6);
         Assertions.assertThat(valueSet6.getValues()).containsExactly("val1", "val2", "val3");
     }
@@ -1092,10 +1044,7 @@ public final class ValueSetTest {
      */
     @Test(expected = UnsupportedOperationException.class)
     public void getValuesUnmodifiableFailTest() {
-        List<String> values = DataHelper.createArrayList();
-        values.add("val1");
-        values.add("val2");
-        values.add("val3");
+        List<String> values = DataHelper.createArrayList("val1", "val2", "val3");
         ValueSet<String> valueSet = new ValueSet<>(null, null, null, null, values);
         Assertions.assertThat(valueSet.getValues()).hasSize(3);
 
