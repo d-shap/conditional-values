@@ -99,7 +99,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
 
-        valueSetBuilder.setPredicate(new EqualsPredicate());
+        valueSetBuilder = valueSetBuilder.setPredicate(new EqualsPredicate());
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -155,8 +155,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet13, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
 
         valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
-        valueSetBuilder.setPredicate("cond2", new StringContainsPredicate());
-        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.setPredicate("cond2", new StringContainsPredicate()).setPredicate("cond2", null);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -183,7 +182,7 @@ public final class ValueSetBuilderTest {
     public void setEqualsPredicateDefaultTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.setEqualsPredicate();
+        valueSetBuilder = valueSetBuilder.setEqualsPredicate();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -232,8 +231,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new StringContainsIgnoreCasePredicate())).isFalse();
 
         valueSetBuilder.setEqualsPredicate("cond1");
-        valueSetBuilder.setEqualsPredicate("cond2");
-        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.setEqualsPredicate("cond2").setPredicate("cond2", null);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -260,7 +258,7 @@ public final class ValueSetBuilderTest {
     public void setStringEqualsIgnoreCasePredicateDefaultTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.setStringEqualsIgnoreCasePredicate();
+        valueSetBuilder = valueSetBuilder.setStringEqualsIgnoreCasePredicate();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -323,8 +321,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet13, new AnyValueMatchesTuplePredicate(), null, new StringContainsIgnoreCasePredicate())).isFalse();
 
         valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond1");
-        valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond2");
-        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond2").setPredicate("cond2", null);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -351,7 +348,7 @@ public final class ValueSetBuilderTest {
     public void setStringContainsPredicateDefaultTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.setStringContainsPredicate();
+        valueSetBuilder = valueSetBuilder.setStringContainsPredicate();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -414,8 +411,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet13, new AnyValueMatchesTuplePredicate(), null, new StringContainsIgnoreCasePredicate())).isTrue();
 
         valueSetBuilder.setStringContainsPredicate("cond1");
-        valueSetBuilder.setStringContainsPredicate("cond2");
-        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.setStringContainsPredicate("cond2").setPredicate("cond2", null);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -442,7 +438,7 @@ public final class ValueSetBuilderTest {
     public void setStringContainsIgnoreCasePredicateDefaultTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
-        valueSetBuilder.setStringContainsIgnoreCasePredicate();
+        valueSetBuilder = valueSetBuilder.setStringContainsIgnoreCasePredicate();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -519,8 +515,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet14, new AnyValueMatchesTuplePredicate(), null, new StringContainsIgnoreCasePredicate())).isFalse();
 
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
-        valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
-        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2").setPredicate("cond2", null);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
