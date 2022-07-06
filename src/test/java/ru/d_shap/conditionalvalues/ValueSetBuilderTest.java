@@ -1483,11 +1483,18 @@ public final class ValueSetBuilderTest {
     public void clearTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
+        valueSetBuilder.setEqualsPredicate();
+        valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
+        valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
         valueSetBuilder.addCondition("cond1", "val1").addCondition("cond1", "val2");
         valueSetBuilder.addCondition("cond2", "val3").addCondition("cond2", "val4");
         valueSetBuilder.addValue("val1");
         valueSetBuilder.addValue("val2").addValue("val3");
         ValueSet<String> valueSet = valueSetBuilder.clear().build();
+        Assertions.assertThat(valueSet, "_predicate").isNull();
+        Assertions.assertThat(valueSet, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(valueSet, "_conditions", Raw.mapAssertion()).hasSize(0);
+        Assertions.assertThat(valueSet, "_conditionNames", Raw.setAssertion()).hasSize(0);
         Assertions.assertThat(valueSet.getAllConditionNames()).containsExactly();
         Assertions.assertThat(valueSet.getValues()).containsExactly();
     }
