@@ -28,6 +28,8 @@ import ru.d_shap.assertions.Raw;
 import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringContainsPredicate;
+import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
  * Tests for {@link ValueSetBuilder}.
@@ -121,7 +123,55 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void setPredicateConditionTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
+        valueSetBuilder.setPredicate("cond2", new StringEqualsIgnoreCasePredicate());
+        valueSetBuilder.addCondition("cond1", "vaL1");
+        valueSetBuilder.addCondition("cond2", "vaL2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+
+        Map<String, Object> conditions11 = DataHelper.createHashMap();
+        conditions11.put("cond1", "vaL1");
+        conditions11.put("cond2", "vaL2");
+        ConditionSet conditionSet11 = new ConditionSet(conditions11);
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet11, new AnyValueMatchesTuplePredicate(), null, null)).isTrue();
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet11, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions12 = DataHelper.createHashMap();
+        conditions12.put("cond1", "xxxvaL1xxxx");
+        conditions12.put("cond2", "VAl2");
+        ConditionSet conditionSet12 = new ConditionSet(conditions12);
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, null)).isTrue();
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions13 = DataHelper.createHashMap();
+        conditions13.put("cond1", "VAL1");
+        conditions13.put("cond2", "_val2_");
+        ConditionSet conditionSet13 = new ConditionSet(conditions13);
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet13, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet13, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
+
+        valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
+        valueSetBuilder.setPredicate("cond2", new StringContainsPredicate());
+        valueSetBuilder.setPredicate("cond2", null);
+        valueSetBuilder.addCondition("cond1", "vaL1");
+        valueSetBuilder.addCondition("cond2", "vaL2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+
+        Map<String, Object> conditions21 = DataHelper.createHashMap();
+        conditions21.put("cond1", "_vaL1_");
+        conditions21.put("cond2", "vaL2");
+        ConditionSet conditionSet21 = new ConditionSet(conditions21);
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet21, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet21, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions22 = DataHelper.createHashMap();
+        conditions22.put("cond1", "_vaL1_");
+        conditions22.put("cond2", "_vaL2_");
+        ConditionSet conditionSet22 = new ConditionSet(conditions22);
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet22, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet22, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
     }
 
     /**
@@ -889,16 +939,16 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.getValues()).containsExactly("val1", "val2", "val3");
 
         valueSetBuilder.addValue(null);
-        Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(0);
+        Assertions.assertThat(valueSetBuilder, "_values", Raw.listAssertion()).hasSize(0);
         ValueSet<String> valueSet2 = valueSetBuilder.build();
         Assertions.assertThat(valueSet2.getValues()).containsExactly();
 
         valueSetBuilder.addValue("val1");
-        Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(1);
+        Assertions.assertThat(valueSetBuilder, "_values", Raw.listAssertion()).hasSize(1);
         valueSetBuilder.addValue(null);
-        Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(1);
+        Assertions.assertThat(valueSetBuilder, "_values", Raw.listAssertion()).hasSize(1);
         valueSetBuilder.addValue("val2").addValue("val3");
-        Assertions.assertThat(valueSetBuilder, "_values", Raw.setAssertion()).hasSize(3);
+        Assertions.assertThat(valueSetBuilder, "_values", Raw.listAssertion()).hasSize(3);
         ValueSet<String> valueSet3 = valueSetBuilder.build();
         Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3");
     }
