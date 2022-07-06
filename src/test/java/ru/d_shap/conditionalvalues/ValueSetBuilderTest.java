@@ -1353,12 +1353,12 @@ public final class ValueSetBuilderTest {
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
         valueSetBuilder.addValues("val3", "val5", "val7");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
-        Assertions.assertThat(valueSet2.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6", "val7");
+        Assertions.assertThat(valueSet2.getValues()).containsExactly("val1", "val2", "val3", "val3", "val4", "val5", "val5", "val6", "val7");
 
         valueSetBuilder.addValues("val3", "val5", "val7");
         valueSetBuilder = valueSetBuilder.addValues(addTemplate);
         ValueSet<String> valueSet3 = valueSetBuilder.build();
-        Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3", "val4", "val5", "val6", "val7");
+        Assertions.assertThat(valueSet3.getValues()).containsExactly("val1", "val2", "val3", "val3", "val4", "val5", "val5", "val6", "val7");
 
         valueSetBuilder = valueSetBuilder.addValues((ValueSet<String>) null);
         ValueSet<String> valueSet4 = valueSetBuilder.build();
