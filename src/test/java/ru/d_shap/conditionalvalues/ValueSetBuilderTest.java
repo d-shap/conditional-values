@@ -125,6 +125,7 @@ public final class ValueSetBuilderTest {
     public void setPredicateConditionTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
+        valueSetBuilder.setPredicate(null, new EqualsPredicate());
         valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
         valueSetBuilder.setPredicate("cond2", new StringEqualsIgnoreCasePredicate());
         valueSetBuilder.addCondition("cond1", "vaL1");
@@ -179,7 +180,26 @@ public final class ValueSetBuilderTest {
      */
     @Test
     public void setEqualsPredicateDefaultTest() {
-        // TODO
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.setEqualsPredicate();
+        valueSetBuilder.addCondition("cond1", "vaL1");
+        valueSetBuilder.addCondition("cond2", "vaL2");
+        ValueSet<String> valueSet = valueSetBuilder.build();
+
+        Map<String, Object> conditions1 = DataHelper.createHashMap();
+        conditions1.put("cond1", "vaL1");
+        conditions1.put("cond2", "vaL2");
+        ConditionSet conditionSet1 = new ConditionSet(conditions1);
+        Assertions.assertThat(valueSet.isMatchConditions(conditionSet1, new AnyValueMatchesTuplePredicate(), null, null)).isTrue();
+        Assertions.assertThat(valueSet.isMatchConditions(conditionSet1, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions2 = DataHelper.createHashMap();
+        conditions2.put("cond1", "val1");
+        conditions2.put("cond2", "val2");
+        ConditionSet conditionSet12 = new ConditionSet(conditions2);
+        Assertions.assertThat(valueSet.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
     }
 
     /**
