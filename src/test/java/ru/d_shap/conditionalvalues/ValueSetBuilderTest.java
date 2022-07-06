@@ -19,10 +19,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.Raw;
+import ru.d_shap.assertions.util.DataHelper;
+import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
+import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 
 /**
  * Tests for {@link ValueSetBuilder}.
@@ -64,6 +69,139 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSetBuilder.setId("").build().getId()).isEqualTo("");
         Assertions.assertThat(valueSetBuilder.setId(" ").build().getId()).isEqualTo(" ");
         Assertions.assertThat(valueSetBuilder.setId("id").build().getId()).isEqualTo("id");
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setPredicateDefaultTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond1", "vaL1");
+        valueSetBuilder.addCondition("cond2", "vaL2");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+
+        Map<String, Object> conditions11 = DataHelper.createHashMap();
+        conditions11.put("cond1", "vaL1");
+        conditions11.put("cond2", "vaL2");
+        ConditionSet conditionSet11 = new ConditionSet(conditions11);
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet11, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet11, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions12 = DataHelper.createHashMap();
+        conditions12.put("cond1", "val1");
+        conditions12.put("cond2", "val2");
+        ConditionSet conditionSet12 = new ConditionSet(conditions12);
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
+
+        valueSetBuilder.setPredicate(new EqualsPredicate());
+        valueSetBuilder.addCondition("cond1", "vaL1");
+        valueSetBuilder.addCondition("cond2", "vaL2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+
+        Map<String, Object> conditions21 = DataHelper.createHashMap();
+        conditions21.put("cond1", "vaL1");
+        conditions21.put("cond2", "vaL2");
+        ConditionSet conditionSet21 = new ConditionSet(conditions21);
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet21, new AnyValueMatchesTuplePredicate(), null, null)).isTrue();
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet21, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isTrue();
+
+        Map<String, Object> conditions22 = DataHelper.createHashMap();
+        conditions22.put("cond1", "val1");
+        conditions22.put("cond2", "val2");
+        ConditionSet conditionSet22 = new ConditionSet(conditions22);
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet22, new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet2.isMatchConditions(conditionSet22, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setEqualsPredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setEqualsPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringEqualsIgnoreCasePredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringEqualsIgnoreCasePredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringContainsPredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringContainsPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringContainsIgnoreCasePredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void setStringContainsIgnoreCasePredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void removePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ValueSetBuilder} class test.
+     */
+    @Test
+    public void clearPredicatesTest() {
+        // TODO
     }
 
     /**
