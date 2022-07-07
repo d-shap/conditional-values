@@ -19,12 +19,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.util.DataHelper;
 
 /**
  * Tests for {@link ConditionSet}.
@@ -49,28 +49,28 @@ public final class ConditionSetTest {
         ConditionSet conditionSet1 = new ConditionSet(conditions1);
         Assertions.assertThat(conditionSet1.nameIterator()).containsExactly();
 
-        Map<String, Object> conditions2 = new HashMap<>();
+        Map<String, Object> conditions2 = DataHelper.createHashMap();
         ConditionSet conditionSet2 = new ConditionSet(conditions2);
         Assertions.assertThat(conditionSet2.nameIterator()).containsExactly();
 
-        Map<String, Object> conditions3 = new HashMap<>();
+        Map<String, Object> conditions3 = DataHelper.createHashMap();
         conditions3.put("cond1", "val1");
         ConditionSet conditionSet3 = new ConditionSet(conditions3);
         Assertions.assertThat(conditionSet3.nameIterator()).containsExactly("cond1");
 
-        Map<String, Object> conditions4 = new HashMap<>();
+        Map<String, Object> conditions4 = DataHelper.createHashMap();
         conditions4.put("cond1", "val1");
         conditions4.put("cond2", null);
         conditions4.put(null, "val2");
         ConditionSet conditionSet4 = new ConditionSet(conditions4);
         Assertions.assertThat(conditionSet4.nameIterator()).containsExactly("cond1");
 
-        Map<String, Object> conditions5 = new HashMap<>();
+        Map<String, Object> conditions5 = DataHelper.createHashMap();
         conditions5.put(null, null);
         ConditionSet conditionSet5 = new ConditionSet(conditions5);
         Assertions.assertThat(conditionSet5.nameIterator()).containsExactly();
 
-        Map<String, Object> conditions6 = new HashMap<>();
+        Map<String, Object> conditions6 = DataHelper.createHashMap();
         conditions6.put("cond1", "val1");
         conditions6.put("cond2", "val2");
         conditions6.put("cond3", "val3");
@@ -90,14 +90,14 @@ public final class ConditionSetTest {
         Assertions.assertThat(conditionSet1.getValue("cond3")).isNull();
         Assertions.assertThat(conditionSet1.getValue("cond4")).isNull();
 
-        Map<String, Object> conditions2 = new HashMap<>();
+        Map<String, Object> conditions2 = DataHelper.createHashMap();
         ConditionSet conditionSet2 = new ConditionSet(conditions2);
         Assertions.assertThat(conditionSet2.getValue("cond1")).isNull();
         Assertions.assertThat(conditionSet2.getValue("cond2")).isNull();
         Assertions.assertThat(conditionSet2.getValue("cond3")).isNull();
         Assertions.assertThat(conditionSet2.getValue("cond4")).isNull();
 
-        Map<String, Object> conditions3 = new HashMap<>();
+        Map<String, Object> conditions3 = DataHelper.createHashMap();
         conditions3.put("cond1", "val1");
         ConditionSet conditionSet3 = new ConditionSet(conditions3);
         Assertions.assertThat(conditionSet3.getValue("cond1")).isEqualTo("val1");
@@ -105,7 +105,7 @@ public final class ConditionSetTest {
         Assertions.assertThat(conditionSet3.getValue("cond3")).isNull();
         Assertions.assertThat(conditionSet3.getValue("cond4")).isNull();
 
-        Map<String, Object> conditions4 = new HashMap<>();
+        Map<String, Object> conditions4 = DataHelper.createHashMap();
         conditions4.put("cond1", "val1");
         conditions4.put("cond2", null);
         conditions4.put(null, "val2");
@@ -115,7 +115,7 @@ public final class ConditionSetTest {
         Assertions.assertThat(conditionSet4.getValue("cond3")).isNull();
         Assertions.assertThat(conditionSet4.getValue("cond4")).isNull();
 
-        Map<String, Object> conditions5 = new HashMap<>();
+        Map<String, Object> conditions5 = DataHelper.createHashMap();
         conditions5.put(null, null);
         ConditionSet conditionSet5 = new ConditionSet(conditions5);
         Assertions.assertThat(conditionSet5.getValue("cond1")).isNull();
@@ -123,7 +123,7 @@ public final class ConditionSetTest {
         Assertions.assertThat(conditionSet5.getValue("cond3")).isNull();
         Assertions.assertThat(conditionSet5.getValue("cond4")).isNull();
 
-        Map<String, Object> conditions6 = new HashMap<>();
+        Map<String, Object> conditions6 = DataHelper.createHashMap();
         conditions6.put("cond1", "val1");
         conditions6.put("cond2", "val2");
         conditions6.put("cond3", "val3");
@@ -143,28 +143,28 @@ public final class ConditionSetTest {
         ConditionSet conditionSet1 = new ConditionSet(conditions1);
         Assertions.assertThat(conditionSet1).hasToString("{}");
 
-        Map<String, Object> conditions2 = new HashMap<>();
+        Map<String, Object> conditions2 = DataHelper.createHashMap();
         ConditionSet conditionSet2 = new ConditionSet(conditions2);
         Assertions.assertThat(conditionSet2).hasToString("{}");
 
-        Map<String, Object> conditions3 = new HashMap<>();
+        Map<String, Object> conditions3 = DataHelper.createHashMap();
         conditions3.put("cond1", "val1");
         ConditionSet conditionSet3 = new ConditionSet(conditions3);
         Assertions.assertThat(conditionSet3).hasToString("{cond1=val1}");
 
-        Map<String, Object> conditions4 = new HashMap<>();
+        Map<String, Object> conditions4 = DataHelper.createHashMap();
         conditions4.put("cond1", "val1");
         conditions4.put("cond2", null);
         conditions4.put(null, "val2");
         ConditionSet conditionSet4 = new ConditionSet(conditions4);
         Assertions.assertThat(conditionSet4).hasToString("{cond1=val1}");
 
-        Map<String, Object> conditions5 = new HashMap<>();
+        Map<String, Object> conditions5 = DataHelper.createHashMap();
         conditions5.put(null, null);
         ConditionSet conditionSet5 = new ConditionSet(conditions5);
         Assertions.assertThat(conditionSet5).hasToString("{}");
 
-        Map<String, Object> conditions6 = new HashMap<>();
+        Map<String, Object> conditions6 = DataHelper.createHashMap();
         conditions6.put("cond1", "val1");
         conditions6.put("cond2", "val2");
         conditions6.put("cond3", "val3");
