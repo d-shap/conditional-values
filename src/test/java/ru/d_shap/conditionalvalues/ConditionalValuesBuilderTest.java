@@ -840,7 +840,17 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void clearValueSetsTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond", "val");
+        valueSetBuilder.addValue("value1");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder = conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        conditionalValuesBuilder = conditionalValuesBuilder.clearValueSets();
+        ConditionalValues<String> conditionalValues = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues.getAllValues()).containsExactly();
     }
 
     /**
