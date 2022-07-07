@@ -46,7 +46,7 @@ public final class ConcatStringActionable implements Actionable {
      * @param prefix the prefix to add.
      * @param suffix the suffix to add.
      */
-    ConcatStringActionable(final Set<String> values, final String value, final String prefix, final int suffix) {
+    public ConcatStringActionable(final Set<String> values, final String value, final String prefix, final int suffix) {
         super();
         _values = values;
         _value = value;
