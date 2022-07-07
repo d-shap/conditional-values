@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -28,6 +27,7 @@ import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.Raw;
+import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.assertions.util.ReflectionHelper;
 import ru.d_shap.conditionalvalues.data.ConditionNamePredicate;
 import ru.d_shap.conditionalvalues.data.StringLengthComparator;
@@ -730,7 +730,7 @@ public final class ConditionalValuesBuilderTest {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         conditionalValuesBuilder.setNaturalOrderComparator();
         Comparator<String> comparator = (Comparator<String>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_comparator");
-        List<String> values = Arrays.asList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
+        List<String> values = DataHelper.createArrayList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
         Collections.sort(values, comparator);
         Assertions.assertThat(values).containsExactlyInOrder("a", "a", "b", "c", "c", "d", "d", null, null, null);
     }
@@ -786,7 +786,7 @@ public final class ConditionalValuesBuilderTest {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         conditionalValuesBuilder.setReverseOrderComparator();
         Comparator<String> comparator = (Comparator<String>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_comparator");
-        List<String> values = Arrays.asList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
+        List<String> values = DataHelper.createArrayList(null, "c", "b", "a", "a", null, "d", "d", "c", null);
         Collections.sort(values, comparator);
         Assertions.assertThat(values).containsExactlyInOrder("d", "d", "c", "c", "b", "a", "a", null, null, null);
     }
