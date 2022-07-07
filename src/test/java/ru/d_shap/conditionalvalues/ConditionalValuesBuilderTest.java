@@ -555,7 +555,25 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void removePredicateTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond1");
+        conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond2");
+        conditionalValuesBuilder = conditionalValuesBuilder.removePredicate("cond2");
+        Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
+        valueSetBuilder.addCondition("cond1", "val");
+        valueSetBuilder.addValue("value1");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond2", "vAl");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "1vAl1").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "_vAl_").build()).getValues()).containsExactly();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "vAl").build()).getValues()).containsExactly("value2");
     }
 
     /**
@@ -563,7 +581,26 @@ public final class ConditionalValuesBuilderTest {
      */
     @Test
     public void clearPredicatesTest() {
-        // TODO
+        ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond1");
+        conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond2");
+        conditionalValuesBuilder = conditionalValuesBuilder.clearPredicates();
+        Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(0);
+        valueSetBuilder.addCondition("cond1", "val");
+        valueSetBuilder.addValue("value1");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        valueSetBuilder.addCondition("cond2", "vAl");
+        valueSetBuilder.addValue("value2");
+        conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
+        ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "1vAl1").build()).getValues()).containsExactly();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond1", "val").build()).getValues()).containsExactly("value1");
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "_vAl_").build()).getValues()).containsExactly();
+        Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "vAl").build()).getValues()).containsExactly("value2");
     }
 
     /**
