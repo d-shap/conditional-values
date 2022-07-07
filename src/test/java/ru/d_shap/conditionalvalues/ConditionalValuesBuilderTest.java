@@ -339,6 +339,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate(null);
         conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
@@ -400,6 +401,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate(null);
         conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
@@ -461,6 +463,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate(null);
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
@@ -522,6 +525,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate(null);
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
