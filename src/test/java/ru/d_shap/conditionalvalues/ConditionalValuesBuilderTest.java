@@ -32,6 +32,7 @@ import ru.d_shap.assertions.util.ReflectionHelper;
 import ru.d_shap.conditionalvalues.data.ConditionNamePredicate;
 import ru.d_shap.conditionalvalues.data.StringLengthComparator;
 import ru.d_shap.conditionalvalues.misc.NaturalOrderComparator;
+import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 import ru.d_shap.conditionalvalues.predicate.SomeValuesMatchTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.StringContainsIgnoreCasePredicate;
@@ -862,7 +863,9 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder.setAllValuesMatchTuplePredicate();
         conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate();
+        conditionalValuesBuilder.setEqualsPredicate("cond2");
         conditionalValuesBuilder.setNaturalOrderComparator();
         valueSetBuilder.addCondition("cond", "vAl");
         valueSetBuilder.addValue("value1");
@@ -870,13 +873,19 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
         conditionalValuesBuilder = conditionalValuesBuilder.clear();
         ConditionalValues<String> conditionalValues1 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).hasSize(0);
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly();
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond", "vAl").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
         Assertions.assertThat(conditionalValues1, "_comparator").isNull();
 
+        conditionalValuesBuilder.setAllValuesMatchTuplePredicate();
         conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate();
+        conditionalValuesBuilder.setEqualsPredicate("cond2");
         conditionalValuesBuilder.setNaturalOrderComparator();
         conditionalValuesBuilder = conditionalValuesBuilder.clear();
         valueSetBuilder.addCondition("cond", "vAl");
@@ -884,6 +893,10 @@ public final class ConditionalValuesBuilderTest {
         valueSetBuilder.addValue("value2");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
         ConditionalValues<String> conditionalValues2 = conditionalValuesBuilder.build();
+        Assertions.assertThat(conditionalValues2, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues2, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues2, "_predicates", Raw.mapAssertion()).hasSize(0);
+        Assertions.assertThat(conditionalValues2, "_comparator").isNull();
         Assertions.assertThat(conditionalValues2.getAllValues()).containsExactly("value1", "value2");
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond", "vAl").build()).getValues()).containsExactly("value1", "value2");
