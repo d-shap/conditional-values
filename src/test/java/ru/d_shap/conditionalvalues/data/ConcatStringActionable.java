@@ -1,0 +1,69 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Conditional values simplify conditional logic and get rid of if-statements in the code.
+// Copyright (C) 2016 Dmitry Shapovalov.
+//
+// This file is part of conditional values.
+//
+// Conditional values is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Conditional values is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+package ru.d_shap.conditionalvalues.data;
+
+import java.util.Set;
+
+import ru.d_shap.conditionalvalues.Actionable;
+
+/**
+ * Actionable to add prefix and suffix to the value.
+ *
+ * @author Dmitry Shapovalov
+ */
+public final class ConcatStringActionable implements Actionable {
+
+    private final Set<String> _values;
+
+    private final String _value;
+
+    private final String _prefix;
+
+    private final int _suffix;
+
+    /**
+     * Create new object.
+     *
+     * @param values the values.
+     * @param value  the value.
+     * @param prefix the prefix to add.
+     * @param suffix the suffix to add.
+     */
+    ConcatStringActionable(final Set<String> values, final String value, final String prefix, final int suffix) {
+        super();
+        _values = values;
+        _value = value;
+        _prefix = prefix;
+        _suffix = suffix;
+    }
+
+    @Override
+    public void perform() {
+        String newValue = _value;
+        if (_prefix != null) {
+            newValue = _prefix + newValue;
+        }
+        if (_suffix > 0) {
+            newValue += "_" + _suffix;
+        }
+        _values.add(newValue);
+    }
+
+}
