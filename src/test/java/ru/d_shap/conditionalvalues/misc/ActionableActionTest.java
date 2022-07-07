@@ -25,11 +25,11 @@ import java.util.Set;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
-import ru.d_shap.conditionalvalues.Actionable;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
 import ru.d_shap.conditionalvalues.ValueSetBuilder;
+import ru.d_shap.conditionalvalues.data.ConcatStringActionable;
 
 /**
  * Tests for {@link ActionableAction}.
@@ -50,17 +50,17 @@ public final class ActionableActionTest {
      */
     @Test
     public void performTest() {
-        new ActionableAction<ActionableImpl>().perform(null);
+        new ActionableAction<ConcatStringActionable>().perform(null);
 
         Set<String> set1 = new HashSet<>();
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set1, "val"));
+        new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set1, "val", "proc_", 0));
         Assertions.assertThat(set1).containsExactly("proc_val");
 
         Set<String> set2 = new HashSet<>();
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val1"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val2"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val3"));
-        new ActionableAction<ActionableImpl>().perform(new ActionableImpl(set2, "val4"));
+        new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val1", "proc_", 0));
+        new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val2", "proc_", 0));
+        new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val3", "proc_", 0));
+        new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val4", "proc_", 0));
         Assertions.assertThat(set2).containsExactly("proc_val1", "proc_val2", "proc_val3", "proc_val4");
     }
 
@@ -69,61 +69,37 @@ public final class ActionableActionTest {
      */
     @Test
     public void lookupTest() {
-        ConditionalValuesBuilder<ActionableImpl> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
-        ValueSetBuilder<ActionableImpl> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionalValuesBuilder<ConcatStringActionable> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
+        ValueSetBuilder<ConcatStringActionable> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
         Set<String> set = new HashSet<>();
 
         valueSetBuilder.addCondition("cond1", "val1");
-        valueSetBuilder.addValue(new ActionableImpl(set, "val11"));
-        valueSetBuilder.addValue(new ActionableImpl(set, "val12"));
-        valueSetBuilder.addValue(new ActionableImpl(set, "val13"));
-        valueSetBuilder.addValue(new ActionableImpl(set, "val14"));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val11", "proc_", 0));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val12", "proc_", 0));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val13", "proc_", 0));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val14", "proc_", 0));
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        valueSetBuilder.addValue(new ActionableImpl(set, "val21"));
-        valueSetBuilder.addValue(new ActionableImpl(set, "val22"));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val21", "proc_", 0));
+        valueSetBuilder.addValue(new ConcatStringActionable(set, "val22", "proc_", 0));
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
-        ConditionalValues<ActionableImpl> conditionalValues = conditionalValuesBuilder.build();
+        ConditionalValues<ConcatStringActionable> conditionalValues = conditionalValuesBuilder.build();
 
         set.clear();
-        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").build(), new ActionableAction<ActionableImpl>());
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").build(), new ActionableAction<ConcatStringActionable>());
         Assertions.assertThat(set).containsExactly("proc_val11", "proc_val12", "proc_val13", "proc_val14");
 
         set.clear();
-        conditionalValues.lookup(conditionSetBuilder.addCondition("cond2", "val2").build(), new ActionableAction<ActionableImpl>());
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond2", "val2").build(), new ActionableAction<ConcatStringActionable>());
         Assertions.assertThat(set).containsExactly("proc_val21", "proc_val22");
 
         set.clear();
-        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2").build(), new ActionableAction<ActionableImpl>());
+        conditionalValues.lookup(conditionSetBuilder.addCondition("cond1", "val1").addCondition("cond2", "val2").build(), new ActionableAction<ConcatStringActionable>());
         Assertions.assertThat(set).containsExactly("proc_val11", "proc_val12", "proc_val13", "proc_val14");
 
         set.clear();
-        conditionalValues.lookup(conditionSetBuilder.build(), new ActionableAction<ActionableImpl>());
+        conditionalValues.lookup(conditionSetBuilder.build(), new ActionableAction<ConcatStringActionable>());
         Assertions.assertThat(set).containsExactly("proc_val21", "proc_val22");
-    }
-
-    /**
-     * Test class.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class ActionableImpl implements Actionable {
-
-        private final Set<String> _values;
-
-        private final String _value;
-
-        ActionableImpl(final Set<String> values, final String value) {
-            super();
-            _values = values;
-            _value = value;
-        }
-
-        @Override
-        public void perform() {
-            _values.add("proc_" + _value);
-        }
-
     }
 
 }
