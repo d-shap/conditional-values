@@ -19,12 +19,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues.misc;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.conditionalvalues.ConditionSetBuilder;
 import ru.d_shap.conditionalvalues.ConditionalValues;
 import ru.d_shap.conditionalvalues.ConditionalValuesBuilder;
@@ -52,11 +52,11 @@ public final class ActionableActionTest {
     public void performTest() {
         new ActionableAction<ConcatStringActionable>().perform(null);
 
-        Set<String> set1 = new HashSet<>();
+        Set<String> set1 = DataHelper.createHashSet();
         new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set1, "val", "proc_", 0));
         Assertions.assertThat(set1).containsExactly("proc_val");
 
-        Set<String> set2 = new HashSet<>();
+        Set<String> set2 = DataHelper.createHashSet();
         new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val1", "proc_", 0));
         new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val2", "proc_", 0));
         new ActionableAction<ConcatStringActionable>().perform(new ConcatStringActionable(set2, "val3", "proc_", 0));
@@ -72,7 +72,7 @@ public final class ActionableActionTest {
         ConditionalValuesBuilder<ConcatStringActionable> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         ValueSetBuilder<ConcatStringActionable> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
-        Set<String> set = new HashSet<>();
+        Set<String> set = DataHelper.createHashSet();
 
         valueSetBuilder.addCondition("cond1", "val1");
         valueSetBuilder.addValue(new ConcatStringActionable(set, "val11", "proc_", 0));
