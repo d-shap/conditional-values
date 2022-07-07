@@ -81,6 +81,7 @@ public final class ValueSetBuilderTest {
     public void setPredicateDefaultTest() {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -100,6 +101,7 @@ public final class ValueSetBuilderTest {
         Assertions.assertThat(valueSet1.isMatchConditions(conditionSet12, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
 
         valueSetBuilder = valueSetBuilder.setPredicate(new EqualsPredicate());
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -129,6 +131,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setPredicate(null, new EqualsPredicate());
         valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
         valueSetBuilder.setPredicate("cond2", new StringEqualsIgnoreCasePredicate());
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -156,6 +159,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.setPredicate("cond1", new StringContainsPredicate());
         valueSetBuilder.setPredicate("cond2", new StringContainsPredicate()).setPredicate("cond2", null);
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -183,6 +187,7 @@ public final class ValueSetBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         valueSetBuilder = valueSetBuilder.setEqualsPredicate();
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -212,6 +217,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setEqualsPredicate(null);
         valueSetBuilder.setEqualsPredicate("cond1");
         valueSetBuilder.setEqualsPredicate("cond2");
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -232,6 +238,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.setEqualsPredicate("cond1");
         valueSetBuilder.setEqualsPredicate("cond2").setPredicate("cond2", null);
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -259,6 +266,7 @@ public final class ValueSetBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         valueSetBuilder = valueSetBuilder.setStringEqualsIgnoreCasePredicate();
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -295,6 +303,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringEqualsIgnoreCasePredicate(null);
         valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond2");
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -322,6 +331,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringEqualsIgnoreCasePredicate("cond2").setPredicate("cond2", null);
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -349,6 +359,7 @@ public final class ValueSetBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         valueSetBuilder = valueSetBuilder.setStringContainsPredicate();
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -385,6 +396,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringContainsPredicate(null);
         valueSetBuilder.setStringContainsPredicate("cond1");
         valueSetBuilder.setStringContainsPredicate("cond2");
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -412,6 +424,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.setStringContainsPredicate("cond1");
         valueSetBuilder.setStringContainsPredicate("cond2").setPredicate("cond2", null);
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -439,6 +452,7 @@ public final class ValueSetBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
 
         valueSetBuilder = valueSetBuilder.setStringContainsIgnoreCasePredicate();
+        Assertions.assertThat(valueSetBuilder, "_predicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -482,6 +496,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringContainsIgnoreCasePredicate(null);
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -516,6 +531,7 @@ public final class ValueSetBuilderTest {
 
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2").setPredicate("cond2", null);
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
@@ -552,6 +568,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
         valueSetBuilder = valueSetBuilder.removePredicate("cond2");
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet = valueSetBuilder.build();
@@ -574,6 +591,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
         valueSetBuilder = valueSetBuilder.clearPredicates();
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(0);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet1 = valueSetBuilder.build();
@@ -589,6 +607,7 @@ public final class ValueSetBuilderTest {
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond1");
         valueSetBuilder.setStringContainsIgnoreCasePredicate("cond2");
         valueSetBuilder = valueSetBuilder.clearPredicates();
+        Assertions.assertThat(valueSetBuilder, "_predicates", Raw.mapAssertion()).hasSize(0);
         valueSetBuilder.addCondition("cond1", "vaL1");
         valueSetBuilder.addCondition("cond2", "vaL2");
         ValueSet<String> valueSet2 = valueSetBuilder.build();
