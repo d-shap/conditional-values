@@ -67,7 +67,31 @@ public final class ConditionalValuesBuilderTest {
      * {@link ConditionalValuesBuilder} class test.
      */
     @Test
-    public void setPredicateTest() {
+    public void setTuplePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setAnyValueMatchesTuplePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setAllValuesMatchTuplePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setPredicateDefaultTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
@@ -128,7 +152,15 @@ public final class ConditionalValuesBuilderTest {
      * {@link ConditionalValuesBuilder} class test.
      */
     @Test
-    public void setEqualsPredicateTest() {
+    public void setPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setEqualsPredicateDefaultTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
@@ -166,7 +198,15 @@ public final class ConditionalValuesBuilderTest {
      * {@link ConditionalValuesBuilder} class test.
      */
     @Test
-    public void setEqualsIgnoreCasePredicateTest() {
+    public void setEqualsPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringEqualsIgnoreCasePredicateDefaultTest() {
         ConditionalValuesBuilder<String> conditionalValuesBuilder = ConditionalValuesBuilder.newInstance();
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
@@ -198,6 +238,62 @@ public final class ConditionalValuesBuilderTest {
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond1", "val").build()).getValues()).containsExactly("value1");
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "val").build()).getValues()).containsExactly("value2");
         Assertions.assertThat(conditionalValues2.lookup(conditionSetBuilder.addCondition("cond2", "vAl").build()).getValues()).containsExactly("value2");
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringEqualsIgnoreCasePredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringContainsPredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringContainsPredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringContainsIgnoreCasePredicateDefaultTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void setStringContainsIgnoreCasePredicateConditionTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void removePredicateTest() {
+        // TODO
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void clearPredicatesTest() {
+        // TODO
     }
 
     /**
@@ -430,6 +526,14 @@ public final class ConditionalValuesBuilderTest {
         ConditionalValues<String> conditionalValues4 = conditionalValuesBuilder.build();
         Assertions.assertThat(conditionalValues4.getAllValues()).containsExactly("value1", "value2", "value3");
         Assertions.assertThat(conditionalValues4.lookup(conditionSetBuilder.addCondition("cond", "val").build()).getValues()).containsExactly("value1", "value2", "value3");
+    }
+
+    /**
+     * {@link ConditionalValuesBuilder} class test.
+     */
+    @Test
+    public void clearValueSetsTest() {
+        // TODO
     }
 
     /**
