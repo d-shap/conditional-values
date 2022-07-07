@@ -73,7 +73,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setTuplePredicate(new SomeValuesMatchTuplePredicate(2, 2));
+        conditionalValuesBuilder = conditionalValuesBuilder.setTuplePredicate(new SomeValuesMatchTuplePredicate(2, 2));
         conditionalValuesBuilder.setStringContainsPredicate();
         Assertions.assertThat(conditionalValuesBuilder, "_tuplePredicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "val11");
@@ -94,7 +94,7 @@ public final class ConditionalValuesBuilderTest {
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val22").build()).getValues()).containsExactly();
         Assertions.assertThat(conditionalValues1.lookup(conditionSetBuilder.addCondition("cond2", "val21 val23").build()).getValues()).containsExactly("value2");
 
-        conditionalValuesBuilder.setTuplePredicate(null);
+        conditionalValuesBuilder = conditionalValuesBuilder.setTuplePredicate(null);
         conditionalValuesBuilder.setEqualsPredicate();
         Assertions.assertThat(conditionalValuesBuilder, "_tuplePredicate").isNull();
         valueSetBuilder.addCondition("cond1", "val11");
@@ -125,7 +125,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setAnyValueMatchesTuplePredicate();
+        conditionalValuesBuilder = conditionalValuesBuilder.setAnyValueMatchesTuplePredicate();
         conditionalValuesBuilder.setEqualsPredicate();
         Assertions.assertThat(conditionalValuesBuilder, "_tuplePredicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "val11");
@@ -156,7 +156,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
-        conditionalValuesBuilder.setAllValuesMatchTuplePredicate();
+        conditionalValuesBuilder = conditionalValuesBuilder.setAllValuesMatchTuplePredicate();
         conditionalValuesBuilder.setStringContainsPredicate();
         Assertions.assertThat(conditionalValuesBuilder, "_tuplePredicate").isNotNull();
         valueSetBuilder.addCondition("cond1", "val11");
