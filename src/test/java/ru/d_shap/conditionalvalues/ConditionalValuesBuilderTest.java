@@ -253,6 +253,7 @@ public final class ConditionalValuesBuilderTest {
         ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
         ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
 
+        conditionalValuesBuilder = conditionalValuesBuilder.setPredicate(null, new EqualsPredicate());
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond1", new EqualsPredicate());
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new EqualsPredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
