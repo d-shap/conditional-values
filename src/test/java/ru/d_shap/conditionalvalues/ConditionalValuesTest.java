@@ -892,7 +892,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet));
         Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(1);
 
-        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition(null));
+        ValueSetUniqueCondition valueSetUniqueCondition = new ValueSetUniqueCondition(null);
+        conditionalValues.getAllValueSetUniqueConditions().add(valueSetUniqueCondition);
     }
 
     /**
@@ -903,7 +904,8 @@ public final class ConditionalValuesTest {
         ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null, null, null);
         Assertions.assertThat(conditionalValues.getAllValueSetUniqueConditions()).hasSize(0);
 
-        conditionalValues.getAllValueSetUniqueConditions().add(new ValueSetUniqueCondition(null));
+        ValueSetUniqueCondition valueSetUniqueCondition = new ValueSetUniqueCondition(null);
+        conditionalValues.getAllValueSetUniqueConditions().add(valueSetUniqueCondition);
     }
 
     /**
@@ -1867,6 +1869,71 @@ public final class ConditionalValuesTest {
         ConcatStringAction action3 = new ConcatStringAction("proc_", 0);
         conditionalValues.lookup(conditionSetBuilder.build(), action3);
         Assertions.assertThat(action3.getValues()).containsExactly("proc_val1", "proc_val2");
+
+        conditionSetBuilder.addCondition("cond1", "val12");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond3", "val32");
+        conditionSetBuilder.addCondition("cond4", "val41");
+        ConcatStringAction action41 = new ConcatStringAction(null, 1);
+        ConcatStringAction action42 = new ConcatStringAction(action41, null, 2);
+        conditionalValues.lookup(conditionSetBuilder.build(), action41).performAction(action42);
+        Assertions.assertThat(action41.getValues()).containsExactly("val1_1", "val2_1", "val1_2", "val2_2");
+    }
+
+    /**
+     * {@link ConditionalValues} class test.
+     */
+    @Test
+    public void lookupValueSetsWithActionsTest() {
+        ValueSetBuilder<String> valueSetBuilder = ValueSetBuilder.newInstance();
+        ConditionSetBuilder conditionSetBuilder = ConditionSetBuilder.newInstance();
+
+        valueSetBuilder.addCondition("cond1", "val11");
+        valueSetBuilder.addCondition("cond1", "val12");
+        valueSetBuilder.addCondition("cond2", "val21");
+        valueSetBuilder.addCondition("cond2", "val22");
+        valueSetBuilder.addValue("val1");
+        ValueSet<String> valueSet1 = valueSetBuilder.build();
+        valueSetBuilder.addCondition("cond3", "val31");
+        valueSetBuilder.addCondition("cond3", "val32");
+        valueSetBuilder.addCondition("cond4", "val41");
+        valueSetBuilder.addCondition("cond4", "val42");
+        valueSetBuilder.addValue("val2");
+        ValueSet<String> valueSet2 = valueSetBuilder.build();
+        ConditionalValues<String> conditionalValues = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+
+        conditionSetBuilder.addCondition("cond1", "val11");
+        conditionSetBuilder.addCondition("cond2", "val22");
+        ConcatStringAction action11 = new ConcatStringAction(null, 1);
+        ConcatStringAction action12 = new ConcatStringAction(action11, null, 2);
+        conditionalValues.lookup(conditionSetBuilder.build(), action11, action12);
+        Assertions.assertThat(action11.getValues()).containsExactly("val1_1", "val1_2");
+
+        conditionSetBuilder.addCondition("cond3", "val31");
+        conditionSetBuilder.addCondition("cond4", "val42");
+        ConcatStringAction action21 = new ConcatStringAction(null, 1);
+        ConcatStringAction action22 = new ConcatStringAction(action21, null, 2);
+        conditionalValues.lookup(conditionSetBuilder.build(), action21, action22);
+        Assertions.assertThat(action21.getValues()).containsExactly("val2_1", "val2_2");
+
+        conditionSetBuilder.addCondition("cond1", "val12");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond3", "val32");
+        conditionSetBuilder.addCondition("cond4", "val41");
+        ConcatStringAction action31 = new ConcatStringAction(null, 1);
+        ConcatStringAction action32 = new ConcatStringAction(action31, null, 2);
+        conditionalValues.lookup(conditionSetBuilder.build(), action31, action32);
+        Assertions.assertThat(action31.getValues()).containsExactly("val1_1", "val1_2", "val2_1", "val2_2");
+
+        conditionSetBuilder.addCondition("cond1", "val12");
+        conditionSetBuilder.addCondition("cond2", "val21");
+        conditionSetBuilder.addCondition("cond3", "val32");
+        conditionSetBuilder.addCondition("cond4", "val41");
+        ConcatStringAction action41 = new ConcatStringAction(null, 1);
+        ConcatStringAction action42 = new ConcatStringAction(action41, null, 2);
+        ConcatStringAction action43 = new ConcatStringAction(action41, null, 3);
+        conditionalValues.lookup(conditionSetBuilder.build(), action41, action42).performAction(action43);
+        Assertions.assertThat(action41.getValues()).containsExactly("val1_1", "val1_2", "val2_1", "val2_2", "val1_3", "val2_3");
     }
 
     /**
