@@ -245,6 +245,13 @@ public final class ValueSetTest {
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), null, null, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSet.isMatchConditions(null, new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
         Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(null), new AnyValueMatchesTuplePredicate(), null, new EqualsPredicate())).isFalse();
+
+        Map<String, Object> conditions1 = DataHelper.createHashMap();
+        conditions1.put("cond1", "val11");
+        conditions1.put("cond2", "val21");
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions1), null, null, null)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions1), new AnyValueMatchesTuplePredicate(), null, null)).isFalse();
+        Assertions.assertThat(valueSet.isMatchConditions(new ConditionSet(conditions1), null, null, new EqualsPredicate())).isFalse();
     }
 
     /**
