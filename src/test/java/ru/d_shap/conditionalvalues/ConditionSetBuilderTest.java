@@ -84,6 +84,15 @@ public final class ConditionSetBuilderTest {
         Assertions.assertThat(conditionSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(0);
         ConditionSet conditionSet4 = conditionSetBuilder.build();
         Assertions.assertThat(conditionSet4.nameIterator()).containsExactly();
+
+        conditionSetBuilder.addCondition("cond1", "val1");
+        conditionSetBuilder.addCondition("cond2", "val2");
+        Assertions.assertThat(conditionSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(2);
+        conditionSetBuilder.addCondition("cond2", null);
+        Assertions.assertThat(conditionSetBuilder, "_conditions", Raw.mapAssertion()).hasSize(1);
+        ConditionSet conditionSet5 = conditionSetBuilder.build();
+        Assertions.assertThat(conditionSet5.nameIterator()).containsExactly("cond1");
+        Assertions.assertThat(conditionSet5.getValue("cond1")).isEqualTo("val1");
     }
 
     /**
