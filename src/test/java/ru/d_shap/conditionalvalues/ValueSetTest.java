@@ -986,6 +986,7 @@ public final class ValueSetTest {
         ValueSet<String> valueSet07 = new ValueSet<>(null, null, null, conditions07, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions07 = valueSet07.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions07).hasSize(1);
+        Assertions.assertThat(valueSetUniqueConditions07).toStringContains("cond=val");
 
         Map<String, Set<Object>> conditions08 = DataHelper.createHashMap();
         Set<Object> condition081 = DataHelper.createHashSet((Object) "val1");
@@ -995,6 +996,8 @@ public final class ValueSetTest {
         ValueSet<String> valueSet08 = new ValueSet<>(null, null, null, conditions08, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions08 = valueSet08.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions08).hasSize(1);
+        Assertions.assertThat(valueSetUniqueConditions08).toStringContains("cond1=val1");
+        Assertions.assertThat(valueSetUniqueConditions08).toStringContains("cond2=val2");
 
         Map<String, Set<Object>> conditions09 = DataHelper.createHashMap();
         Set<Object> condition091 = DataHelper.createHashSet((Object) null, "val1");
@@ -1006,6 +1009,8 @@ public final class ValueSetTest {
         ValueSet<String> valueSet09 = new ValueSet<>(null, null, null, conditions09, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions09 = valueSet09.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions09).hasSize(1);
+        Assertions.assertThat(valueSetUniqueConditions09).toStringContains("cond1=val1");
+        Assertions.assertThat(valueSetUniqueConditions09).toStringContains("cond2=val2");
 
         Map<String, Set<Object>> conditions10 = DataHelper.createHashMap();
         Set<Object> condition101 = DataHelper.createHashSet((Object) "val11", "val12");
@@ -1015,6 +1020,10 @@ public final class ValueSetTest {
         ValueSet<String> valueSet10 = new ValueSet<>(null, null, null, conditions10, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions10 = valueSet10.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions10).hasSize(4);
+        Assertions.assertThat(valueSetUniqueConditions10).toStringContains("cond1=val11, cond2=val21");
+        Assertions.assertThat(valueSetUniqueConditions10).toStringContains("cond1=val12, cond2=val21");
+        Assertions.assertThat(valueSetUniqueConditions10).toStringContains("cond1=val11, cond2=val22");
+        Assertions.assertThat(valueSetUniqueConditions10).toStringContains("cond1=val12, cond2=val22");
 
         Map<String, Set<Object>> conditions11 = DataHelper.createHashMap();
         Set<Object> condition111 = DataHelper.createHashSet((Object) "val1", "val2");
@@ -1026,6 +1035,13 @@ public final class ValueSetTest {
         ValueSet<String> valueSet11 = new ValueSet<>(null, null, null, conditions11, null);
         List<ValueSetUniqueCondition> valueSetUniqueConditions11 = valueSet11.getValueSetUniqueConditions();
         Assertions.assertThat(valueSetUniqueConditions11).hasSize(12);
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond1=val1");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond1=val2");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond2=val1");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond2=val2");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond3=val1");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond3=val2");
+        Assertions.assertThat(valueSetUniqueConditions11).toStringContains("cond3=val3");
     }
 
     /**
