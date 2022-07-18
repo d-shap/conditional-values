@@ -24,9 +24,11 @@ import java.util.Collections;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.Raw;
 import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.conditionalvalues.data.ConcatStringAction;
 import ru.d_shap.conditionalvalues.misc.NaturalOrderComparator;
+import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
@@ -65,6 +67,10 @@ public final class ConditionalValuesTest {
         ValueSet<String> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<String> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly("val1", "val2");
 
@@ -94,6 +100,10 @@ public final class ConditionalValuesTest {
         ValueSet<Boolean> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Boolean> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(true, false);
 
@@ -123,6 +133,10 @@ public final class ConditionalValuesTest {
         ValueSet<Character> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Character> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly('1', '2');
 
@@ -152,6 +166,10 @@ public final class ConditionalValuesTest {
         ValueSet<Integer> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Integer> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1, 2);
 
@@ -181,6 +199,10 @@ public final class ConditionalValuesTest {
         ValueSet<Long> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Long> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1L, 2L);
 
@@ -210,6 +232,10 @@ public final class ConditionalValuesTest {
         ValueSet<Float> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Float> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1.0f, 2.0f);
 
@@ -239,6 +265,10 @@ public final class ConditionalValuesTest {
         ValueSet<Double> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<Double> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(1.0, 2.0);
 
@@ -270,6 +300,10 @@ public final class ConditionalValuesTest {
         ValueSet<StringBuilder> valueSet2 = valueSetBuilder.build();
 
         ConditionalValues<StringBuilder> conditionalValues1 = new ConditionalValues<>(null, null, null, null, DataHelper.createArrayList(valueSet1, valueSet2));
+        Assertions.assertThat(conditionalValues1, "_tuplePredicate").isInstanceOf(AnyValueMatchesTuplePredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicate").isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(conditionalValues1, "_predicates", Raw.mapAssertion()).isEmpty();
+        Assertions.assertThat(conditionalValues1, "_comparator").isNull();
         Assertions.assertThat(conditionalValues1.getAllConditionNames()).containsExactly("cond1", "cond2", "cond3", "cond4");
         Assertions.assertThat(conditionalValues1.getAllValues()).containsExactly(stringBuilder1, stringBuilder2);
 
