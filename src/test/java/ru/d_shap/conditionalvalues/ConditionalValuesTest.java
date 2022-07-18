@@ -20,13 +20,12 @@
 package ru.d_shap.conditionalvalues;
 
 import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
 import ru.d_shap.assertions.util.DataHelper;
+import ru.d_shap.conditionalvalues.data.ConcatStringAction;
 import ru.d_shap.conditionalvalues.misc.NaturalOrderComparator;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
@@ -1707,23 +1706,23 @@ public final class ConditionalValuesTest {
 
         conditionSetBuilder.addCondition("cond1", "val11");
         conditionSetBuilder.addCondition("cond2", "val22");
-        ActionImpl action1 = new ActionImpl();
+        ConcatStringAction action1 = new ConcatStringAction("proc_", 0);
         conditionalValues.lookup(conditionSetBuilder.build(), action1);
-        Assertions.assertThat(action1._values).containsExactly("proc_val1");
+        Assertions.assertThat(action1.getValues()).containsExactly("proc_val1");
 
         conditionSetBuilder.addCondition("cond3", "val31");
         conditionSetBuilder.addCondition("cond4", "val42");
-        ActionImpl action2 = new ActionImpl();
+        ConcatStringAction action2 = new ConcatStringAction("proc_", 0);
         conditionalValues.lookup(conditionSetBuilder.build(), action2);
-        Assertions.assertThat(action2._values).containsExactly("proc_val2");
+        Assertions.assertThat(action2.getValues()).containsExactly("proc_val2");
 
         conditionSetBuilder.addCondition("cond1", "val12");
         conditionSetBuilder.addCondition("cond2", "val21");
         conditionSetBuilder.addCondition("cond3", "val32");
         conditionSetBuilder.addCondition("cond4", "val41");
-        ActionImpl action3 = new ActionImpl();
+        ConcatStringAction action3 = new ConcatStringAction("proc_", 0);
         conditionalValues.lookup(conditionSetBuilder.build(), action3);
-        Assertions.assertThat(action3._values).containsExactly("proc_val1", "proc_val2");
+        Assertions.assertThat(action3.getValues()).containsExactly("proc_val1", "proc_val2");
     }
 
     /**
@@ -1759,27 +1758,6 @@ public final class ConditionalValuesTest {
         Assertions.assertThat(conditionalValues4).toStringContains("cond1=[val1]");
         Assertions.assertThat(conditionalValues4).toStringContains("cond2=[val2]");
         Assertions.assertThat(conditionalValues4).toStringContains("cond3=[val3]");
-    }
-
-    /**
-     * Test class.
-     *
-     * @author Dmitry Shapovalov
-     */
-    private static final class ActionImpl implements Action<String> {
-
-        private final Set<String> _values;
-
-        ActionImpl() {
-            super();
-            _values = new LinkedHashSet<>();
-        }
-
-        @Override
-        public void perform(final String value) {
-            _values.add("proc_" + value);
-        }
-
     }
 
 }
