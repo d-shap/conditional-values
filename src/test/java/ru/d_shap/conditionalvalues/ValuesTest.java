@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 package ru.d_shap.conditionalvalues;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -784,6 +785,10 @@ public final class ValuesTest {
         List<String> allValues10 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
         Values<String> values10 = new Values<>(new NaturalOrderComparator<String>(), null, allValues10);
         Assertions.assertThat(values10.getAllValues()).containsExactlyInOrder("val1", "val2", "val2", "val3");
+
+        List<String> allValues11 = DataHelper.createArrayList(null, "val1", "val2", "val2", "val3");
+        Values<String> values11 = new Values<>(Collections.reverseOrder(new NaturalOrderComparator<String>()), null, allValues11);
+        Assertions.assertThat(values11.getAllValues()).containsExactlyInOrder("val3", "val2", "val2", "val1");
     }
 
     /**
