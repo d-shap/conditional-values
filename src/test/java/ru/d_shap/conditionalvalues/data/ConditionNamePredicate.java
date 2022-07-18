@@ -38,7 +38,10 @@ public final class ConditionNamePredicate implements Predicate {
 
     @Override
     public boolean evaluate(final String conditionName, final Object conditionValue, final Object value) {
-        return conditionName != null && conditionName.equals(conditionValue) && conditionName.equals(value);
+        conditionName.length();
+        conditionValue.hashCode();
+        value.hashCode();
+        return conditionName.equals(conditionValue) && conditionName.equals(value);
     }
 
 }
