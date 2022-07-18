@@ -26,6 +26,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import ru.d_shap.assertions.Assertions;
+import ru.d_shap.assertions.Raw;
 import ru.d_shap.assertions.util.DataHelper;
 import ru.d_shap.conditionalvalues.predicate.AllValuesMatchTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
@@ -618,6 +619,7 @@ public final class ValueSetTest {
         Set<Object> condition12 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
         conditions1.put("cond2", condition12);
         ValueSet<String> valueSet1 = new ValueSet<>(null, null, predicates1, conditions1, null);
+        Assertions.assertThat(valueSet1, "_predicates", Raw.mapAssertion()).hasSize(2);
 
         Map<String, Object> conditions101 = DataHelper.createHashMap();
         conditions101.put("cond1", "xx_val11_yyy_val12 val13");
@@ -653,6 +655,7 @@ public final class ValueSetTest {
         Set<Object> condition22 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
         conditions2.put("cond2", condition22);
         ValueSet<String> valueSet2 = new ValueSet<>(null, null, predicates2, conditions2, null);
+        Assertions.assertThat(valueSet2, "_predicates", Raw.mapAssertion()).hasSize(1);
 
         Map<String, Object> conditions201 = DataHelper.createHashMap();
         conditions201.put("cond1", "xx_val11_yyy_val12 val13");
@@ -692,6 +695,7 @@ public final class ValueSetTest {
         Set<Object> condition32 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
         conditions3.put("cond2", condition32);
         ValueSet<String> valueSet3 = new ValueSet<>(null, null, predicates3, conditions3, null);
+        Assertions.assertThat(valueSet3, "_predicates", Raw.mapAssertion()).hasSize(0);
 
         Map<String, Object> conditions301 = DataHelper.createHashMap();
         conditions301.put("cond1", "xx_val11_yyy_val12 val13");
@@ -727,6 +731,7 @@ public final class ValueSetTest {
         Set<Object> condition42 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
         conditions4.put("cond2", condition42);
         ValueSet<String> valueSet4 = new ValueSet<>(null, new StringContainsPredicate(), predicates4, conditions4, null);
+        Assertions.assertThat(valueSet4, "_predicates", Raw.mapAssertion()).hasSize(1);
 
         Map<String, Object> conditions401 = DataHelper.createHashMap();
         conditions401.put("cond1", "xx_val11_yyy_val12 val13");
@@ -781,6 +786,7 @@ public final class ValueSetTest {
         Set<Object> condition52 = DataHelper.createHashSet((Object) "val21", "val22", "val23");
         conditions5.put("cond2", condition52);
         ValueSet<String> valueSet5 = new ValueSet<>(null, null, predicates5, conditions5, null);
+        Assertions.assertThat(valueSet5, "_predicates", Raw.mapAssertion()).hasSize(0);
 
         Map<String, Object> conditions501 = DataHelper.createHashMap();
         conditions501.put("cond1", "xx_val11_yyy_val12 val13");
