@@ -22,6 +22,7 @@ package ru.d_shap.conditionalvalues;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -36,6 +37,7 @@ import ru.d_shap.conditionalvalues.predicate.AnyValueMatchesTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.EqualsPredicate;
 import ru.d_shap.conditionalvalues.predicate.SomeValuesMatchTuplePredicate;
 import ru.d_shap.conditionalvalues.predicate.StringContainsIgnoreCasePredicate;
+import ru.d_shap.conditionalvalues.predicate.StringContainsPredicate;
 import ru.d_shap.conditionalvalues.predicate.StringEqualsIgnoreCasePredicate;
 
 /**
@@ -257,6 +259,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond1", new EqualsPredicate());
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new EqualsPredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(EqualsPredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -270,6 +274,7 @@ public final class ConditionalValuesBuilderTest {
 
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond1", new StringEqualsIgnoreCasePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringEqualsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -283,6 +288,7 @@ public final class ConditionalValuesBuilderTest {
 
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new ConditionNamePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(1);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(ConditionNamePredicate.class);
         valueSetBuilder.addCondition("a", "a");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -344,6 +350,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(EqualsPredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -358,6 +366,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setEqualsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new StringContainsIgnoreCasePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(EqualsPredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -406,6 +416,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringEqualsIgnoreCasePredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringEqualsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -420,6 +432,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringEqualsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new StringContainsIgnoreCasePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringEqualsIgnoreCasePredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -468,6 +482,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringContainsPredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringContainsPredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -482,6 +498,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsPredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new StringContainsIgnoreCasePredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringContainsPredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -530,6 +548,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond2");
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
@@ -544,6 +564,8 @@ public final class ConditionalValuesBuilderTest {
         conditionalValuesBuilder = conditionalValuesBuilder.setStringContainsIgnoreCasePredicate("cond1");
         conditionalValuesBuilder = conditionalValuesBuilder.setPredicate("cond2", new EqualsPredicate());
         Assertions.assertThat(conditionalValuesBuilder, "_predicates", Raw.mapAssertion()).hasSize(2);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond1")).isInstanceOf(StringContainsIgnoreCasePredicate.class);
+        Assertions.assertThat(((Map<?, ?>) ReflectionHelper.getFieldValue(conditionalValuesBuilder, "_predicates")).get("cond2")).isInstanceOf(EqualsPredicate.class);
         valueSetBuilder.addCondition("cond1", "val");
         valueSetBuilder.addValue("value1");
         conditionalValuesBuilder.addValueSet(valueSetBuilder.build());
