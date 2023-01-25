@@ -1,6 +1,6 @@
-Total - 8
+Total                                                               - 8
 ===========================================================================
-ru.d_shap.conditionalvalues - 3
-ru.d_shap.conditionalvalues.misc - 0
-ru.d_shap.conditionalvalues.predicate - 5
+ru.d_shap.conditionalvalues                                         - 3
+ru.d_shap.conditionalvalues.misc                                    - 0
+ru.d_shap.conditionalvalues.predicate                               - 5
 ===========================================================================
