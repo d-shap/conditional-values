@@ -9,12 +9,3 @@ This Decision Table is created during a design time.
 During a runtime Decision Table is used to find best matching conditions based on the current context.
 So during a runtime a context and created and lookup is performed for this context.
 The result of lookup is used to perform actions, corresponding to the triggered conditions.
-
-# The latest release
-Conditional values:
-* **&lt;groupId&gt;**: ru.d-shap
-* **&lt;artifactId&gt;**: conditional-values
-* **&lt;version&gt;**: 1.3
-
-# Donation
-If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
